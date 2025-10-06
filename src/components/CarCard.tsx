@@ -4,15 +4,37 @@ import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/luxury-button"
 import { Calendar, Fuel, Gauge, Settings } from "lucide-react"
-import type { ProcessedListing } from "@/hooks/useLatestListings"
+import type { APIListing } from "@/hooks/useLatestListings" // Changed to APIListing
 import { format } from "date-fns"
 
 interface CarCardProps {
-  listing: ProcessedListing;
+  listing: APIListing; // Changed to APIListing
 }
 
 const CarCard = ({ listing }: CarCardProps) => {
   const postDate = format(new Date(listing.createdAt), 'dd.MM.yyyy');
+
+  const getAttributeValue = (attributeName: string) => {
+    if (!listing || !listing.attributeValues) {
+      return 'N/A';
+    }
+  
+    const attribute = listing.attributeValues.find(
+      (attr) => attr.attribute.name.toLowerCase() === attributeName.toLowerCase()
+    );
+  
+    if (!attribute) {
+      return 'N/A';
+    }
+    
+    // Returnează valoarea care nu este null
+    const value = attribute.stringValue || attribute.numberValue;
+    return value !== undefined && value !== null ? value.toString() : 'N/A';
+  };
+
+  const mileage = parseInt(getAttributeValue('kilometraj')).toLocaleString();
+  const fuelType = getAttributeValue('combustibil');
+  const engine = getAttributeValue('capacitate cilindrica');
 
   return (
     <motion.div 
@@ -30,7 +52,7 @@ const CarCard = ({ listing }: CarCardProps) => {
       {/* Car Image */}
       <div className="relative overflow-hidden rounded-t-xl">
         <img 
-          src={listing.image} 
+          src={listing.images[0]?.url || 'https://via.placeholder.com/600x400.png?text=AWD+Auto'} 
           alt={listing.title}
           className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
         />
@@ -45,7 +67,7 @@ const CarCard = ({ listing }: CarCardProps) => {
             {listing.title}
           </h3>
           <p className="text-2xl font-bold text-luxury-gold">
-            €{listing.price.toLocaleString()}
+            €{(listing.price || 0).toLocaleString()}
           </p>
         </div>
 
@@ -57,15 +79,15 @@ const CarCard = ({ listing }: CarCardProps) => {
           </div>
           <div className="flex items-center space-x-2 text-muted-foreground">
             <Gauge className="h-4 w-4 text-luxury-gold" />
-            <span>{listing.mileage}</span>
+            <span>{mileage} km</span>
           </div>
           <div className="flex items-center space-x-2 text-muted-foreground">
             <Fuel className="h-4 w-4 text-luxury-gold" />
-            <span>{listing.fuelType}</span>
+            <span>{fuelType}</span>
           </div>
           <div className="flex items-center space-x-2 text-muted-foreground">
             <Settings className="h-4 w-4 text-luxury-gold" />
-            <span>{listing.engine}</span>
+            <span>{engine} cm³</span>
           </div>
         </div>
 

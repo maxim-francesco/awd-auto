@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
-// Definirea tipurilor pentru a asigura siguranța datelor
-interface ListingImage {
+// Tipuri partajate, ar putea fi mutate într-un fișier dedicat de tipuri
+export interface ListingImage {
   url: string;
 }
 
-interface Attribute {
+export interface Attribute {
   attribute: {
     name: string;
     type: string;
@@ -15,11 +15,12 @@ interface Attribute {
   booleanValue?: boolean;
 }
 
-interface APIListing {
+export interface APIListing {
   id: string;
   title: string;
-  price: number;
-  createdAt: string; // Adăugat createdAt
+  description: string;
+  price: number | null;
+  createdAt: string;
   attributeValues: Attribute[];
   images: ListingImage[];
 }
@@ -38,19 +39,8 @@ export interface ProcessedListing {
   engine: string;
 }
 
-const getAttributeValue = (attributes: Attribute[], name: string): string => {
-  const attr = attributes.find(a => a.attribute.name.toLowerCase() === name.toLowerCase());
-  if (!attr) return "N/A";
-  switch (attr.attribute.type) {
-    case "STRING": return attr.stringValue || "N/A";
-    case "NUMBER": return attr.numberValue?.toString() || "N/A";
-    case "BOOLEAN": return attr.booleanValue ? "Da" : "Nu";
-    default: return "N/A";
-  }
-};
-
 const useLatestListings = () => {
-  const [listings, setListings] = useState<ProcessedListing[]>([]);
+  const [listings, setListings] = useState<APIListing[]>([]); // Changed to APIListing[]
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -75,21 +65,7 @@ const useLatestListings = () => {
         const result = await response.json();
         const rawListings: APIListing[] = result.data || [];
         
-        const processed = rawListings.map(listing => ({
-          id: listing.id,
-          title: listing.title,
-          price: listing.price,
-          createdAt: listing.createdAt, // Am pasat data de creare
-          image: listing.images?.[0]?.url || "https://via.placeholder.com/600x400.png?text=AWD+Auto",
-          make: getAttributeValue(listing.attributeValues, 'marca'),
-          model: getAttributeValue(listing.attributeValues, 'model'),
-          year: getAttributeValue(listing.attributeValues, 'an fabricatie'),
-          mileage: `${parseInt(getAttributeValue(listing.attributeValues, 'kilometraj')).toLocaleString()} km`,
-          fuelType: getAttributeValue(listing.attributeValues, 'combustibil'),
-          engine: `${getAttributeValue(listing.attributeValues, 'capacitate cilindrica')} cm³`,
-        }));
-
-        setListings(processed);
+        setListings(rawListings); // Set raw data
       } catch (e: any) {
         setError(e);
         console.error("Failed to fetch latest listings:", e);

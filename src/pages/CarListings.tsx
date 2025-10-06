@@ -14,6 +14,7 @@ import FilterSidebar from "@/components/filters/FilterSidebar"
 import { Skeleton } from "@/components/ui/skeleton"
 import { AlertCircle } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import type { APIListing } from "@/hooks/useListings"
 
 const CarListings = () => {
   const [filters, setFilters] = useState<Record<string, any>>({});
@@ -25,10 +26,14 @@ const CarListings = () => {
     console.log('%c Starea FILTERS s-a actualizat:', 'color: orange; font-weight: bold;', filters);
   }, [filters]);
   
-  const finalFilters = useMemo(() => ({
-    ...activeFilters,
-    sortBy: sortOption,
-  }), [activeFilters, sortOption]);
+  const finalFilters = useMemo(() => {
+    const combinedFilters = { ...activeFilters };
+    if (sortOption) {
+      combinedFilters.sortBy = sortOption;
+    }
+    return combinedFilters;
+  }, [activeFilters, sortOption]);
+
 
   console.log('%c Filtre ACTIVE trimise către hook:', 'color: green; font-weight: bold;', finalFilters);
   const { listings, loading, error } = useListings(finalFilters);
@@ -37,11 +42,18 @@ const CarListings = () => {
     setFilters(prevFilters => {
       const newFilters = { ...prevFilters };
 
-      // Dacă valoarea este un array gol sau nedefinită, ștergem cheia
+      const attributeKey = attributeName.replace(/ /g, '_');
+
       if ((Array.isArray(value) && value.length === 0) || value === undefined || value === null) {
-        delete newFilters[attributeName];
+        delete newFilters[attributeKey];
+        delete newFilters[`${attributeKey}_min`];
+        delete newFilters[`${attributeKey}_max`];
+      } else if (Array.isArray(value) && value.length === 2 && typeof value[0] === 'number') {
+        // Range slider case
+        newFilters[`${attributeKey}_min`] = value[0];
+        newFilters[`${attributeKey}_max`] = value[1];
       } else {
-        newFilters[attributeName] = value;
+        newFilters[attributeKey] = value;
       }
       
       return newFilters;
@@ -52,8 +64,6 @@ const CarListings = () => {
     const cleanedFilters: Record<string, any> = {};
     for (const key in filters) {
       const value = filters[key];
-      // Adăugăm filtrul doar dacă are o valoare validă
-      // (nu e null/undefined, nu e un string gol, nu e un array gol)
       if (value !== null && value !== undefined && value !== '' && (!Array.isArray(value) || value.length > 0)) {
         cleanedFilters[key] = value;
       }
@@ -107,7 +117,7 @@ const CarListings = () => {
 
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
-        {listings.map((listing) => (
+        {listings.map((listing: APIListing) => (
             <CarCard key={listing.id} listing={listing} />
         ))}
       </div>

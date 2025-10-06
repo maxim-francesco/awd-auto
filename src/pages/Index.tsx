@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import { Shield, CreditCard, Star, ArrowRight, AlertCircle } from "lucide-react"
 import { Link } from "react-router-dom"
 import heroImage from "@/assets/hero-car.jpg"
-import useLatestListings, { type ProcessedListing } from "@/hooks/useLatestListings"
+import useLatestListings, { type APIListing } from "@/hooks/useLatestListings"
 import { Skeleton } from "@/components/ui/skeleton"
 
 const Index = () => {
@@ -83,7 +83,7 @@ const Index = () => {
 
     return (
       <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {listings.map((listing: ProcessedListing) => (
+        {listings.map((listing: APIListing) => (
           <StaggeredItem key={listing.id}>
             <CarCard listing={listing} />
           </StaggeredItem>
@@ -293,5 +293,3 @@ const Index = () => {
 }
 
 export default Index
-
-    
