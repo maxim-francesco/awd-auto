@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import { Shield, CreditCard, Star, ArrowRight, AlertCircle } from "lucide-react"
 import { Link } from "react-router-dom"
 import heroImage from "@/assets/hero-car.jpg"
-import useLatestListings from "@/hooks/useLatestListings"
+import useLatestListings, { type ProcessedListing } from "@/hooks/useLatestListings"
 import { Skeleton } from "@/components/ui/skeleton"
 
 const Index = () => {
@@ -72,9 +72,18 @@ const Index = () => {
       )
     }
 
+    if (listings.length === 0) {
+      return (
+        <div className="text-center text-muted-foreground bg-card p-6 rounded-lg border border-border">
+          <h3 className="text-xl font-semibold">Nicio mașină găsită</h3>
+          <p>Momentan nu sunt noutăți în stoc. Vă rugăm să reveniți.</p>
+        </div>
+      );
+    }
+
     return (
       <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {listings.map((listing) => (
+        {listings.map((listing: ProcessedListing) => (
           <StaggeredItem key={listing.id}>
             <CarCard listing={listing} />
           </StaggeredItem>
@@ -284,3 +293,5 @@ const Index = () => {
 }
 
 export default Index
+
+    

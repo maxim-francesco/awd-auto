@@ -41,7 +41,7 @@ const getAttributeValue = (attributes: Attribute[], name: string): string => {
   if (!attr) return "N/A";
   switch (attr.attribute.type) {
     case "STRING": return attr.stringValue || "N/A";
-    case "NUMBER": return attr.numberValue?.toLocaleString() || "N/A";
+    case "NUMBER": return attr.numberValue?.toString() || "N/A";
     case "BOOLEAN": return attr.booleanValue ? "Da" : "Nu";
     default: return "N/A";
   }
@@ -56,6 +56,7 @@ const useLatestListings = () => {
     const fetchLatestListings = async () => {
       try {
         setLoading(true);
+        setError(null);
         const businessId = "cmg5ligro0175s52cn0jimm7s";
         const categoryId = "cmg5m9pkm017bs52coh75y43d";
         const sortBy = "newest";
@@ -72,7 +73,6 @@ const useLatestListings = () => {
         const result = await response.json();
         const rawListings: APIListing[] = result.data || [];
         
-        // Procesăm datele pentru a se potrivi cu ce așteaptă CarCard
         const processed = rawListings.map(listing => ({
           id: listing.id,
           title: listing.title,
@@ -102,3 +102,5 @@ const useLatestListings = () => {
 };
 
 export default useLatestListings;
+
+    
