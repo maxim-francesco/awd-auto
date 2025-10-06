@@ -131,7 +131,7 @@ const CarDetails = () => {
   // Processed values for display
   const carData = {
     title: car.title,
-    year: getAttributeValue(car.attributeValues, 'an fabricatie'),
+    year: getAttributeValue(car.attributeValues, 'An'),
     variant: getAttributeValue(car.attributeValues, 'model'),
     price: car.price ?? 0,
     images: car.images,
@@ -139,10 +139,10 @@ const CarDetails = () => {
     specs: [
       { icon: Gauge, label: "Rulaj", value: `${parseInt(getAttributeValue(car.attributeValues, 'kilometraj'), 10).toLocaleString()} km` },
       { icon: Cog, label: "Capacitate cilindrică", value: `${getAttributeValue(car.attributeValues, 'capacitate cilindrica')} cm³` },
-      { icon: Zap, label: "Putere", value: `${getAttributeValue(car.attributeValues, 'putere')} CP` },
+      { icon: Zap, label: "Putere", value: `${getAttributeValue(car.attributeValues, 'Putere (CP)')} CP` },
       { icon: Fuel, label: "Combustibil", value: getAttributeValue(car.attributeValues, 'combustibil') },
-      { icon: Settings, label: "Transmisie", value: getAttributeValue(car.attributeValues, 'transmisie') },
-      { icon: Calendar, label: "An fabricație", value: getAttributeValue(car.attributeValues, 'an fabricatie') }
+      { icon: Settings, label: "Transmisie", value: getAttributeValue(car.attributeValues, 'Cutie de viteze') },
+      { icon: Calendar, label: "An fabricație", value: getAttributeValue(car.attributeValues, 'An') }
     ],
     features: getFeatures(car.attributeValues)
   }
