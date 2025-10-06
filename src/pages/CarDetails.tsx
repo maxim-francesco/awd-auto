@@ -58,7 +58,7 @@ const mockCarData = {
 }
 
 const CarDetails = () => {
-  const { id } = useParams()
+  const { listingId } = useParams()
   const navigate = useNavigate()
   const [selectedImage, setSelectedImage] = useState(0)
   const car = mockCarData
