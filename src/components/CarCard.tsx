@@ -32,7 +32,8 @@ const CarCard = ({ listing }: CarCardProps) => {
     return value !== undefined && value !== null ? value.toString() : 'N/A';
   };
 
-  const mileage = parseInt(getAttributeValue('kilometraj')).toLocaleString();
+  const mileageValue = getAttributeValue('kilometraj');
+  const mileage = !isNaN(parseInt(mileageValue)) ? parseInt(mileageValue).toLocaleString() : 'N/A';
   const fuelType = getAttributeValue('combustibil');
   const engine = getAttributeValue('capacitate cilindrica');
 
@@ -92,7 +93,7 @@ const CarCard = ({ listing }: CarCardProps) => {
         </div>
 
         {/* Action Button */}
-        <Link to={`/masini-disponibile/${listing.id}`} className="block">
+        <Link to={`/masini-disponibile/${listing.id}`} state={{ listing }} className="block">
           <Button className="w-full" size="sm">
             Vezi Detalii
           </Button>
