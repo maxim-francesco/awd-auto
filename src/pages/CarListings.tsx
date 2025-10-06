@@ -32,7 +32,8 @@ const CarListings = () => {
     setFilters(prevFilters => {
       const newFilters = { ...prevFilters };
 
-      if (Array.isArray(value) && value.length === 0) {
+      // Dacă valoarea este un array gol sau nedefinită, ștergem cheia
+      if ((Array.isArray(value) && value.length === 0) || value === undefined || value === null) {
         delete newFilters[attributeName];
       } else {
         newFilters[attributeName] = value;
@@ -46,6 +47,8 @@ const CarListings = () => {
     const cleanedFilters: Record<string, any> = {};
     for (const key in filters) {
       const value = filters[key];
+      // Adăugăm filtrul doar dacă are o valoare validă
+      // (nu e null/undefined, nu e un string gol, nu e un array gol)
       if (value !== null && value !== undefined && value !== '' && (!Array.isArray(value) || value.length > 0)) {
         cleanedFilters[key] = value;
       }
