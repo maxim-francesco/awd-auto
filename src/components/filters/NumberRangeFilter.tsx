@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -15,17 +15,14 @@ const NumberRangeFilter = ({ attribute, onChange }: NumberRangeFilterProps) => {
   const [value, setValue] = useState<number | undefined>(undefined);
   const [loading, setLoading] = useState(true);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const stableOnChange = useCallback(onChange, []);
-
   useEffect(() => {
     const fetchStats = async () => {
       try {
         setLoading(true);
         const data = await getAttributeStats(attribute.id);
         setStats(data);
+        // Setăm valoarea inițială a slider-ului, dar NU apelăm onChange
         setValue(data.max);
-        stableOnChange(`${attribute.name.replace(/ /g, '_')}_max`, data.max);
       } catch (error) {
         console.error(`Failed to fetch stats for ${attribute.name}:`, error);
         setStats({ min: 0, max: 100 }); // Fallback
@@ -34,7 +31,7 @@ const NumberRangeFilter = ({ attribute, onChange }: NumberRangeFilterProps) => {
       }
     };
     fetchStats();
-  }, [attribute.id, attribute.name, stableOnChange]);
+  }, [attribute.id, attribute.name]);
   
   if (loading) {
     return (
@@ -54,6 +51,7 @@ const NumberRangeFilter = ({ attribute, onChange }: NumberRangeFilterProps) => {
   const handleValueChange = (vals: number[]) => {
     const newValue = vals[0];
     setValue(newValue);
+    // Apelăm onChange doar când utilizatorul interacționează cu slider-ul
     onChange(`${attribute.name.replace(/ /g, '_')}_max`, newValue);
   };
 

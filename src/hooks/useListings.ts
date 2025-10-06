@@ -85,12 +85,15 @@ const useListings = (activeFilters: Record<string, any>) => {
           categoryId,
         });
 
-        for (const key in activeFilters) {
-          const value = activeFilters[key];
-          if (Array.isArray(value) && value.length > 0) {
-            value.forEach(v => params.append(key, v));
-          } else if (value !== undefined && value !== null && value !== '' && !Array.isArray(value)) {
-            params.append(key, value);
+        // Verificăm dacă activeFilters este un obiect valid și nu este gol
+        if (activeFilters && typeof activeFilters === 'object' && Object.keys(activeFilters).length > 0) {
+          for (const key in activeFilters) {
+            const value = activeFilters[key];
+            if (Array.isArray(value) && value.length > 0) {
+              value.forEach(v => params.append(key, v));
+            } else if (value !== undefined && value !== null && value !== '' && !Array.isArray(value)) {
+              params.append(key, value.toString());
+            }
           }
         }
         
