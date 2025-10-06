@@ -5,23 +5,47 @@ import Layout from "@/components/layout/Layout"
 import CarCard from "@/components/CarCard"
 import { StaggeredGrid, StaggeredItem, AnimatedSection } from "@/components/ui/animated-section"
 import { Button } from "@/components/ui/luxury-button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
-import { Slider } from "@/components/ui/slider"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import useListings from "@/hooks/useListings" // Importăm noul hook
+import useListings from "@/hooks/useListings"
+import useFilterAttributes from "@/hooks/useFilterAttributes"
 import { Skeleton } from "@/components/ui/skeleton"
 import { AlertCircle } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
-
+import NumberRangeFilter from "@/components/filters/NumberRangeFilter"
+import StringCheckboxFilter from "@/components/filters/StringCheckboxFilter"
 
 const CarListings = () => {
-  const { listings, loading, error } = useListings(); // Apelăm hook-ul
+  const { listings, loading, error } = useListings();
+  const { attributes, loading: attributesLoading } = useFilterAttributes();
 
-  const brands = ["Audi", "BMW", "Mercedes-Benz", "Porsche"]
+  const renderFilters = () => {
+    if (attributesLoading) {
+      return (
+        <div className="space-y-6">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="space-y-3">
+              <Skeleton className="h-4 w-1/3" />
+              <Skeleton className="h-5 w-full" />
+              <div className="flex justify-between">
+                <Skeleton className="h-3 w-1/4" />
+                <Skeleton className="h-3 w-1/4" />
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    }
 
+    return attributes.map((attr, index) => (
+      <div key={attr.id}>
+        {index > 0 && <Separator />}
+        {attr.type === 'NUMBER' && <NumberRangeFilter attribute={attr} />}
+        {attr.type === 'STRING' && <StringCheckboxFilter attribute={attr} />}
+      </div>
+    ));
+  };
+  
   const renderListings = () => {
     if (loading) {
       return (
@@ -83,64 +107,24 @@ const CarListings = () => {
       <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Filters Sidebar */}
-          <div className="lg:col-span-1">
+          <aside className="lg:col-span-1">
             <div className="luxury-card p-6 sticky top-24">
               <h2 className="font-luxury text-xl font-bold text-luxury-gold mb-6">
                 Filtrează Rezultatele
               </h2>
               
               <div className="space-y-6">
-                {/* Price Range */}
-                <div className="space-y-3">
-                  <Label className="text-sm font-medium">Preț (€)</Label>
-                  <Slider
-                    defaultValue={[50000]}
-                    max={300000}
-                    min={20000}
-                    step={5000}
-                    className="w-full"
-                  />
-                  <div className="flex justify-between text-xs text-muted-foreground">
-                    <span>€20,000</span>
-                    <span>€300,000</span>
-                  </div>
-                </div>
-
-                <Separator />
-
-                {/* Brand Filter */}
-                <div className="space-y-3">
-                  <Label className="text-sm font-medium">Marcă</Label>
-                  {brands.map((brand) => (
-                    <div key={brand} className="flex items-center space-x-2">
-                      <Checkbox id={brand} />
-                      <Label htmlFor={brand} className="text-sm">
-                        {brand}
-                      </Label>
-                    </div>
-                  ))}
-                </div>
-
-                <Separator />
-
-                {/* Year Range */}
-                <div className="space-y-3">
-                  <Label className="text-sm font-medium">An fabricație</Label>
-                  <div className="grid grid-cols-2 gap-2">
-                    <Input placeholder="De la" />
-                    <Input placeholder="Până la" />
-                  </div>
-                </div>
+                {renderFilters()}
 
                 <Button className="w-full" size="sm">
                   Aplică Filtrele
                 </Button>
               </div>
             </div>
-          </div>
+          </aside>
 
           {/* Main Content */}
-          <div className="lg:col-span-3">
+          <main className="lg:col-span-3">
             {/* Header */}
             <AnimatedSection className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 space-y-4 sm:space-y-0">
               <motion.h1 
@@ -185,7 +169,7 @@ const CarListings = () => {
                 Următor
               </Button>
             </div>
-          </div>
+          </main>
         </div>
       </div>
     </Layout>
