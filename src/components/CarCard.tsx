@@ -5,12 +5,15 @@ import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/luxury-button"
 import { Calendar, Fuel, Gauge, Settings } from "lucide-react"
 import type { ProcessedListing } from "@/hooks/useLatestListings"
+import { format } from "date-fns"
 
 interface CarCardProps {
   listing: ProcessedListing;
 }
 
 const CarCard = ({ listing }: CarCardProps) => {
+  const postDate = format(new Date(listing.createdAt), 'dd.MM.yyyy');
+
   return (
     <motion.div 
       className="luxury-card group"
@@ -50,7 +53,7 @@ const CarCard = ({ listing }: CarCardProps) => {
         <div className="grid grid-cols-2 gap-3 text-sm">
           <div className="flex items-center space-x-2 text-muted-foreground">
             <Calendar className="h-4 w-4 text-luxury-gold" />
-            <span>{listing.year}</span>
+            <span>{postDate}</span>
           </div>
           <div className="flex items-center space-x-2 text-muted-foreground">
             <Gauge className="h-4 w-4 text-luxury-gold" />

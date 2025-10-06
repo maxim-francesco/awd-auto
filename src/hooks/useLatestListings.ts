@@ -19,6 +19,7 @@ interface APIListing {
   id: string;
   title: string;
   price: number;
+  createdAt: string; // Adăugat createdAt
   attributeValues: Attribute[];
   images: ListingImage[];
 }
@@ -27,6 +28,7 @@ export interface ProcessedListing {
   id: string;
   title: string;
   price: number;
+  createdAt: string; // Adăugat createdAt
   image: string;
   make: string;
   model: string;
@@ -77,6 +79,7 @@ const useLatestListings = () => {
           id: listing.id,
           title: listing.title,
           price: listing.price,
+          createdAt: listing.createdAt, // Am pasat data de creare
           image: listing.images?.[0]?.url || "https://via.placeholder.com/600x400.png?text=AWD+Auto",
           make: getAttributeValue(listing.attributeValues, 'marca'),
           model: getAttributeValue(listing.attributeValues, 'model'),
@@ -102,5 +105,3 @@ const useLatestListings = () => {
 };
 
 export default useLatestListings;
-
-    
