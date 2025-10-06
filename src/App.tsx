@@ -10,6 +10,7 @@ import Finantare from "./pages/Finantare";
 import DespreNoi from "./pages/DespreNoi";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/utils/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/masini-disponibile" element={<CarListings />} />
