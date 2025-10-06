@@ -20,7 +20,7 @@ const CarCard = ({ listing }: CarCardProps) => {
       whileHover={{ 
         scale: 1.03, 
         y: -5,
-        boxShadow: "0 25px 50px -12px hsl(45 100% 51% / 0.4)"
+        boxShadow: "0 25px 50px -12px hsl(var(--luxury-gold) / 0.4)"
       }}
       transition={{ 
         duration: 0.3, 
@@ -34,7 +34,7 @@ const CarCard = ({ listing }: CarCardProps) => {
           alt={listing.title}
           className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
       </div>
 
       {/* Card Content */}
