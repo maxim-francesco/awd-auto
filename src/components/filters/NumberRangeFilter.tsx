@@ -7,9 +7,10 @@ import { getAttributeStats } from "@/services/apiFilters";
 
 interface NumberRangeFilterProps {
   attribute: AttributeDefinition;
+  onChange: (attributeName: string, value: number) => void;
 }
 
-const NumberRangeFilter = ({ attribute }: NumberRangeFilterProps) => {
+const NumberRangeFilter = ({ attribute, onChange }: NumberRangeFilterProps) => {
   const [stats, setStats] = useState<{ min: number; max: number } | null>(null);
   const [value, setValue] = useState<number | undefined>(undefined);
   const [loading, setLoading] = useState(true);
@@ -21,6 +22,7 @@ const NumberRangeFilter = ({ attribute }: NumberRangeFilterProps) => {
         const data = await getAttributeStats(attribute.id);
         setStats(data);
         setValue(data.max);
+        onChange(`${attribute.name}_max`, data.max);
       } catch (error) {
         console.error(`Failed to fetch stats for ${attribute.name}:`, error);
         setStats({ min: 0, max: 100 }); // Fallback
@@ -29,7 +31,7 @@ const NumberRangeFilter = ({ attribute }: NumberRangeFilterProps) => {
       }
     };
     fetchStats();
-  }, [attribute.id, attribute.name]);
+  }, [attribute.id, attribute.name, onChange]);
   
   if (loading) {
     return (
@@ -46,15 +48,21 @@ const NumberRangeFilter = ({ attribute }: NumberRangeFilterProps) => {
 
   if (!stats) return null;
 
+  const handleValueChange = (vals: number[]) => {
+    const newValue = vals[0];
+    setValue(newValue);
+    onChange(`${attribute.name}_max`, newValue);
+  };
+
   return (
     <div className="space-y-3">
       <Label className="text-sm font-medium capitalize flex justify-between">
-        <span>{attribute.name}</span>
+        <span>{attribute.name} (max)</span>
         {value !== undefined && <span className="text-luxury-gold font-semibold">{value.toLocaleString()}</span>}
       </Label>
       <Slider
         value={[value ?? stats.max]}
-        onValueChange={(vals) => setValue(vals[0])}
+        onValueChange={handleValueChange}
         max={stats.max}
         min={stats.min}
         step={attribute.name.toLowerCase().includes('an') ? 1 : 1000}

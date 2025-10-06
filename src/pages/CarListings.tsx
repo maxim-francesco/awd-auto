@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useState } from "react"
 import Layout from "@/components/layout/Layout"
 import CarCard from "@/components/CarCard"
 import { StaggeredGrid, StaggeredItem, AnimatedSection } from "@/components/ui/animated-section"
@@ -18,6 +19,14 @@ import StringCheckboxFilter from "@/components/filters/StringCheckboxFilter"
 const CarListings = () => {
   const { listings, loading, error } = useListings();
   const { attributes, loading: attributesLoading } = useFilterAttributes();
+  const [filters, setFilters] = useState<Record<string, any>>({});
+
+  const handleFilterChange = (attributeName: string, value: any) => {
+    setFilters(prevFilters => ({
+      ...prevFilters,
+      [attributeName]: value
+    }));
+  };
 
   const renderFilters = () => {
     if (attributesLoading) {
@@ -40,8 +49,8 @@ const CarListings = () => {
     return attributes.map((attr, index) => (
       <div key={attr.id}>
         {index > 0 && <Separator />}
-        {attr.type === 'NUMBER' && <NumberRangeFilter attribute={attr} />}
-        {attr.type === 'STRING' && <StringCheckboxFilter attribute={attr} />}
+        {attr.type === 'NUMBER' && <NumberRangeFilter attribute={attr} onChange={handleFilterChange} />}
+        {attr.type === 'STRING' && <StringCheckboxFilter attribute={attr} onChange={handleFilterChange} />}
       </div>
     ));
   };

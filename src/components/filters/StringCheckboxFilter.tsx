@@ -7,10 +7,12 @@ import { getUniqueAttributeValues } from "@/services/apiFilters";
 
 interface StringCheckboxFilterProps {
   attribute: AttributeDefinition;
+  onChange: (attributeName: string, value: string[]) => void;
 }
 
-const StringCheckboxFilter = ({ attribute }: StringCheckboxFilterProps) => {
+const StringCheckboxFilter = ({ attribute, onChange }: StringCheckboxFilterProps) => {
   const [options, setOptions] = useState<string[]>([]);
+  const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -25,9 +27,16 @@ const StringCheckboxFilter = ({ attribute }: StringCheckboxFilterProps) => {
         setLoading(false);
       }
     };
-
     fetchOptions();
   }, [attribute.id, attribute.name]);
+
+  const handleCheckedChange = (checked: boolean | "indeterminate", option: string) => {
+    const newSelectedValues = checked
+      ? [...selectedValues, option]
+      : selectedValues.filter(v => v !== option);
+    setSelectedValues(newSelectedValues);
+    onChange(attribute.name, newSelectedValues);
+  };
 
   if (loading) {
     return (
@@ -50,7 +59,11 @@ const StringCheckboxFilter = ({ attribute }: StringCheckboxFilterProps) => {
       <div className="space-y-2">
         {options.map((option) => (
           <div key={option} className="flex items-center space-x-2">
-            <Checkbox id={`${attribute.id}-${option}`} />
+            <Checkbox
+              id={`${attribute.id}-${option}`}
+              onCheckedChange={(checked) => handleCheckedChange(checked, option)}
+              checked={selectedValues.includes(option)}
+            />
             <Label htmlFor={`${attribute.id}-${option}`} className="text-sm font-normal cursor-pointer">
               {option}
             </Label>
