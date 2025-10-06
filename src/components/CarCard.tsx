@@ -6,17 +6,19 @@ import { Button } from "@/components/ui/luxury-button"
 import { Calendar, Fuel, Gauge, Settings } from "lucide-react"
 
 interface CarCardProps {
-  image: string
-  make: string
-  model: string
-  price: string
-  year: string
-  mileage: string
-  fuelType: string
-  engine: string
+  id: string;
+  image: string;
+  make: string;
+  model: string;
+  price: string;
+  year: string;
+  mileage: string;
+  fuelType: string;
+  engine: string;
 }
 
 const CarCard = ({ 
+  id,
   image, 
   make, 
   model, 
@@ -82,7 +84,7 @@ const CarCard = ({
         </div>
 
         {/* Action Button */}
-        <Link to="/masini-disponibile/1" className="block">
+        <Link to={`/masini-disponibile/${id}`} className="block">
           <Button className="w-full" size="sm">
             Vezi Detalii
           </Button>

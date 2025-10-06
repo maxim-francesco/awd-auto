@@ -7,58 +7,14 @@ import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/a
 import { Button } from "@/components/ui/luxury-button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Shield, CreditCard, Star, ArrowRight } from "lucide-react"
+import { Shield, CreditCard, Star, ArrowRight, AlertCircle } from "lucide-react"
 import { Link } from "react-router-dom"
 import heroImage from "@/assets/hero-car.jpg"
-import car1 from "@/assets/car-1.jpg"
-import car2 from "@/assets/car-2.jpg"
-import car3 from "@/assets/car-3.jpg"
-import car4 from "@/assets/car-4.jpg"
+import useLatestListings, { Listing } from "@/hooks/useLatestListings"
+import { Skeleton } from "@/components/ui/skeleton"
 
 const Index = () => {
-  // Latest arrivals mock data
-  const latestCars = [
-    {
-      image: car1,
-      make: "Porsche",
-      model: "911 Turbo S",
-      price: "€185,000",
-      year: "2023",
-      mileage: "2,500 km",
-      fuelType: "Benzină",
-      engine: "3800 cm³"
-    },
-    {
-      image: car2,
-      make: "BMW",
-      model: "M4 Competition",
-      price: "€95,000",
-      year: "2022",
-      mileage: "8,000 km",
-      fuelType: "Benzină",
-      engine: "2993 cm³"
-    },
-    {
-      image: car3,
-      make: "Audi",
-      model: "RS6 Avant",
-      price: "€125,000",
-      year: "2023",
-      mileage: "5,200 km",
-      fuelType: "Benzină",
-      engine: "3996 cm³"
-    },
-    {
-      image: car4,
-      make: "Mercedes-AMG",
-      model: "GT 63 S",
-      price: "€165,000",
-      year: "2022",
-      mileage: "12,000 km",
-      fuelType: "Benzină",
-      engine: "3982 cm³"
-    }
-  ]
+  const { listings, loading, error } = useLatestListings()
 
   const whyUsFeatures = [
     {
@@ -79,6 +35,83 @@ const Index = () => {
   ]
 
   const carBrands = ["Audi", "BMW", "Mercedes-Benz", "Porsche", "Lamborghini", "Ferrari"]
+  
+  // Helper function to extract attribute values
+  const getAttribute = (listing: Listing, attributeName: string) => {
+    const attr = listing.attributeValues.find(
+      (av) => av.attribute.name.toLowerCase() === attributeName.toLowerCase()
+    );
+
+    if (!attr) return "N/A";
+    
+    switch (attr.attribute.type) {
+      case "STRING":
+        return attr.stringValue || "N/A";
+      case "NUMBER":
+        return attr.numberValue?.toString() || "N/A";
+      case "BOOLEAN":
+        return attr.booleanValue ? "Da" : "Nu";
+      default:
+        return "N/A";
+    }
+  };
+
+  const renderLatestCars = () => {
+    if (loading) {
+      return (
+        <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {[...Array(4)].map((_, index) => (
+            <StaggeredItem key={index}>
+              <Card className="luxury-card">
+                <Skeleton className="h-48 w-full rounded-t-xl" />
+                <CardContent className="p-6 space-y-4">
+                  <Skeleton className="h-6 w-3/4" />
+                  <Skeleton className="h-8 w-1/2" />
+                  <div className="grid grid-cols-2 gap-3">
+                    <Skeleton className="h-5 w-full" />
+                    <Skeleton className="h-5 w-full" />
+                    <Skeleton className="h-5 w-full" />
+                    <Skeleton className="h-5 w-full" />
+                  </div>
+                  <Skeleton className="h-9 w-full" />
+                </CardContent>
+              </Card>
+            </StaggeredItem>
+          ))}
+        </StaggeredGrid>
+      )
+    }
+
+    if (error) {
+      return (
+        <div className="text-center text-red-500 bg-red-500/10 p-6 rounded-lg border border-red-500/30">
+          <AlertCircle className="mx-auto h-12 w-12 text-red-500 mb-4" />
+          <h3 className="text-xl font-semibold">A apărut o eroare</h3>
+          <p>Nu am putut încărca anunțurile. Te rugăm să încerci din nou mai târziu.</p>
+        </div>
+      )
+    }
+
+    return (
+      <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        {listings.map((car) => (
+          <StaggeredItem key={car.id}>
+            <CarCard
+              id={car.id}
+              image={car.images?.[0]?.url || "https://via.placeholder.com/600x400.png?text=AWD+Auto"}
+              make={getAttribute(car, "marca")}
+              model={getAttribute(car, "model")}
+              price={`€${car.price.toLocaleString()}`}
+              year={getAttribute(car, "an fabricatie")}
+              mileage={`${parseInt(getAttribute(car, "kilometraj")).toLocaleString()} km`}
+              fuelType={getAttribute(car, "combustibil")}
+              engine={`${getAttribute(car, "capacitate cilindrica")} cm³`}
+            />
+          </StaggeredItem>
+        ))}
+      </StaggeredGrid>
+    )
+  }
 
   return (
     <Layout>
@@ -157,13 +190,7 @@ const Index = () => {
             </p>
           </AnimatedSection>
 
-          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            {latestCars.map((car, index) => (
-              <StaggeredItem key={index}>
-                <CarCard {...car} />
-              </StaggeredItem>
-            ))}
-          </StaggeredGrid>
+          {renderLatestCars()}
 
           <AnimatedSection className="text-center" delay={0.2}>
             <Button asChild>
