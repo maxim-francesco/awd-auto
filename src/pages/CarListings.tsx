@@ -11,138 +11,72 @@ import { Separator } from "@/components/ui/separator"
 import { Slider } from "@/components/ui/slider"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import car1 from "@/assets/car-1.jpg"
-import car2 from "@/assets/car-2.jpg"
-import car3 from "@/assets/car-3.jpg"
-import car4 from "@/assets/car-4.jpg"
+import useListings from "@/hooks/useListings" // Importăm noul hook
+import { Skeleton } from "@/components/ui/skeleton"
+import { AlertCircle } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+
 
 const CarListings = () => {
-  // Mock car data
-  const cars = [
-    {
-      image: car1,
-      make: "Porsche",
-      model: "911 Turbo S",
-      price: "€185,000",
-      year: "2023",
-      mileage: "2,500 km",
-      fuelType: "Benzină",
-      engine: "3800 cm³"
-    },
-    {
-      image: car2,
-      make: "BMW",
-      model: "M4 Competition",
-      price: "€95,000",
-      year: "2022",
-      mileage: "8,000 km",
-      fuelType: "Benzină",
-      engine: "2993 cm³"
-    },
-    {
-      image: car3,
-      make: "Audi",
-      model: "RS6 Avant",
-      price: "€125,000",
-      year: "2023",
-      mileage: "5,200 km",
-      fuelType: "Benzină",
-      engine: "3996 cm³"
-    },
-    {
-      image: car4,
-      make: "Mercedes-AMG",
-      model: "GT 63 S",
-      price: "€165,000",
-      year: "2022",
-      mileage: "12,000 km",
-      fuelType: "Benzină",
-      engine: "3982 cm³"
-    },
-    // Duplicate for more listings
-    {
-      image: car1,
-      make: "Porsche",
-      model: "Cayenne Turbo",
-      price: "€155,000",
-      year: "2023",
-      mileage: "1,800 km",
-      fuelType: "Benzină",
-      engine: "4000 cm³"
-    },
-    {
-      image: car2,
-      make: "BMW",
-      model: "X6 M Competition",
-      price: "€135,000",
-      year: "2022",
-      mileage: "15,000 km",
-      fuelType: "Benzină",
-      engine: "4395 cm³"
-    },
-    {
-      image: car3,
-      make: "Audi",
-      model: "R8 V10",
-      price: "€195,000",
-      year: "2023",
-      mileage: "3,500 km",
-      fuelType: "Benzină",
-      engine: "5204 cm³"
-    },
-    {
-      image: car4,
-      make: "Mercedes-AMG",
-      model: "C63 S",
-      price: "€85,000",
-      year: "2022",
-      mileage: "18,000 km",
-      fuelType: "Benzină",
-      engine: "3982 cm³"
-    },
-    {
-      image: car1,
-      make: "Porsche",
-      model: "Macan GTS",
-      price: "€78,000",
-      year: "2022",
-      mileage: "22,000 km",
-      fuelType: "Benzină",
-      engine: "2894 cm³"
-    },
-    {
-      image: car2,
-      make: "BMW",
-      model: "M8 Gran Coupe",
-      price: "€175,000",
-      year: "2023",
-      mileage: "4,200 km",
-      fuelType: "Benzină",
-      engine: "4395 cm³"
-    },
-    {
-      image: car3,
-      make: "Audi",
-      model: "SQ8",
-      price: "€115,000",
-      year: "2022",
-      mileage: "14,500 km",
-      fuelType: "Benzină",
-      engine: "4000 cm³"
-    },
-    {
-      image: car4,
-      make: "Mercedes-AMG",
-      model: "GLS 63",
-      price: "€145,000",
-      year: "2023",
-      mileage: "6,800 km",
-      fuelType: "Benzină",
-      engine: "3982 cm³"
-    }
-  ]
+  const { listings, loading, error } = useListings(); // Apelăm hook-ul
 
   const brands = ["Audi", "BMW", "Mercedes-Benz", "Porsche"]
+
+  const renderListings = () => {
+    if (loading) {
+      return (
+        <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+          {[...Array(9)].map((_, index) => (
+            <StaggeredItem key={index}>
+              <Card className="luxury-card">
+                <Skeleton className="h-48 w-full rounded-t-xl" />
+                <CardContent className="p-6 space-y-4">
+                  <Skeleton className="h-6 w-3/4" />
+                  <Skeleton className="h-8 w-1/2" />
+                  <div className="grid grid-cols-2 gap-3">
+                    <Skeleton className="h-5 w-full" />
+                    <Skeleton className="h-5 w-full" />
+                    <Skeleton className="h-5 w-full" />
+                    <Skeleton className="h-5 w-full" />
+                  </div>
+                  <Skeleton className="h-9 w-full" />
+                </CardContent>
+              </Card>
+            </StaggeredItem>
+          ))}
+        </StaggeredGrid>
+      );
+    }
+
+    if (error) {
+      return (
+        <div className="text-center text-red-500 bg-red-500/10 p-6 rounded-lg border border-red-500/30 col-span-full">
+          <AlertCircle className="mx-auto h-12 w-12 text-red-500 mb-4" />
+          <h3 className="text-xl font-semibold">A apărut o eroare</h3>
+          <p>Nu am putut încărca anunțurile. Te rugăm să încerci din nou mai târziu.</p>
+        </div>
+      );
+    }
+    
+    if (listings.length === 0) {
+      return (
+         <div className="text-center text-muted-foreground bg-card p-6 rounded-lg border border-border col-span-full">
+          <h3 className="text-xl font-semibold">Nicio mașină găsită</h3>
+          <p>Momentan nu sunt anunțuri în stoc care să corespundă filtrelor tale.</p>
+        </div>
+      )
+    }
+
+    return (
+      <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+        {listings.map((listing) => (
+          <StaggeredItem key={listing.id}>
+            <CarCard listing={listing} />
+          </StaggeredItem>
+        ))}
+      </StaggeredGrid>
+    );
+  };
 
   return (
     <Layout>
@@ -237,13 +171,7 @@ const CarListings = () => {
             </AnimatedSection>
 
             {/* Car Grid */}
-            <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
-              {cars.map((car, index) => (
-                <StaggeredItem key={index}>
-                  <CarCard {...car} />
-                </StaggeredItem>
-              ))}
-            </StaggeredGrid>
+            {renderListings()}
 
             {/* Pagination */}
             <div className="flex justify-center space-x-2">
