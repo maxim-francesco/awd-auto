@@ -5,9 +5,11 @@ import { useState } from "react"
 import { Button } from "@/components/ui/luxury-button"
 import { Link, useLocation } from "react-router-dom"
 import awdLogo from "@/assets/awd-auto-logo.jpg"
+import { Menu, X } from "lucide-react"
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { scrollY } = useScroll()
   const location = useLocation()
   
@@ -48,7 +50,7 @@ const Header = () => {
           </Link>
         </motion.div>
 
-        {/* Navigation */}
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {navigation.map((item) => (
             <motion.div
@@ -79,8 +81,9 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* CTA Button */}
+        {/* Desktop CTA Button */}
         <motion.div
+          className="hidden md:block"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.2 }}
@@ -91,6 +94,44 @@ const Header = () => {
             </Link>
           </Button>
         </motion.div>
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <Button 
+            variant="ghost" 
+            size="icon"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="text-foreground hover:text-luxury-gold"
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            <span className="sr-only">Deschide meniul</span>
+          </Button>
+        </div>
+      </div>
+      
+      {/* Mobile Menu Panel */}
+      <div className={`absolute top-full left-0 w-full bg-luxury-darker z-40 border-t border-border transition-all duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+        <nav className="flex flex-col space-y-4 p-6">
+          {navigation.map((item) => (
+            <Link
+              key={item.name}
+              to={item.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`text-lg font-medium transition-colors ${
+                isActive(item.href)
+                  ? "text-luxury-gold"
+                  : "text-foreground hover:text-luxury-gold"
+              }`}
+            >
+              {item.name}
+            </Link>
+          ))}
+          <Button className="mt-4" asChild>
+            <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+              Contactează-ne
+            </Link>
+          </Button>
+        </nav>
       </div>
     </motion.header>
   )
