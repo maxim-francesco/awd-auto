@@ -9,12 +9,11 @@ import { Button } from "@/components/ui/luxury-button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Filter } from "lucide-react"
-import useListings from "@/hooks/useListings"
+import useListings, { APIListing } from "@/hooks/useListings"
 import FilterSidebar from "@/components/filters/FilterSidebar"
 import { Skeleton } from "@/components/ui/skeleton"
 import { AlertCircle } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
-import type { APIListing } from "@/hooks/useListings"
 
 const CarListings = () => {
   const [filters, setFilters] = useState<Record<string, any>>({});
@@ -48,10 +47,6 @@ const CarListings = () => {
         delete newFilters[attributeKey];
         delete newFilters[`${attributeKey}_min`];
         delete newFilters[`${attributeKey}_max`];
-      } else if (Array.isArray(value) && value.length === 2 && typeof value[0] === 'number') {
-        // Range slider case
-        newFilters[`${attributeKey}_min`] = value[0];
-        newFilters[`${attributeKey}_max`] = value[1];
       } else {
         newFilters[attributeKey] = value;
       }

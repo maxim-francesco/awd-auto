@@ -25,50 +25,8 @@ export interface APIListing {
   images: ListingImage[];
 }
 
-export interface ProcessedListing {
-  id: string;
-  title: string;
-  price: number;
-  createdAt: string;
-  image: string;
-  mileage: string;
-  fuelType: string;
-  engine: string;
-}
-
-const getAttributeValue = (attributes: Attribute[], name: string): string => {
-  const attr = attributes.find(a => a.attribute.name.toLowerCase() === name.toLowerCase());
-  if (!attr) return "N/A";
-  
-  if (attr.attribute.type === "NUMBER" && attr.numberValue !== undefined && attr.numberValue !== null) {
-      return attr.numberValue.toString();
-  }
-  if (attr.attribute.type === "STRING" && attr.stringValue) {
-      return attr.stringValue;
-  }
-  if (attr.attribute.type === "BOOLEAN" && attr.booleanValue !== undefined) {
-      return attr.booleanValue ? "Da" : "Nu";
-  }
-  
-  return "N/A";
-};
-
-const processListings = (listings: APIListing[]): ProcessedListing[] => {
-  if (!listings) return [];
-  return listings.map(listing => ({
-    id: listing.id,
-    title: listing.title,
-    price: listing.price ?? 0,
-    createdAt: listing.createdAt,
-    image: listing.images?.[0]?.url || "https://via.placeholder.com/600x400.png?text=AWD+Auto",
-    mileage: `${parseInt(getAttributeValue(listing.attributeValues, 'kilometraj')).toLocaleString()} km`,
-    fuelType: getAttributeValue(listing.attributeValues, 'combustibil'),
-    engine: `${getAttributeValue(listing.attributeValues, 'capacitate cilindrica')} cm³`,
-  }));
-};
-
 const useListings = (activeFilters: Record<string, any>) => {
-  const [listings, setListings] = useState<ProcessedListing[]>([]);
+  const [listings, setListings] = useState<APIListing[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -112,9 +70,7 @@ const useListings = (activeFilters: Record<string, any>) => {
 
         const rawListings: APIListing[] = result.data || [];
         
-        const processed = processListings(rawListings);
-
-        setListings(processed);
+        setListings(rawListings);
       } catch (e: any) {
         setError(e);
         console.error("Failed to fetch listings:", e);

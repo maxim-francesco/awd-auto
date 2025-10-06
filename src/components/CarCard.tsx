@@ -52,7 +52,7 @@ const CarCard = ({ listing }: CarCardProps) => {
       {/* Car Image */}
       <div className="relative overflow-hidden rounded-t-xl">
         <img 
-          src={listing.images[0]?.url || 'https://via.placeholder.com/600x400.png?text=AWD+Auto'} 
+          src={listing.images?.[0]?.url || 'https://via.placeholder.com/600x400.png?text=AWD+Auto'} 
           alt={listing.title}
           className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
         />
