@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import { Shield, CreditCard, Star, ArrowRight, AlertCircle } from "lucide-react"
 import { Link } from "react-router-dom"
 import heroImage from "@/assets/hero-car.jpg"
-import useLatestListings, { Listing } from "@/hooks/useLatestListings"
+import useLatestListings from "@/hooks/useLatestListings"
 import { Skeleton } from "@/components/ui/skeleton"
 
 const Index = () => {
@@ -36,26 +36,6 @@ const Index = () => {
 
   const carBrands = ["Audi", "BMW", "Mercedes-Benz", "Porsche", "Lamborghini", "Ferrari"]
   
-  // Helper function to extract attribute values
-  const getAttribute = (listing: Listing, attributeName: string) => {
-    const attr = listing.attributeValues.find(
-      (av) => av.attribute.name.toLowerCase() === attributeName.toLowerCase()
-    );
-
-    if (!attr) return "N/A";
-    
-    switch (attr.attribute.type) {
-      case "STRING":
-        return attr.stringValue || "N/A";
-      case "NUMBER":
-        return attr.numberValue?.toString() || "N/A";
-      case "BOOLEAN":
-        return attr.booleanValue ? "Da" : "Nu";
-      default:
-        return "N/A";
-    }
-  };
-
   const renderLatestCars = () => {
     if (loading) {
       return (
@@ -94,19 +74,9 @@ const Index = () => {
 
     return (
       <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {listings.map((car) => (
-          <StaggeredItem key={car.id}>
-            <CarCard
-              id={car.id}
-              image={car.images?.[0]?.url || "https://via.placeholder.com/600x400.png?text=AWD+Auto"}
-              make={getAttribute(car, "marca")}
-              model={getAttribute(car, "model")}
-              price={`€${car.price.toLocaleString()}`}
-              year={getAttribute(car, "an fabricatie")}
-              mileage={`${parseInt(getAttribute(car, "kilometraj")).toLocaleString()} km`}
-              fuelType={getAttribute(car, "combustibil")}
-              engine={`${getAttribute(car, "capacitate cilindrica")} cm³`}
-            />
+        {listings.map((listing) => (
+          <StaggeredItem key={listing.id}>
+            <CarCard listing={listing} />
           </StaggeredItem>
         ))}
       </StaggeredGrid>

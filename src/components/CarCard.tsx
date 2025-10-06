@@ -4,30 +4,13 @@ import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/luxury-button"
 import { Calendar, Fuel, Gauge, Settings } from "lucide-react"
+import type { ProcessedListing } from "@/hooks/useLatestListings"
 
 interface CarCardProps {
-  id: string;
-  image: string;
-  make: string;
-  model: string;
-  price: string;
-  year: string;
-  mileage: string;
-  fuelType: string;
-  engine: string;
+  listing: ProcessedListing;
 }
 
-const CarCard = ({ 
-  id,
-  image, 
-  make, 
-  model, 
-  price, 
-  year, 
-  mileage, 
-  fuelType, 
-  engine 
-}: CarCardProps) => {
+const CarCard = ({ listing }: CarCardProps) => {
   return (
     <motion.div 
       className="luxury-card group"
@@ -44,8 +27,8 @@ const CarCard = ({
       {/* Car Image */}
       <div className="relative overflow-hidden rounded-t-xl">
         <img 
-          src={image} 
-          alt={`${make} ${model}`}
+          src={listing.image} 
+          alt={`${listing.make} ${listing.model}`}
           className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -56,10 +39,10 @@ const CarCard = ({
         {/* Title and Price */}
         <div className="space-y-2">
           <h3 className="font-luxury text-xl font-bold text-foreground group-hover:text-luxury-gold transition-colors">
-            {make} {model}
+            {listing.make} {listing.model}
           </h3>
           <p className="text-2xl font-bold text-luxury-gold">
-            {price}
+            €{listing.price.toLocaleString()}
           </p>
         </div>
 
@@ -67,24 +50,24 @@ const CarCard = ({
         <div className="grid grid-cols-2 gap-3 text-sm">
           <div className="flex items-center space-x-2 text-muted-foreground">
             <Calendar className="h-4 w-4 text-luxury-gold" />
-            <span>{year}</span>
+            <span>{listing.year}</span>
           </div>
           <div className="flex items-center space-x-2 text-muted-foreground">
             <Gauge className="h-4 w-4 text-luxury-gold" />
-            <span>{mileage}</span>
+            <span>{listing.mileage}</span>
           </div>
           <div className="flex items-center space-x-2 text-muted-foreground">
             <Fuel className="h-4 w-4 text-luxury-gold" />
-            <span>{fuelType}</span>
+            <span>{listing.fuelType}</span>
           </div>
           <div className="flex items-center space-x-2 text-muted-foreground">
             <Settings className="h-4 w-4 text-luxury-gold" />
-            <span>{engine}</span>
+            <span>{listing.engine}</span>
           </div>
         </div>
 
         {/* Action Button */}
-        <Link to={`/masini-disponibile/${id}`} className="block">
+        <Link to={`/masini-disponibile/${listing.id}`} className="block">
           <Button className="w-full" size="sm">
             Vezi Detalii
           </Button>
