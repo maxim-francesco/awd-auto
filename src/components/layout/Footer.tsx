@@ -120,6 +120,13 @@ const Footer = () => {
               </a>
             </div>
           </div>
+          <div className="text-center text-xs text-gray-400 mt-4">
+            <p>
+              Dezvoltat de <a href="https://www.instagram.com/francesco.maximm/" target="_blank" rel="noopener noreferrer" className="font-medium text-muted-foreground hover:text-luxury-gold transition-colors">Maxim Francesco</a>
+              <span className="mx-2">|</span>
+              <a href="tel:+40783117797" className="font-medium text-muted-foreground hover:text-luxury-gold transition-colors">+40783117797</a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
