@@ -18,6 +18,7 @@ export interface Attribute {
 export interface APIListing {
   id: string;
   title: string;
+  description: string;
   price: number | null;
   createdAt: string;
   attributeValues: Attribute[];

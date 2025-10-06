@@ -15,59 +15,87 @@ import {
   Check,
   ArrowLeft,
   Phone,
-  Mail
+  Mail,
+  AlertCircle
 } from "lucide-react"
 import { AnimatedSection } from "@/components/ui/animated-section"
-
-// Mock data - în realitate ar veni din API sau state management
-const mockCarData = {
-  id: "1",
-  make: "Volkswagen",
-  model: "Golf 7",
-  variant: "2.0 TDI",
-  year: 2018,
-  price: 15990,
-  mileage: 125000,
-  engine: 1968,
-  power: 150,
-  fuel: "Diesel",
-  transmission: "Automată",
-  images: [
-    "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1614200179396-2bdb77ebf81b?auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=1200&q=80"
-  ],
-  description: "Volkswagen Golf 7 în stare impecabilă, cu istoric complet de service și întreținere la reprezentanță autorizată. Mașina a fost verificată tehnic și este gata de utilizare imediată. Kilometraj real, fără accidente. Ideal pentru oraș și pentru drumuri lungi, consum redus și fiabilitate maximă.",
-  features: [
-    "Scaune încălzite",
-    "Navigație GPS",
-    "Trapă panoramică",
-    "Faruri LED",
-    "Senzori de parcare față/spate",
-    "Climatronic",
-    "Jante de aliaj 18\"",
-    "Cruise Control adaptiv",
-    "Volan multifuncțional",
-    "Sistem audio premium",
-    "Bluetooth & USB",
-    "Start/Stop automat"
-  ]
-}
+import { Skeleton } from "@/components/ui/skeleton"
+import useListingDetails from "@/hooks/useListingDetails"
 
 const CarDetails = () => {
-  const { listingId } = useParams()
+  const { listingId } = useParams<{ listingId: string }>()
   const navigate = useNavigate()
+  const { listing: car, loading, error } = useListingDetails(listingId)
   const [selectedImage, setSelectedImage] = useState(0)
-  const car = mockCarData
+
+  if (loading) {
+    return (
+      <Layout>
+        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-12">
+            <Skeleton className="h-6 w-40 mb-6" />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                {/* Skeleton for Gallery */}
+                <div className="space-y-4">
+                    <Skeleton className="aspect-video w-full rounded-2xl" />
+                    <div className="grid grid-cols-6 gap-2">
+                        {[...Array(6)].map((_, i) => <Skeleton key={i} className="aspect-video w-full rounded-lg" />)}
+                    </div>
+                </div>
+                {/* Skeleton for Details */}
+                <div className="space-y-6">
+                    <Skeleton className="h-10 w-3/4" />
+                    <Skeleton className="h-6 w-1/4" />
+                    <Skeleton className="h-12 w-1/2" />
+                    <div className="grid grid-cols-2 gap-4 py-6 border-y border-border/40">
+                        {[...Array(6)].map((_, i) => (
+                            <div key={i} className="flex items-start gap-3">
+                                <Skeleton className="h-12 w-12 rounded-lg" />
+                                <div className="space-y-2">
+                                    <Skeleton className="h-4 w-20" />
+                                    <Skeleton className="h-5 w-24" />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                     <div className="flex flex-col sm:flex-row gap-3">
+                        <Skeleton className="h-12 w-full" />
+                        <Skeleton className="h-12 w-full" />
+                    </div>
+                    <div className="space-y-3 pt-4">
+                        <Skeleton className="h-6 w-1/3" />
+                        <Skeleton className="h-5 w-full" />
+                        <Skeleton className="h-5 w-full" />
+                        <Skeleton className="h-5 w-4/5" />
+                    </div>
+                </div>
+            </div>
+        </div>
+      </Layout>
+    )
+  }
+
+  if (error || !car) {
+    return (
+      <Layout>
+          <div className="container mx-auto text-center py-20">
+              <AlertCircle className="mx-auto h-16 w-16 text-red-500 mb-4" />
+              <h1 className="text-3xl font-bold text-foreground mb-4">Eroare la încărcarea anunțului</h1>
+              <p className="text-muted-foreground mb-8">
+                  {error?.message || "Anunțul pe care îl căutați nu a putut fi găsit sau nu mai este disponibil."}
+              </p>
+              <Button onClick={() => navigate('/masini-disponibile')}>
+                  Vezi alte mașini
+              </Button>
+          </div>
+      </Layout>
+    )
+  }
 
   const specs = [
-    { icon: Gauge, label: "Rulaj", value: `${car.mileage.toLocaleString()} km` },
-    { icon: Cog, label: "Capacitate cilindrică", value: `${car.engine} cm³` },
-    { icon: Zap, label: "Putere", value: `${car.power} CP` },
-    { icon: Fuel, label: "Combustibil", value: car.fuel },
+    { icon: Gauge, label: "Rulaj", value: car.mileage },
+    { icon: Cog, label: "Capacitate cilindrică", value: car.engine },
+    { icon: Zap, label: "Putere", value: car.power },
+    { icon: Fuel, label: "Combustibil", value: car.fuelType },
     { icon: Settings, label: "Transmisie", value: car.transmission },
     { icon: Calendar, label: "An fabricație", value: car.year.toString() }
   ]
@@ -94,37 +122,39 @@ const CarDetails = () => {
                 {/* Main Image */}
                 <motion.div 
                   className="relative aspect-video rounded-2xl overflow-hidden bg-luxury-darker border border-border/40"
-                  layoutId="car-image"
+                  layoutId={`car-image-${car.id}`}
                 >
                   <img
-                    src={car.images[selectedImage]}
-                    alt={`${car.make} ${car.model}`}
+                    src={car.images.length > 0 ? car.images[selectedImage].url : car.image}
+                    alt={car.title}
                     className="w-full h-full object-cover"
                   />
                 </motion.div>
 
                 {/* Thumbnails */}
-                <div className="grid grid-cols-6 gap-2">
-                  {car.images.map((image, index) => (
-                    <motion.button
-                      key={index}
-                      onClick={() => setSelectedImage(index)}
-                      className={`relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
-                        selectedImage === index 
-                          ? "border-luxury-gold" 
-                          : "border-border/40 hover:border-luxury-gold/50"
-                      }`}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <img
-                        src={image}
-                        alt={`Thumbnail ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </motion.button>
-                  ))}
-                </div>
+                {car.images.length > 1 && (
+                  <div className="grid grid-cols-6 gap-2">
+                    {car.images.map((image, index) => (
+                      <motion.button
+                        key={index}
+                        onClick={() => setSelectedImage(index)}
+                        className={`relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
+                          selectedImage === index 
+                            ? "border-luxury-gold" 
+                            : "border-border/40 hover:border-luxury-gold/50"
+                        }`}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <img
+                          src={image.url}
+                          alt={`Thumbnail ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </motion.button>
+                    ))}
+                  </div>
+                )}
               </div>
             </AnimatedSection>
 
@@ -134,7 +164,7 @@ const CarDetails = () => {
                 {/* Title & Price */}
                 <div>
                   <h1 className="font-luxury text-3xl sm:text-4xl font-bold text-foreground mb-2">
-                    {car.make} {car.model}, {car.year}
+                    {car.title}, {car.year}
                   </h1>
                   <p className="text-lg text-muted-foreground mb-4">{car.variant}</p>
                   <div className="flex items-baseline gap-2">
@@ -183,28 +213,30 @@ const CarDetails = () => {
                 </div>
 
                 {/* Features */}
-                <div className="pt-4">
-                  <h2 className="font-luxury text-xl font-semibold text-foreground mb-4">
-                    Dotări și Opțiuni
-                  </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {car.features.map((feature, index) => (
-                      <motion.div
-                        key={index}
-                        className="flex items-center gap-2"
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.05 }}
-                      >
-                        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-luxury-gold/20 flex items-center justify-center">
-                          <Check className="h-3 w-3 text-luxury-gold" />
-                        </div>
-                        <span className="text-sm text-muted-foreground">{feature}</span>
-                      </motion.div>
-                    ))}
+                {car.features && car.features.length > 0 && (
+                  <div className="pt-4">
+                    <h2 className="font-luxury text-xl font-semibold text-foreground mb-4">
+                      Dotări și Opțiuni
+                    </h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {car.features.map((feature, index) => (
+                        <motion.div
+                          key={index}
+                          className="flex items-center gap-2"
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: index * 0.05 }}
+                        >
+                          <div className="flex-shrink-0 w-5 h-5 rounded-full bg-luxury-gold/20 flex items-center justify-center">
+                            <Check className="h-3 w-3 text-luxury-gold" />
+                          </div>
+                          <span className="text-sm text-muted-foreground">{feature}</span>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </AnimatedSection>
           </div>
