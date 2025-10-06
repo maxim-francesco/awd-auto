@@ -7,7 +7,7 @@ import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/a
 import { Button } from "@/components/ui/luxury-button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Shield, CreditCard, Star, ArrowRight, AlertCircle } from "lucide-react"
+import { Shield, CreditCard, Star, ArrowRight, AlertCircle, CheckCircle } from "lucide-react"
 import { Link } from "react-router-dom"
 import heroImage from "@/assets/hero-car.jpg"
 import useLatestListings, { type APIListing } from "@/hooks/useLatestListings"
@@ -18,23 +18,23 @@ const Index = () => {
 
   const whyUsFeatures = [
     {
+      icon: CheckCircle,
+      title: "Mașini Verificate Riguros",
+      description: "Fiecare mașină din parcul nostru trece printr-o inspecție tehnică detaliată pentru a asigura standarde înalte de calitate și siguranță."
+    },
+    {
       icon: Shield,
-      title: "Garanție Verificată",
-      description: "Toate mașinile noastre sunt verificate complet și vin cu garanție extinsă pentru liniștea dumneavoastră."
+      title: "Garanție și Încredere",
+      description: "Oferim garanție inclusă pentru majoritatea vehiculelor, astfel încât să puteți conduce fără griji."
     },
     {
       icon: CreditCard,
-      title: "Soluții de Finanțare",
-      description: "Oferim diverse opțiuni de finanțare flexibile pentru a face achiziția mai accesibilă."
-    },
-    {
-      icon: Star,
-      title: "Servicii Premium",
-      description: "Echipa noastră de experți vă oferă servicii de cea mai înaltă calitate și suport complet."
+      title: "Finanțare Flexibilă",
+      description: "Colaborăm cu parteneri de încredere pentru a vă oferi soluții de finanțare rapide și adaptate bugetului dumneavoastră."
     }
   ]
 
-  const carBrands = ["Audi", "BMW", "Mercedes-Benz", "Porsche", "Lamborghini", "Ferrari"]
+  const carBrands = ["Audi", "BMW", "Mercedes-Benz", "Porsche", "Volkswagen", "Skoda"]
   
   const renderLatestCars = () => {
     if (loading) {
@@ -113,7 +113,7 @@ const Index = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <Badge className="mb-6 bg-luxury-gold/20 text-luxury-gold border-luxury-gold/30">
-              Premium Auto Dealership
+              Dealer Auto de Încredere
             </Badge>
           </motion.div>
           
@@ -123,8 +123,8 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Excelență în Performanță.<br />
-            Eleganță în Design.
+            Mașini Rulate Verificate.<br />
+            Partenerul Tău de Încredere.
           </motion.h1>
           
           <motion.p 
@@ -133,7 +133,7 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            Descoperă cele mai premium mașini sport și de lux, selecționate cu atenție pentru clienții exigenți.
+            Fiecare mașină din parcul nostru este atent selecționată și verificată pentru a-ți oferi siguranța pe care o meriți.
           </motion.p>
           
           <motion.div 
@@ -144,7 +144,7 @@ const Index = () => {
           >
             <Button size="lg" asChild>
               <Link to="/masini-disponibile">
-                Vezi Ofertele Noastre
+                Vezi Mașinile Disponibile
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
@@ -162,10 +162,10 @@ const Index = () => {
         <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-12">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Ultimele Noutăți în Stoc
+              Noutăți în Parcul Auto
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Cele mai recente adăugiri în colecția noastră de mași premium
+              Vezi cele mai recente vehicule atent selecționate care au intrat în parcul nostru auto.
             </p>
           </AnimatedSection>
 
@@ -190,7 +190,7 @@ const Index = () => {
               De ce să alegi AWD Auto?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Ne mândrim cu excelența în servicii și calitatea mașinilor pe care le oferim
+              Ne dedicăm să oferim o experiență de cumpărare sigură, transparentă și plăcută.
             </p>
           </AnimatedSection>
 
@@ -201,7 +201,7 @@ const Index = () => {
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <Card className="luxury-card text-center group">
+                  <Card className="luxury-card text-center group h-full">
                     <CardContent className="p-8">
                       <motion.div 
                         className="bg-luxury-gold/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-luxury-gold/20 transition-colors"
@@ -230,10 +230,10 @@ const Index = () => {
         <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-12">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Mărci Premium în Stoc
+              Mărci Populare în Stoc
             </h2>
             <p className="text-lg text-muted-foreground">
-              Oferim cele mai prestigioase mărci auto din lume
+              Avem o selecție variată de la cele mai respectate mărci auto.
             </p>
           </AnimatedSection>
 
@@ -261,10 +261,10 @@ const Index = () => {
         <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection className="text-center max-w-3xl mx-auto">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Găsește Mașina Ta Perfectă
+              Sunteți Gata să Vă Găsiți Următoarea Mașină?
             </h2>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Cu o experiență de peste 15 ani în industria auto premium, suntem partenerii tăi de încredere pentru următoarea achiziție extraordinară.
+              Vă invităm la sediul nostru din Cluj-Napoca pentru a vedea mașinile și pentru a discuta cu unul dintre consultanții noștri.
             </p>
             <motion.div 
               className="flex flex-col sm:flex-row gap-4 justify-center"

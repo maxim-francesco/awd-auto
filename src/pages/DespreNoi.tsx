@@ -42,15 +42,13 @@ const DespreNoi = () => {
         <AnimatedSection className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6">
-              Povestea AWD Auto
+              Povestea Noastră
             </h1>
             <p className="font-luxury text-2xl text-luxury-gold mb-6">
-              Pasiune pentru Mașini, Respect pentru Clienți
+              Pasiune pentru Mașini de Calitate, Respect pentru Clienți
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Fondat în Cluj-Napoca din dorința de a oferi transparență și calitate pe piața auto second-hand, 
-              AWD Auto este mai mult decât un parc auto. Suntem o echipă de profesioniști dedicați, gata să vă 
-              ghidăm spre alegerea corectă.
+              Fondat în Cluj-Napoca din dorința de a aduce transparență și încredere pe piața auto, AWD Auto este mai mult decât un dealer. Suntem o echipă de profesioniști dedicați, gata să vă ghidăm spre alegerea corectă.
             </p>
           </div>
         </AnimatedSection>
@@ -163,7 +161,7 @@ const DespreNoi = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
-                De ce să Alegi AWD Auto?
+                Beneficiile AWD Auto
               </h2>
             </div>
 
@@ -194,7 +192,7 @@ const DespreNoi = () => {
         <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Pregătiți să Găsiți Mașina Perfectă?
+              Sunteți Pregătit să Găsiți Mașina Potrivită?
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
               Echipa noastră este aici pentru a vă ghida prin fiecare pas al procesului. 
