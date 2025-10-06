@@ -35,7 +35,7 @@ const StringCheckboxFilter = ({ attribute, onChange }: StringCheckboxFilterProps
       ? [...selectedValues, option]
       : selectedValues.filter(v => v !== option);
     setSelectedValues(newSelectedValues);
-    onChange(attribute.name, newSelectedValues);
+    onChange(attribute.name.replace(/ /g, '_'), newSelectedValues);
   };
 
   if (loading) {

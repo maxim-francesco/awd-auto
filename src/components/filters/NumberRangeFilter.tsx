@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -7,13 +7,16 @@ import { getAttributeStats } from "@/services/apiFilters";
 
 interface NumberRangeFilterProps {
   attribute: AttributeDefinition;
-  onChange: (attributeName: string, value: number) => void;
+  onChange: (attributeName: string, value: number | undefined) => void;
 }
 
 const NumberRangeFilter = ({ attribute, onChange }: NumberRangeFilterProps) => {
   const [stats, setStats] = useState<{ min: number; max: number } | null>(null);
   const [value, setValue] = useState<number | undefined>(undefined);
   const [loading, setLoading] = useState(true);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const stableOnChange = useCallback(onChange, []);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -22,7 +25,7 @@ const NumberRangeFilter = ({ attribute, onChange }: NumberRangeFilterProps) => {
         const data = await getAttributeStats(attribute.id);
         setStats(data);
         setValue(data.max);
-        onChange(`${attribute.name}_max`, data.max);
+        stableOnChange(`${attribute.name.replace(/ /g, '_')}_max`, data.max);
       } catch (error) {
         console.error(`Failed to fetch stats for ${attribute.name}:`, error);
         setStats({ min: 0, max: 100 }); // Fallback
@@ -31,7 +34,7 @@ const NumberRangeFilter = ({ attribute, onChange }: NumberRangeFilterProps) => {
       }
     };
     fetchStats();
-  }, [attribute.id, attribute.name, onChange]);
+  }, [attribute.id, attribute.name, stableOnChange]);
   
   if (loading) {
     return (
@@ -51,7 +54,7 @@ const NumberRangeFilter = ({ attribute, onChange }: NumberRangeFilterProps) => {
   const handleValueChange = (vals: number[]) => {
     const newValue = vals[0];
     setValue(newValue);
-    onChange(`${attribute.name}_max`, newValue);
+    onChange(`${attribute.name.replace(/ /g, '_')}_max`, newValue);
   };
 
   return (

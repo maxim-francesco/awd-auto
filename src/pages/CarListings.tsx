@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import Layout from "@/components/layout/Layout"
 import CarCard from "@/components/CarCard"
 import { StaggeredGrid, StaggeredItem, AnimatedSection } from "@/components/ui/animated-section"
@@ -17,17 +17,45 @@ import NumberRangeFilter from "@/components/filters/NumberRangeFilter"
 import StringCheckboxFilter from "@/components/filters/StringCheckboxFilter"
 
 const CarListings = () => {
-  const { listings, loading, error } = useListings();
-  const { attributes, loading: attributesLoading } = useFilterAttributes();
   const [filters, setFilters] = useState<Record<string, any>>({});
+  const [activeFilters, setActiveFilters] = useState<Record<string, any>>({});
+  const [sortOption, setSortOption] = useState("newest");
+  
+  const finalFilters = useMemo(() => ({
+    ...activeFilters,
+    sortBy: sortOption,
+  }), [activeFilters, sortOption]);
 
+  const { listings, loading, error } = useListings(finalFilters);
+  const { attributes, loading: attributesLoading } = useFilterAttributes();
+  
   const handleFilterChange = (attributeName: string, value: any) => {
-    setFilters(prevFilters => ({
-      ...prevFilters,
-      [attributeName]: value
-    }));
+    setFilters(prevFilters => {
+      const newFilters = { ...prevFilters };
+
+      // Dacă valoarea este un array gol, ștergem cheia
+      if (Array.isArray(value) && value.length === 0) {
+        delete newFilters[attributeName];
+      } else {
+        newFilters[attributeName] = value;
+      }
+      
+      return newFilters;
+    });
   };
 
+  const handleApplyFilters = () => {
+    // Eliminăm cheile cu valori goale sau nedefinite înainte de a aplica
+    const cleanedFilters: Record<string, any> = {};
+    for (const key in filters) {
+      const value = filters[key];
+      if (value !== null && value !== undefined && value !== '' && (!Array.isArray(value) || value.length > 0)) {
+        cleanedFilters[key] = value;
+      }
+    }
+    setActiveFilters(cleanedFilters);
+  };
+  
   const renderFilters = () => {
     if (attributesLoading) {
       return (
@@ -48,7 +76,7 @@ const CarListings = () => {
 
     return attributes.map((attr, index) => (
       <div key={attr.id}>
-        {index > 0 && <Separator />}
+        {index > 0 && <Separator className="my-6" />}
         {attr.type === 'NUMBER' && <NumberRangeFilter attribute={attr} onChange={handleFilterChange} />}
         {attr.type === 'STRING' && <StringCheckboxFilter attribute={attr} onChange={handleFilterChange} />}
       </div>
@@ -125,7 +153,7 @@ const CarListings = () => {
               <div className="space-y-6">
                 {renderFilters()}
 
-                <Button className="w-full" size="sm">
+                <Button className="w-full" size="sm" onClick={handleApplyFilters}>
                   Aplică Filtrele
                 </Button>
               </div>
@@ -149,15 +177,16 @@ const CarListings = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <Select>
+                <Select value={sortOption} onValueChange={setSortOption}>
                   <SelectTrigger className="w-48">
                     <SelectValue placeholder="Sortează după" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="price-asc">Preț crescător</SelectItem>
-                    <SelectItem value="price-desc">Preț descrescător</SelectItem>
-                    <SelectItem value="year-desc">An nou întâi</SelectItem>
-                    <SelectItem value="mileage-asc">Kilometraj mic</SelectItem>
+                    <SelectItem value="newest">Cele mai noi</SelectItem>
+                    <SelectItem value="price_asc">Preț crescător</SelectItem>
+                    <SelectItem value="price_desc">Preț descrescător</SelectItem>
+                    <SelectItem value="mileage_asc">Kilometraj crescător</SelectItem>
+                    <SelectItem value="mileage_desc">Kilometraj descrescător</SelectItem>
                   </SelectContent>
                 </Select>
               </motion.div>

@@ -66,7 +66,7 @@ const processListings = (listings: APIListing[]): ProcessedListing[] => {
   }));
 };
 
-const useListings = () => {
+const useListings = (activeFilters: Record<string, any>) => {
   const [listings, setListings] = useState<ProcessedListing[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -76,10 +76,25 @@ const useListings = () => {
       try {
         setLoading(true);
         setError(null);
+        
         const businessId = "cmg5ligro0175s52cn0jimm7s";
         const categoryId = "cmg5m9pkm017bs52coh75y43d";
         
-        const url = `https://saas-platform-backend.onrender.com/api/public/listings/search?businessId=${businessId}&categoryId=${categoryId}`;
+        const params = new URLSearchParams({
+          businessId,
+          categoryId,
+        });
+
+        for (const key in activeFilters) {
+          const value = activeFilters[key];
+          if (Array.isArray(value) && value.length > 0) {
+            value.forEach(v => params.append(key, v));
+          } else if (value !== undefined && value !== null && value !== '' && !Array.isArray(value)) {
+            params.append(key, value);
+          }
+        }
+        
+        const url = `https://saas-platform-backend.onrender.com/api/public/listings/search?${params.toString()}`;
 
         const response = await fetch(url);
 
@@ -102,7 +117,7 @@ const useListings = () => {
     };
 
     fetchListings();
-  }, []);
+  }, [activeFilters]);
 
   return { listings, loading, error };
 };
