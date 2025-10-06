@@ -6,20 +6,20 @@ import Layout from "@/components/layout/Layout"
 import CarCard from "@/components/CarCard"
 import { StaggeredGrid, StaggeredItem, AnimatedSection } from "@/components/ui/animated-section"
 import { Button } from "@/components/ui/luxury-button"
-import { Separator } from "@/components/ui/separator"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Filter } from "lucide-react"
 import useListings from "@/hooks/useListings"
-import useFilterAttributes from "@/hooks/useFilterAttributes"
+import FilterSidebar from "@/components/filters/FilterSidebar"
 import { Skeleton } from "@/components/ui/skeleton"
 import { AlertCircle } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
-import NumberRangeFilter from "@/components/filters/NumberRangeFilter"
-import StringCheckboxFilter from "@/components/filters/StringCheckboxFilter"
 
 const CarListings = () => {
   const [filters, setFilters] = useState<Record<string, any>>({});
   const [activeFilters, setActiveFilters] = useState<Record<string, any>>({});
   const [sortOption, setSortOption] = useState("newest");
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
   
   const finalFilters = useMemo(() => ({
     ...activeFilters,
@@ -27,13 +27,11 @@ const CarListings = () => {
   }), [activeFilters, sortOption]);
 
   const { listings, loading, error } = useListings(finalFilters);
-  const { attributes, loading: attributesLoading } = useFilterAttributes();
   
   const handleFilterChange = (attributeName: string, value: any) => {
     setFilters(prevFilters => {
       const newFilters = { ...prevFilters };
 
-      // Dacă valoarea este un array gol, ștergem cheia
       if (Array.isArray(value) && value.length === 0) {
         delete newFilters[attributeName];
       } else {
@@ -45,7 +43,6 @@ const CarListings = () => {
   };
 
   const handleApplyFilters = () => {
-    // Eliminăm cheile cu valori goale sau nedefinite înainte de a aplica
     const cleanedFilters: Record<string, any> = {};
     for (const key in filters) {
       const value = filters[key];
@@ -54,33 +51,7 @@ const CarListings = () => {
       }
     }
     setActiveFilters(cleanedFilters);
-  };
-  
-  const renderFilters = () => {
-    if (attributesLoading) {
-      return (
-        <div className="space-y-6">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="space-y-3">
-              <Skeleton className="h-4 w-1/3" />
-              <Skeleton className="h-5 w-full" />
-              <div className="flex justify-between">
-                <Skeleton className="h-3 w-1/4" />
-                <Skeleton className="h-3 w-1/4" />
-              </div>
-            </div>
-          ))}
-        </div>
-      );
-    }
-
-    return attributes.map((attr, index) => (
-      <div key={attr.id}>
-        {index > 0 && <Separator className="my-6" />}
-        {attr.type === 'NUMBER' && <NumberRangeFilter attribute={attr} onChange={handleFilterChange} />}
-        {attr.type === 'STRING' && <StringCheckboxFilter attribute={attr} onChange={handleFilterChange} />}
-      </div>
-    ));
+    setIsSheetOpen(false); // Close sheet on mobile after applying
   };
   
   const renderListings = () => {
@@ -143,20 +114,13 @@ const CarListings = () => {
     <Layout>
       <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Filters Sidebar */}
-          <aside className="lg:col-span-1">
+          {/* Filters Sidebar for Desktop */}
+          <aside className="hidden lg:block lg:col-span-1">
             <div className="luxury-card p-6 sticky top-24">
-              <h2 className="font-luxury text-xl font-bold text-luxury-gold mb-6">
-                Filtrează Rezultatele
-              </h2>
-              
-              <div className="space-y-6">
-                {renderFilters()}
-
-                <Button className="w-full" size="sm" onClick={handleApplyFilters}>
-                  Aplică Filtrele
-                </Button>
-              </div>
+               <FilterSidebar 
+                onFilterChange={handleFilterChange}
+                onApplyFilters={handleApplyFilters}
+               />
             </div>
           </aside>
 
@@ -172,24 +136,46 @@ const CarListings = () => {
               >
                 Mașini Disponibile
               </motion.h1>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <Select value={sortOption} onValueChange={setSortOption}>
-                  <SelectTrigger className="w-48">
-                    <SelectValue placeholder="Sortează după" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="newest">Cele mai noi</SelectItem>
-                    <SelectItem value="price_asc">Preț crescător</SelectItem>
-                    <SelectItem value="price_desc">Preț descrescător</SelectItem>
-                    <SelectItem value="mileage_asc">Kilometraj crescător</SelectItem>
-                    <SelectItem value="mileage_desc">Kilometraj descrescător</SelectItem>
-                  </SelectContent>
-                </Select>
-              </motion.div>
+
+              <div className="flex items-center gap-4">
+                 {/* Mobile Filter Trigger */}
+                <div className="lg:hidden">
+                    <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+                        <SheetTrigger asChild>
+                            <Button variant="outline" size="icon">
+                                <Filter className="h-5 w-5" />
+                                <span className="sr-only">Filtre</span>
+                            </Button>
+                        </SheetTrigger>
+                        <SheetContent side="left" className="p-0">
+                           <FilterSidebar 
+                                onFilterChange={handleFilterChange}
+                                onApplyFilters={handleApplyFilters}
+                                isMobile={true}
+                            />
+                        </SheetContent>
+                    </Sheet>
+                </div>
+
+                <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                    <Select value={sortOption} onValueChange={setSortOption}>
+                    <SelectTrigger className="w-48">
+                        <SelectValue placeholder="Sortează după" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="newest">Cele mai noi</SelectItem>
+                        <SelectItem value="price_asc">Preț crescător</SelectItem>
+                        <SelectItem value="price_desc">Preț descrescător</SelectItem>
+                        <SelectItem value="mileage_asc">Kilometraj crescător</SelectItem>
+                        <SelectItem value="mileage_desc">Kilometraj descrescător</SelectItem>
+                    </SelectContent>
+                    </Select>
+                </motion.div>
+              </div>
             </AnimatedSection>
 
             {/* Car Grid */}
