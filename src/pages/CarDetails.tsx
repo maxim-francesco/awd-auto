@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
 import Layout from "@/components/layout/Layout"
@@ -27,6 +27,12 @@ const CarDetails = () => {
   const navigate = useNavigate()
   const { listing: car, loading, error } = useListingDetails(listingId)
   const [selectedImage, setSelectedImage] = useState(0)
+
+  useEffect(() => {
+    if (car) {
+      console.log("Date complete pentru mașina selectată:", car);
+    }
+  }, [car]);
 
   if (loading) {
     return (
@@ -247,5 +253,3 @@ const CarDetails = () => {
 }
 
 export default CarDetails
-
-    
