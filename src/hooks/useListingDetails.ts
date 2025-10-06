@@ -27,11 +27,13 @@ const getAttributeValue = (attributes: Attribute[], name: string): string => {
   if (attr.attribute.type === "STRING" && attr.stringValue) {
       return attr.stringValue;
   }
-  if (attr.attribute.type === "BOOLEAN" && attr.booleanValue !== undefined) {
+  if (attr.attribute.type === "BOOLEAN") {
       return attr.booleanValue ? "Da" : "Nu";
   }
   
-  return "N/A";
+  // Fallback in case a value is present but not in its designated field (e.g. a number stored as string)
+  const displayValue = attr.stringValue || attr.numberValue?.toString() || (attr.booleanValue ? 'Da' : 'Nu');
+  return displayValue || "N/A";
 };
 
 // Functie pentru a extrage dotările. Presupunem că sunt atribute de tip BOOLEAN.
