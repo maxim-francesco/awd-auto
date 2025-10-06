@@ -28,7 +28,7 @@ const CarCard = ({ listing }: CarCardProps) => {
       <div className="relative overflow-hidden rounded-t-xl">
         <img 
           src={listing.image} 
-          alt={`${listing.make} ${listing.model}`}
+          alt={listing.title}
           className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -38,8 +38,8 @@ const CarCard = ({ listing }: CarCardProps) => {
       <div className="p-6 space-y-4">
         {/* Title and Price */}
         <div className="space-y-2">
-          <h3 className="font-luxury text-xl font-bold text-foreground group-hover:text-luxury-gold transition-colors">
-            {listing.make} {listing.model}
+          <h3 className="font-luxury text-xl font-bold text-foreground group-hover:text-luxury-gold transition-colors truncate">
+            {listing.title}
           </h3>
           <p className="text-2xl font-bold text-luxury-gold">
             €{listing.price.toLocaleString()}
