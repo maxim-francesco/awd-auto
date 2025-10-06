@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, useLocation } from "react-router-dom"
 import { motion } from "framer-motion"
 import Layout from "@/components/layout/Layout"
 import { Button } from "@/components/ui/luxury-button"
@@ -21,11 +21,24 @@ import {
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { Skeleton } from "@/components/ui/skeleton"
 import useListingDetails from "@/hooks/useListingDetails"
+import type { APIListing, Attribute } from "@/hooks/useListings";
 
 const CarDetails = () => {
   const { listingId } = useParams<{ listingId: string }>()
   const navigate = useNavigate()
-  const { listing: car, loading, error } = useListingDetails(listingId)
+  const location = useLocation()
+  
+  const listingFromState = location.state?.listing as APIListing | undefined;
+
+  const { listing: fetchedCar, loading: apiLoading, error: apiError } = useListingDetails(listingId)
+
+  // Prioritize data from state, fallback to API fetch
+  const car = listingFromState || fetchedCar
+
+  // Loading is only true if we don't have state data and the API is fetching
+  const loading = !car && apiLoading
+  const error = !car && apiError
+
   const [selectedImage, setSelectedImage] = useState(0)
 
   useEffect(() => {
@@ -33,6 +46,30 @@ const CarDetails = () => {
       console.log("Date complete pentru mașina selectată:", car);
     }
   }, [car]);
+
+  const getAttributeValue = (attributes: Attribute[], name: string): string => {
+    const attr = attributes.find(a => a.attribute.name.toLowerCase() === name.toLowerCase());
+    if (!attr) return "N/A";
+    
+    if (attr.attribute.type === "NUMBER" && attr.numberValue !== undefined && attr.numberValue !== null) {
+        return attr.numberValue.toString();
+    }
+    if (attr.attribute.type === "STRING" && attr.stringValue) {
+        return attr.stringValue;
+    }
+    if (attr.attribute.type === "BOOLEAN") {
+        return attr.booleanValue ? "Da" : "Nu";
+    }
+    
+    const displayValue = attr.stringValue || attr.numberValue?.toString() || (attr.booleanValue ? 'Da' : 'Nu');
+    return displayValue || "N/A";
+  };
+  
+  const getFeatures = (attributes: Attribute[]): string[] => {
+      return attributes
+          .filter(attr => attr.attribute.type === 'BOOLEAN' && attr.booleanValue === true)
+          .map(attr => attr.attribute.name);
+  }
 
   if (loading) {
     return (
@@ -96,15 +133,25 @@ const CarDetails = () => {
       </Layout>
     )
   }
-
-  const specs = [
-    { icon: Gauge, label: "Rulaj", value: car.mileage },
-    { icon: Cog, label: "Capacitate cilindrică", value: car.engine },
-    { icon: Zap, label: "Putere", value: car.power },
-    { icon: Fuel, label: "Combustibil", value: car.fuelType },
-    { icon: Settings, label: "Transmisie", value: car.transmission },
-    { icon: Calendar, label: "An fabricație", value: car.year.toString() }
-  ]
+  
+  // Processed values for display
+  const carData = {
+    title: car.title,
+    year: getAttributeValue(car.attributeValues, 'an fabricatie'),
+    variant: getAttributeValue(car.attributeValues, 'model'),
+    price: car.price ?? 0,
+    images: car.images,
+    description: car.description,
+    specs: [
+      { icon: Gauge, label: "Rulaj", value: `${parseInt(getAttributeValue(car.attributeValues, 'kilometraj')).toLocaleString()} km` },
+      { icon: Cog, label: "Capacitate cilindrică", value: `${getAttributeValue(car.attributeValues, 'capacitate cilindrica')} cm³` },
+      { icon: Zap, label: "Putere", value: `${getAttributeValue(car.attributeValues, 'putere')} CP` },
+      { icon: Fuel, label: "Combustibil", value: getAttributeValue(car.attributeValues, 'combustibil') },
+      { icon: Settings, label: "Transmisie", value: getAttributeValue(car.attributeValues, 'transmisie') },
+      { icon: Calendar, label: "An fabricație", value: getAttributeValue(car.attributeValues, 'an fabricatie') }
+    ],
+    features: getFeatures(car.attributeValues)
+  }
 
   return (
     <Layout>
@@ -131,16 +178,16 @@ const CarDetails = () => {
                   layoutId={`car-image-${car.id}`}
                 >
                   <img
-                    src={car.images.length > 0 ? car.images[selectedImage].url : car.image}
-                    alt={car.title}
+                    src={carData.images?.length > 0 ? carData.images[selectedImage].url : 'https://via.placeholder.com/1200x800.png?text=AWD+Auto'}
+                    alt={carData.title}
                     className="w-full h-full object-cover"
                   />
                 </motion.div>
 
                 {/* Thumbnails */}
-                {car.images.length > 1 && (
+                {carData.images && carData.images.length > 1 && (
                   <div className="grid grid-cols-6 gap-2">
-                    {car.images.map((image, index) => (
+                    {carData.images.map((image, index) => (
                       <motion.button
                         key={index}
                         onClick={() => setSelectedImage(index)}
@@ -170,12 +217,12 @@ const CarDetails = () => {
                 {/* Title & Price */}
                 <div>
                   <h1 className="font-luxury text-3xl sm:text-4xl font-bold text-foreground mb-2">
-                    {car.title}, {car.year}
+                    {carData.title}, {carData.year}
                   </h1>
-                  <p className="text-lg text-muted-foreground mb-4">{car.variant}</p>
+                  <p className="text-lg text-muted-foreground mb-4">{carData.variant}</p>
                   <div className="flex items-baseline gap-2">
                     <span className="font-luxury text-4xl sm:text-5xl font-bold text-luxury-gold">
-                      {car.price.toLocaleString()} €
+                      {carData.price.toLocaleString()} €
                     </span>
                     <span className="text-sm text-muted-foreground">(TVA Inclus)</span>
                   </div>
@@ -183,7 +230,7 @@ const CarDetails = () => {
 
                 {/* Key Specifications */}
                 <div className="grid grid-cols-2 gap-4 py-6 border-y border-border/40">
-                  {specs.map((spec, index) => (
+                  {carData.specs.map((spec, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <div className="p-2 rounded-lg bg-luxury-gold/10">
                         <spec.icon className="h-5 w-5 text-luxury-gold" />
@@ -214,18 +261,18 @@ const CarDetails = () => {
                     Descriere Detaliată
                   </h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    {car.description}
+                    {carData.description}
                   </p>
                 </div>
 
                 {/* Features */}
-                {car.features && car.features.length > 0 && (
+                {carData.features && carData.features.length > 0 && (
                   <div className="pt-4">
                     <h2 className="font-luxury text-xl font-semibold text-foreground mb-4">
                       Dotări și Opțiuni
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {car.features.map((feature, index) => (
+                      {carData.features.map((feature, index) => (
                         <motion.div
                           key={index}
                           className="flex items-center gap-2"
