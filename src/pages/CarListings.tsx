@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { useState, useMemo, useEffect } from "react"
 import Layout from "@/components/layout/Layout"
 import CarCard from "@/components/CarCard"
-import { StaggeredGrid, StaggeredItem, AnimatedSection } from "@/components/ui/animated-section"
+import { AnimatedSection } from "@/components/ui/animated-section"
 import { Button } from "@/components/ui/luxury-button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
@@ -65,10 +65,9 @@ const CarListings = () => {
   const renderListings = () => {
     if (loading) {
       return (
-        <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
           {[...Array(9)].map((_, index) => (
-            <StaggeredItem key={index}>
-              <Card className="luxury-card">
+              <Card key={index} className="luxury-card">
                 <Skeleton className="h-48 w-full rounded-t-xl" />
                 <CardContent className="p-6 space-y-4">
                   <Skeleton className="h-6 w-3/4" />
@@ -82,9 +81,8 @@ const CarListings = () => {
                   <Skeleton className="h-9 w-full" />
                 </CardContent>
               </Card>
-            </StaggeredItem>
           ))}
-        </StaggeredGrid>
+        </div>
       );
     }
 
@@ -108,13 +106,11 @@ const CarListings = () => {
     }
 
     return (
-      <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
         {listings.map((listing) => (
-          <StaggeredItem key={listing.id}>
-            <CarCard listing={listing} />
-          </StaggeredItem>
+            <CarCard key={listing.id} listing={listing} />
         ))}
-      </StaggeredGrid>
+      </div>
     );
   };
 
