@@ -51,18 +51,12 @@ const CarDetails = () => {
     const attr = attributes.find(a => a.attribute.name.toLowerCase() === name.toLowerCase());
     if (!attr) return "N/A";
     
-    if (attr.attribute.type === "NUMBER" && attr.numberValue !== undefined && attr.numberValue !== null) {
-        return attr.numberValue.toString();
-    }
-    if (attr.attribute.type === "STRING" && attr.stringValue) {
-        return attr.stringValue;
-    }
-    if (attr.attribute.type === "BOOLEAN") {
-        return attr.booleanValue ? "Da" : "Nu";
-    }
+    // Prioritize stringValue, then numberValue, then booleanValue
+    if (attr.stringValue) return attr.stringValue;
+    if (attr.numberValue !== null && attr.numberValue !== undefined) return attr.numberValue.toString();
+    if (attr.booleanValue !== null && attr.booleanValue !== undefined) return attr.booleanValue ? "Da" : "Nu";
     
-    const displayValue = attr.stringValue || attr.numberValue?.toString() || (attr.booleanValue ? 'Da' : 'Nu');
-    return displayValue || "N/A";
+    return "N/A";
   };
   
   const getFeatures = (attributes: Attribute[]): string[] => {
@@ -143,7 +137,7 @@ const CarDetails = () => {
     images: car.images,
     description: car.description,
     specs: [
-      { icon: Gauge, label: "Rulaj", value: `${parseInt(getAttributeValue(car.attributeValues, 'kilometraj')).toLocaleString()} km` },
+      { icon: Gauge, label: "Rulaj", value: `${parseInt(getAttributeValue(car.attributeValues, 'kilometraj'), 10).toLocaleString()} km` },
       { icon: Cog, label: "Capacitate cilindrică", value: `${getAttributeValue(car.attributeValues, 'capacitate cilindrica')} cm³` },
       { icon: Zap, label: "Putere", value: `${getAttributeValue(car.attributeValues, 'putere')} CP` },
       { icon: Fuel, label: "Combustibil", value: getAttributeValue(car.attributeValues, 'combustibil') },
@@ -300,3 +294,5 @@ const CarDetails = () => {
 }
 
 export default CarDetails
+
+    
