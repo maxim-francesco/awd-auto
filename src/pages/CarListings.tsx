@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import Layout from "@/components/layout/Layout"
 import CarCard from "@/components/CarCard"
 import { StaggeredGrid, StaggeredItem, AnimatedSection } from "@/components/ui/animated-section"
@@ -20,12 +20,17 @@ const CarListings = () => {
   const [activeFilters, setActiveFilters] = useState<Record<string, any>>({});
   const [sortOption, setSortOption] = useState("newest");
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+  useEffect(() => {
+    console.log('%c Starea FILTERS s-a actualizat:', 'color: orange; font-weight: bold;', filters);
+  }, [filters]);
   
   const finalFilters = useMemo(() => ({
     ...activeFilters,
     sortBy: sortOption,
   }), [activeFilters, sortOption]);
 
+  console.log('%c Filtre ACTIVE trimise către hook:', 'color: green; font-weight: bold;', finalFilters);
   const { listings, loading, error } = useListings(finalFilters);
   
   const handleFilterChange = (attributeName: string, value: any) => {

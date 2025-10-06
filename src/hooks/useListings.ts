@@ -95,6 +95,7 @@ const useListings = (activeFilters: Record<string, any>) => {
         }
         
         const url = `https://saas-platform-backend.onrender.com/api/public/listings/search?${params.toString()}`;
+        console.log('%c URL Final apelat de hook:', 'color: blue; font-weight: bold;', url);
 
         const response = await fetch(url);
 
@@ -103,6 +104,8 @@ const useListings = (activeFilters: Record<string, any>) => {
         }
 
         const result = await response.json();
+        console.log('%c Răspuns RAW de la server:', 'color: purple; font-weight: bold;', result);
+
         const rawListings: APIListing[] = result.data || [];
         
         const processed = processListings(rawListings);
