@@ -7,12 +7,12 @@ import { getAttributeStats } from "@/services/apiFilters";
 
 interface NumberRangeFilterProps {
   attribute: AttributeDefinition;
-  onChange: (attributeName: string, value: number | undefined) => void;
+  onChange: (attributeName: string, value: any) => void;
 }
 
 const NumberRangeFilter = ({ attribute, onChange }: NumberRangeFilterProps) => {
   const [stats, setStats] = useState<{ min: number; max: number } | null>(null);
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = useState<number[] | undefined>(undefined);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const NumberRangeFilter = ({ attribute, onChange }: NumberRangeFilterProps) => {
         const data = await getAttributeStats(attribute.id);
         setStats(data);
         // Setăm valoarea inițială a slider-ului, dar NU apelăm onChange
-        setValue(data.max);
+        setValue([data.min, data.max]);
       } catch (error) {
         console.error(`Failed to fetch stats for ${attribute.name}:`, error);
         setStats({ min: 0, max: 100 }); // Fallback
@@ -47,32 +47,49 @@ const NumberRangeFilter = ({ attribute, onChange }: NumberRangeFilterProps) => {
   }
 
   if (!stats) return null;
-
-  const handleValueChange = (vals: number[]) => {
-    const newValue = vals[0];
-    setValue(newValue);
-    // Apelăm onChange doar când utilizatorul interacționează cu slider-ul
-    onChange(`${attribute.name.replace(/ /g, '_')}_max`, newValue);
+  
+  const handleValueChange = (newRange: number[]) => {
+    setValue(newRange);
   };
+
+  const handleValueCommit = (committedRange: number[]) => {
+    const attributeName = attribute.name.replace(/ /g, '_');
+    // Verificăm dacă intervalul s-a schimbat față de cel inițial
+    if (committedRange[0] !== stats.min) {
+      onChange(`${attributeName}_min`, committedRange[0]);
+    } else {
+      // Dacă e la valoarea minimă, ștergem filtrul
+      onChange(`${attributeName}_min`, undefined);
+    }
+
+    if (committedRange[1] !== stats.max) {
+      onChange(`${attributeName}_max`, committedRange[1]);
+    } else {
+      // Dacă e la valoarea maximă, ștergem filtrul
+      onChange(`${attributeName}_max`, undefined);
+    }
+  };
+
+  const currentRange = value || [stats.min, stats.max];
+  const stepValue = attribute.name.toLowerCase().includes('an') ? 1 : 1000;
 
   return (
     <div className="space-y-3">
       <Label className="text-sm font-medium capitalize flex justify-between">
-        <span>{attribute.name} (max)</span>
-        {value !== undefined && <span className="text-luxury-gold font-semibold">{value.toLocaleString()}</span>}
+        <span>{attribute.name}</span>
+        <span className="text-luxury-gold font-semibold">
+          {`${currentRange[0].toLocaleString()} - ${currentRange[1].toLocaleString()}`}
+        </span>
       </Label>
       <Slider
-        value={[value ?? stats.max]}
+        value={currentRange}
         onValueChange={handleValueChange}
+        onValueCommit={handleValueCommit}
         max={stats.max}
         min={stats.min}
-        step={attribute.name.toLowerCase().includes('an') ? 1 : 1000}
+        step={stepValue}
         className="w-full"
       />
-      <div className="flex justify-between text-xs text-muted-foreground">
-        <span>{stats.min.toLocaleString()}</span>
-        <span>{stats.max.toLocaleString()}</span>
-      </div>
     </div>
   );
 };
