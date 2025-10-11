@@ -5,15 +5,12 @@ import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/luxury-button"
 import { Calendar, Fuel, Gauge, Settings, Cog } from "lucide-react"
 import type { APIListing } from "@/hooks/useLatestListings" // Changed to APIListing
-import { format } from "date-fns"
 
 interface CarCardProps {
   listing: APIListing; // Changed to APIListing
 }
 
 const CarCard = ({ listing }: CarCardProps) => {
-  const postDate = format(new Date(listing.createdAt), 'dd.MM.yyyy');
-
   const getAttributeValue = (attributeName: string) => {
     if (!listing || !listing.attributeValues) {
       return 'N/A';
@@ -35,7 +32,7 @@ const CarCard = ({ listing }: CarCardProps) => {
   const mileageValue = getAttributeValue('kilometraj');
   const mileage = !isNaN(parseInt(mileageValue)) ? parseInt(mileageValue).toLocaleString() : 'N/A';
   const fuelType = getAttributeValue('combustibil');
-  const engine = getAttributeValue('capacitate cilindrica');
+  const year = getAttributeValue('An');
   const transmission = getAttributeValue('Cutie de viteze');
 
   return (
@@ -76,16 +73,16 @@ const CarCard = ({ listing }: CarCardProps) => {
         {/* Specifications */}
         <div className="grid grid-cols-2 gap-3 text-sm">
           <div className="flex items-center space-x-2 text-muted-foreground">
+            <Calendar className="h-4 w-4 text-luxury-gold" />
+            <span>{year}</span>
+          </div>
+          <div className="flex items-center space-x-2 text-muted-foreground">
             <Gauge className="h-4 w-4 text-luxury-gold" />
             <span>{mileage} km</span>
           </div>
           <div className="flex items-center space-x-2 text-muted-foreground">
             <Fuel className="h-4 w-4 text-luxury-gold" />
             <span>{fuelType}</span>
-          </div>
-          <div className="flex items-center space-x-2 text-muted-foreground">
-            <Cog className="h-4 w-4 text-luxury-gold" />
-            <span>{engine} cm³</span>
           </div>
           <div className="flex items-center space-x-2 text-muted-foreground">
             <Settings className="h-4 w-4 text-luxury-gold" />
