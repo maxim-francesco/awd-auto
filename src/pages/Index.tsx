@@ -43,16 +43,16 @@ const Index = () => {
 
   const testimonials = [
     {
-      quote: "Procesul a fost incredibil de simplu și transparent. Am primit toate actele la zi, iar mașina este exact cum a fost descrisă. Domnul Laurențiu este un profesionist. Recomand cu încredere!",
-      author: "Andrei P., Cluj-Napoca"
+      quote: "Experiența foarte plăcută. Proprietarul parcului a fost extrem de binevoitor si a dat dovadă de profesionalism pe tot parcursul procesului. Suntem foarte încântați de achiziția făcută. Recomandăm cu căldură acest dealer auto. Mulțumim.",
+      author: "- Nelutu Hoza"
     },
     {
-      quote: "După luni de căutări, am găsit la AWD Auto mașina perfectă pentru familia mea. Am apreciat onestitatea și răbdarea echipei. Cu siguranță voi reveni.",
-      author: "Maria V., Florești"
+      quote: "Am achiziționat un Audi A4 B9 de la Parcul Auto AWD și pot spune cu încredere că a fost o alegere foarte bună. Mașina este întreținută atât estetic, cât și mecanic, exact cum mi-a fost prezentată. Tot procesul de cumpărare a decurs foarte transparent, fără ascunzișuri sau promisiuni false. Cel mai mult am apreciat seriozitatea și corectitudinea deținătorului parcului, un om deosebit, care pune accent pe calitate și pe mulțumirea clientului. Se vede că mașinile sunt selectate cu grijă și menținute la standarde înalte. Recomand cu toată încrederea Auto AWD oricui își dorește o mașină bună și o experiență de cumpărare fără stres.",
+      author: "- Lascu Daniel"
     },
     {
-      quote: "Garanția extinsă mi-a oferit liniștea de care aveam nevoie. O experiență de 5 stele, de la primul contact până la predarea cheilor.",
-      author: "Ionuț S., Baciu"
+      quote: "Am ajuns la AWD Auto Cluj după ce am văzut un anunț legat de un Volvo V40, noi fiind din București. Am telefonat parcul auto pentru mai multe detalii legate de mașină, și am fost plăcut surprinși de amabilitatea și disponibilitatea domnului Laurențiu. Experiența noastră la AWD Auto poate fi descrisă doar prin laude la adresa dânsului, fiind extrem de înțelegător și receptiv, oferindu-ne mai multe informații și suport decât ne-am fi așteptat. Mai mult decât atât, oferă posibilitatea achiziționării unei asigurări de tip casco tehnic, care este foarte avantajoasă. Ne declarăm mulțumiți de alegerea făcută și recomandăm 100% achiziționarea unui autoturism de la AWD Auto!",
+      author: "- Cristian Cucu"
     }
   ]
   
@@ -255,7 +255,7 @@ const Index = () => {
             </p>
           </AnimatedSection>
 
-          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <StaggeredItem key={index}>
                  <Card className="luxury-card h-full flex flex-col">
