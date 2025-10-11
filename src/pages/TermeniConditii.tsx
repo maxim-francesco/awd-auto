@@ -1,8 +1,13 @@
-
 import Layout from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/animated-section";
 
 const TermeniConditii = () => {
+  const currentDate = new Date().toLocaleDateString('ro-RO', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric'
+  });
+
   return (
     <Layout>
       <div className="bg-background py-12 md:py-20">
@@ -13,7 +18,7 @@ const TermeniConditii = () => {
                 Termeni și Condiții
               </h1>
               <p className="mt-4 text-muted-foreground">
-                Ultima actualizare: 24 Octombrie 2025
+                Ultima actualizare: {currentDate}
               </p>
             </div>
 

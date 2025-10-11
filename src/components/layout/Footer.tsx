@@ -1,4 +1,3 @@
-
 "use client"
 
 import { motion } from "framer-motion"
@@ -23,6 +22,11 @@ const Footer = () => {
             <p className="text-muted-foreground text-sm leading-relaxed">
               AWD Auto - Partenerul tău de încredere pentru achiziționarea mașinii perfecte. Calitate, transparență și servicii premium în Cluj-Napoca.
             </p>
+             <div className="pt-2 text-xs text-muted-foreground space-y-1">
+                <p><strong>SC AWD AUTO SRL</strong></p>
+                <p>J12/1234/2025</p>
+                <p>RO12345678</p>
+            </div>
           </div>
 
           {/* Coloana 2 - Linkuri Rapide */}
@@ -63,7 +67,7 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <MapPin className="h-4 w-4 text-luxury-gold flex-shrink-0" />
                 <span className="text-muted-foreground text-sm">
-                  Strada Exemplului, Cluj-Napoca
+                  Strada Principală, Nr. 1, Cluj-Napoca, 400000
                 </span>
               </div>
               <a href="mailto:contact@awdauto-cluj.ro" className="flex items-center space-x-3 group">

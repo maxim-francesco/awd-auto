@@ -42,9 +42,8 @@ const Contact = () => {
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">Adresa</h3>
                         <p className="text-muted-foreground">
-                          Strada Automobilului 123<br />
-                          Sector 1, București, România<br />
-                          010101
+                          Strada Principală, Nr. 1<br />
+                          Cluj-Napoca, 400000, România
                         </p>
                       </div>
                     </div>
@@ -60,8 +59,7 @@ const Contact = () => {
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">Telefon</h3>
                         <p className="text-muted-foreground">
-                          +40 21 123 4567<br />
-                          +40 722 123 456
+                          0752 228 593
                         </p>
                       </div>
                     </div>
@@ -94,9 +92,9 @@ const Contact = () => {
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">Program</h3>
                         <div className="text-muted-foreground space-y-1">
-                          <p>Luni - Vineri: 09:00 - 19:00</p>
-                          <p>Sâmbătă: 09:00 - 17:00</p>
-                          <p>Duminică: 10:00 - 16:00</p>
+                          <p>Luni - Vineri: 09:00 - 18:00</p>
+                          <p>Sâmbătă: 10:00 - 14:00</p>
+                          <p>Duminică: Închis</p>
                         </div>
                       </div>
                     </div>
