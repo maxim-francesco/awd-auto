@@ -3,36 +3,40 @@ import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 
 const CookieConsentModal = () => {
+  // This state will control the visibility. Default to false.
   const [showModal, setShowModal] = useState(false);
 
-  // La prima încărcare, verificăm dacă cookie-ul de consimțământ NU există
+  // This useEffect will run ONLY ONCE after the component mounts in the browser.
   useEffect(() => {
+    // We check for the cookie here.
     const consentCookie = Cookies.get('awdAutoCookieConsent');
+
+    // If the cookie does NOT exist, THEN we set the state to show the modal.
     if (!consentCookie) {
       setShowModal(true);
     }
-  }, []);
+  }, []); // The empty dependency array [] is crucial for this to run only once.
 
   const handleAccept = () => {
-    // Setăm cookie-ul să expire în 150 de zile
-    Cookies.set('awdAutoCookieConsent', 'true', { expires: 150 });
+    // Set the cookie to expire in 150 days and hide the modal.
+    Cookies.set('awdAutoCookieConsent', 'accepted', { expires: 150 });
     setShowModal(false);
   };
 
   const handleDecline = () => {
-    Cookies.set('awdAutoCookieConsent', 'false', { expires: 150 });
+    // We still set a cookie to remember the user's choice and hide the modal.
+    Cookies.set('awdAutoCookieConsent', 'declined', { expires: 150 });
     setShowModal(false);
   };
 
-  // Dacă nu trebuie să arătăm modalul, nu randăm nimic
+  // If the state tells us not to show the modal, we render nothing.
   if (!showModal) {
     return null;
   }
 
+  // If we need to show the modal, we render the full JSX.
   return (
-    // Overlay-ul care acoperă toată pagina
     <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[1000]">
-      {/* Containerul modalului, centrat */}
       <div className="bg-[#1c1c1c] text-white p-8 rounded-xl shadow-lg max-w-md w-[90%] text-center border border-gray-700">
         <h3 className="text-xl font-bold mb-4">
           Confidențialitatea ta este importantă pentru noi
@@ -43,8 +47,6 @@ const CookieConsentModal = () => {
             Politica noastră de Confidențialitate
           </Link>.
         </p>
-
-        {/* Containerul pentru butoane */}
         <div className="flex flex-col sm:flex-row gap-4">
           <button
             onClick={handleDecline}
