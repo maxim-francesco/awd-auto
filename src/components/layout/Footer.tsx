@@ -125,17 +125,15 @@ const Footer = () => {
         </div>
 
         {/* Linia de Copyright și Credit */}
-        <div className="mt-8 pt-8 border-t border-border/40">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-center md:text-left text-muted-foreground text-sm">
+        <div className="mt-8 pt-8 border-t border-border/40 text-center">
+            <p className="text-sm text-muted-foreground">
               © {currentYear} AWD Auto. Toate drepturile rezervate.
             </p>
-          </div>
-          <div className="text-center text-xs text-gray-400 mt-4">
+          <div className="text-xs text-muted-foreground mt-4">
             <p>
-              Dezvoltat de <a href="https://www.instagram.com/francesco.maximm/" target="_blank" rel="noopener noreferrer" className="font-medium text-muted-foreground hover:text-luxury-gold transition-colors">Maxim Francesco</a>
+              Dezvoltat de <a href="https://www.instagram.com/francesco.maximm/" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-luxury-gold transition-colors">Maxim Francesco</a>
               <span className="mx-2">|</span>
-              <a href="tel:+40783117797" className="font-medium text-muted-foreground hover:text-luxury-gold transition-colors">+40783117797</a>
+              <a href="tel:+40783117797" className="font-medium text-foreground hover:text-luxury-gold transition-colors">+40783117797</a>
             </p>
           </div>
         </div>
