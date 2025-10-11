@@ -63,6 +63,9 @@ const Layout = ({ children }: LayoutProps) => {
           style={{ zIndex: 1000 }}
 
           contentStyle={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
             position: 'fixed',
             top: '50%',
             left: '50%',
@@ -77,26 +80,27 @@ const Layout = ({ children }: LayoutProps) => {
             textAlign: 'center'
           }}
 
-          buttonWrapperClasses="flex justify-center gap-4 mt-6"
           buttonStyle={{ 
             position: 'relative',
-            flex: '1',
+            width: '100%',
             color: "#1c1c1c", 
             fontSize: "14px", 
             fontWeight: "bold",
             background: "#fde047", 
             borderRadius: "8px",
-            padding: "12px 24px"
+            padding: "12px 24px",
+            marginTop: '1.5rem'
           }}
           declineButtonStyle={{
             position: 'relative',
-            flex: '1',
+            width: '100%',
             background: '#333',
             color: '#fff',
             fontSize: "14px", 
             fontWeight: "bold",
             borderRadius: "8px",
             padding: "12px 24px",
+            marginTop: '0.5rem',
             margin: '0'
           }}
         >
