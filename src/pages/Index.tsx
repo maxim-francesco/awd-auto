@@ -7,7 +7,7 @@ import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/a
 import { Button } from "@/components/ui/luxury-button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Shield, CreditCard, ArrowRight, AlertCircle, CheckCircle, FileCheck, Star } from "lucide-react"
+import { Shield, CreditCard, ArrowRight, AlertCircle, CheckCircle, FileCheck, Star, Users, Search } from "lucide-react"
 import { Link } from "react-router-dom"
 import heroImage from "@/assets/hero-car.jpg"
 import useLatestListings, { type APIListing } from "@/hooks/useLatestListings"
@@ -18,24 +18,24 @@ const Index = () => {
 
   const whyUsFeatures = [
     {
+      icon: Search,
+      title: "Selecție Riguroasă",
+      description: "Refuzăm orice compromis. Fiecare mașină este aleasă personal de Laurențiu și inspectată tehnic în detaliu. Doar vehiculele care trec standardele noastre ajung în parcul auto."
+    },
+    {
       icon: FileCheck,
-      title: "Istoric Verificat",
-      description: "Transparență totală. Oferim istoricul complet de service pentru fiecare vehicul, pentru o achiziție fără surprize."
+      title: "Transparență Totală",
+      description: "Credem că o afacere corectă se construiește pe încredere. De aceea, îți oferim istoricul complet și răspundem onest la fiecare întrebare, fără secrete sau surprize."
+    },
+    {
+      icon: Users,
+      title: "O Experiență Centrată pe Tine",
+      description: "De la primul telefon și până la momentul în care pleci la volanul noii tale mașini, suntem aici să te ghidăm. Nu vindem doar mașini, ci construim parteneriate de lungă durată."
     },
     {
       icon: Shield,
-      title: "Garanție Extinsă",
-      description: "Colaborăm cu Defend Insurance pentru a-ți oferi garanție de până la 36 de luni, cu un număr nelimitat de kilometri."
-    },
-    {
-      icon: CreditCard,
-      title: "Finanțare Personalizată",
-      description: "Indiferent de situația ta financiară, găsim soluții de finanțare flexibile și rapide, adaptate nevoilor tale."
-    },
-    {
-      icon: CheckCircle,
-      title: "Certificat de Calitate",
-      description: "Fiecare mașină trece printr-o inspecție tehnică riguroasă în peste 150 de puncte înainte de a fi listată."
+      title: "Garanție și Suport",
+      description: "Prin parteneriatul cu Defend Insurance, oferim garanție extinsă și suport post-vânzare, pentru ca tu să conduci fără nicio grijă."
     }
   ]
 
@@ -279,12 +279,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Why Choose Us */}
+      {/* Our Promise Section */}
       <section className="py-16">
         <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-12">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
-              De ce să alegi AWD Auto?
+              Promisiunea Noastră Pentru Tine
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Ne dedicăm să oferim o experiență de cumpărare sigură, transparentă și plăcută.
@@ -388,3 +388,5 @@ const Index = () => {
 }
 
 export default Index
+
+    
