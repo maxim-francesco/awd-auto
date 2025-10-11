@@ -34,6 +34,9 @@ const Footer = () => {
               <Link to="/masini-disponibile" className="text-muted-foreground hover:text-luxury-gold transition-colors text-sm">
                 Mașini Disponibile
               </Link>
+              <Link to="/masini-la-comanda" className="text-muted-foreground hover:text-luxury-gold transition-colors text-sm">
+                Mașini la Comandă
+              </Link>
               <Link to="/finantare" className="text-muted-foreground hover:text-luxury-gold transition-colors text-sm">
                 Finanțare
               </Link>

@@ -11,6 +11,7 @@ import DespreNoi from "./pages/DespreNoi";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/utils/ScrollToTop";
+import MasiniLaComanda from "./pages/MasiniLaComanda";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/masini-disponibile" element={<CarListings />} />
           <Route path="/masini-disponibile/:listingId" element={<CarDetails />} />
+          <Route path="/masini-la-comanda" element={<MasiniLaComanda />} />
           <Route path="/finantare" element={<Finantare />} />
           <Route path="/despre-noi" element={<DespreNoi />} />
           <Route path="/contact" element={<Contact />} />
