@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/utils/ScrollToTop";
 import MasiniLaComanda from "./pages/MasiniLaComanda";
 import TermeniConditii from "./pages/TermeniConditii";
+import PoliticaConfidentialitate from "./pages/PoliticaConfidentialitate";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/despre-noi" element={<DespreNoi />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/termeni-conditii" element={<TermeniConditii />} />
+          <Route path="/politica-confidentialitate" element={<PoliticaConfidentialitate />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
