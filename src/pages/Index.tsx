@@ -12,6 +12,7 @@ import { Link } from "react-router-dom"
 import heroImage from "@/assets/hero-car.jpg"
 import useLatestListings, { type APIListing } from "@/hooks/useLatestListings"
 import { Skeleton } from "@/components/ui/skeleton"
+import laurentiuImage from '@/assets/laurentiu.png';
 
 const Index = () => {
   const { listings, loading, error } = useLatestListings()
@@ -187,10 +188,9 @@ const Index = () => {
                 <div className="relative w-full max-w-sm">
                   <div className="absolute -inset-2 rounded-xl bg-gradient-to-br from-luxury-gold to-luxury-gold/50 opacity-20 blur-xl"></div>
                   <img 
-                    src="https://picsum.photos/seed/founder/800/1000" 
+                    src={laurentiuImage} 
                     alt="Csibi Laurentiu, Administrator AWD Auto"
                     className="relative w-full h-auto object-cover rounded-xl shadow-2xl"
-                    data-ai-hint="man portrait professional"
                   />
                 </div>
               </div>
