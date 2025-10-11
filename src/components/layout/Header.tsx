@@ -40,20 +40,20 @@ const Header = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto flex h-16 lg:h-20 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
           <Link to="/" className="flex items-center space-x-2">
             <img 
               src={awdLogo} 
               alt="AWD Auto" 
-              className="h-10 w-auto object-contain"
+              className="h-10 lg:h-12 w-auto object-contain"
             />
           </Link>
         </motion.div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-8 lg:space-x-10">
           {navigation.map((item) => (
             <motion.div
               key={item.name}
@@ -63,7 +63,7 @@ const Header = () => {
             >
               <Link
                 to={item.href}
-                className={`text-sm font-medium transition-colors relative ${
+                className={`text-sm lg:text-base font-medium transition-colors relative ${
                   isActive(item.href)
                     ? "text-luxury-gold font-semibold"
                     : "text-foreground hover:text-luxury-gold"
@@ -90,7 +90,7 @@ const Header = () => {
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.2 }}
         >
-          <Button size="sm" asChild>
+          <Button size="sm" className="lg:text-base lg:px-6 lg:py-3" asChild>
             <Link to="/contact">
               Contactează-ne
             </Link>
