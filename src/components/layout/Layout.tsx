@@ -4,8 +4,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useLocation } from "react-router-dom"
 import Header from "./Header"
 import Footer from "./Footer"
-import { FloatingWhatsApp } from 'react-floating-whatsapp'
-import awdLogo from "@/assets/awd-auto-logo.jpg"
+import FloatingWhatsAppButton from "../ui/FloatingWhatsAppButton"
 
 
 interface LayoutProps {
@@ -31,17 +30,7 @@ const Layout = ({ children }: LayoutProps) => {
         </motion.main>
       </AnimatePresence>
       <Footer />
-       <FloatingWhatsApp
-        phoneNumber="40752228593"
-        accountName="AWD Auto"
-        avatar={awdLogo}
-        statusMessage="Online"
-        chatMessage="Bună ziua! Aș dori mai multe informații despre..."
-        placeholder="Scrie un mesaj..."
-        allowClickAway
-        notification
-        notificationSound
-      />
+       <FloatingWhatsAppButton />
     </div>
   )
 }
