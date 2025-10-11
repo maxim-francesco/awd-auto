@@ -16,6 +16,7 @@ import MasiniLaComanda from "./pages/MasiniLaComanda";
 import TermeniConditii from "./pages/TermeniConditii";
 import PoliticaConfidentialitate from "./pages/PoliticaConfidentialitate";
 import CookieConsentModal from "./components/CookieConsentModal";
+import BenefitsWarrantyPage from "./pages/BenefitsWarrantyPage";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/masini-disponibile/:listingId" element={<CarDetails />} />
           <Route path="/masini-la-comanda" element={<MasiniLaComanda />} />
           <Route path="/finantare" element={<Finantare />} />
+          <Route path="/beneficii-si-garantie" element={<BenefitsWarrantyPage />} />
           <Route path="/despre-noi" element={<DespreNoi />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/termeni-conditii" element={<TermeniConditii />} />

@@ -24,6 +24,7 @@ const Header = () => {
     { name: "Mașini Disponibile", href: "/masini-disponibile" },
     { name: "Mașini la Comandă", href: "/masini-la-comanda" },
     { name: "Finanțare", href: "/finantare" },
+    { name: "Beneficii & Garanție", href: "/beneficii-si-garantie" },
     { name: "Despre Noi", href: "/despre-noi" },
     { name: "Contact", href: "/contact" },
   ]
