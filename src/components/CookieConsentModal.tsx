@@ -1,40 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 
 const CookieConsentModal = () => {
-  // This state will control the visibility. Default to false.
-  const [showModal, setShowModal] = useState(false);
-
-  // This useEffect will run ONLY ONCE after the component mounts in the browser.
-  useEffect(() => {
-    // We check for the cookie here.
-    const consentCookie = Cookies.get('awdAutoCookieConsent');
-
-    // If the cookie does NOT exist, THEN we set the state to show the modal.
-    if (!consentCookie) {
-      setShowModal(true);
-    }
-  }, []); // The empty dependency array [] is crucial for this to run only once.
+  // THE KEY CHANGE:
+  // We read the cookie immediately and initialize the state based on its presence.
+  // If the cookie exists, `!Cookies.get(...)` will be `false`.
+  // If the cookie does NOT exist, `!Cookies.get(...)` will be `true`.
+  // This is more direct and avoids lifecycle issues.
+  const [showModal, setShowModal] = useState(!Cookies.get('awdAutoCookieConsent'));
 
   const handleAccept = () => {
-    // Set the cookie to expire in 150 days and hide the modal.
+    // Set the cookie to remember the choice for 150 days.
     Cookies.set('awdAutoCookieConsent', 'accepted', { expires: 150 });
+    // Hide the modal by updating the state.
     setShowModal(false);
   };
 
   const handleDecline = () => {
-    // We still set a cookie to remember the user's choice and hide the modal.
+    // We still set a cookie to remember the 'decline' choice.
     Cookies.set('awdAutoCookieConsent', 'declined', { expires: 150 });
+    // Hide the modal by updating the state.
     setShowModal(false);
   };
 
-  // If the state tells us not to show the modal, we render nothing.
+  // If the state is false (either from initialization or after a click), render nothing.
   if (!showModal) {
     return null;
   }
 
-  // If we need to show the modal, we render the full JSX.
+  // Otherwise, render the modal.
   return (
     <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[1000]">
       <div className="bg-[#1c1c1c] text-white p-8 rounded-xl shadow-lg max-w-md w-[90%] text-center border border-gray-700">
