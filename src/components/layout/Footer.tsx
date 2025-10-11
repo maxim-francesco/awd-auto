@@ -95,7 +95,7 @@ const Footer = () => {
                 Politica de Confidențialitate
               </Link>
               <a 
-                href="https://anpc.ro/ce-este-sal/" 
+                href="https://anpc.ro/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-luxury-gold transition-colors text-sm"
