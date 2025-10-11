@@ -9,11 +9,16 @@ import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/a
 import { useState } from "react"
 import { Checkbox } from "@/components/ui/checkbox"
 
+// Import logos
+import btDirectLogo from '@/assets/logos/bt-direct_2187_4__1730210636.png';
+import mogoLogo from '@/assets/logos/mogo.png';
+import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
+import unicreditLogo from '@/assets/logos/UniCreditBank.webp';
+
+
 const Finantare = () => {
   const [carPrice, setCarPrice] = useState(25000)
   const [period, setPeriod] = useState(60)
-  const [isGdprChecked, setIsGdprChecked] = useState(false);
-
 
   const interestRate = 0.08 // 8% dobândă anuală DAE
   const monthlyInterestRate = interestRate / 12
@@ -22,13 +27,6 @@ const Finantare = () => {
     (1 - Math.pow(1 + monthlyInterestRate, -period))
   ).toFixed(0)
   const totalPayment = (parseFloat(monthlyPayment) * period).toLocaleString('ro-RO')
-
-  const partners = ["Unicredit", "TBI Bank", "BT Direct", "Mogo"]
-  
-  const warrantyFeatures = [
-      "Motor", "Transmisie", "Diferențial", "Ambreiaj", "Tracțiune pe 4 roți", "Frâne",
-      "Sistem de alimentare", "Instalație electrică", "Direcție", "Sistemul de injecție", "Sistem răcire", "Aer condiționat"
-  ]
 
   return (
     <Layout>
@@ -61,13 +59,10 @@ const Finantare = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center max-w-4xl mx-auto">
-            {partners.map((partner) => (
-              <Card key={partner} className="luxury-card border-border/60">
-                <CardContent className="p-8 flex items-center justify-center">
-                  <p className="font-luxury text-xl text-foreground">{partner}</p>
-                </CardContent>
-              </Card>
-            ))}
+             <img src={btDirectLogo} alt="BT Direct Logo" className="h-12 w-auto mx-auto object-contain" />
+             <img src={mogoLogo} alt="Mogo Logo" className="h-12 w-auto mx-auto object-contain" />
+             <img src={tbiLogo} alt="TBI Bank Logo" className="h-12 w-auto mx-auto object-contain" />
+             <img src={unicreditLogo} alt="Unicredit Bank Logo" className="h-12 w-auto mx-auto object-contain" />
           </div>
 
            <Card className="luxury-card mt-12 max-w-4xl mx-auto bg-luxury-gold/5 border-luxury-gold/20">
@@ -158,66 +153,11 @@ const Finantare = () => {
                 <p className="text-xs text-muted-foreground text-center">
                   *Acest calcul este informativ și nu are valoare contractuală. Dobânda poate varia.
                 </p>
-                
-                <div className="flex items-start space-x-3 pt-2">
-                  <Checkbox id="gdpr-finantare" onCheckedChange={(checked) => setIsGdprChecked(checked as boolean)} />
-                  <Label htmlFor="gdpr-finantare" className="text-sm font-normal text-muted-foreground leading-snug">
-                    Sunt de acord cu prelucrarea datelor mele personale în vederea contactării pentru o ofertă de finanțare, conform <a href="/politica-confidentialitate" target="_blank" rel="noopener noreferrer" className="underline text-luxury-gold hover:text-luxury-gold-hover">Politicii de Confidențialitate</a>.
-                  </Label>
-                </div>
 
-                <Button className="w-full" size="lg" disabled={!isGdprChecked}>
-                  Aplică Acum
-                </Button>
               </CardContent>
             </Card>
           </div>
         </div>
-      </AnimatedSection>
-      
-      {/* Warranty Section */}
-      <AnimatedSection className="py-20 bg-background">
-          <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                   <div className="max-w-md">
-                      <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
-                        Garanție Extinsă DEFEND Car Protect
-                      </h2>
-                      <p className="text-muted-foreground leading-relaxed mb-6">
-                        Condu fără griji! Prin parteneriatul cu <strong className="text-foreground">DEFEND Insurance</strong>, îți oferim programul de garanție <strong className="text-foreground">PLUS</strong>, special conceput pentru vehiculele rulate.
-                      </p>
-                      <div className="space-y-4">
-                        <div className="flex items-center gap-3">
-                            <ShieldCheck className="h-6 w-6 text-luxury-gold" />
-                            <p className="font-medium">Acoperire pentru daune mecanice, electrice și electronice.</p>
-                        </div>
-                         <div className="flex items-center gap-3">
-                            <UserCheck className="h-6 w-6 text-luxury-gold" />
-                            <p className="font-medium">Vârsta maximă a vehiculului: 15 ani.</p>
-                        </div>
-                         <div className="flex items-center gap-3">
-                            <Percent className="h-6 w-6 text-luxury-gold" />
-                            <p className="font-medium">Limită de despăgubire generoasă, până la prețul de achiziție.</p>
-                        </div>
-                      </div>
-                  </div>
-                  <Card className="luxury-card">
-                      <CardHeader>
-                          <CardTitle className="font-luxury text-xl text-luxury-gold">Componente Acoperite de Programul PLUS</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                              {warrantyFeatures.map(feature => (
-                                  <div key={feature} className="flex items-center gap-2">
-                                      <CheckCircle className="h-4 w-4 text-luxury-gold" />
-                                      <span className="text-sm text-muted-foreground">{feature}</span>
-                                  </div>
-                              ))}
-                          </div>
-                      </CardContent>
-                  </Card>
-              </div>
-          </div>
       </AnimatedSection>
       
 
