@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/luxury-button"
-import { Calendar, Fuel, Gauge, Settings } from "lucide-react"
+import { Calendar, Fuel, Gauge, Settings, Cog } from "lucide-react"
 import type { APIListing } from "@/hooks/useLatestListings" // Changed to APIListing
 import { format } from "date-fns"
 
@@ -36,6 +36,7 @@ const CarCard = ({ listing }: CarCardProps) => {
   const mileage = !isNaN(parseInt(mileageValue)) ? parseInt(mileageValue).toLocaleString() : 'N/A';
   const fuelType = getAttributeValue('combustibil');
   const engine = getAttributeValue('capacitate cilindrica');
+  const transmission = getAttributeValue('Cutie de viteze');
 
   return (
     <motion.div 
@@ -75,10 +76,6 @@ const CarCard = ({ listing }: CarCardProps) => {
         {/* Specifications */}
         <div className="grid grid-cols-2 gap-3 text-sm">
           <div className="flex items-center space-x-2 text-muted-foreground">
-            <Calendar className="h-4 w-4 text-luxury-gold" />
-            <span>{postDate}</span>
-          </div>
-          <div className="flex items-center space-x-2 text-muted-foreground">
             <Gauge className="h-4 w-4 text-luxury-gold" />
             <span>{mileage} km</span>
           </div>
@@ -87,8 +84,12 @@ const CarCard = ({ listing }: CarCardProps) => {
             <span>{fuelType}</span>
           </div>
           <div className="flex items-center space-x-2 text-muted-foreground">
-            <Settings className="h-4 w-4 text-luxury-gold" />
+            <Cog className="h-4 w-4 text-luxury-gold" />
             <span>{engine} cm³</span>
+          </div>
+          <div className="flex items-center space-x-2 text-muted-foreground">
+            <Settings className="h-4 w-4 text-luxury-gold" />
+            <span>{transmission}</span>
           </div>
         </div>
 

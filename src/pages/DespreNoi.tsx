@@ -48,7 +48,7 @@ const DespreNoi = () => {
               Pasiune pentru Mașini de Calitate, Respect pentru Clienți
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Fondat în Cluj-Napoca din dorința de a aduce transparență și încredere pe piața auto, AWD Auto este mai mult decât un dealer. Suntem o echipă de profesioniști dedicați, gata să vă ghidăm spre alegerea corectă.
+             Motorul și sufletul acestei afaceri de familie este Csibi Laurentiu, omul care demonstrează că pasiunea, onestitatea și responsabilitatea față de clienți sunt valorile care ne propulsează către succes.
             </p>
           </div>
         </AnimatedSection>

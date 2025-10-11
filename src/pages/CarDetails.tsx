@@ -211,9 +211,9 @@ const CarDetails = () => {
                 {/* Title & Price */}
                 <div>
                   <h1 className="font-luxury text-3xl sm:text-4xl font-bold text-foreground mb-2">
-                    {carData.title}, {carData.year}
+                    {carData.title}
                   </h1>
-                  <p className="text-lg text-muted-foreground mb-4">{carData.variant}</p>
+                  <p className="text-lg text-muted-foreground mb-4">{carData.year}, {carData.variant}</p>
                   <div className="flex items-baseline gap-2">
                     <span className="font-luxury text-4xl sm:text-5xl font-bold text-luxury-gold">
                       {carData.price.toLocaleString()} €

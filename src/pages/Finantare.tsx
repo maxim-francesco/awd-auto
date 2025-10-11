@@ -64,7 +64,7 @@ const Finantare = () => {
             {partners.map((partner) => (
               <Card key={partner} className="luxury-card border-border/60">
                 <CardContent className="p-8 flex items-center justify-center">
-                  <p className="font-luxury text-xl text-luxury-gold">{partner}</p>
+                  <p className="font-luxury text-xl text-foreground">{partner}</p>
                 </CardContent>
               </Card>
             ))}
