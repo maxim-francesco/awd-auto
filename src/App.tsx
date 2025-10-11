@@ -15,6 +15,7 @@ import ScrollToTop from "./components/utils/ScrollToTop";
 import MasiniLaComanda from "./pages/MasiniLaComanda";
 import TermeniConditii from "./pages/TermeniConditii";
 import PoliticaConfidentialitate from "./pages/PoliticaConfidentialitate";
+import CookieConsentModal from "./components/CookieConsentModal";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <CookieConsentModal />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />

@@ -6,7 +6,6 @@ import Header from "./Header"
 import Footer from "./Footer"
 import { FloatingWhatsApp } from 'react-floating-whatsapp'
 import awdLogo from "@/assets/awd-auto-logo.jpg"
-import CookieConsentModal from "@/components/CookieConsentModal"
 
 
 interface LayoutProps {
@@ -43,7 +42,6 @@ const Layout = ({ children }: LayoutProps) => {
         notification
         notificationSound
       />
-      <CookieConsentModal />
     </div>
   )
 }
