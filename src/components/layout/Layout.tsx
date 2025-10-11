@@ -7,6 +7,7 @@ import Footer from "./Footer"
 import { FloatingWhatsApp } from 'react-floating-whatsapp'
 import awdLogo from "@/assets/awd-auto-logo.jpg"
 import CookieConsent from "react-cookie-consent"
+import { useState, useEffect } from "react"
 
 
 interface LayoutProps {
@@ -15,6 +16,11 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   const location = useLocation()
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -43,66 +49,68 @@ const Layout = ({ children }: LayoutProps) => {
         notification
         notificationSound
       />
-      <CookieConsent
-        buttonText="Acceptă"
-        declineButtonText="Refuză"
-        cookieName="awdAutoCookieConsent"
-        expires={150}
-        enableDeclineButton
+      {isMounted && (
+        <CookieConsent
+          buttonText="Acceptă"
+          declineButtonText="Refuză"
+          cookieName="awdAutoCookieConsent"
+          expires={150}
+          enableDeclineButton
 
-        overlay
-        overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.75)' }}
+          overlay
+          overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.75)' }}
 
-        style={{ zIndex: 1000 }}
+          style={{ zIndex: 1000 }}
 
-        contentStyle={{
-          position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          background: '#1c1c1c',
-          padding: '2rem',
-          borderRadius: '12px',
-          maxWidth: '500px',
-          width: '90%',
-          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
-          border: '1px solid #333',
-          textAlign: 'center'
-        }}
+          contentStyle={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            background: '#1c1c1c',
+            padding: '2rem',
+            borderRadius: '12px',
+            maxWidth: '500px',
+            width: '90%',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
+            border: '1px solid #333',
+            textAlign: 'center'
+          }}
 
-        buttonWrapperClasses="flex justify-center gap-4 mt-6"
-        buttonStyle={{ 
-          position: 'relative',
-          flex: '1',
-          color: "#1c1c1c", 
-          fontSize: "14px", 
-          fontWeight: "bold",
-          background: "#fde047", 
-          borderRadius: "8px",
-          padding: "12px 24px"
-        }}
-        declineButtonStyle={{
-          position: 'relative',
-          flex: '1',
-          background: '#333',
-          color: '#fff',
-          fontSize: "14px", 
-          fontWeight: "bold",
-          borderRadius: "8px",
-          padding: "12px 24px",
-          margin: '0'
-        }}
-      >
-        <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#fff', marginBottom: '1rem' }}>
-          Confidențialitatea ta este importantă pentru noi
-        </h3>
-        <p style={{ color: '#ccc', fontSize: '0.9rem', lineHeight: '1.5' }}>
-          Acest site folosește cookie-uri pentru a îmbunătăți experiența. Prin acceptarea acestora, ne permiți să îți oferim un conținut mai relevant. Poți afla mai multe în{" "}
-          <a href="/politica-confidentialitate" style={{ color: "#fde047", textDecoration: "underline" }}>
-            Politica noastră de Confidențialitate
-          </a>.
-        </p>
-      </CookieConsent>
+          buttonWrapperClasses="flex justify-center gap-4 mt-6"
+          buttonStyle={{ 
+            position: 'relative',
+            flex: '1',
+            color: "#1c1c1c", 
+            fontSize: "14px", 
+            fontWeight: "bold",
+            background: "#fde047", 
+            borderRadius: "8px",
+            padding: "12px 24px"
+          }}
+          declineButtonStyle={{
+            position: 'relative',
+            flex: '1',
+            background: '#333',
+            color: '#fff',
+            fontSize: "14px", 
+            fontWeight: "bold",
+            borderRadius: "8px",
+            padding: "12px 24px",
+            margin: '0'
+          }}
+        >
+          <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#fff', marginBottom: '1rem' }}>
+            Confidențialitatea ta este importantă pentru noi
+          </h3>
+          <p style={{ color: '#ccc', fontSize: '0.9rem', lineHeight: '1.5' }}>
+            Acest site folosește cookie-uri pentru a îmbunătăți experiența. Prin acceptarea acestora, ne permiți să îți oferim un conținut mai relevant. Poți afla mai multe în{" "}
+            <a href="/politica-confidentialitate" style={{ color: "#fde047", textDecoration: "underline" }}>
+              Politica noastră de Confidențialitate
+            </a>.
+          </p>
+        </CookieConsent>
+      )}
     </div>
   )
 }
