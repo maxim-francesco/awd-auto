@@ -5,7 +5,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/luxury-button"
 import { Link, useLocation } from "react-router-dom"
 import awdLogo from "@/assets/awd-auto-logo.jpg"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Phone } from "lucide-react"
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -91,9 +91,10 @@ const Header = () => {
           transition={{ duration: 0.2 }}
         >
           <Button size="sm" className="lg:text-base lg:px-6 lg:py-3" asChild>
-            <Link to="/contact">
-              Contactează-ne
-            </Link>
+            <a href="tel:0752228593">
+              <Phone className="h-4 w-4 mr-2"/>
+              Sună-ne
+            </a>
           </Button>
         </motion.div>
 
@@ -129,9 +130,10 @@ const Header = () => {
             </Link>
           ))}
           <Button className="mt-4" asChild>
-            <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-              Contactează-ne
-            </Link>
+            <a href="tel:0752228593">
+              <Phone className="h-4 w-4 mr-2"/>
+              Sună-ne
+            </a>
           </Button>
         </nav>
       </div>
