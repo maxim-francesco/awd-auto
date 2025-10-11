@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Search, ListChecks, Percent, Shield, Clock, HardDrive, Cpu, Check, Calendar, Users, Target } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import { Separator } from "@/components/ui/separator";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const BenefitsWarrantyPage = () => {
   const benefits = [
@@ -70,6 +71,25 @@ const BenefitsWarrantyPage = () => {
       franchise: "Asigurare fără franșiză."
     }
   ]
+
+  const faqItems = [
+    {
+      question: "Ce înseamnă \"istoric verificat\"?",
+      answer: "Înseamnă că am verificat istoricul de service și daunalitate al mașinii prin reprezentanțe și baze de date specializate. Vă oferim un raport detaliat pentru a garanta transparența totală a achiziției dumneavoastră."
+    },
+    {
+      question: "Garanția este inclusă în prețul mașinii?",
+      answer: "Pachetul de garanție este un serviciu opțional și se poate personaliza în funcție de nevoile dumneavoastră și de eligibilitatea vehiculului. Costul garanției se adaugă la prețul final al mașinii și variază în funcție de planul și perioada alese."
+    },
+    {
+      question: "Unde pot efectua reparațiile în caz de daună acoperită de garanție?",
+      answer: "Reparațiile se pot efectua în orice service autorizat RAR din România. Partenerul nostru, Defend Insurance, vă va ghida pe parcursul întregului proces de notificare și soluționare a daunei."
+    },
+    {
+      question: "Pot achiziționa o mașină dacă nu sunt din Cluj-Napoca?",
+      answer: "Desigur. Oferim consultanță online și video pentru a vă prezenta mașina în detaliu. De asemenea, vă putem asista cu obținerea numerelor provizorii pentru a putea pleca în siguranță spre localitatea dumneavoastră."
+    }
+  ];
 
   return (
     <Layout>
@@ -200,6 +220,29 @@ const BenefitsWarrantyPage = () => {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <AnimatedSection className="py-20 bg-background">
+        <div className="container mx-auto max-w-screen-lg px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Întrebări Frecvente
+            </h2>
+          </div>
+
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqItems.map((item, index) => (
+              <AccordionItem key={index} value={`item-${index}`} className="luxury-card border-none">
+                <AccordionTrigger className="px-6 py-4 text-left font-semibold text-foreground hover:no-underline">
+                  {item.question}
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-6 text-muted-foreground">
+                  {item.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </AnimatedSection>
     </Layout>
   )
 }
