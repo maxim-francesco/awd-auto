@@ -1,5 +1,6 @@
 import Layout from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/animated-section";
+import Container from "@/components/ui/Container";
 
 const TermeniConditii = () => {
   const currentDate = new Date().toLocaleDateString('ro-RO', {
@@ -11,7 +12,7 @@ const TermeniConditii = () => {
   return (
     <Layout>
       <div className="bg-background py-12 md:py-20">
-        <div className="container mx-auto max-w-screen-lg px-4 sm:px-6 lg:px-8">
+        <Container className="max-w-screen-lg">
           <AnimatedSection>
             <div className="mb-12 text-center">
               <h1 className="font-luxury text-4xl md:text-5xl font-bold text-foreground">
@@ -100,7 +101,7 @@ const TermeniConditii = () => {
 
             </div>
           </AnimatedSection>
-        </div>
+        </Container>
       </div>
     </Layout>
   );

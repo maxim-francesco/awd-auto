@@ -14,6 +14,7 @@ import FilterSidebar from "@/components/filters/FilterSidebar"
 import { Skeleton } from "@/components/ui/skeleton"
 import { AlertCircle } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import Container from "@/components/ui/Container"
 
 const CarListings = () => {
   const [filters, setFilters] = useState<Record<string, any>>({});
@@ -121,7 +122,7 @@ const CarListings = () => {
 
   return (
     <Layout>
-      <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-8">
+      <Container className="py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Filters Sidebar for Desktop */}
           <aside className="hidden lg:block lg:col-span-1">
@@ -204,7 +205,7 @@ const CarListings = () => {
             </div>
           </main>
         </div>
-      </div>
+      </Container>
     </Layout>
   )
 }

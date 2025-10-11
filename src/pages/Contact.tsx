@@ -7,13 +7,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
 import { useState } from "react"
 import { Checkbox } from "@/components/ui/checkbox"
+import Container from "@/components/ui/Container"
 
 const Contact = () => {
   const [isGdprChecked, setIsGdprChecked] = useState(false);
 
   return (
     <Layout>
-      <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-12">
+      <Container className="py-12">
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="font-luxury text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -174,7 +175,7 @@ const Contact = () => {
             </Card>
           </div>
         </div>
-      </div>
+      </Container>
     </Layout>
   )
 }

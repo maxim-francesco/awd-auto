@@ -1,4 +1,3 @@
-
 import Layout from "@/components/layout/Layout"
 import { Button } from "@/components/ui/luxury-button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -9,6 +8,7 @@ import { Car, FileText, CheckCircle, Calculator, ShieldCheck, UserCheck, Percent
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import { useState } from "react"
 import { Checkbox } from "@/components/ui/checkbox"
+import Container from "@/components/ui/Container"
 
 // Import logos
 import btDirectLogo from '@/assets/logos/btlogo.png';
@@ -37,19 +37,21 @@ const Finantare = () => {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(212,175,55,0.1),transparent_50%)]" />
         </div>
         
-        <AnimatedSection className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6">
-            Soluții de Finanțare Auto<br />Flexibile și Rapide
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Obține aprobarea pentru mașina visurilor tale cu ajutorul partenerilor noștri de încredere. Proces simplu, transparent și adaptat nevoilor tale.
-          </p>
-        </AnimatedSection>
+        <Container className="relative z-10 text-center">
+          <AnimatedSection>
+            <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6">
+              Soluții de Finanțare Auto<br />Flexibile și Rapide
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+              Obține aprobarea pentru mașina visurilor tale cu ajutorul partenerilor noștri de încredere. Proces simplu, transparent și adaptat nevoilor tale.
+            </p>
+          </AnimatedSection>
+        </Container>
       </section>
       
       {/* Financial Partners Section */}
       <AnimatedSection className="py-20 bg-background">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="text-center mb-12">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
               Partenerii Noștri Financiari
@@ -100,12 +102,12 @@ const Finantare = () => {
               </div>
             </div>
           </Card>
-        </div>
+        </Container>
       </AnimatedSection>
 
       {/* Financing Calculator */}
       <AnimatedSection className="py-20 bg-luxury-darker">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="max-w-md">
                 <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -181,13 +183,13 @@ const Finantare = () => {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </Container>
       </AnimatedSection>
       
 
       {/* FAQ Section */}
       <AnimatedSection className="py-20 bg-luxury-darker">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -236,7 +238,7 @@ const Finantare = () => {
               </AccordionItem>
             </Accordion>
           </div>
-        </div>
+        </Container>
       </AnimatedSection>
     </Layout>
   )

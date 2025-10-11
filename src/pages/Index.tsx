@@ -13,6 +13,7 @@ import heroImage from "@/assets/hero-car.jpg"
 import useLatestListings, { type APIListing } from "@/hooks/useLatestListings"
 import { Skeleton } from "@/components/ui/skeleton"
 import laurentiuImage from '@/assets/laurentiu.png';
+import Container from "@/components/ui/Container"
 
 const Index = () => {
   const { listings, loading, error } = useLatestListings()
@@ -127,7 +128,7 @@ const Index = () => {
           <div className="absolute inset-0 bg-black/50" />
         </motion.div>
         
-        <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Container className="relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -139,7 +140,7 @@ const Index = () => {
           </motion.div>
           
           <motion.h1 
-            className="hero-text mb-6 leading-tight"
+            className="hero-text mb-6 leading-tight max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -175,12 +176,12 @@ const Index = () => {
               </Link>
             </Button>
           </motion.div>
-        </div>
+        </Container>
       </section>
 
       {/* Founder's Story Section */}
       <section className="py-20 bg-luxury-dark">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <AnimatedSection>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Left Column: Image */}
@@ -215,12 +216,12 @@ const Index = () => {
               </div>
             </div>
           </AnimatedSection>
-        </div>
+        </Container>
       </section>
 
       {/* Latest Arrivals */}
       <section className="py-16 bg-gradient-dark">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <AnimatedSection className="text-center mb-12">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
               Noutăți în Parcul Auto
@@ -240,12 +241,12 @@ const Index = () => {
               </Link>
             </Button>
           </AnimatedSection>
-        </div>
+        </Container>
       </section>
       
       {/* Testimonials Section */}
       <section className="py-20 bg-background">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <AnimatedSection className="text-center mb-12">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
               Ce Spun Clienții Noștri
@@ -276,12 +277,12 @@ const Index = () => {
               </StaggeredItem>
             ))}
           </StaggeredGrid>
-        </div>
+        </Container>
       </section>
 
       {/* Our Promise Section */}
       <section className="py-16">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <AnimatedSection className="text-center mb-12">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
               Promisiunea Noastră Pentru Tine
@@ -317,12 +318,12 @@ const Index = () => {
               </StaggeredItem>
             ))}
           </StaggeredGrid>
-        </div>
+        </Container>
       </section>
 
       {/* Brand Logos */}
       <section className="py-16 bg-gradient-dark">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <AnimatedSection className="text-center mb-12">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
               Mărci Populare în Stoc
@@ -347,13 +348,13 @@ const Index = () => {
               </StaggeredItem>
             ))}
           </StaggeredGrid>
-        </div>
+        </Container>
       </section>
 
       {/* Call to Action */}
       <section className="py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-luxury-gold/10 to-luxury-silver/10" />
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 relative z-10">
+        <Container className="relative z-10">
           <AnimatedSection className="text-center max-w-3xl mx-auto">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-6">
               Sunteți Gata să Vă Găsiți Următoarea Mașină?
@@ -381,7 +382,7 @@ const Index = () => {
               </Button>
             </motion.div>
           </AnimatedSection>
-        </div>
+        </Container>
       </section>
     </Layout>
   )

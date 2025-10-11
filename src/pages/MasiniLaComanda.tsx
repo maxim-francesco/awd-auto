@@ -8,6 +8,7 @@ import { Search, ListChecks, Truck, MessageSquare } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import { useState } from "react"
 import { Checkbox } from "@/components/ui/checkbox"
+import Container from "@/components/ui/Container"
 
 const MasiniLaComanda = () => {
   const [isGdprChecked, setIsGdprChecked] = useState(false);
@@ -43,19 +44,21 @@ const MasiniLaComanda = () => {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(212,175,55,0.1),transparent_50%)]" />
         </div>
         
-        <AnimatedSection className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6">
-            Nu găsești mașina dorită? <br/>O aducem noi pentru tine!
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Spune-ne ce cauți și echipa noastră se va ocupa de tot procesul, de la căutare și verificare, până la livrare direct la ușa ta.
-          </p>
-        </AnimatedSection>
+        <Container className="relative z-10 text-center">
+          <AnimatedSection>
+            <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6">
+              Nu găsești mașina dorită? <br/>O aducem noi pentru tine!
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+              Spune-ne ce cauți și echipa noastră se va ocupa de tot procesul, de la căutare și verificare, până la livrare direct la ușa ta.
+            </p>
+          </AnimatedSection>
+        </Container>
       </section>
 
       {/* How it Works Section */}
       <section className="py-20 bg-background">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
               Cum Funcționează?
@@ -84,12 +87,12 @@ const MasiniLaComanda = () => {
               </StaggeredItem>
             ))}
           </StaggeredGrid>
-        </div>
+        </Container>
       </section>
 
       {/* Contact Form Section */}
       <section className="py-20 bg-luxury-darker">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
             <div className="max-w-3xl mx-auto">
                 <Card className="luxury-card">
                 <CardHeader className="text-center">
@@ -136,7 +139,7 @@ const MasiniLaComanda = () => {
                 </CardContent>
                 </Card>
             </div>
-        </div>
+        </Container>
       </section>
     </Layout>
   )

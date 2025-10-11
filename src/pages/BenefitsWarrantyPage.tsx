@@ -1,10 +1,10 @@
-
 import Layout from "@/components/layout/Layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Search, ListChecks, Percent, Shield, Clock, HardDrive, Cpu, Check, Calendar, Users, Target } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import { Separator } from "@/components/ui/separator";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import Container from "@/components/ui/Container";
 
 const BenefitsWarrantyPage = () => {
   const benefits = [
@@ -101,19 +101,21 @@ const BenefitsWarrantyPage = () => {
       >
         <div className="absolute inset-0 bg-black/60" />
         
-        <AnimatedSection className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6">
-            Liniștea Ta Este Prioritatea Noastră
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Descoperă avantajele de a cumpăra de la AWD Auto, de la istoricul verificat al mașinilor și până la pachetele de garanție extinsă.
-          </p>
-        </AnimatedSection>
+        <Container className="relative z-10 text-center">
+          <AnimatedSection>
+            <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6">
+              Liniștea Ta Este Prioritatea Noastră
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+              Descoperă avantajele de a cumpăra de la AWD Auto, de la istoricul verificat al mașinilor și până la pachetele de garanție extinsă.
+            </p>
+          </AnimatedSection>
+        </Container>
       </section>
 
       {/* Benefits Section */}
       <section className="py-20 bg-background">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
               Beneficiile Tale Când Alegi AWD Auto
@@ -139,12 +141,12 @@ const BenefitsWarrantyPage = () => {
               </StaggeredItem>
             ))}
           </StaggeredGrid>
-        </div>
+        </Container>
       </section>
       
       {/* Warranty Plans Section */}
       <section className="py-20 bg-luxury-darker">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
               Pachete de Garanție Extinsă
@@ -217,12 +219,12 @@ const BenefitsWarrantyPage = () => {
               </StaggeredItem>
             ))}
           </StaggeredGrid>
-        </div>
+        </Container>
       </section>
 
       {/* FAQ Section */}
       <AnimatedSection className="py-20 bg-background">
-        <div className="container mx-auto max-w-screen-lg px-4 sm:px-6 lg:px-8">
+        <Container className="max-w-screen-lg">
           <div className="text-center mb-16">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
               Întrebări Frecvente
@@ -241,7 +243,7 @@ const BenefitsWarrantyPage = () => {
               </AccordionItem>
             ))}
           </Accordion>
-        </div>
+        </Container>
       </AnimatedSection>
     </Layout>
   )

@@ -22,6 +22,7 @@ import { AnimatedSection } from "@/components/ui/animated-section"
 import { Skeleton } from "@/components/ui/skeleton"
 import useListingDetails from "@/hooks/useListingDetails"
 import type { APIListing, Attribute } from "@/hooks/useListings";
+import Container from "@/components/ui/Container"
 
 const CarDetails = () => {
   const { listingId } = useParams<{ listingId: string }>()
@@ -68,7 +69,7 @@ const CarDetails = () => {
   if (loading) {
     return (
       <Layout>
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-12">
+        <Container className="py-12">
             <Skeleton className="h-6 w-40 mb-6" />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                 {/* Skeleton for Gallery */}
@@ -106,7 +107,7 @@ const CarDetails = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Container>
       </Layout>
     )
   }
@@ -114,7 +115,7 @@ const CarDetails = () => {
   if (error || !car) {
     return (
       <Layout>
-          <div className="container mx-auto text-center py-20">
+          <Container className="text-center py-20">
               <AlertCircle className="mx-auto h-16 w-16 text-red-500 mb-4" />
               <h1 className="text-3xl font-bold text-foreground mb-4">Eroare la încărcarea anunțului</h1>
               <p className="text-muted-foreground mb-8">
@@ -123,7 +124,7 @@ const CarDetails = () => {
               <Button onClick={() => navigate('/masini-disponibile')}>
                   Vezi alte mașini
               </Button>
-          </div>
+          </Container>
       </Layout>
     )
   }
@@ -150,7 +151,7 @@ const CarDetails = () => {
   return (
     <Layout>
       <div className="min-h-screen bg-background py-8 sm:py-12">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
           {/* Back Button */}
           <motion.button
             onClick={() => navigate(-1)}
@@ -287,12 +288,10 @@ const CarDetails = () => {
               </div>
             </AnimatedSection>
           </div>
-        </div>
+        </Container>
       </div>
     </Layout>
   )
 }
 
 export default CarDetails
-
-    

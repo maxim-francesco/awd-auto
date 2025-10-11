@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout"
 import { Card, CardContent } from "@/components/ui/card"
 import { Shield, Search, Handshake, CheckCircle } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
+import Container from "@/components/ui/Container"
 
 const DespreNoi = () => {
   const teamMembers = [
@@ -39,8 +40,8 @@ const DespreNoi = () => {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(212,175,55,0.15),transparent_50%)]" />
         </div>
         
-        <AnimatedSection className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
+        <Container className="relative z-10">
+          <AnimatedSection className="max-w-4xl mx-auto text-center">
             <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6">
               Povestea Noastră
             </h1>
@@ -50,13 +51,13 @@ const DespreNoi = () => {
             <p className="text-lg text-muted-foreground leading-relaxed">
              Motorul și sufletul acestei afaceri de familie este Csibi Laurentiu, omul care demonstrează că pasiunea, onestitatea și responsabilitatea față de clienți sunt valorile care ne propulsează către succes.
             </p>
-          </div>
-        </AnimatedSection>
+          </AnimatedSection>
+        </Container>
       </section>
 
       {/* Mission & Values Section */}
       <section className="py-20 bg-background">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
               Valorile care Ne Ghidează
@@ -115,12 +116,12 @@ const DespreNoi = () => {
               </Card>
             </StaggeredItem>
           </StaggeredGrid>
-        </div>
+        </Container>
       </section>
 
       {/* Meet the Team Section */}
       <AnimatedSection className="py-20 bg-luxury-darker">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="text-center mb-16">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
               Faceți cunoștință cu Echipa Noastră
@@ -152,12 +153,12 @@ const DespreNoi = () => {
               </Card>
             ))}
           </div>
-        </div>
+        </Container>
       </AnimatedSection>
 
       {/* Why Choose Us Section */}
       <AnimatedSection className="py-20 bg-background">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -184,12 +185,12 @@ const DespreNoi = () => {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </Container>
       </AnimatedSection>
 
       {/* CTA Section */}
       <AnimatedSection className="py-20 bg-luxury-darker">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-6">
               Sunteți Pregătit să Găsiți Mașina Potrivită?
@@ -199,7 +200,7 @@ const DespreNoi = () => {
               Vă invităm să ne vizitați sau să ne contactați pentru o consultație personalizată.
             </p>
           </div>
-        </div>
+        </Container>
       </AnimatedSection>
     </Layout>
   )
