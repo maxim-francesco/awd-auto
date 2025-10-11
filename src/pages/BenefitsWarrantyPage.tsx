@@ -94,22 +94,16 @@ const BenefitsWarrantyPage = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section 
-        className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-cover bg-center"
-        style={{ backgroundImage: "url('https://picsum.photos/seed/warranty-hero/1920/1080')" }}
-        data-ai-hint="car interior dashboard"
-      >
-        <div className="absolute inset-0 bg-black/60" />
-        
-        <Container className="relative z-10 text-center">
-          <AnimatedSection>
-            <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6">
-              Liniștea Ta Este Prioritatea Noastră
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              Descoperă avantajele de a cumpăra de la AWD Auto, de la istoricul verificat al mașinilor și până la pachetele de garanție extinsă.
-            </p>
-          </AnimatedSection>
+       <section className="bg-luxury-darker py-16 md:py-20">
+        <Container className="text-center">
+            <AnimatedSection>
+                <h1 className="text-4xl lg:text-5xl font-bold text-foreground font-luxury">
+                Liniștea Ta Este Prioritatea Noastră
+                </h1>
+                <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
+                Descoperă avantajele de a cumpăra de la AWD Auto, de la istoricul verificat al mașinilor și până la pachetele de garanție extinsă.
+                </p>
+            </AnimatedSection>
         </Container>
       </section>
 
