@@ -12,19 +12,19 @@ const Footer = () => {
     <footer className="bg-luxury-darker border-t border-border/40">
       <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Logo and Tagline */}
+          {/* Coloana 1 - Despre */}
           <div className="space-y-4">
             <img 
               src={awdLogo} 
-              alt="AWD Auto" 
+              alt="AWD Auto Logo" 
               className="h-12 w-auto object-contain"
             />
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Excelență în performanță. Eleganță în design. AWD Auto vă oferă cele mai premium mașini sport și de lux.
+              AWD Auto - Partenerul tău de încredere pentru achiziționarea mașinii perfecte. Calitate, transparență și servicii premium în Cluj-Napoca.
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Coloana 2 - Linkuri Rapide */}
           <div className="space-y-4">
             <h3 className="font-luxury font-semibold text-luxury-gold">Link-uri Utile</h3>
             <nav className="flex flex-col space-y-2">
@@ -46,35 +46,56 @@ const Footer = () => {
             </nav>
           </div>
 
-          {/* Contact Info */}
+          {/* Coloana 3 - Contact și Program */}
           <div className="space-y-4">
-            <h3 className="font-luxury font-semibold text-luxury-gold">Contact</h3>
+            <h3 className="font-luxury font-semibold text-luxury-gold">Contact și Program</h3>
             <div className="space-y-3">
+              <a href="tel:0752228593" className="flex items-center space-x-3 group">
+                <Phone className="h-4 w-4 text-luxury-gold flex-shrink-0" />
+                <span className="text-muted-foreground group-hover:text-luxury-gold text-sm transition-colors">
+                  0752 228 593
+                </span>
+              </a>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-4 w-4 text-luxury-gold flex-shrink-0" />
                 <span className="text-muted-foreground text-sm">
-                  Strada Automobilului 123, București, România
+                  Strada Exemplului, Cluj-Napoca
                 </span>
               </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="h-4 w-4 text-luxury-gold flex-shrink-0" />
-                <span className="text-muted-foreground text-sm">
-                  +40 21 123 4567
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
+              <a href="mailto:contact@awdauto-cluj.ro" className="flex items-center space-x-3 group">
                 <Mail className="h-4 w-4 text-luxury-gold flex-shrink-0" />
-                <span className="text-muted-foreground text-sm">
-                  contact@awdauto.ro
+                <span className="text-muted-foreground group-hover:text-luxury-gold text-sm transition-colors">
+                  contact@awdauto-cluj.ro
                 </span>
+              </a>
+              <div className="pt-2">
+                <p className="text-sm text-muted-foreground">Luni - Vineri: 09:00 - 18:00</p>
+                <p className="text-sm text-muted-foreground">Sâmbătă: 10:00 - 14:00</p>
+                <p className="text-sm text-muted-foreground">Duminică: Închis</p>
               </div>
             </div>
           </div>
 
-          {/* Social Media */}
+          {/* Coloana 4 - Juridic și Social Media */}
           <div className="space-y-4">
-            <h3 className="font-luxury font-semibold text-luxury-gold">Urmărește-ne</h3>
-            <div className="flex space-x-4">
+            <h3 className="font-luxury font-semibold text-luxury-gold">Legal și Social</h3>
+            <div className="flex flex-col space-y-2">
+               <Link to="/termeni-conditii" className="text-muted-foreground hover:text-luxury-gold transition-colors text-sm">
+                Termeni și Condiții
+              </Link>
+              <Link to="/politica-confidentialitate" className="text-muted-foreground hover:text-luxury-gold transition-colors text-sm">
+                Politica de Confidențialitate
+              </Link>
+              <a 
+                href="https://anpc.ro/ce-este-sal/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-luxury-gold transition-colors text-sm"
+              >
+                Soluționarea litigiilor (ANPC)
+              </a>
+            </div>
+            <div className="flex space-x-4 pt-4">
               <motion.a 
                 href="#" 
                 className="text-muted-foreground hover:text-luxury-gold transition-colors"
@@ -95,30 +116,12 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Copyright & Legal Links */}
+        {/* Linia de Copyright și Credit */}
         <div className="mt-8 pt-8 border-t border-border/40">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-center md:text-left text-muted-foreground text-sm">
               © {currentYear} AWD Auto. Toate drepturile rezervate.
             </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
-              <Link to="/termeni-conditii" className="hover:text-luxury-gold transition-colors">
-                Termeni și Condiții
-              </Link>
-              <span>|</span>
-              <Link to="/politica-confidentialitate" className="hover:text-luxury-gold transition-colors">
-                Politica de Confidențialitate
-              </Link>
-              <span>|</span>
-              <a 
-                href="https://anpc.ro" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:text-luxury-gold transition-colors"
-              >
-                ANPC
-              </a>
-            </div>
           </div>
           <div className="text-center text-xs text-gray-400 mt-4">
             <p>
