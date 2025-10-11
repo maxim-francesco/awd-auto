@@ -10,7 +10,7 @@ import { useState } from "react"
 import { Checkbox } from "@/components/ui/checkbox"
 
 // Import logos
-import btDirectLogo from '@/assets/logos/bt-direct_2187_4__1730210636.png';
+import btDirectLogo from '@/assets/logos/bt-direct_2187_4_1730210636.png';
 import mogoLogo from '@/assets/logos/mogo.png';
 import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
 import unicreditLogo from '@/assets/logos/UniCreditBank.webp';
@@ -58,23 +58,46 @@ const Finantare = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center max-w-4xl mx-auto">
-             <img src={btDirectLogo} alt="BT Direct Logo" className="h-12 w-auto mx-auto object-contain" />
-             <img src={mogoLogo} alt="Mogo Logo" className="h-12 w-auto mx-auto object-contain" />
-             <img src={tbiLogo} alt="TBI Bank Logo" className="h-12 w-auto mx-auto object-contain" />
-             <img src={unicreditLogo} alt="Unicredit Bank Logo" className="h-12 w-auto mx-auto object-contain" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-start text-center max-w-4xl mx-auto py-8">
+            {/* --- BT Direct --- */}
+            <div className="flex flex-col items-center justify-center gap-4">
+              <img src={btDirectLogo} alt="BT Direct Logo" className="h-16 w-auto object-contain" />
+              <p className="font-semibold text-muted-foreground">BT Direct</p>
+            </div>
+
+            {/* --- Mogo --- */}
+            <div className="flex flex-col items-center justify-center gap-4">
+              <img src={mogoLogo} alt="Mogo Logo" className="h-16 w-auto object-contain" />
+              <p className="font-semibold text-muted-foreground">Mogo</p>
+            </div>
+
+            {/* --- TBI Bank --- */}
+            <div className="flex flex-col items-center justify-center gap-4">
+              <img src={tbiLogo} alt="TBI Bank Logo" className="h-16 w-auto object-contain" />
+              <p className="font-semibold text-muted-foreground">TBI Bank</p>
+            </div>
+
+            {/* --- UniCredit Bank --- */}
+            <div className="flex flex-col items-center justify-center gap-4">
+              <img src={unicreditLogo} alt="UniCredit Bank Logo" className="h-16 w-auto object-contain" />
+              <p className="font-semibold text-muted-foreground">UniCredit Bank</p>
+            </div>
           </div>
 
            <Card className="luxury-card mt-12 max-w-4xl mx-auto bg-luxury-gold/5 border-luxury-gold/20">
-              <CardHeader>
-                  <CardTitle className="flex items-center gap-3">
-                      <img src="https://mogo.ro/favicon.ico" alt="Mogo" className="h-8 w-8" />
-                      <span className="font-luxury text-xl text-luxury-gold">Finanțare și cu Istoric Negativ?</span>
-                  </CardTitle>
-              </CardHeader>
-              <CardContent>
-                  <p className="text-muted-foreground">Prin parteneriatul nostru strategic cu <strong className="text-foreground">Mogo</strong>, oferim soluții de finanțare chiar și persoanelor cu istoric negativ în biroul de credit. Înțelegem că fiecare situație este unică, de aceea te încurajăm să ne contactezi pentru o evaluare personalizată și confidențială.</p>
-              </CardContent>
+            <div className="grid md:grid-cols-3 items-center">
+              <div className="md:col-span-1 flex items-center justify-center p-8 bg-luxury-darker/50 rounded-l-lg">
+                <img src={mogoLogo} alt="Mogo Logo" className="w-40 h-auto" />
+              </div>
+              <div className="md:col-span-2 p-8">
+                <CardHeader className="p-0 mb-4">
+                    <CardTitle className="font-luxury text-xl text-luxury-gold">Finanțare și cu Istoric Negativ?</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                    <p className="text-muted-foreground">Prin parteneriatul nostru strategic cu <strong className="text-foreground">Mogo</strong>, oferim soluții de finanțare chiar și persoanelor cu istoric negativ în biroul de credit. Înțelegem că fiecare situație este unică, de aceea te încurajăm să ne contactezi pentru o evaluare personalizată și confidențială.</p>
+                </CardContent>
+              </div>
+            </div>
           </Card>
         </div>
       </AnimatedSection>
