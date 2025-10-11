@@ -43,8 +43,8 @@ const Index = () => {
 
   const testimonials = [
     {
-      quote: "Experiența foarte plăcută. Proprietarul parcului a fost extrem de binevoitor si a dat dovadă de profesionalism pe tot parcursul procesului. Suntem foarte încântați de achiziția făcută. Recomandăm cu căldură acest dealer auto. Mulțumim.",
-      author: "- Nelutu Hoza"
+      quote: "Am văzut anunțul joi, iar sâmbătă deja am fost să luăm mașina. Totul a decurs impecabil! Domnul Laurentiu a fost extrem de transparent, ne-a oferit toate informațiile de care aveam nevoie și a fost foarte deschis și sincer cu noi. Ne-a ajutat cu sfaturi utile și s-a ocupat de tot ce era necesar pentru ca lucrurile să meargă cât mai ușor. Mașina este genială și ne bucurăm enorm de alegerea făcută! Recomand cu încredere!",
+      author: "- Petru Minu"
     },
     {
       quote: "Am achiziționat un Audi A4 B9 de la Parcul Auto AWD și pot spune cu încredere că a fost o alegere foarte bună. Mașina este întreținută atât estetic, cât și mecanic, exact cum mi-a fost prezentată. Tot procesul de cumpărare a decurs foarte transparent, fără ascunzișuri sau promisiuni false. Cel mai mult am apreciat seriozitatea și corectitudinea deținătorului parcului, un om deosebit, care pune accent pe calitate și pe mulțumirea clientului. Se vede că mașinile sunt selectate cu grijă și menținute la standarde înalte. Recomand cu toată încrederea Auto AWD oricui își dorește o mașină bună și o experiență de cumpărare fără stres.",
@@ -388,5 +388,3 @@ const Index = () => {
 }
 
 export default Index
-
-    
