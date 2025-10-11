@@ -32,7 +32,7 @@ const Layout = ({ children }: LayoutProps) => {
       </AnimatePresence>
       <Footer />
        <FloatingWhatsApp
-        phoneNumber="0752228593"
+        phoneNumber="40752228593"
         accountName="AWD Auto"
         avatar={awdLogo}
         statusMessage="Online"
