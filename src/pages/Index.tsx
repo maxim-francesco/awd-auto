@@ -162,6 +162,47 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Founder's Story Section */}
+      <section className="py-20 bg-luxury-dark">
+        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Left Column: Image */}
+              <div className="flex justify-center">
+                <div className="relative w-full max-w-sm">
+                  <div className="absolute -inset-2 rounded-xl bg-gradient-to-br from-luxury-gold to-luxury-gold/50 opacity-20 blur-xl"></div>
+                  <img 
+                    src="https://picsum.photos/seed/founder/800/1000" 
+                    alt="Csibi Laurentiu, Administrator AWD Auto"
+                    className="relative w-full h-auto object-cover rounded-xl shadow-2xl"
+                    data-ai-hint="man portrait professional"
+                  />
+                </div>
+              </div>
+
+              {/* Right Column: Content */}
+              <div className="space-y-6">
+                <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground">
+                  Povestea Noastră: <span className="text-luxury-gold">Pasiune și Încredere</span>, de la Om la Om
+                </h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  AWD Auto nu este doar un parc auto. Este viziunea lui Csibi Laurentiu, un pasionat de mașini care, acum 2 ani, a decis să transforme modul în care clujenii cumpără o mașină rulată. Totul a pornit de la o idee simplă: transparență totală și respect pentru fiecare client.
+                </p>
+                <blockquote className="border-l-4 border-luxury-gold pl-6 italic text-muted-foreground bg-luxury-darker/50 p-6 rounded-r-lg">
+                  <p className="mb-4">
+                    "Scopul meu a fost să creez un loc unde prietenii și familia mea ar veni cu încredere să cumpere o mașină. După doi ani și zeci de clienți mulțumiți, mă bucur să spun că am reușit să construim exact asta: o comunitate bazată pe onestitate."
+                  </p>
+                  <footer className="text-right not-italic">
+                    <span className="font-semibold text-foreground">- Csibi Laurentiu</span><br />
+                    <span className="text-sm text-luxury-gold">Administrator AWD Auto</span>
+                  </footer>
+                </blockquote>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Latest Arrivals */}
       <section className="py-16 bg-gradient-dark">
         <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
@@ -296,3 +337,5 @@ const Index = () => {
 }
 
 export default Index
+
+    
