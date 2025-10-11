@@ -7,7 +7,7 @@ import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/a
 import { Button } from "@/components/ui/luxury-button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Shield, CreditCard, Star, ArrowRight, AlertCircle, CheckCircle } from "lucide-react"
+import { Shield, CreditCard, ArrowRight, AlertCircle, CheckCircle, FileCheck } from "lucide-react"
 import { Link } from "react-router-dom"
 import heroImage from "@/assets/hero-car.jpg"
 import useLatestListings, { type APIListing } from "@/hooks/useLatestListings"
@@ -18,19 +18,24 @@ const Index = () => {
 
   const whyUsFeatures = [
     {
-      icon: CheckCircle,
-      title: "Mașini Verificate Riguros",
-      description: "Fiecare mașină din parcul nostru trece printr-o inspecție tehnică detaliată pentru a asigura standarde înalte de calitate și siguranță."
+      icon: FileCheck,
+      title: "Istoric Verificat",
+      description: "Transparență totală. Oferim istoricul complet de service pentru fiecare vehicul, pentru o achiziție fără surprize."
     },
     {
       icon: Shield,
-      title: "Garanție și Încredere",
-      description: "Oferim garanție inclusă pentru majoritatea vehiculelor, astfel încât să puteți conduce fără griji."
+      title: "Garanție Extinsă",
+      description: "Colaborăm cu Defend Insurance pentru a-ți oferi garanție de până la 36 de luni, cu un număr nelimitat de kilometri."
     },
     {
       icon: CreditCard,
-      title: "Finanțare Flexibilă",
-      description: "Colaborăm cu parteneri de încredere pentru a vă oferi soluții de finanțare rapide și adaptate bugetului dumneavoastră."
+      title: "Finanțare Personalizată",
+      description: "Indiferent de situația ta financiară, găsim soluții de finanțare flexibile și rapide, adaptate nevoilor tale."
+    },
+    {
+      icon: CheckCircle,
+      title: "Certificat de Calitate",
+      description: "Fiecare mașină trece printr-o inspecție tehnică riguroasă în peste 150 de puncte înainte de a fi listată."
     }
   ]
 
@@ -113,7 +118,7 @@ const Index = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <Badge className="mb-6 bg-luxury-gold/20 text-luxury-gold border-luxury-gold/30">
-              Dealer Auto de Încredere
+              Dealer Auto de Încredere în Cluj-Napoca
             </Badge>
           </motion.div>
           
@@ -124,7 +129,7 @@ const Index = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             Mașini Rulate Verificate.<br />
-            Partenerul Tău de Încredere.
+            Experiențe Reale.
           </motion.h1>
           
           <motion.p 
@@ -194,7 +199,7 @@ const Index = () => {
             </p>
           </AnimatedSection>
 
-          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {whyUsFeatures.map((feature, index) => (
               <StaggeredItem key={index}>
                 <motion.div
@@ -205,15 +210,13 @@ const Index = () => {
                     <CardContent className="p-8">
                       <motion.div 
                         className="bg-luxury-gold/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-luxury-gold/20 transition-colors"
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.5 }}
                       >
                         <feature.icon className="h-8 w-8 text-luxury-gold" />
                       </motion.div>
                       <h3 className="font-luxury text-xl font-bold text-foreground mb-4">
                         {feature.title}
                       </h3>
-                      <p className="text-muted-foreground leading-relaxed">
+                      <p className="text-muted-foreground leading-relaxed text-sm">
                         {feature.description}
                       </p>
                     </CardContent>

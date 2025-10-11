@@ -1,20 +1,31 @@
 import Layout from "@/components/layout/Layout"
 import { Button } from "@/components/ui/luxury-button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
+import { Label } from "@/components/ui/label"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Car, FileText, CheckCircle, Calculator } from "lucide-react"
+import { Car, FileText, CheckCircle, Calculator, ShieldCheck, UserCheck, Percent } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import { useState } from "react"
 
 const Finantare = () => {
-  const [carPrice, setCarPrice] = useState(50000)
-  const [downPayment, setDownPayment] = useState(10000)
+  const [carPrice, setCarPrice] = useState(25000)
   const [period, setPeriod] = useState(60)
 
-  const monthlyPayment = ((carPrice - downPayment) / period * 1.05).toFixed(0)
+  const interestRate = 0.08 // 8% dobândă anuală DAE
+  const monthlyInterestRate = interestRate / 12
+  const monthlyPayment = (
+    (carPrice * monthlyInterestRate) /
+    (1 - Math.pow(1 + monthlyInterestRate, -period))
+  ).toFixed(0)
+  const totalPayment = (parseFloat(monthlyPayment) * period).toLocaleString('ro-RO')
+
+  const partners = ["Unicredit", "TBI Bank", "BT Direct", "Mogo"]
+  
+  const warrantyFeatures = [
+      "Motor", "Transmisie", "Diferențial", "Ambreiaj", "Tracțiune pe 4 roți", "Frâne",
+      "Sistem de alimentare", "Instalație electrică", "Direcție", "Sistemul de injecție", "Sistem răcire", "Aer condiționat"
+  ]
 
   return (
     <Layout>
@@ -36,97 +47,55 @@ const Finantare = () => {
           </Button>
         </AnimatedSection>
       </section>
-
-      {/* How It Works Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-16">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Cum Funcționează?
-            </h2>
-            <p className="text-lg text-luxury-gold">Proces Simplificat în 3 Pași</p>
-          </AnimatedSection>
-
-          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <StaggeredItem>
-              <Card className="luxury-card text-center h-full">
-                <CardContent className="p-8">
-                  <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Car className="h-10 w-10 text-luxury-gold" />
-                  </div>
-                  <h3 className="font-luxury text-xl font-bold text-foreground mb-3">
-                    Alegi Mașina
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Explorează parcul nostru auto și alege vehiculul care ți se potrivește.
-                  </p>
-                </CardContent>
-              </Card>
-            </StaggeredItem>
-
-            <StaggeredItem>
-              <Card className="luxury-card text-center h-full">
-                <CardContent className="p-8">
-                  <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <FileText className="h-10 w-10 text-luxury-gold" />
-                  </div>
-                  <h3 className="font-luxury text-xl font-bold text-foreground mb-3">
-                    Completezi Cererea
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Completează formularul nostru online securizat în mai puțin de 5 minute.
-                  </p>
-                </CardContent>
-              </Card>
-            </StaggeredItem>
-
-            <StaggeredItem>
-              <Card className="luxury-card text-center h-full">
-                <CardContent className="p-8">
-                  <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle className="h-10 w-10 text-luxury-gold" />
-                  </div>
-                  <h3 className="font-luxury text-xl font-bold text-foreground mb-3">
-                    Primești Aprobarea
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Analizăm rapid cererea ta și te contactăm cu cea mai bună ofertă de finanțare.
-                  </p>
-                </CardContent>
-              </Card>
-            </StaggeredItem>
-          </StaggeredGrid>
-        </div>
-      </section>
-
+      
       {/* Financial Partners Section */}
-      <AnimatedSection className="py-20 bg-luxury-darker">
+      <AnimatedSection className="py-20 bg-background">
         <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
               Partenerii Noștri Financiari
             </h2>
-            <p className="text-muted-foreground">
-              Colaborăm cu lideri de piață pentru a-ți oferi cele mai avantajoase condiții
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Colaborăm cu lideri de piață pentru a-ți oferi cele mai avantajoase condiții de creditare și leasing.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-            {['TBI Bank', 'BT Leasing', 'Cetelem', 'Raiffeisen Bank'].map((partner) => (
-              <Card key={partner} className="luxury-card">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center max-w-4xl mx-auto">
+            {partners.map((partner) => (
+              <Card key={partner} className="luxury-card border-border/60">
                 <CardContent className="p-8 flex items-center justify-center">
                   <p className="font-luxury text-xl text-luxury-gold">{partner}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
+
+           <Card className="luxury-card mt-12 max-w-4xl mx-auto bg-luxury-gold/5 border-luxury-gold/20">
+              <CardHeader>
+                  <CardTitle className="flex items-center gap-3">
+                      <img src="https://mogo.ro/favicon.ico" alt="Mogo" className="h-8 w-8" />
+                      <span className="font-luxury text-xl text-luxury-gold">Finanțare și cu Istoric Negativ?</span>
+                  </CardTitle>
+              </CardHeader>
+              <CardContent>
+                  <p className="text-muted-foreground">Prin parteneriatul nostru strategic cu <strong className="text-foreground">Mogo</strong>, oferim soluții de finanțare chiar și persoanelor cu istoric negativ în biroul de credit. Înțelegem că fiecare situație este unică, de aceea te încurajăm să ne contactezi pentru o evaluare personalizată și confidențială.</p>
+              </CardContent>
+          </Card>
         </div>
       </AnimatedSection>
 
       {/* Financing Calculator */}
-      <AnimatedSection className="py-20 bg-background">
+      <AnimatedSection className="py-20 bg-luxury-darker">
         <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-md">
+                <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+                  Calculează-ți Rata
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  Folosește calculatorul nostru interactiv pentru a obține o estimare rapidă a ratei lunare. Ajustează suma și perioada pentru a găsi planul perfect pentru bugetul tău.
+                </p>
+            </div>
             <Card className="luxury-card">
               <CardHeader>
                 <div className="flex items-center space-x-3 mb-2">
@@ -134,45 +103,30 @@ const Finantare = () => {
                     <Calculator className="h-6 w-6 text-luxury-gold" />
                   </div>
                   <CardTitle className="font-luxury text-2xl text-luxury-gold">
-                    Calculează-ți Rata Lunară
+                    Estimator Credit Auto
                   </CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="space-y-8">
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <Label>Preț mașină (EUR)</Label>
+                    <div className="flex justify-between font-medium">
+                      <Label>Suma dorită (EUR)</Label>
                       <span className="text-luxury-gold font-semibold">€{carPrice.toLocaleString()}</span>
                     </div>
                     <Slider
                       value={[carPrice]}
                       onValueChange={(value) => setCarPrice(value[0])}
-                      min={10000}
-                      max={200000}
-                      step={5000}
-                      className="w-full"
-                    />
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <Label>Avans (EUR)</Label>
-                      <span className="text-luxury-gold font-semibold">€{downPayment.toLocaleString()}</span>
-                    </div>
-                    <Slider
-                      value={[downPayment]}
-                      onValueChange={(value) => setDownPayment(value[0])}
-                      min={0}
-                      max={carPrice * 0.5}
+                      min={5000}
+                      max={100000}
                       step={1000}
                       className="w-full"
                     />
                   </div>
 
                   <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <Label>Perioadă (luni)</Label>
+                    <div className="flex justify-between font-medium">
+                      <Label>Perioada (luni)</Label>
                       <span className="text-luxury-gold font-semibold">{period} luni</span>
                     </div>
                     <Slider
@@ -180,31 +134,85 @@ const Finantare = () => {
                       onValueChange={(value) => setPeriod(value[0])}
                       min={12}
                       max={84}
-                      step={6}
+                      step={1}
                       className="w-full"
                     />
                   </div>
                 </div>
 
-                <div className="bg-luxury-gold/10 rounded-lg p-6 text-center border border-luxury-gold/20">
-                  <p className="text-muted-foreground mb-2">Rată lunară estimată:</p>
-                  <p className="font-luxury text-4xl font-bold text-luxury-gold">
-                    €{monthlyPayment}
-                  </p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                  <div className="bg-card p-4 rounded-lg">
+                      <p className="text-sm text-muted-foreground">Rata lunară</p>
+                      <p className="font-bold text-lg text-foreground">€{monthlyPayment}</p>
+                  </div>
+                  <div className="bg-card p-4 rounded-lg">
+                      <p className="text-sm text-muted-foreground">Dobândă (DAE)</p>
+                      <p className="font-bold text-lg text-foreground">~{(interestRate * 100).toFixed(1)}%</p>
+                  </div>
+                   <div className="bg-card p-4 rounded-lg">
+                      <p className="text-sm text-muted-foreground">Total de plată</p>
+                      <p className="font-bold text-lg text-foreground">€{totalPayment}</p>
+                  </div>
                 </div>
 
                 <p className="text-xs text-muted-foreground text-center">
-                  *Această valoare este estimativă și nu are valoare contractuală. Pentru o ofertă personalizată, vă rugăm să ne contactați.
+                  *Acest calcul este informativ și nu are valoare contractuală. Dobânda poate varia.
                 </p>
 
                 <Button className="w-full" size="lg">
-                  Solicită Ofertă Personalizată
+                  Aplică Acum
                 </Button>
               </CardContent>
             </Card>
           </div>
         </div>
       </AnimatedSection>
+      
+      {/* Warranty Section */}
+      <AnimatedSection className="py-20 bg-background">
+          <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                   <div className="max-w-md">
+                      <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+                        Garanție Extinsă DEFEND Car Protect
+                      </h2>
+                      <p className="text-muted-foreground leading-relaxed mb-6">
+                        Condu fără griji! Prin parteneriatul cu <strong className="text-foreground">DEFEND Insurance</strong>, îți oferim programul de garanție <strong className="text-foreground">PLUS</strong>, special conceput pentru vehiculele rulate.
+                      </p>
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-3">
+                            <ShieldCheck className="h-6 w-6 text-luxury-gold" />
+                            <p className="font-medium">Acoperire pentru daune mecanice, electrice și electronice.</p>
+                        </div>
+                         <div className="flex items-center gap-3">
+                            <UserCheck className="h-6 w-6 text-luxury-gold" />
+                            <p className="font-medium">Vârsta maximă a vehiculului: 15 ani.</p>
+                        </div>
+                         <div className="flex items-center gap-3">
+                            <Percent className="h-6 w-6 text-luxury-gold" />
+                            <p className="font-medium">Limită de despăgubire generoasă, până la prețul de achiziție.</p>
+                        </div>
+                      </div>
+                  </div>
+                  <Card className="luxury-card">
+                      <CardHeader>
+                          <CardTitle className="font-luxury text-xl text-luxury-gold">Componente Acoperite de Programul PLUS</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                              {warrantyFeatures.map(feature => (
+                                  <div key={feature} className="flex items-center gap-2">
+                                      <CheckCircle className="h-4 w-4 text-luxury-gold" />
+                                      <span className="text-sm text-muted-foreground">{feature}</span>
+                                  </div>
+                              ))}
+                          </div>
+                      </CardContent>
+                  </Card>
+              </div>
+          </div>
+      </AnimatedSection>
+      
 
       {/* FAQ Section */}
       <AnimatedSection className="py-20 bg-luxury-darker">
@@ -250,22 +258,9 @@ const Finantare = () => {
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-4 text-muted-foreground">
-                  Perioada de finanțare poate varia în funcție de partenerul financiar și de valoarea vehiculului, 
-                  dar în general aceasta poate ajunge până la 84 de luni (7 ani). Vom găsi împreună soluția cea mai 
+                  Perioada de finanțare poate varia în funcție de partenerul financiar și de vechimea vehiculului, 
+                  dar în general aceasta poate ajunge până la 60 de luni (5 ani). Vom găsi împreună soluția cea mai 
                   potrivită pentru bugetul și nevoile dumneavoastră.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-4" className="luxury-card border-none">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                  <span className="font-semibold text-foreground text-left">
-                    Este necesar un avans minim?
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-4 text-muted-foreground">
-                  Deși unele instituții financiare oferă posibilitatea finanțării fără avans, de obicei este 
-                  recomandat un avans între 10% și 30% din valoarea vehiculului. Un avans mai mare poate reduce 
-                  rata lunară și poate îmbunătăți condițiile de creditare.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
