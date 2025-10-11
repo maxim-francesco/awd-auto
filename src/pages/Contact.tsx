@@ -5,8 +5,12 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
+import { useState } from "react"
+import { Checkbox } from "@/components/ui/checkbox"
 
 const Contact = () => {
+  const [isGdprChecked, setIsGdprChecked] = useState(false);
+
   return (
     <Layout>
       <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-12">
@@ -157,8 +161,15 @@ const Contact = () => {
                     className="min-h-[120px]"
                   />
                 </div>
+                
+                <div className="flex items-start space-x-3">
+                  <Checkbox id="gdpr-contact" onCheckedChange={(checked) => setIsGdprChecked(checked as boolean)} />
+                  <Label htmlFor="gdpr-contact" className="text-sm font-normal text-muted-foreground leading-snug">
+                    Am citit și sunt de acord cu <a href="/politica-confidentialitate" target="_blank" rel="noopener noreferrer" className="underline text-luxury-gold hover:text-luxury-gold-hover">Politica de Confidențialitate</a> a site-ului.
+                  </Label>
+                </div>
 
-                <Button className="w-full">
+                <Button className="w-full" disabled={!isGdprChecked}>
                   Trimite Mesajul
                 </Button>
               </CardContent>

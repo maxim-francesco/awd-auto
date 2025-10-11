@@ -6,8 +6,11 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Search, ListChecks, Truck, MessageSquare } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
+import { useState } from "react"
+import { Checkbox } from "@/components/ui/checkbox"
 
 const MasiniLaComanda = () => {
+  const [isGdprChecked, setIsGdprChecked] = useState(false);
 
   const steps = [
     {
@@ -119,8 +122,15 @@ const MasiniLaComanda = () => {
                         className="min-h-[150px]"
                       />
                     </div>
+                    
+                    <div className="flex items-start space-x-3">
+                      <Checkbox id="gdpr-comanda" onCheckedChange={(checked) => setIsGdprChecked(checked as boolean)} />
+                      <Label htmlFor="gdpr-comanda" className="text-sm font-normal text-muted-foreground leading-snug">
+                        Am citit și sunt de acord cu <a href="/politica-confidentialitate" target="_blank" rel="noopener noreferrer" className="underline text-luxury-gold hover:text-luxury-gold-hover">Politica de Confidențialitate</a> a site-ului.
+                      </Label>
+                    </div>
 
-                    <Button className="w-full" size="lg">
+                    <Button className="w-full" size="lg" disabled={!isGdprChecked}>
                         Trimite Cererea
                     </Button>
                 </CardContent>

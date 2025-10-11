@@ -7,10 +7,13 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Car, FileText, CheckCircle, Calculator, ShieldCheck, UserCheck, Percent } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import { useState } from "react"
+import { Checkbox } from "@/components/ui/checkbox"
 
 const Finantare = () => {
   const [carPrice, setCarPrice] = useState(25000)
   const [period, setPeriod] = useState(60)
+  const [isGdprChecked, setIsGdprChecked] = useState(false);
+
 
   const interestRate = 0.08 // 8% dobândă anuală DAE
   const monthlyInterestRate = interestRate / 12
@@ -42,9 +45,6 @@ const Finantare = () => {
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
             Obține aprobarea pentru mașina visurilor tale cu ajutorul partenerilor noștri de încredere. Proces simplu, transparent și adaptat nevoilor tale.
           </p>
-          <Button size="lg">
-            Aplică pentru Finanțare
-          </Button>
         </AnimatedSection>
       </section>
       
@@ -158,8 +158,15 @@ const Finantare = () => {
                 <p className="text-xs text-muted-foreground text-center">
                   *Acest calcul este informativ și nu are valoare contractuală. Dobânda poate varia.
                 </p>
+                
+                <div className="flex items-start space-x-3 pt-2">
+                  <Checkbox id="gdpr-finantare" onCheckedChange={(checked) => setIsGdprChecked(checked as boolean)} />
+                  <Label htmlFor="gdpr-finantare" className="text-sm font-normal text-muted-foreground leading-snug">
+                    Sunt de acord cu prelucrarea datelor mele personale în vederea contactării pentru o ofertă de finanțare, conform <a href="/politica-confidentialitate" target="_blank" rel="noopener noreferrer" className="underline text-luxury-gold hover:text-luxury-gold-hover">Politicii de Confidențialitate</a>.
+                  </Label>
+                </div>
 
-                <Button className="w-full" size="lg">
+                <Button className="w-full" size="lg" disabled={!isGdprChecked}>
                   Aplică Acum
                 </Button>
               </CardContent>
