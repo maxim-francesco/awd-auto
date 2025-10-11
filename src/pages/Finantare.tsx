@@ -1,3 +1,4 @@
+
 import Layout from "@/components/layout/Layout"
 import { Button } from "@/components/ui/luxury-button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -13,7 +14,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import btDirectLogo from '@/assets/logos/btlogo.png';
 import mogoLogo from '@/assets/logos/mogo.png';
 import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
-import unicreditLogo from '@/assets/logos/UniCreditBank.png';
+import unicreditLogo from '@/assets/logos/UniCredit-Bank-Emblem.png';
 
 
 const Finantare = () => {
