@@ -10,10 +10,10 @@ import { useState } from "react"
 import { Checkbox } from "@/components/ui/checkbox"
 
 // Import logos
-import btDirectLogo from '@/assets/logos/bt-direct_2187_4_1730210636.png';
+import btDirectLogo from '@/assets/logos/btlogo.png';
 import mogoLogo from '@/assets/logos/mogo.png';
 import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
-import unicreditLogo from '@/assets/logos/UniCreditBank.webp';
+import unicreditLogo from '@/assets/logos/UniCreditBank.png';
 
 
 const Finantare = () => {
