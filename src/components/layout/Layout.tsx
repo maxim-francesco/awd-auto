@@ -44,20 +44,64 @@ const Layout = ({ children }: LayoutProps) => {
         notificationSound
       />
       <CookieConsent
-        location="bottom"
         buttonText="Acceptă"
         declineButtonText="Refuză"
         cookieName="awdAutoCookieConsent"
-        style={{ background: "#2B373B", borderTop: "1px solid #4a5559" }}
-        buttonStyle={{ color: "#4e503b", fontSize: "13px", background: "#fde047", borderRadius: "8px" }}
-        declineButtonStyle={{ margin: "10px 10px 10px 0", borderRadius: "8px" }}
         expires={150}
         enableDeclineButton
+
+        overlay
+        overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.75)' }}
+
+        style={{ zIndex: 1000 }}
+
+        contentStyle={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          background: '#1c1c1c',
+          padding: '2rem',
+          borderRadius: '12px',
+          maxWidth: '500px',
+          width: '90%',
+          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)',
+          border: '1px solid #333',
+          textAlign: 'center'
+        }}
+
+        buttonWrapperClasses="flex justify-center gap-4 mt-6"
+        buttonStyle={{ 
+          position: 'relative',
+          flex: '1',
+          color: "#1c1c1c", 
+          fontSize: "14px", 
+          fontWeight: "bold",
+          background: "#fde047", 
+          borderRadius: "8px",
+          padding: "12px 24px"
+        }}
+        declineButtonStyle={{
+          position: 'relative',
+          flex: '1',
+          background: '#333',
+          color: '#fff',
+          fontSize: "14px", 
+          fontWeight: "bold",
+          borderRadius: "8px",
+          padding: "12px 24px",
+          margin: '0'
+        }}
       >
-        Acest site folosește cookie-uri pentru a îmbunătăți experiența utilizatorilor. Prin continuarea navigării, vă exprimați acordul cu folosirea acestora. Pentru mai multe detalii, vă rugăm să consultați{" "}
-        <a href="/politica-confidentialitate" style={{ color: "#fde047", textDecoration: "underline" }}>
-          Politica noastră de Confidențialitate
-        </a>.
+        <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#fff', marginBottom: '1rem' }}>
+          Confidențialitatea ta este importantă pentru noi
+        </h3>
+        <p style={{ color: '#ccc', fontSize: '0.9rem', lineHeight: '1.5' }}>
+          Acest site folosește cookie-uri pentru a îmbunătăți experiența. Prin acceptarea acestora, ne permiți să îți oferim un conținut mai relevant. Poți afla mai multe în{" "}
+          <a href="/politica-confidentialitate" style={{ color: "#fde047", textDecoration: "underline" }}>
+            Politica noastră de Confidențialitate
+          </a>.
+        </p>
       </CookieConsent>
     </div>
   )
