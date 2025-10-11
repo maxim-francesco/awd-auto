@@ -7,7 +7,7 @@ import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/a
 import { Button } from "@/components/ui/luxury-button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Shield, CreditCard, ArrowRight, AlertCircle, CheckCircle, FileCheck } from "lucide-react"
+import { Shield, CreditCard, ArrowRight, AlertCircle, CheckCircle, FileCheck, Star } from "lucide-react"
 import { Link } from "react-router-dom"
 import heroImage from "@/assets/hero-car.jpg"
 import useLatestListings, { type APIListing } from "@/hooks/useLatestListings"
@@ -40,6 +40,21 @@ const Index = () => {
   ]
 
   const carBrands = ["Audi", "BMW", "Mercedes-Benz", "Porsche", "Volkswagen", "Skoda"]
+
+  const testimonials = [
+    {
+      quote: "Procesul a fost incredibil de simplu și transparent. Am primit toate actele la zi, iar mașina este exact cum a fost descrisă. Domnul Laurențiu este un profesionist. Recomand cu încredere!",
+      author: "Andrei P., Cluj-Napoca"
+    },
+    {
+      quote: "După luni de căutări, am găsit la AWD Auto mașina perfectă pentru familia mea. Am apreciat onestitatea și răbdarea echipei. Cu siguranță voi reveni.",
+      author: "Maria V., Florești"
+    },
+    {
+      quote: "Garanția extinsă mi-a oferit liniștea de care aveam nevoie. O experiență de 5 stele, de la primul contact până la predarea cheilor.",
+      author: "Ionuț S., Baciu"
+    }
+  ]
   
   const renderLatestCars = () => {
     if (loading) {
@@ -227,6 +242,42 @@ const Index = () => {
           </AnimatedSection>
         </div>
       </section>
+      
+      {/* Testimonials Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-12">
+            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Ce Spun Clienții Noștri
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Experiențe reale de la clienți care au avut încredere în noi.
+            </p>
+          </AnimatedSection>
+
+          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <StaggeredItem key={index}>
+                 <Card className="luxury-card h-full flex flex-col">
+                  <CardContent className="p-8 flex flex-col flex-1">
+                    <div className="flex mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-5 w-5 text-luxury-gold fill-current" />
+                      ))}
+                    </div>
+                    <blockquote className="italic text-muted-foreground flex-1">
+                      "{testimonial.quote}"
+                    </blockquote>
+                    <footer className="mt-6 text-right not-italic">
+                      <p className="font-semibold text-foreground">{testimonial.author}</p>
+                    </footer>
+                  </CardContent>
+                </Card>
+              </StaggeredItem>
+            ))}
+          </StaggeredGrid>
+        </div>
+      </section>
 
       {/* Why Choose Us */}
       <section className="py-16">
@@ -337,5 +388,3 @@ const Index = () => {
 }
 
 export default Index
-
-    
