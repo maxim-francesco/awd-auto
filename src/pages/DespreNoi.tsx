@@ -3,23 +3,21 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Shield, Search, Handshake, CheckCircle } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import Container from "@/components/ui/Container"
+import laurentiuImage from '@/assets/laurentiu.png';
 
 const DespreNoi = () => {
   const teamMembers = [
     {
-      name: "Mihai Popescu",
-      role: "Manager Vânzări",
-      bio: "Cu peste 10 ani de experiență în industria auto, Mihai este dedicat să ofere fiecărui client consultanță personalizată și soluții adaptate nevoilor lor."
+      name: "Csibi Laurentiu",
+      role: "Administrator & Fondator",
+      image: laurentiuImage,
+      bio: "Pasionat de mașini și dedicat fiecărui client, Laurențiu a fondat AWD Auto pe principiile transparenței și încrederii, asigurându-se personal că fiecare mașină respectă cele mai înalte standarde."
     },
     {
-      name: "Elena Ionescu",
-      role: "Specialist Finanțare",
-      bio: "Elena coordonează toate aspectele legate de finanțare și se asigură că fiecare client primește cele mai avantajoase condiții de creditare."
-    },
-    {
-      name: "Andrei Munteanu",
-      role: "Expert Tehnic",
-      bio: "Responsabil cu inspecția tehnică a vehiculelor, Andrei garantează că fiecare mașină din parcul nostru îndeplinește standardele cele mai înalte de calitate."
+      name: "Nume Prenume",
+      role: "Rol în Companie",
+      image: null,
+      bio: "Acest membru al echipei contribuie la succesul nostru prin dedicarea și profesionalismul său, asigurând servicii de calitate pentru clienții noștri."
     }
   ]
 
@@ -131,15 +129,19 @@ const DespreNoi = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             {teamMembers.map((member, index) => (
               <Card key={index} className="luxury-card">
                 <CardContent className="p-8 text-center">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-luxury-gold/20 to-luxury-gold/5 mx-auto mb-6 flex items-center justify-center border-2 border-luxury-gold/30">
-                    <span className="font-luxury text-4xl text-luxury-gold">
-                      {member.name.split(' ').map(n => n[0]).join('')}
-                    </span>
-                  </div>
+                  {member.image ? (
+                     <img src={member.image} alt={member.name} className="w-32 h-32 rounded-full object-cover object-top mx-auto mb-6 border-2 border-luxury-gold/30" />
+                  ) : (
+                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-luxury-gold/20 to-luxury-gold/5 mx-auto mb-6 flex items-center justify-center border-2 border-luxury-gold/30">
+                      <span className="font-luxury text-4xl text-luxury-gold">
+                        {member.name.split(' ').map(n => n[0]).join('')}
+                      </span>
+                    </div>
+                  )}
                   <h3 className="font-luxury text-xl font-bold text-foreground mb-2">
                     {member.name}
                   </h3>
@@ -207,3 +209,5 @@ const DespreNoi = () => {
 }
 
 export default DespreNoi
+
+    
