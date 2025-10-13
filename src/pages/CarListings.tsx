@@ -21,6 +21,7 @@ const CarListings = () => {
   const [activeFilters, setActiveFilters] = useState<Record<string, any>>({});
   const [sortOption, setSortOption] = useState("newest");
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     console.log('%c Starea FILTERS s-a actualizat:', 'color: orange; font-weight: bold;', filters);
@@ -36,7 +37,7 @@ const CarListings = () => {
 
 
   console.log('%c Filtre ACTIVE trimise către hook:', 'color: green; font-weight: bold;', finalFilters);
-  const { listings, loading, error } = useListings(finalFilters);
+  const { listings, pagination, loading, error } = useListings(finalFilters, currentPage);
   
   const handleFilterChange = (attributeName: string, value: any) => {
     setFilters(prevFilters => {
@@ -66,6 +67,11 @@ const CarListings = () => {
     }
     setActiveFilters(cleanedFilters);
     setIsSheetOpen(false); // Close sheet on mobile after applying
+  };
+  
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   
   const renderListings = () => {
