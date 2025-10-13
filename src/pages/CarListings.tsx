@@ -15,6 +15,16 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { AlertCircle } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import Container from "@/components/ui/Container"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+  PaginationEllipsis,
+} from "@/components/ui/pagination";
+
 
 const CarListings = () => {
   const [filters, setFilters] = useState<Record<string, any>>({});
@@ -66,6 +76,7 @@ const CarListings = () => {
       }
     }
     setActiveFilters(cleanedFilters);
+    setCurrentPage(1); // Reset page to 1 when filters are applied
     setIsSheetOpen(false); // Close sheet on mobile after applying
   };
   
@@ -197,18 +208,61 @@ const CarListings = () => {
             {/* Car Grid */}
             {renderListings()}
 
-            {/* Pagination */}
-            <div className="flex justify-center space-x-2">
-              <Button variant="outline" disabled>
-                Anterior
-              </Button>
-              <Button size="sm">1</Button>
-              <Button variant="outline" size="sm">2</Button>
-              <Button variant="outline" size="sm">3</Button>
-              <Button variant="outline">
-                Următor
-              </Button>
-            </div>
+            {/* --- PAGINATION SECTION --- */}
+            {pagination && pagination.totalPages > 1 && (
+              <div className="mt-12">
+                <Pagination>
+                  <PaginationContent>
+                    {/* Previous Button */}
+                    <PaginationItem>
+                      <PaginationPrevious
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (currentPage > 1) {
+                            handlePageChange(currentPage - 1);
+                          }
+                        }}
+                        // Disable the button if we are on the first page
+                        className={currentPage === 1 ? 'pointer-events-none opacity-50' : ''}
+                      />
+                    </PaginationItem>
+
+                    {/* Page Number Buttons */}
+                    {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map(page => (
+                      <PaginationItem key={page}>
+                        <PaginationLink
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handlePageChange(page);
+                          }}
+                          // Highlight the currently active page
+                          isActive={currentPage === page}
+                        >
+                          {page}
+                        </PaginationLink>
+                      </PaginationItem>
+                    ))}
+
+                    {/* Next Button */}
+                    <PaginationItem>
+                      <PaginationNext
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (currentPage < pagination.totalPages) {
+                            handlePageChange(currentPage + 1);
+                          }
+                        }}
+                        // Disable the button if we are on the last page
+                        className={currentPage === pagination.totalPages ? 'pointer-events-none opacity-50' : ''}
+                      />
+                    </PaginationItem>
+                  </PaginationContent>
+                </Pagination>
+              </div>
+            )}
           </main>
         </div>
       </Container>
