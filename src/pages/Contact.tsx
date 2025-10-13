@@ -43,8 +43,8 @@ const Contact = () => {
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">Adresa</h3>
                         <p className="text-muted-foreground">
-                          Strada Principală, Nr. 1<br />
-                          Cluj-Napoca, 400000, România
+                          Strada Plevnei 117<br />
+                          Cluj-Napoca, 400394, România
                         </p>
                       </div>
                     </div>
@@ -105,21 +105,24 @@ const Contact = () => {
             </div>
 
             {/* Map Placeholder */}
-            <Card className="luxury-card">
-              <CardContent className="p-0">
-                <div className="h-64 bg-muted rounded-lg flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="h-12 w-12 text-luxury-gold mx-auto mb-4" />
-                    <p className="text-muted-foreground">Hartă Google Maps</p>
-                  </div>
-                </div>
+            <Card className="luxury-card overflow-hidden">
+              <CardContent className="p-0 h-full">
+                 <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.991192070335!2d23.62140881585293!3d46.7820649791395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490c10257e8e5b%3A0x8686d45e76472251!2sStrada%20Plevnei%20117%2C%20Cluj-Napoca%20400394!5e0!3m2!1sen!2sro!4v1668583488772!5m2!1sen!2sro" 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border: 0, minHeight: '450px' }} 
+                    allowFullScreen={true}
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade">
+                </iframe>
               </CardContent>
             </Card>
           </div>
 
           {/* Contact Form */}
           <div>
-            <Card className="luxury-card">
+            <Card className="luxury-card mt-12">
               <CardHeader>
                 <CardTitle className="font-luxury text-2xl text-luxury-gold">
                   Trimite-ne un Mesaj

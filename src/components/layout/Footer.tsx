@@ -67,7 +67,7 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <MapPin className="h-4 w-4 text-luxury-gold flex-shrink-0" />
                 <span className="text-muted-foreground text-sm">
-                  Strada Principală, Nr. 1, Cluj-Napoca, 400000
+                  Strada Plevnei 117, Cluj-Napoca, 400394
                 </span>
               </div>
               <a href="mailto:contact@awdauto-cluj.ro" className="flex items-center space-x-3 group">
