@@ -104,7 +104,7 @@ const Header = () => {
             variant="ghost" 
             size="icon"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-foreground hover:text-luxury-gold"
+            className="text-foreground hover:text-luxury-gold focus:outline-none focus:ring-0"
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             <span className="sr-only">Deschide meniul</span>
