@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import { Facebook, Instagram, Phone, Mail, MapPin } from "lucide-react"
-import awdLogo from "@/assets/awd-auto-logo.jpg"
+import awdLogo from "@/assets/awd_final.png"
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()

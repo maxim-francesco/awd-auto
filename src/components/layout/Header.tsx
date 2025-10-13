@@ -4,7 +4,7 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 import { useState } from "react"
 import { Button } from "@/components/ui/luxury-button"
 import { Link, useLocation } from "react-router-dom"
-import awdLogo from "@/assets/awd-auto-logo.jpg"
+import awdLogo from "@/assets/awd_final.png"
 import { Menu, X, Phone } from "lucide-react"
 
 const Header = () => {
