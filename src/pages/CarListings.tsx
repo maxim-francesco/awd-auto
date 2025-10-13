@@ -152,9 +152,9 @@ const CarListings = () => {
                 <div className="lg:hidden">
                     <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                         <SheetTrigger asChild>
-                            <Button variant="outline" size="icon">
-                                <Filter className="h-5 w-5" />
-                                <span className="sr-only">Filtre</span>
+                            <Button variant="outline" className="flex items-center gap-2">
+                                <Filter className="h-4 w-4" />
+                                <span>Filtrează</span>
                             </Button>
                         </SheetTrigger>
                         <SheetContent side="left" className="p-0">
