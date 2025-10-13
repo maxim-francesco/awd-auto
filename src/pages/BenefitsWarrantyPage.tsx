@@ -60,9 +60,9 @@ const BenefitsWarrantyPage = () => {
     {
       title: "PLUS",
       icon: Shield,
-      color: "text-yellow-400",
-      bgColor: "bg-yellow-900/20",
-      borderColor: "border-yellow-500/30",
+      color: "text-luxury-gold",
+      bgColor: "bg-luxury-gold/10",
+      borderColor: "border-luxury-gold/30",
       eligibility: { age: 15, mileage: 300000 },
       coverage: "Asigurare împotriva daunelor mecanice.",
       coveredComponents: ["Motor", "Transmisie manuală", "Sistem de răcire", "Diferențial"],

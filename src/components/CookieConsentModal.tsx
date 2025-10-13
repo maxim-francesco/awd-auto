@@ -38,7 +38,7 @@ const CookieConsentModal = () => {
         </h3>
         <p className="text-sm text-gray-300 mb-6 leading-relaxed">
           Acest site folosește cookie-uri pentru a îmbunătăți experiența. Prin acceptarea acestora, ne permiți să îți oferim un conținut mai relevant. Poți afla mai multe în{" "}
-          <Link to="/politica-confidentialitate" className="text-yellow-400 underline hover:text-yellow-300">
+          <Link to="/politica-confidentialitate" className="text-luxury-gold underline hover:text-luxury-gold-hover">
             Politica noastră de Confidențialitate
           </Link>.
         </p>
@@ -51,7 +51,7 @@ const CookieConsentModal = () => {
           </button>
           <button
             onClick={handleAccept}
-            className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-lg transition-colors"
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3 px-6 rounded-lg transition-colors"
           >
             Acceptă
           </button>
