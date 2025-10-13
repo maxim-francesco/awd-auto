@@ -78,7 +78,7 @@ const Footer = () => {
               </a>
               <div className="pt-2">
                 <p className="text-sm text-muted-foreground">Luni - Vineri: 09:00 - 18:00</p>
-                <p className="text-sm text-muted-foreground">Sâmbătă: 10:00 - 14:00</p>
+                <p className="text-sm text-muted-foreground">Sâmbătă: 09:00 - 14:00</p>
                 <p className="text-sm text-muted-foreground">Duminică: Închis</p>
               </div>
             </div>
@@ -105,10 +105,12 @@ const Footer = () => {
             </div>
             <div className="flex space-x-4 pt-4">
               <motion.a 
-                href="#" 
+                href="https://www.facebook.com/profile.php?id=100063581410840" 
                 className="text-muted-foreground hover:text-luxury-gold transition-colors"
                 whileHover={{ scale: 1.1, color: "hsl(var(--luxury-gold))" }}
                 transition={{ duration: 0.2 }}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Facebook className="h-5 w-5" />
               </motion.a>

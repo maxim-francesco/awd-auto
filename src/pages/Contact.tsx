@@ -94,7 +94,7 @@ const Contact = () => {
                         <h3 className="font-semibold text-foreground mb-1">Program</h3>
                         <div className="text-muted-foreground space-y-1">
                           <p>Luni - Vineri: 09:00 - 18:00</p>
-                          <p>Sâmbătă: 10:00 - 14:00</p>
+                          <p>Sâmbătă: 09:00 - 14:00</p>
                           <p>Duminică: Închis</p>
                         </div>
                       </div>
