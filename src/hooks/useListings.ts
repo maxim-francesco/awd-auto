@@ -25,8 +25,18 @@ export interface APIListing {
   images: ListingImage[];
 }
 
-const useListings = (activeFilters: Record<string, any>) => {
+// Interfață pentru obiectul de paginare returnat de API
+export interface PaginationData {
+    total: number;
+    page: number;
+    limit: number;
+    totalPages: number;
+}
+
+
+const useListings = (activeFilters: Record<string, any>, page: number = 1) => {
   const [listings, setListings] = useState<APIListing[]>([]);
+  const [pagination, setPagination] = useState<PaginationData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -42,6 +52,8 @@ const useListings = (activeFilters: Record<string, any>) => {
         const params = new URLSearchParams({
           businessId,
           categoryId,
+          page: page.toString(), // Adăugăm numărul paginii
+          limit: '9' // Setăm o limită, de exemplu 9 anunturi pe pagina
         });
 
         // Verificăm dacă activeFilters este un obiect valid și nu este gol
@@ -71,6 +83,8 @@ const useListings = (activeFilters: Record<string, any>) => {
         const rawListings: APIListing[] = result.data || [];
         
         setListings(rawListings);
+        setPagination(result.pagination || null);
+
       } catch (e: any) {
         setError(e);
         console.error("Failed to fetch listings:", e);
@@ -80,9 +94,9 @@ const useListings = (activeFilters: Record<string, any>) => {
     };
 
     fetchListings();
-  }, [activeFilters]);
+  }, [activeFilters, page]);
 
-  return { listings, loading, error };
+  return { listings, pagination, loading, error };
 };
 
 export default useListings;
