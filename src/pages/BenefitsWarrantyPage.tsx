@@ -1,6 +1,6 @@
 import Layout from "@/components/layout/Layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Search, ListChecks, Percent, Shield, Clock, HardDrive, Cpu, Check, Calendar, Users, Target, ShieldCheck } from "lucide-react"
+import { Search, ListChecks, Percent, Shield, Clock, HardDrive, Cpu, Check, Calendar, Users, Target, ShieldCheck, Wrench } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import { Separator } from "@/components/ui/separator";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -14,6 +14,11 @@ const BenefitsWarrantyPage = () => {
       description: "Fiecare mașină din parcul nostru vine cu un istoric de service transparent. Cumpără cu încredere, știind exact trecutul mașinii tale."
     },
     {
+      icon: Wrench,
+      title: "Revizie Înainte de Livrare",
+      description: "Pentru a ne asigura că pleci la drum în siguranță, efectuăm o revizie completă înainte de predarea mașinii, ce include schimbul de ulei și filtre motor."
+    },
+    {
       icon: ListChecks,
       title: "Inspecție Tehnică Riguroasă",
       description: "Înainte de a fi listată, fiecare mașină este supusă unei inspecții amănunțite în peste 100 de puncte de către mecanicii noștri parteneri."
@@ -23,10 +28,10 @@ const BenefitsWarrantyPage = () => {
       title: "Finanțare Personalizată",
       description: "Oferim soluții de finanțare rapide și flexibile prin partenerii noștri de încredere, adaptate perfect bugetului și nevoilor tale."
     },
-    {
+     {
       icon: Shield,
-      title: "Garanție Extinsă",
-      description: "Condu fără griji. Îți oferim pachete de garanție extinsă prin parteneriatul cu Defend Insurance, valabile până la 36 de luni."
+      title: "Garanție Standard Inclusă",
+      description: "Condu fără griji din prima zi. Fiecare mașină vândută de noi beneficiază de pachetul de garanție de bază PLUS, oferit prin partenerul nostru Defend Insurance."
     }
   ]
 
@@ -84,8 +89,8 @@ const BenefitsWarrantyPage = () => {
       answer: "Înseamnă că am verificat istoricul de service și daunalitate al mașinii prin reprezentanțe și baze de date specializate. Vă oferim un raport detaliat pentru a garanta transparența totală a achiziției dumneavoastră."
     },
     {
-      question: "Garanția este inclusă în prețul mașinii?",
-      answer: "Pachetul de garanție este un serviciu opțional și se poate personaliza în funcție de nevoile dumneavoastră și de eligibilitatea vehiculului. Costul garanției se adaugă la prețul final al mașinii și variază în funcție de planul și perioada alese."
+      question: "Pachetul de garanție PLUS este inclus în prețul mașinii?",
+      answer: "Da, pachetul de garanție de bază PLUS este inclus pentru majoritatea vehiculelor eligibile din parcul nostru. Există posibilitatea de a face upgrade la un pachet superior (Comfort, Advantage, Deluxe) contra unui cost suplimentar, în funcție de preferințele dumneavoastră și de eligibilitatea vehiculului."
     },
     {
       question: "Unde pot efectua reparațiile în caz de daună acoperită de garanție?",
@@ -107,7 +112,7 @@ const BenefitsWarrantyPage = () => {
                 Liniștea Ta Este Prioritatea Noastră
                 </h1>
                 <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
-                Descoperă avantajele de a cumpăra de la AWD Auto, de la istoricul verificat al mașinilor și până la pachetele de garanție extinsă.
+                Află detalii despre pachetul de garanție PLUS inclus la fiecare achiziție și despre opțiunile de upgrade disponibile pentru liniștea ta completă.
                 </p>
             </AnimatedSection>
         </Container>
@@ -122,7 +127,7 @@ const BenefitsWarrantyPage = () => {
             </h2>
           </AnimatedSection>
 
-          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             {benefits.map((benefit, index) => (
               <StaggeredItem key={index}>
                 <Card className="luxury-card h-full text-center group">
@@ -255,3 +260,5 @@ const BenefitsWarrantyPage = () => {
 }
 
 export default BenefitsWarrantyPage;
+
+    

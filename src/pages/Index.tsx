@@ -7,7 +7,7 @@ import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/a
 import { Button } from "@/components/ui/luxury-button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Shield, CreditCard, ArrowRight, AlertCircle, CheckCircle, FileCheck, Star, Users, Search } from "lucide-react"
+import { Shield, CreditCard, ArrowRight, AlertCircle, CheckCircle, FileCheck, Star, Users, Search, Wrench } from "lucide-react"
 import { Link } from "react-router-dom"
 import heroImage from "@/assets/hero-car.jpg"
 import useLatestListings, { type APIListing } from "@/hooks/useLatestListings"
@@ -30,14 +30,14 @@ const Index = () => {
       description: "Credem că o afacere corectă se construiește pe încredere. De aceea, îți oferim istoricul complet și răspundem onest la fiecare întrebare, fără secrete sau surprize."
     },
     {
-      icon: Users,
-      title: "O Experiență Centrată pe Tine",
-      description: "De la primul telefon și până la momentul în care pleci la volanul noii tale mașini, suntem aici să te ghidăm. Nu vindem doar mașini, ci construim parteneriate de lungă durată."
+      icon: Wrench,
+      title: "Revizie Înainte de Livrare",
+      description: "Pentru a ne asigura că pleci la drum în siguranță, efectuăm o revizie completă înainte de predarea mașinii, ce include schimbul de ulei și filtre motor."
     },
     {
       icon: Shield,
-      title: "Garanție și Suport",
-      description: "Prin parteneriatul cu Defend Insurance, oferim garanție extinsă și suport post-vânzare, pentru ca tu să conduci fără nicio grijă."
+      title: "Garanție Standard Inclusă",
+      description: "Condu fără griji din prima zi. Fiecare mașină vândută de noi beneficiază de pachetul de garanție de bază PLUS, oferit prin partenerul nostru Defend Insurance."
     }
   ]
 
@@ -389,3 +389,5 @@ const Index = () => {
 }
 
 export default Index
+
+    
