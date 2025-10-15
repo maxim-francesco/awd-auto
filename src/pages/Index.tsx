@@ -140,6 +140,15 @@ const Index = () => {
   return (
     <Layout>
       <Container className="py-8">
+        <section className="text-center py-8 md:py-12">
+          <h1 className="text-4xl lg:text-5xl font-bold text-foreground">
+            Găsește Mașina Potrivită în Stocul Nostru Verificat
+          </h1>
+          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+            Folosește filtrele de mai jos pentru a explora oferta noastră completă de autoturisme rulate.
+          </p>
+        </section>
+
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Filters Sidebar for Desktop */}
           <aside className="hidden lg:block lg:col-span-1">
@@ -155,16 +164,7 @@ const Index = () => {
           <main className="lg:col-span-3">
             {/* Header */}
             <AnimatedSection className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 space-y-4 sm:space-y-0">
-              <motion.h1 
-                className="font-luxury text-3xl font-bold text-foreground bg-gradient-to-r from-luxury-gold to-luxury-silver bg-clip-text text-transparent"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                Mașini Disponibile
-              </motion.h1>
-
-              <div className="flex items-center gap-4">
+               <div className="flex items-center gap-4">
                  {/* Mobile Filter Trigger */}
                 <div className="lg:hidden">
                     <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
