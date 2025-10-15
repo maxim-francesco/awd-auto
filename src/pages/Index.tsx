@@ -5,8 +5,13 @@ import Container from "@/components/ui/Container"
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { Button } from "@/components/ui/luxury-button"
 import { Link } from "react-router-dom"
+import useLatestListings from "@/hooks/useLatestListings"
+import CarCard from "@/components/CarCard"
+import { Skeleton } from "@/components/ui/skeleton"
+import { AlertCircle } from "lucide-react"
 
 const Index = () => {
+  const { listings, loading, error } = useLatestListings();
   
   return (
     <Layout>
@@ -26,6 +31,46 @@ const Index = () => {
             </p>
             <Button asChild size="lg">
               <Link to="/masini-disponibile">Vezi Toate Mașinile Disponibile</Link>
+            </Button>
+          </AnimatedSection>
+        </Container>
+      </section>
+
+      {/* Latest Cars Teaser Section */}
+      <section className="py-20 bg-luxury-darker">
+        <Container>
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Ultimele Noutăți în Stoc
+            </h2>
+          </AnimatedSection>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {loading ? (
+              [...Array(4)].map((_, index) => (
+                <div key={index} className="luxury-card">
+                  <Skeleton className="h-48 w-full rounded-t-xl" />
+                  <div className="p-6 space-y-4">
+                    <Skeleton className="h-6 w-3/4" />
+                    <Skeleton className="h-8 w-1/2" />
+                    <Skeleton className="h-9 w-full" />
+                  </div>
+                </div>
+              ))
+            ) : error ? (
+              <div className="col-span-full text-center text-red-500 bg-red-500/10 p-6 rounded-lg border border-red-500/30">
+                <AlertCircle className="mx-auto h-12 w-12 mb-4" />
+                <h3 className="text-xl font-semibold">Eroare la încărcare</h3>
+                <p>Nu am putut prelua ultimele noutăți. Te rugăm să încerci din nou mai târziu.</p>
+              </div>
+            ) : (
+              listings.map(listing => <CarCard key={listing.id} listing={listing} />)
+            )}
+          </div>
+          
+          <AnimatedSection className="text-center">
+            <Button asChild variant="outline">
+              <Link to="/masini-disponibile">Vezi Tot Stocul</Link>
             </Button>
           </AnimatedSection>
         </Container>
