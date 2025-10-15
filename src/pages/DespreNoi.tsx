@@ -1,6 +1,6 @@
 import Layout from "@/components/layout/Layout"
 import { Card, CardContent } from "@/components/ui/card"
-import { Shield, Search, Handshake, CheckCircle } from "lucide-react"
+import { Shield, Search, Handshake, CheckCircle, Star } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import Container from "@/components/ui/Container"
 import laurentiuImage from '@/assets/laurentiu.png';
@@ -30,6 +30,24 @@ const DespreNoi = () => {
     "Suport post-vânzare dedicat"
   ]
 
+    const testimonials = [
+    {
+      name: "Petru Minu",
+      review: "Profesionalism, seriozitate și promptitudine. Am achiziționat de curând un autoturism de la ei și sunt extrem de mulțumit. Mașina este impecabilă, exact ca în descriere. Recomand cu încredere!",
+      stars: 5,
+    },
+    {
+      name: "Lascu Daniel",
+      review: "Servicii de nota 10. Laurențiu este un om deosebit, foarte amabil și dispus să ajute cu orice informație. Totul a decurs rapid și fără bătăi de cap. Voi reveni cu siguranță pe viitor.",
+      stars: 5,
+    },
+    {
+      name: "Cristian Cucu",
+      review: "Cea mai bună experiență pe care am avut-o la un parc auto. Mașina a fost pregătită exemplar, iar tot procesul a fost transparent. Am primit toate actele și un istoric complet. 5 stele!",
+      stars: 5,
+    },
+  ];
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -41,20 +59,36 @@ const DespreNoi = () => {
         <Container className="relative z-10">
           <AnimatedSection className="max-w-4xl mx-auto text-center">
             <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6">
-              Povestea Noastră
-            </h1>
-            <p className="font-luxury text-2xl text-luxury-gold mb-6">
               Pasiune pentru Mașini de Calitate, Respect pentru Clienți
-            </p>
+            </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-             Motorul și sufletul acestei afaceri de familie este Csibi Laurentiu, omul care demonstrează că pasiunea, onestitatea și responsabilitatea față de clienți sunt valorile care ne propulsează către succes.
+              La AWD Auto, nu vindem doar mașini, ci construim relații bazate pe încredere și transparență. Descoperă povestea noastră și valorile care ne ghidează în fiecare zi.
             </p>
           </AnimatedSection>
         </Container>
       </section>
 
-      {/* Mission & Values Section */}
+      {/* Founder's Story Section */}
       <section className="py-20 bg-background">
+        <Container>
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <AnimatedSection className="flex justify-center">
+                    <img src={laurentiuImage} alt="Csibi Laurentiu, Fondator AWD Auto" className="rounded-xl shadow-lg w-full max-w-md object-cover"/>
+                </AnimatedSection>
+                <AnimatedSection delay={0.2} className="space-y-6">
+                    <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground">Povestea Noastră</h2>
+                    <p className="text-muted-foreground leading-relaxed">Motorul și sufletul acestei afaceri de familie este <strong>Csibi Laurentiu</strong>, omul care demonstrează că pasiunea, onestitatea și responsabilitatea față de clienți sunt valorile care ne propulsează către succes.</p>
+                     <blockquote className="border-l-4 border-luxury-gold pl-6 py-2 italic text-foreground/80">
+                        "Fiecare mașină are o poveste și fiecare client are un vis. Misiunea mea este să le aduc împreună. La AWD Auto, nu facem compromisuri când vine vorba de calitate și corectitudine. O mașină excelentă și un client fericit sunt cea mai mare satisfacție a mea."
+                    </blockquote>
+                    <p className="font-semibold text-foreground">- Csibi Laurentiu, Fondator AWD Auto</p>
+                </AnimatedSection>
+            </div>
+        </Container>
+      </section>
+
+      {/* Mission & Values Section */}
+      <section className="py-20 bg-luxury-darker">
         <Container>
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -117,49 +151,42 @@ const DespreNoi = () => {
         </Container>
       </section>
 
-      {/* Meet the Team Section */}
-      <AnimatedSection className="py-20 bg-luxury-darker">
+      {/* Testimonials Section */}
+      <section className="py-20 bg-background">
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Faceți cunoștință cu Echipa Noastră
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Profesioniști pasionați, gata să vă ajute să găsiți mașina perfectă
-            </p>
-          </div>
+            <AnimatedSection className="text-center mb-16">
+                 <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+                    Ce Spun Clienții Noștri
+                </h2>
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                    Încrederea și satisfacția clienților sunt cartea noastră de vizită.
+                </p>
+            </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            {teamMembers.map((member, index) => (
-              <Card key={index} className="luxury-card">
-                <CardContent className="p-8 text-center">
-                  {member.image ? (
-                     <img src={member.image} alt={member.name} className="w-32 h-32 rounded-full object-cover object-top mx-auto mb-6 border-2 border-luxury-gold/30" />
-                  ) : (
-                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-luxury-gold/20 to-luxury-gold/5 mx-auto mb-6 flex items-center justify-center border-2 border-luxury-gold/30">
-                      <span className="font-luxury text-4xl text-luxury-gold">
-                        {member.name.split(' ').map(n => n[0]).join('')}
-                      </span>
-                    </div>
-                  )}
-                  <h3 className="font-luxury text-xl font-bold text-foreground mb-2">
-                    {member.name}
-                  </h3>
-                  <p className="text-luxury-gold font-semibold mb-4">
-                    {member.role}
-                  </p>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {member.bio}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+            <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                 {testimonials.map((testimonial, index) => (
+                <StaggeredItem key={index}>
+                    <Card className="luxury-card h-full flex flex-col">
+                        <CardContent className="p-8 flex-grow flex flex-col">
+                            <div className="flex mb-4">
+                                {[...Array(testimonial.stars)].map((_, i) => (
+                                    <Star key={i} className="h-5 w-5 text-luxury-gold fill-luxury-gold" />
+                                ))}
+                            </div>
+                            <p className="text-muted-foreground italic flex-grow">"{testimonial.review}"</p>
+                            <footer className="mt-6 font-bold text-foreground text-right">
+                                — {testimonial.name}
+                            </footer>
+                        </CardContent>
+                    </Card>
+                </StaggeredItem>
+                ))}
+            </StaggeredGrid>
         </Container>
-      </AnimatedSection>
+      </section>
 
       {/* Why Choose Us Section */}
-      <AnimatedSection className="py-20 bg-background">
+      <AnimatedSection className="py-20 bg-luxury-darker">
         <Container>
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
@@ -189,25 +216,8 @@ const DespreNoi = () => {
           </div>
         </Container>
       </AnimatedSection>
-
-      {/* CTA Section */}
-      <AnimatedSection className="py-20 bg-luxury-darker">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Sunteți Pregătit să Găsiți Mașina Potrivită?
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              Echipa noastră este aici pentru a vă ghida prin fiecare pas al procesului. 
-              Vă invităm să ne vizitați sau să ne contactați pentru o consultație personalizată.
-            </p>
-          </div>
-        </Container>
-      </AnimatedSection>
     </Layout>
   )
 }
 
 export default DespreNoi
-
-    
