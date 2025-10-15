@@ -40,9 +40,7 @@ const BenefitsWarrantyPage = () => {
       eligibility: { age: 6, mileage: 200000 },
       coverage: "Asigurare împotriva daunelor mecanice, electrice și electronice.",
       coveredComponents: ["Motor", "Transmisie", "Diferențial", "Sistem de frânare", "Sistem de direcție", "Componente electrice"],
-      limit: 15000,
-      period: "12, 24, sau 36 de luni",
-      franchise: "Asigurare fără franșiză."
+      period: "12, 24, sau 36 de luni"
     },
     {
       title: "COMFORT",
@@ -52,10 +50,8 @@ const BenefitsWarrantyPage = () => {
       borderColor: "border-green-500/30",
       eligibility: { age: 10, mileage: 250000 },
       coverage: "Asigurare împotriva daunelor mecanice sau electrice.",
-      coveredComponents: ["Motor", "Transmisie automată", "Sistem de frânare", "Sistem de direcție", "Ambreiaj"],
-      limit: 15000,
-      period: "12, 24, sau 36 de luni",
-      franchise: "Asigurare fără franșiză."
+      coveredComponents: ["Motor", "Transmisie automată", "Sistem de frânare", "Sistem de direcție", "Ambreiaj", "Volantă", "Turbosuflantă", "Electromotor", "Alternator"],
+      period: "12, 24, sau 36 de luni"
     },
     {
       title: "PLUS",
@@ -66,9 +62,7 @@ const BenefitsWarrantyPage = () => {
       eligibility: { age: 15, mileage: 300000 },
       coverage: "Asigurare împotriva daunelor mecanice.",
       coveredComponents: ["Motor", "Transmisie manuală", "Sistem de răcire", "Diferențial"],
-      limit: 7500,
-      period: "12, 24, sau 36 de luni",
-      franchise: "Asigurare fără franșiză."
+      period: "12, 24, sau 36 de luni"
     }
   ]
 
@@ -203,8 +197,6 @@ const BenefitsWarrantyPage = () => {
                         <h4 className="font-semibold text-foreground text-center mb-3">Parametri Opționali</h4>
                         <div className="space-y-2 text-sm">
                             <p><strong className="text-muted-foreground">Perioadă:</strong> <span className="text-foreground">{plan.period}</span></p>
-                            <p><strong className="text-muted-foreground">Limită despăgubire:</strong> <span className="text-foreground">Până la {plan.limit.toLocaleString()} RON</span></p>
-                            <p><strong className="text-muted-foreground">Franșiză:</strong> <span className="text-foreground">{plan.franchise}</span></p>
                         </div>
                     </div>
 
