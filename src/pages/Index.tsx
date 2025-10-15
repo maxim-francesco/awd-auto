@@ -2,16 +2,37 @@
 
 import Layout from "@/components/layout/Layout"
 import Container from "@/components/ui/Container"
-import { AnimatedSection } from "@/components/ui/animated-section"
+import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import { Button } from "@/components/ui/luxury-button"
 import { Link } from "react-router-dom"
 import useLatestListings from "@/hooks/useLatestListings"
 import CarCard from "@/components/CarCard"
 import { Skeleton } from "@/components/ui/skeleton"
-import { AlertCircle } from "lucide-react"
+import { AlertCircle, Star } from "lucide-react"
+import laurentiuImage from '@/assets/laurentiu.png';
+import { Card, CardContent } from "@/components/ui/card"
+
 
 const Index = () => {
   const { listings, loading, error } = useLatestListings();
+
+  const testimonials = [
+    {
+      name: "Petru Minu",
+      review: "Profesionalism, seriozitate și promptitudine. Am achiziționat de curând un autoturism de la ei și sunt extrem de mulțumit. Mașina este impecabilă, exact ca în descriere. Recomand cu încredere!",
+      stars: 5,
+    },
+    {
+      name: "Lascu Daniel",
+      review: "Servicii de nota 10. Laurențiu este un om deosebit, foarte amabil și dispus să ajute cu orice informație. Totul a decurs rapid și fără bătăi de cap. Voi reveni cu siguranță pe viitor.",
+      stars: 5,
+    },
+    {
+      name: "Cristian Cucu",
+      review: "Cea mai bună experiență pe care am avut-o la un parc auto. Mașina a fost pregătită exemplar, iar tot procesul a fost transparent. Am primit toate actele și un istoric complet. 5 stele!",
+      stars: 5,
+    },
+  ];
   
   return (
     <Layout>
@@ -75,6 +96,60 @@ const Index = () => {
           </AnimatedSection>
         </Container>
       </section>
+
+      {/* Founder's Story Section */}
+      <section className="py-20 bg-background">
+        <Container>
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <AnimatedSection className="flex justify-center">
+                    <img src={laurentiuImage} alt="Csibi Laurentiu, Fondator AWD Auto" className="rounded-xl shadow-lg w-full max-w-md object-cover"/>
+                </AnimatedSection>
+                <AnimatedSection delay={0.2} className="space-y-6">
+                    <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground">Povestea Noastră</h2>
+                    <p className="text-muted-foreground leading-relaxed">Motorul și sufletul acestei afaceri de familie este <strong>Csibi Laurentiu</strong>, omul care demonstrează că pasiunea, onestitatea și responsabilitatea față de clienți sunt valorile care ne propulsează către succes.</p>
+                     <blockquote className="border-l-4 border-luxury-gold pl-6 py-2 italic text-foreground/80">
+                        "Fiecare mașină are o poveste și fiecare client are un vis. Misiunea mea este să le aduc împreună. La AWD Auto, nu facem compromisuri când vine vorba de calitate și corectitudine. O mașină excelentă și un client fericit sunt cea mai mare satisfacție a mea."
+                    </blockquote>
+                    <p className="font-semibold text-foreground">- Csibi Laurentiu, Fondator AWD Auto</p>
+                </AnimatedSection>
+            </div>
+        </Container>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-luxury-darker">
+        <Container>
+            <AnimatedSection className="text-center mb-16">
+                 <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+                    Ce Spun Clienții Noștri
+                </h2>
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                    Încrederea și satisfacția clienților sunt cartea noastră de vizită.
+                </p>
+            </AnimatedSection>
+
+            <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                 {testimonials.map((testimonial, index) => (
+                <StaggeredItem key={index}>
+                    <Card className="luxury-card h-full flex flex-col">
+                        <CardContent className="p-8 flex-grow flex flex-col">
+                            <div className="flex mb-4">
+                                {[...Array(testimonial.stars)].map((_, i) => (
+                                    <Star key={i} className="h-5 w-5 text-luxury-gold fill-luxury-gold" />
+                                ))}
+                            </div>
+                            <p className="text-muted-foreground italic flex-grow">"{testimonial.review}"</p>
+                            <footer className="mt-6 font-bold text-foreground text-right">
+                                — {testimonial.name}
+                            </footer>
+                        </CardContent>
+                    </Card>
+                </StaggeredItem>
+                ))}
+            </StaggeredGrid>
+        </Container>
+      </section>
+
     </Layout>
   );
 };
