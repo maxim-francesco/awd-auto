@@ -1,70 +1,96 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useState, useMemo, useEffect } from "react"
 import Layout from "@/components/layout/Layout"
 import CarCard from "@/components/CarCard"
-import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
+import { AnimatedSection } from "@/components/ui/animated-section"
 import { Button } from "@/components/ui/luxury-button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Shield, CreditCard, ArrowRight, AlertCircle, CheckCircle, FileCheck, Star, Users, Search, Wrench } from "lucide-react"
-import { Link } from "react-router-dom"
-import heroImage from "@/assets/hero-car.jpg"
-import useLatestListings, { type APIListing } from "@/hooks/useLatestListings"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Filter } from "lucide-react"
+import useListings, { APIListing } from "@/hooks/useListings"
+import FilterSidebar from "@/components/filters/FilterSidebar"
 import { Skeleton } from "@/components/ui/skeleton"
-import laurentiuImage from '@/assets/laurentiu.png';
+import { AlertCircle } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
 import Container from "@/components/ui/Container"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+  PaginationEllipsis,
+} from "@/components/ui/pagination";
+
 
 const Index = () => {
-  const { listings, loading, error } = useLatestListings()
+  const [filters, setFilters] = useState<Record<string, any>>({});
+  const [activeFilters, setActiveFilters] = useState<Record<string, any>>({});
+  const [sortOption, setSortOption] = useState("newest");
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const whyUsFeatures = [
-    {
-      icon: Search,
-      title: "Selecție Riguroasă",
-      description: "Refuzăm orice compromis. Fiecare mașină este aleasă personal de Laurențiu și inspectată tehnic în detaliu. Doar vehiculele care trec standardele noastre ajung în parcul auto."
-    },
-    {
-      icon: FileCheck,
-      title: "Transparență Totală",
-      description: "Credem că o afacere corectă se construiește pe încredere. De aceea, îți oferim istoricul complet și răspundem onest la fiecare întrebare, fără secrete sau surprize."
-    },
-    {
-      icon: Wrench,
-      title: "Revizie Înainte de Livrare",
-      description: "Pentru a ne asigura că pleci la drum în siguranță, efectuăm o revizie completă înainte de predarea mașinii, ce include schimbul de ulei și filtre motor."
-    },
-    {
-      icon: Shield,
-      title: "Garanție Standard Inclusă",
-      description: "Condu fără griji din prima zi. Fiecare mașină vândută de noi beneficiază de pachetul de garanție de bază PLUS, oferit prin partenerul nostru Defend Insurance."
-    }
-  ]
-
-  const carBrands = ["Audi", "BMW", "Mercedes-Benz", "Porsche", "Volkswagen", "Skoda"]
-
-  const testimonials = [
-    {
-      quote: "Am văzut anunțul joi, iar sâmbătă deja am fost să luăm mașina. Totul a decurs impecabil! Domnul Laurentiu a fost extrem de transparent, ne-a oferit toate informațiile de care aveam nevoie și a fost foarte deschis și sincer cu noi. Ne-a ajutat cu sfaturi utile și s-a ocupat de tot ce era necesar pentru ca lucrurile să meargă cât mai ușor. Mașina este genială și ne bucurăm enorm de alegerea făcută! Recomand cu încredere!",
-      author: "- Petru Minu"
-    },
-    {
-      quote: "Am achiziționat un Audi A4 B9 de la Parcul Auto AWD și pot spune cu încredere că a fost o alegere foarte bună. Mașina este întreținută atât estetic, cât și mecanic, exact cum mi-a fost prezentată. Tot procesul de cumpărare a decurs foarte transparent, fără ascunzișuri sau promisiuni false. Cel mai mult am apreciat seriozitatea și corectitudinea deținătorului parcului, un om deosebit, care pune accent pe calitate și pe mulțumirea clientului. Se vede că mașinile sunt selectate cu grijă și menținute la standarde înalte. Recomand cu toată încrederea Auto AWD oricui își dorește o mașină bună și o experiență de cumpărare fără stres.",
-      author: "- Lascu Daniel"
-    },
-    {
-      quote: "Am ajuns la AWD Auto Cluj după ce am văzut un anunț legat de un Volvo V40, noi fiind din București. Am telefonat parcul auto pentru mai multe detalii legate de mașină, și am fost plăcut surprinși de amabilitatea și disponibilitatea domnului Laurențiu. Experiența noastră la AWD Auto poate fi descrisă doar prin laude la adresa dânsului, fiind extrem de înțelegător și receptiv, oferindu-ne mai multe informații și suport decât ne-am fi așteptat. Mai mult decât atât, oferă posibilitatea achiziționării unei asigurări de tip casco tehnic, care este foarte avantajoasă. Ne declarăm mulțumiți de alegerea făcută și recomandăm 100% achiziționarea unui autoturism de la AWD Auto!",
-      author: "- Cristian Cucu"
-    }
-  ]
+  useEffect(() => {
+    console.log('%c Starea FILTERS s-a actualizat:', 'color: orange; font-weight: bold;', filters);
+  }, [filters]);
   
-  const renderLatestCars = () => {
+  const finalFilters = useMemo(() => {
+    const combinedFilters = { ...activeFilters };
+    if (sortOption) {
+      combinedFilters.sortBy = sortOption;
+    }
+    return combinedFilters;
+  }, [activeFilters, sortOption]);
+
+
+  console.log('%c Filtre ACTIVE trimise către hook:', 'color: green; font-weight: bold;', finalFilters);
+  const { listings, pagination, loading, error } = useListings(finalFilters, currentPage);
+  
+  const handleFilterChange = (attributeName: string, value: any) => {
+    setFilters(prevFilters => {
+      const newFilters = { ...prevFilters };
+
+      const attributeKey = attributeName.replace(/ /g, '_');
+
+      if ((Array.isArray(value) && value.length === 0) || value === undefined || value === null) {
+        delete newFilters[attributeKey];
+        delete newFilters[`${attributeKey}_min`];
+        delete newFilters[`${attributeKey}_max`];
+      } else {
+        newFilters[attributeKey] = value;
+      }
+      
+      return newFilters;
+    });
+  };
+
+  const handleApplyFilters = () => {
+    const cleanedFilters: Record<string, any> = {};
+    for (const key in filters) {
+      const value = filters[key];
+      if (value !== null && value !== undefined && value !== '' && (!Array.isArray(value) || value.length > 0)) {
+        cleanedFilters[key] = value;
+      }
+    }
+    setActiveFilters(cleanedFilters);
+    setCurrentPage(1); // Reset page to 1 when filters are applied
+    setIsSheetOpen(false); // Close sheet on mobile after applying
+  };
+  
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  
+  const renderListings = () => {
     if (loading) {
       return (
-        <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {[...Array(4)].map((_, index) => (
-            <StaggeredItem key={index}>
-              <Card className="luxury-card">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+          {[...Array(9)].map((_, index) => (
+              <Card key={index} className="luxury-card">
                 <Skeleton className="h-48 w-full rounded-t-xl" />
                 <CardContent className="p-6 space-y-4">
                   <Skeleton className="h-6 w-3/4" />
@@ -78,316 +104,170 @@ const Index = () => {
                   <Skeleton className="h-9 w-full" />
                 </CardContent>
               </Card>
-            </StaggeredItem>
           ))}
-        </StaggeredGrid>
-      )
-    }
-
-    if (error) {
-      return (
-        <div className="text-center text-red-500 bg-red-500/10 p-6 rounded-lg border border-red-500/30">
-          <AlertCircle className="mx-auto h-12 w-12 text-red-500 mb-4" />
-          <h3 className="text-xl font-semibold">A apărut o eroare</h3>
-          <p>Nu am putut încărca anunțurile. Te rugăm să încerci din nou mai târziu.</p>
-        </div>
-      )
-    }
-
-    if (listings.length === 0) {
-      return (
-        <div className="text-center text-muted-foreground bg-card p-6 rounded-lg border border-border">
-          <h3 className="text-xl font-semibold">Nicio mașină găsită</h3>
-          <p>Momentan nu sunt noutăți în stoc. Vă rugăm să reveniți.</p>
         </div>
       );
     }
 
+    if (error) {
+      return (
+        <div className="text-center text-red-500 bg-red-500/10 p-6 rounded-lg border border-red-500/30 col-span-full">
+          <AlertCircle className="mx-auto h-12 w-12 text-red-500 mb-4" />
+          <h3 className="text-xl font-semibold">A apărut o eroare</h3>
+          <p>Nu am putut încărca anunțurile. Te rugăm să încerci din nou mai târziu.</p>
+        </div>
+      );
+    }
+    
+    if (listings.length === 0) {
+      return (
+         <div className="text-center text-muted-foreground bg-card p-6 rounded-lg border border-border col-span-full">
+          <h3 className="text-xl font-semibold">Nicio mașină găsită</h3>
+          <p>Momentan nu sunt anunțuri în stoc care să corespundă filtrelor tale.</p>
+        </div>
+      )
+    }
+
     return (
-      <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
         {listings.map((listing: APIListing) => (
-          <StaggeredItem key={listing.id}>
-            <CarCard listing={listing} />
-          </StaggeredItem>
+            <CarCard key={listing.id} listing={listing} />
         ))}
-      </StaggeredGrid>
-    )
-  }
+      </div>
+    );
+  };
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <motion.div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroImage})` }}
-          initial={{ scale: 1 }}
-          animate={{ scale: 1.1 }}
-          transition={{ duration: 20, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
-        >
-          <div className="absolute inset-0 bg-black/50" />
-        </motion.div>
-        
-        <Container className="relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <Badge className="mb-6 bg-luxury-gold/20 text-luxury-gold border-luxury-gold/30">
-              Dealer Auto de Încredere în Cluj-Napoca
-            </Badge>
-          </motion.div>
-          
-          <motion.h1 
-            className="hero-text mb-6 leading-tight max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Mașini Rulate Verificate.<br />
-            Experiențe Reale.
-          </motion.h1>
-          
-          <motion.p 
-            className="text-xl md:text-2xl text-luxury-silver mb-8 max-w-2xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            Fiecare mașină din parcul nostru este atent selecționată și verificată pentru a-ți oferi siguranța pe care o meriți.
-          </motion.p>
-          
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <Button size="lg" asChild>
-              <Link to="/masini-disponibile">
-                Vezi Mașinile Disponibile
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button variant="outline" size="lg" asChild>
-              <Link to="/contact">
-                Contactează-ne
-              </Link>
-            </Button>
-          </motion.div>
-        </Container>
-      </section>
-
-      {/* Founder's Story Section */}
-      <section className="py-20 bg-luxury-dark">
-        <Container>
-          <AnimatedSection>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* Left Column: Image */}
-              <div className="flex justify-center">
-                <div className="relative w-full max-w-sm">
-                  <div className="absolute -inset-2 rounded-xl bg-gradient-to-br from-luxury-gold to-luxury-gold/50 opacity-20 blur-xl"></div>
-                  <img 
-                    src={laurentiuImage} 
-                    alt="Csibi Laurentiu, Administrator AWD Auto"
-                    className="relative w-full h-auto object-cover rounded-xl shadow-2xl"
-                  />
-                </div>
-              </div>
-
-              {/* Right Column: Content */}
-              <div className="space-y-6">
-                <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground">
-                  Povestea Noastră: <span className="text-luxury-gold">Pasiune și Încredere</span>, de la Om la Om
-                </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  AWD Auto nu este doar un parc auto. Este viziunea lui Csibi Laurentiu, un pasionat de mașini care, acum 2 ani, a decis să transforme modul în care clujenii cumpără o mașină rulată. Totul a pornit de la o idee simplă: transparență totală și respect pentru fiecare client.
-                </p>
-                <blockquote className="border-l-4 border-luxury-gold pl-6 italic text-muted-foreground bg-luxury-darker/50 p-6 rounded-r-lg">
-                  <p className="mb-4">
-                    "Scopul meu a fost să creez un loc unde prietenii și familia mea ar veni cu încredere să cumpere o mașină. După doi ani și zeci de clienți mulțumiți, mă bucur să spun că am reușit să construim exact asta: o comunitate bazată pe onestitate."
-                  </p>
-                  <footer className="text-right not-italic">
-                    <span className="font-semibold text-foreground">- Csibi Laurentiu</span><br />
-                    <span className="text-sm text-luxury-gold">Administrator AWD Auto</span>
-                  </footer>
-                </blockquote>
-              </div>
+      <Container className="py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Filters Sidebar for Desktop */}
+          <aside className="hidden lg:block lg:col-span-1">
+            <div className="luxury-card p-6 sticky top-24">
+               <FilterSidebar 
+                onFilterChange={handleFilterChange}
+                onApplyFilters={handleApplyFilters}
+               />
             </div>
-          </AnimatedSection>
-        </Container>
-      </section>
+          </aside>
 
-      {/* Latest Arrivals */}
-      <section className="py-16 bg-gradient-dark">
-        <Container>
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Noutăți în Parcul Auto
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Vezi cele mai recente vehicule atent selecționate care au intrat în parcul nostru auto.
-            </p>
-          </AnimatedSection>
+          {/* Main Content */}
+          <main className="lg:col-span-3">
+            {/* Header */}
+            <AnimatedSection className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 space-y-4 sm:space-y-0">
+              <motion.h1 
+                className="font-luxury text-3xl font-bold text-foreground bg-gradient-to-r from-luxury-gold to-luxury-silver bg-clip-text text-transparent"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                Mașini Disponibile
+              </motion.h1>
 
-          {renderLatestCars()}
+              <div className="flex items-center gap-4">
+                 {/* Mobile Filter Trigger */}
+                <div className="lg:hidden">
+                    <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+                        <SheetTrigger asChild>
+                            <Button variant="outline" className="flex items-center gap-2">
+                                <Filter className="h-4 w-4" />
+                                <span>Filtrează</span>
+                            </Button>
+                        </SheetTrigger>
+                        <SheetContent side="left" className="p-0">
+                           <FilterSidebar 
+                                onFilterChange={handleFilterChange}
+                                onApplyFilters={handleApplyFilters}
+                                isMobile={true}
+                            />
+                        </SheetContent>
+                    </Sheet>
+                </div>
 
-          <AnimatedSection className="text-center" delay={0.2}>
-            <Button asChild>
-              <Link to="/masini-disponibile">
-                Vezi Toate Mașinile
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </AnimatedSection>
-        </Container>
-      </section>
-      
-      {/* Testimonials Section */}
-      <section className="py-20 bg-background">
-        <Container>
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Ce Spun Clienții Noștri
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Experiențe reale de la clienți care au avut încredere în noi.
-            </p>
-          </AnimatedSection>
-
-          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <StaggeredItem key={index}>
-                 <Card className="luxury-card h-full flex flex-col">
-                  <CardContent className="p-8 flex flex-col flex-1">
-                    <div className="flex mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 text-luxury-gold fill-current" />
-                      ))}
-                    </div>
-                    <blockquote className="italic text-muted-foreground flex-1">
-                      "{testimonial.quote}"
-                    </blockquote>
-                    <footer className="mt-6 text-right not-italic">
-                      <p className="font-semibold text-foreground">{testimonial.author}</p>
-                    </footer>
-                  </CardContent>
-                </Card>
-              </StaggeredItem>
-            ))}
-          </StaggeredGrid>
-        </Container>
-      </section>
-
-      {/* Our Promise Section */}
-      <section className="py-16">
-        <Container>
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Promisiunea Noastră Pentru Tine
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Ne dedicăm să oferim o experiență de cumpărare sigură, transparentă și plăcută.
-            </p>
-          </AnimatedSection>
-
-          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {whyUsFeatures.map((feature, index) => (
-              <StaggeredItem key={index}>
                 <motion.div
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  transition={{ duration: 0.3 }}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  <Card className="luxury-card text-center group h-full">
-                    <CardContent className="p-8">
-                      <motion.div 
-                        className="bg-luxury-gold/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-luxury-gold/20 transition-colors"
-                      >
-                        <feature.icon className="h-8 w-8 text-luxury-gold" />
-                      </motion.div>
-                      <h3 className="font-luxury text-xl font-bold text-foreground mb-4">
-                        {feature.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed text-sm">
-                        {feature.description}
-                      </p>
-                    </CardContent>
-                  </Card>
+                    <Select value={sortOption} onValueChange={setSortOption}>
+                    <SelectTrigger className="w-48">
+                        <SelectValue placeholder="Sortează după" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="newest">Cele mai noi</SelectItem>
+                        <SelectItem value="price_asc">Preț crescător</SelectItem>
+                        <SelectItem value="price_desc">Preț descrescător</SelectItem>
+                        <SelectItem value="mileage_asc">Kilometraj crescător</SelectItem>
+                        <SelectItem value="mileage_desc">Kilometraj descrescător</SelectItem>
+                    </SelectContent>
+                    </Select>
                 </motion.div>
-              </StaggeredItem>
-            ))}
-          </StaggeredGrid>
-        </Container>
-      </section>
+              </div>
+            </AnimatedSection>
 
-      {/* Brand Logos */}
-      <section className="py-16 bg-gradient-dark">
-        <Container>
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Mărci Populare în Stoc
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Avem o selecție variată de la cele mai respectate mărci auto.
-            </p>
-          </AnimatedSection>
+            {/* Car Grid */}
+            {renderListings()}
 
-          <StaggeredGrid className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {carBrands.map((brand, index) => (
-              <StaggeredItem key={index}>
-                <motion.div 
-                  className="luxury-card p-6 text-center group"
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h3 className="font-luxury text-lg font-bold text-luxury-gold group-hover:text-luxury-gold-hover transition-colors">
-                    {brand}
-                  </h3>
-                </motion.div>
-              </StaggeredItem>
-            ))}
-          </StaggeredGrid>
-        </Container>
-      </section>
+            {/* --- PAGINATION SECTION --- */}
+            {pagination && pagination.totalPages > 1 && (
+              <div className="mt-12">
+                <Pagination>
+                  <PaginationContent>
+                    {/* Previous Button */}
+                    <PaginationItem>
+                      <PaginationPrevious
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (currentPage > 1) {
+                            handlePageChange(currentPage - 1);
+                          }
+                        }}
+                        // Disable the button if we are on the first page
+                        className={currentPage === 1 ? 'pointer-events-none opacity-50' : ''}
+                      />
+                    </PaginationItem>
 
-      {/* Call to Action */}
-      <section className="py-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-luxury-gold/10 to-luxury-silver/10" />
-        <Container className="relative z-10">
-          <AnimatedSection className="text-center max-w-3xl mx-auto">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Sunteți Gata să Vă Găsiți Următoarea Mașină?
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Vă invităm la sediul nostru din Cluj-Napoca pentru a vedea mașinile și pentru a discuta cu unul dintre consultanții noștri.
-            </p>
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <Button size="lg" asChild>
-                <Link to="/masini-disponibile">
-                  Explorează Stocul
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button variant="outline" size="lg" asChild>
-                <Link to="/contact">
-                  Programează o Vizită
-                </Link>
-              </Button>
-            </motion.div>
-          </AnimatedSection>
-        </Container>
-      </section>
+                    {/* Page Number Buttons */}
+                    {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map(page => (
+                      <PaginationItem key={page}>
+                        <PaginationLink
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handlePageChange(page);
+                          }}
+                          // Highlight the currently active page
+                          isActive={currentPage === page}
+                        >
+                          {page}
+                        </PaginationLink>
+                      </PaginationItem>
+                    ))}
+
+                    {/* Next Button */}
+                    <PaginationItem>
+                      <PaginationNext
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (currentPage < pagination.totalPages) {
+                            handlePageChange(currentPage + 1);
+                          }
+                        }}
+                        // Disable the button if we are on the last page
+                        className={currentPage === pagination.totalPages ? 'pointer-events-none opacity-50' : ''}
+                      />
+                    </PaginationItem>
+                  </PaginationContent>
+                </Pagination>
+              </div>
+            )}
+          </main>
+        </div>
+      </Container>
     </Layout>
   )
 }
 
 export default Index
-
-    
