@@ -40,14 +40,14 @@ const Header = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="container mx-auto flex h-16 lg:h-20 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto flex h-24 items-center justify-between max-w-screen-2xl px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
           <Link to="/" className="flex items-center space-x-2">
             <img 
               src={awdLogo} 
               alt="AWD Auto" 
-              className="h-10 lg:h-12 w-auto object-contain"
+              className="h-16 lg:h-20 w-auto object-contain"
             />
           </Link>
         </motion.div>
