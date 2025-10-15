@@ -1,6 +1,6 @@
 import Layout from "@/components/layout/Layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Search, ListChecks, Percent, Shield, Clock, HardDrive, Cpu, Check, Calendar, Users, Target, ShieldCheck, Wrench } from "lucide-react"
+import { AlertCircle, Search, ListChecks, Percent, Shield, Clock, HardDrive, Cpu, Check, Calendar, Users, Target, ShieldCheck, Wrench } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import { Separator } from "@/components/ui/separator";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -38,6 +38,7 @@ const BenefitsWarrantyPage = () => {
   const warrantyPlans = [
      {
       title: "DELUXE",
+      isUpgrade: true,
       icon: ShieldCheck,
       color: "text-purple-400",
       bgColor: "bg-purple-900/20",
@@ -50,6 +51,7 @@ const BenefitsWarrantyPage = () => {
     },
     {
       title: "ADVANTAGE",
+      isUpgrade: true,
       icon: HardDrive,
       color: "text-blue-400",
       bgColor: "bg-blue-900/20",
@@ -61,6 +63,7 @@ const BenefitsWarrantyPage = () => {
     },
     {
       title: "COMFORT",
+      isUpgrade: true,
       icon: Cpu,
       color: "text-green-400",
       bgColor: "bg-green-900/20",
@@ -72,10 +75,11 @@ const BenefitsWarrantyPage = () => {
     },
     {
       title: "PLUS",
+      isIncluded: true,
       icon: Shield,
       color: "text-luxury-gold",
       bgColor: "bg-luxury-gold/10",
-      borderColor: "border-luxury-gold/30",
+      borderColor: "border-luxury-gold",
       eligibility: { age: 15, mileage: 300000 },
       coverage: "Asigurare împotriva daunelor mecanice.",
       coveredComponents: ["Motor", "Transmisie manuală", "Sistem de răcire", "Diferențial"],
@@ -160,11 +164,26 @@ const BenefitsWarrantyPage = () => {
               Oferite prin partenerul nostru de încredere <strong className="text-foreground">Defend Insurance</strong>, pentru o experiență fără griji.
             </p>
           </AnimatedSection>
+          
+          <AnimatedSection className="max-w-4xl mx-auto mb-12">
+            <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-6 flex items-center gap-4">
+                <AlertCircle className="h-8 w-8 text-blue-400 flex-shrink-0" />
+                <div>
+                    <h4 className="font-semibold text-foreground">Notă importantă pentru vehicule hibrid</h4>
+                    <p className="text-sm text-muted-foreground">Pentru mașinile de tip PHEV (Plug-in Hybrid) și HEV (Hybrid), pachetele de garanție acoperă și componentele specifice sistemului de propulsie hibrid.</p>
+                </div>
+            </div>
+          </AnimatedSection>
 
           <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {warrantyPlans.map((plan, index) => (
               <StaggeredItem key={index}>
-                <Card className={`luxury-card h-full flex flex-col border-t-4 ${plan.borderColor}`}>
+                <Card className={`relative luxury-card h-full flex flex-col border-t-4 ${plan.borderColor}`}>
+                 {plan.isIncluded && (
+                    <div className="absolute -top-4 right-4 bg-luxury-gold text-black px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                      INCLUS ÎN PREȚ
+                    </div>
+                  )}
                   <CardHeader className="text-center">
                     <div className={`${plan.bgColor} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 border ${plan.borderColor}`}>
                        <plan.icon className={`h-8 w-8 ${plan.color}`} />
@@ -172,6 +191,9 @@ const BenefitsWarrantyPage = () => {
                     <CardTitle className={`font-luxury text-2xl font-bold ${plan.color}`}>
                       Programul {plan.title}
                     </CardTitle>
+                    {plan.isUpgrade && (
+                        <p className="text-sm font-semibold text-muted-foreground">Opțiune de Upgrade</p>
+                    )}
                   </CardHeader>
                   <CardContent className="space-y-6 flex-grow flex flex-col">
                     <div className="space-y-4 text-center">
@@ -260,5 +282,3 @@ const BenefitsWarrantyPage = () => {
 }
 
 export default BenefitsWarrantyPage;
-
-    
