@@ -1,109 +1,39 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useState, useMemo, useEffect } from "react"
 import Layout from "@/components/layout/Layout"
-import CarCard from "@/components/CarCard"
-import { AnimatedSection } from "@/components/ui/animated-section"
-import { Button } from "@/components/ui/luxury-button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Filter } from "lucide-react"
-import useListings, { APIListing } from "@/hooks/useListings"
-import FilterSidebar from "@/components/filters/FilterSidebar"
-import { Skeleton } from "@/components/ui/skeleton"
-import { AlertCircle } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
 import Container from "@/components/ui/Container"
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-  PaginationEllipsis,
-} from "@/components/ui/pagination";
-
+import { AnimatedSection } from "@/components/ui/animated-section"
+import useLatestListings from "@/hooks/useLatestListings"
+import CarCard from "@/components/CarCard"
+import { Skeleton } from "@/components/ui/skeleton"
+import { Card, CardContent } from "@/components/ui/card"
+import { AlertCircle, Shield, Search, Handshake } from "lucide-react"
+import { Button } from "@/components/ui/luxury-button"
+import { Link } from "react-router-dom"
+import laurentiuImage from '@/assets/laurentiu.png';
 
 const Index = () => {
-  const [filters, setFilters] = useState<Record<string, any>>({});
-  const [activeFilters, setActiveFilters] = useState<Record<string, any>>({});
-  const [sortOption, setSortOption] = useState("newest");
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const { listings, loading, error } = useLatestListings();
 
-  useEffect(() => {
-    console.log('%c Starea FILTERS s-a actualizat:', 'color: orange; font-weight: bold;', filters);
-  }, [filters]);
-  
-  const finalFilters = useMemo(() => {
-    const combinedFilters = { ...activeFilters };
-    if (sortOption) {
-      combinedFilters.sortBy = sortOption;
-    }
-    return combinedFilters;
-  }, [activeFilters, sortOption]);
-
-
-  console.log('%c Filtre ACTIVE trimise către hook:', 'color: green; font-weight: bold;', finalFilters);
-  const { listings, pagination, loading, error } = useListings(finalFilters, currentPage);
-  
-  const handleFilterChange = (attributeName: string, value: any) => {
-    setFilters(prevFilters => {
-      const newFilters = { ...prevFilters };
-
-      const attributeKey = attributeName.replace(/ /g, '_');
-
-      if ((Array.isArray(value) && value.length === 0) || value === undefined || value === null) {
-        delete newFilters[attributeKey];
-        delete newFilters[`${attributeKey}_min`];
-        delete newFilters[`${attributeKey}_max`];
-      } else {
-        newFilters[attributeKey] = value;
-      }
-      
-      return newFilters;
-    });
-  };
-
-  const handleApplyFilters = () => {
-    const cleanedFilters: Record<string, any> = {};
-    for (const key in filters) {
-      const value = filters[key];
-      if (value !== null && value !== undefined && value !== '' && (!Array.isArray(value) || value.length > 0)) {
-        cleanedFilters[key] = value;
-      }
-    }
-    setActiveFilters(cleanedFilters);
-    setCurrentPage(1); // Reset page to 1 when filters are applied
-    setIsSheetOpen(false); // Close sheet on mobile after applying
-  };
-  
-  const handlePageChange = (newPage: number) => {
-    setCurrentPage(newPage);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-  
-  const renderListings = () => {
+  const renderLatestListings = () => {
     if (loading) {
       return (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
-          {[...Array(9)].map((_, index) => (
-              <Card key={index} className="luxury-card">
-                <Skeleton className="h-48 w-full rounded-t-xl" />
-                <CardContent className="p-6 space-y-4">
-                  <Skeleton className="h-6 w-3/4" />
-                  <Skeleton className="h-8 w-1/2" />
-                  <div className="grid grid-cols-2 gap-3">
-                    <Skeleton className="h-5 w-full" />
-                    <Skeleton className="h-5 w-full" />
-                    <Skeleton className="h-5 w-full" />
-                    <Skeleton className="h-5 w-full" />
-                  </div>
-                  <Skeleton className="h-9 w-full" />
-                </CardContent>
-              </Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[...Array(4)].map((_, index) => (
+            <Card key={index} className="luxury-card">
+              <Skeleton className="h-48 w-full rounded-t-xl" />
+              <CardContent className="p-6 space-y-4">
+                <Skeleton className="h-6 w-3/4" />
+                <Skeleton className="h-8 w-1/2" />
+                <div className="grid grid-cols-2 gap-3">
+                  <Skeleton className="h-5 w-full" />
+                  <Skeleton className="h-5 w-full" />
+                  <Skeleton className="h-5 w-full" />
+                  <Skeleton className="h-5 w-full" />
+                </div>
+                <Skeleton className="h-9 w-full" />
+              </CardContent>
+            </Card>
           ))}
         </div>
       );
@@ -114,7 +44,7 @@ const Index = () => {
         <div className="text-center text-red-500 bg-red-500/10 p-6 rounded-lg border border-red-500/30 col-span-full">
           <AlertCircle className="mx-auto h-12 w-12 text-red-500 mb-4" />
           <h3 className="text-xl font-semibold">A apărut o eroare</h3>
-          <p>Nu am putut încărca anunțurile. Te rugăm să încerci din nou mai târziu.</p>
+          <p>Nu am putut încărca cele mai noi anunțuri. Te rugăm să încerci din nou mai târziu.</p>
         </div>
       );
     }
@@ -123,151 +53,150 @@ const Index = () => {
       return (
          <div className="text-center text-muted-foreground bg-card p-6 rounded-lg border border-border col-span-full">
           <h3 className="text-xl font-semibold">Nicio mașină găsită</h3>
-          <p>Momentan nu sunt anunțuri în stoc care să corespundă filtrelor tale.</p>
+          <p>Momentan nu sunt anunțuri recente în stoc.</p>
         </div>
       )
     }
 
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
-        {listings.map((listing: APIListing) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {listings.map((listing) => (
             <CarCard key={listing.id} listing={listing} />
         ))}
       </div>
     );
   };
-
+  
   return (
     <Layout>
-      <Container className="py-8">
-        <section className="text-center py-8 md:py-12">
-          <h1 className="text-4xl lg:text-5xl font-bold text-foreground">
-            Găsește Mașina Potrivită în Stocul Nostru Verificat
-          </h1>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Folosește filtrele de mai jos pentru a explora oferta noastră completă de autoturisme rulate.
-          </p>
-        </section>
-
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Filters Sidebar for Desktop */}
-          <aside className="hidden lg:block lg:col-span-1">
-            <div className="luxury-card p-6 sticky top-24">
-               <FilterSidebar 
-                onFilterChange={handleFilterChange}
-                onApplyFilters={handleApplyFilters}
-               />
-            </div>
-          </aside>
-
-          {/* Main Content */}
-          <main className="lg:col-span-3">
-            {/* Header */}
-            <AnimatedSection className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 space-y-4 sm:space-y-0">
-               <div className="flex items-center gap-4">
-                 {/* Mobile Filter Trigger */}
-                <div className="lg:hidden">
-                    <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-                        <SheetTrigger asChild>
-                            <Button variant="outline" className="flex items-center gap-2">
-                                <Filter className="h-4 w-4" />
-                                <span>Filtrează</span>
-                            </Button>
-                        </SheetTrigger>
-                        <SheetContent side="left" className="p-0">
-                           <FilterSidebar 
-                                onFilterChange={handleFilterChange}
-                                onApplyFilters={handleApplyFilters}
-                                isMobile={true}
-                            />
-                        </SheetContent>
-                    </Sheet>
-                </div>
-
-                <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                    <Select value={sortOption} onValueChange={setSortOption}>
-                    <SelectTrigger className="w-48">
-                        <SelectValue placeholder="Sortează după" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="newest">Cele mai noi</SelectItem>
-                        <SelectItem value="price_asc">Preț crescător</SelectItem>
-                        <SelectItem value="price_desc">Preț descrescător</SelectItem>
-                        <SelectItem value="mileage_asc">Kilometraj crescător</SelectItem>
-                        <SelectItem value="mileage_desc">Kilometraj descrescător</SelectItem>
-                    </SelectContent>
-                    </Select>
-                </motion.div>
-              </div>
-            </AnimatedSection>
-
-            {/* Car Grid */}
-            {renderListings()}
-
-            {/* --- PAGINATION SECTION --- */}
-            {pagination && pagination.totalPages > 1 && (
-              <div className="mt-12">
-                <Pagination>
-                  <PaginationContent>
-                    {/* Previous Button */}
-                    <PaginationItem>
-                      <PaginationPrevious
-                        href="#"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (currentPage > 1) {
-                            handlePageChange(currentPage - 1);
-                          }
-                        }}
-                        // Disable the button if we are on the first page
-                        className={currentPage === 1 ? 'pointer-events-none opacity-50' : ''}
-                      />
-                    </PaginationItem>
-
-                    {/* Page Number Buttons */}
-                    {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map(page => (
-                      <PaginationItem key={page}>
-                        <PaginationLink
-                          href="#"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handlePageChange(page);
-                          }}
-                          // Highlight the currently active page
-                          isActive={currentPage === page}
-                        >
-                          {page}
-                        </PaginationLink>
-                      </PaginationItem>
-                    ))}
-
-                    {/* Next Button */}
-                    <PaginationItem>
-                      <PaginationNext
-                        href="#"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (currentPage < pagination.totalPages) {
-                            handlePageChange(currentPage + 1);
-                          }
-                        }}
-                        // Disable the button if we are on the last page
-                        className={currentPage === pagination.totalPages ? 'pointer-events-none opacity-50' : ''}
-                      />
-                    </PaginationItem>
-                  </PaginationContent>
-                </Pagination>
-              </div>
-            )}
-          </main>
+      {/* Hero Section */}
+      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-luxury-darker via-luxury-dark to-luxury-darker">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.08),transparent_60%)]" />
         </div>
-      </Container>
-    </Layout>
-  )
-}
+        
+        <Container className="relative z-10">
+          <AnimatedSection className="max-w-4xl mx-auto text-center">
+            <h1 className="font-luxury text-4xl md:text-6xl font-black bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6 leading-tight">
+              Excelență în Automobile Rulate. Partenerul Tău de Încredere.
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
+              Descoperă o selecție premium de mașini verificate, cu garanție inclusă și istoric transparent. La AWD Auto, pasiunea pentru calitate se întâlnește cu respectul pentru client.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg">
+                <Link to="/masini-disponibile">Vezi Mașinile Disponibile</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link to="/masini-la-comanda">Mașină la Comandă</Link>
+              </Button>
+            </div>
+          </AnimatedSection>
+        </Container>
+      </section>
 
-export default Index
+      {/* Latest Listings Section */}
+      <section className="py-20 bg-background">
+        <Container>
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Ultimele Mașini Adăugate
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Fii primul care descoperă cele mai noi vehicule din parcul nostru. Calitate și transparență garantate.
+            </p>
+          </AnimatedSection>
+          
+          {renderLatestListings()}
+          
+          <AnimatedSection className="text-center mt-12">
+            <Button asChild size="lg">
+              <Link to="/masini-disponibile">Vezi Tot Stocul</Link>
+            </Button>
+          </AnimatedSection>
+        </Container>
+      </section>
+
+       {/* Our Promise Section */}
+      <section className="py-20 bg-luxury-darker">
+        <Container>
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Promisiunea Noastră
+            </h2>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <Card className="luxury-card h-full">
+                <CardContent className="p-8 text-center">
+                  <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Search className="h-10 w-10 text-luxury-gold" />
+                  </div>
+                  <h3 className="font-luxury text-xl font-bold text-foreground mb-4">
+                    Transparență
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Oferim istoric verificat și informații complete pentru fiecare mașină. 
+                    Credem că un client informat este un client mulțumit.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="luxury-card h-full">
+                <CardContent className="p-8 text-center">
+                  <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Shield className="h-10 w-10 text-luxury-gold" />
+                  </div>
+                  <h3 className="font-luxury text-xl font-bold text-foreground mb-4">
+                    Calitate Garantată
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Fiecare vehicul este supus unei inspecții riguroase înainte de a fi listat. 
+                    Standardele noastre sunt ridicate pentru că respectăm investiția dumneavoastră.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="luxury-card h-full">
+                <CardContent className="p-8 text-center">
+                  <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Handshake className="h-10 w-10 text-luxury-gold" />
+                  </div>
+                  <h3 className="font-luxury text-xl font-bold text-foreground mb-4">
+                    Respect pentru Client
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Construim relații pe termen lung bazate pe încredere și consultanță onestă. 
+                    Succesul nostru se măsoară prin satisfacția clienților noștri.
+                  </p>
+                </CardContent>
+              </Card>
+          </div>
+        </Container>
+      </section>
+
+      {/* Founder's Story Section */}
+      <section className="py-20 bg-background">
+        <Container>
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <AnimatedSection className="flex justify-center">
+                    <img src={laurentiuImage} alt="Csibi Laurentiu, Fondator AWD Auto" className="rounded-xl shadow-lg w-full max-w-md object-cover"/>
+                </AnimatedSection>
+                <AnimatedSection delay={0.2} className="space-y-6">
+                    <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground">Povestea Noastră</h2>
+                    <p className="text-muted-foreground leading-relaxed">Motorul și sufletul acestei afaceri de familie este <strong>Csibi Laurentiu</strong>, omul care demonstrează că pasiunea, onestitatea și responsabilitatea față de clienți sunt valorile care ne propulsează către succes.</p>
+                     <blockquote className="border-l-4 border-luxury-gold pl-6 py-2 italic text-foreground/80">
+                        "Fiecare mașină are o poveste și fiecare client are un vis. Misiunea mea este să le aduc împreună."
+                    </blockquote>
+                    <Button asChild>
+                        <Link to="/despre-noi">Află mai multe despre noi</Link>
+                    </Button>
+                </AnimatedSection>
+            </div>
+        </Container>
+      </section>
+    </Layout>
+  );
+};
+
+export default Index;

@@ -20,7 +20,8 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path
 
   const navigation = [
-    { name: "Mașini Disponibile", href: "/" },
+    { name: "Acasă", href: "/" },
+    { name: "Mașini Disponibile", href: "/masini-disponibile" },
     { name: "Mașini la Comandă", href: "/masini-la-comanda" },
     { name: "Finanțare", href: "/finantare" },
     { name: "Beneficii & Garanție", href: "/beneficii-si-garantie" },

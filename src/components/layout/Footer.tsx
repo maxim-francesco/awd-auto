@@ -34,6 +34,9 @@ const Footer = () => {
             <h3 className="font-luxury font-semibold text-luxury-gold">Link-uri Utile</h3>
             <nav className="flex flex-col space-y-2">
               <Link to="/" className="text-muted-foreground hover:text-luxury-gold transition-colors text-sm">
+                Acasă
+              </Link>
+              <Link to="/masini-disponibile" className="text-muted-foreground hover:text-luxury-gold transition-colors text-sm">
                 Mașini Disponibile
               </Link>
               <Link to="/masini-la-comanda" className="text-muted-foreground hover:text-luxury-gold transition-colors text-sm">
