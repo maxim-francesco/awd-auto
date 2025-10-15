@@ -1,6 +1,6 @@
 import Layout from "@/components/layout/Layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Search, ListChecks, Percent, Shield, Clock, HardDrive, Cpu, Check, Calendar, Users, Target } from "lucide-react"
+import { Search, ListChecks, Percent, Shield, Clock, HardDrive, Cpu, Check, Calendar, Users, Target, ShieldCheck } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import { Separator } from "@/components/ui/separator";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -31,6 +31,18 @@ const BenefitsWarrantyPage = () => {
   ]
 
   const warrantyPlans = [
+     {
+      title: "DELUXE",
+      icon: ShieldCheck,
+      color: "text-purple-400",
+      bgColor: "bg-purple-900/20",
+      borderColor: "border-purple-500/30",
+      eligibility: { age: 6, mileage: 160000 },
+      coverage: "Asigurare împotriva daunelor mecanice, electrice și electronice.",
+      coveredComponents: ["Acoperire completă, similară cu garanția producătorului"],
+      period: "12, 24, sau 36 de luni",
+      claimLimit: "Până la prețul de achiziție"
+    },
     {
       title: "ADVANTAGE",
       icon: HardDrive,
@@ -144,7 +156,7 @@ const BenefitsWarrantyPage = () => {
             </p>
           </AnimatedSection>
 
-          <StaggeredGrid className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {warrantyPlans.map((plan, index) => (
               <StaggeredItem key={index}>
                 <Card className={`luxury-card h-full flex flex-col border-t-4 ${plan.borderColor}`}>
@@ -176,13 +188,20 @@ const BenefitsWarrantyPage = () => {
                           <p className="text-xs font-semibold text-muted-foreground uppercase">Acoperire</p>
                           <p className="text-foreground mt-1">{plan.coverage}</p>
                       </div>
+                       
+                       {plan.claimLimit && (
+                        <div className="bg-card p-4 rounded-lg">
+                          <p className="text-xs font-semibold text-muted-foreground uppercase">Limită de îndeplinire</p>
+                          <p className="text-foreground mt-1">{plan.claimLimit}</p>
+                      </div>
+                      )}
                     </div>
                     
                     <Separator />
                     
                     <div className="space-y-3">
                         <h4 className="font-semibold text-foreground text-center">Exemple de componente acoperite</h4>
-                        <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
+                        <ul className={`grid ${plan.title === 'DELUXE' ? 'grid-cols-1' : 'grid-cols-2'} gap-x-4 gap-y-2`}>
                             {plan.coveredComponents.map((comp, i) => (
                                 <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
                                     <Check className="h-4 w-4 text-green-500" />
