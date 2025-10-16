@@ -49,10 +49,10 @@ const Index = () => {
       
         <Container className="relative z-10">
           <AnimatedSection className="max-w-4xl mx-auto text-center">
-            <h1 className="font-luxury text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
+            <h1 className="font-luxury text-4xl md:text-6xl font-black leading-tight bg-gradient-to-r from-primary to-white text-transparent bg-clip-text drop-shadow-md mb-6">
               AWD Auto - Partenerul tău de încredere pentru achiziționarea mașinii perfecte.
             </h1>
-            <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto mb-8">
+            <p className="text-lg md:text-xl text-gray-100 leading-relaxed max-w-2xl mx-auto mb-8">
               Calitate, transparență și servicii premium în Cluj-Napoca.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
