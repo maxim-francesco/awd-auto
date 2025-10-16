@@ -15,7 +15,7 @@ const BenefitsWarrantyPage = () => {
     },
     {
       icon: Wrench,
-      title: "Revizie Înainte de Livrare",
+      title: "Revizie",
       description: "Pentru a ne asigura că pleci la drum în siguranță, efectuăm o revizie completă înainte de predarea mașinii, ce include schimbul de ulei și filtre motor."
     },
     {
@@ -30,7 +30,7 @@ const BenefitsWarrantyPage = () => {
     },
      {
       icon: Shield,
-      title: "Garanție Standard Inclusă",
+      title: "Garanție Inclusă",
       description: "Condu fără griji din prima zi. Fiecare mașină vândută de noi beneficiază de pachetul de garanție de bază PLUS, oferit prin partenerul nostru Defend Insurance."
     }
   ]

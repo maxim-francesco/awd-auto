@@ -2,17 +2,40 @@
 
 import Layout from "@/components/layout/Layout"
 import Container from "@/components/ui/Container"
-import { AnimatedSection } from "@/components/ui/animated-section"
+import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import { Button } from "@/components/ui/luxury-button"
 import { Link } from "react-router-dom"
 import useLatestListings from "@/hooks/useLatestListings"
 import CarCard from "@/components/CarCard"
 import { Skeleton } from "@/components/ui/skeleton"
-import { AlertCircle } from "lucide-react"
+import { AlertCircle, Shield, Wrench, Search, Handshake } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
 
 
 const Index = () => {
   const { listings, loading, error } = useLatestListings();
+  const benefits = [
+    {
+      icon: Search,
+      title: "Istoric Verificat",
+      description: "Fiecare mașină din parcul nostru vine cu un istoric de service transparent. Cumpără cu încredere, știind exact trecutul mașinii tale."
+    },
+    {
+      icon: Wrench,
+      title: "Revizie",
+      description: "Pentru a ne asigura că pleci la drum în siguranță, efectuăm o revizie completă înainte de predarea mașinii, ce include schimbul de ulei și filtre motor."
+    },
+    {
+      icon: Shield,
+      title: "Garanție Inclusă",
+      description: "Condu fără griji din prima zi. Fiecare mașină vândută de noi beneficiază de pachetul de garanție de bază PLUS, oferit prin partenerul nostru Defend Insurance."
+    },
+    {
+      icon: Handshake,
+      title: "Finanțare Personalizată",
+      description: "Oferim soluții de finanțare rapide și flexibile prin partenerii noștri de încredere, adaptate perfect bugetului și nevoilor tale."
+    }
+  ]
   
   return (
     <Layout>
@@ -74,6 +97,40 @@ const Index = () => {
               <Link to="/masini-disponibile">Vezi Tot Stocul</Link>
             </Button>
           </AnimatedSection>
+        </Container>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20 bg-background">
+        <Container>
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Promisiunea Noastră: Pasiune și Încredere
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              La AWD Auto, fiecare mașină este mai mult decât un produs. Este o promisiune a calității, siguranței și transparenței pe care o oferim fiecărui client.
+            </p>
+          </AnimatedSection>
+
+          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {benefits.map((benefit, index) => (
+              <StaggeredItem key={index}>
+                <Card className="luxury-card h-full text-center group">
+                  <CardContent className="p-8">
+                    <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:bg-luxury-gold/20 group-hover:scale-110">
+                      <benefit.icon className="h-10 w-10 text-luxury-gold" />
+                    </div>
+                    <h3 className="font-luxury text-xl font-bold text-foreground mb-4">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm">
+                      {benefit.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </StaggeredItem>
+            ))}
+          </StaggeredGrid>
         </Container>
       </section>
     </Layout>
