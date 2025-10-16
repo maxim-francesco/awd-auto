@@ -32,92 +32,74 @@ const Finantare = () => {
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-luxury-darker via-luxury-dark to-luxury-darker">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(212,175,55,0.1),transparent_50%)]" />
-        </div>
-        
-        <Container className="relative z-10 text-center">
-          <AnimatedSection>
-            <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6">
-              Soluții de Finanțare Auto<br />Flexibile și Rapide
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              Obține aprobarea pentru mașina visurilor tale cu ajutorul partenerilor noștri de încredere. Proces simplu, transparent și adaptat nevoilor tale.
-            </p>
-          </AnimatedSection>
+      {/* Unified Hero and Partners Section */}
+      <section className="bg-background py-16 md:py-20">
+        <Container>
+            {/* 1. New Centered Heading Block */}
+            <div className="text-center mb-16">
+                <h1 className="text-4xl lg:text-5xl font-bold text-foreground font-luxury">
+                    Soluții de Finanțare Adaptate Nevoilor Tale
+                </h1>
+                <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
+                    Obține aprobarea pentru mașina visurilor tale cu ajutorul partenerilor noștri de încredere. Oferim atât opțiuni de credit auto, cât și de leasing.
+                </p>
+            </div>
+
+            {/* 2. Existing "Credit Auto" Sub-section */}
+            <div className="mb-16">
+                <h3 className="text-2xl font-semibold text-center mb-8 text-luxury-gold">Credit Auto</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-start text-center max-w-4xl mx-auto">
+                    {/* 1. UniCredit Bank */}
+                    <div className="flex flex-col items-center justify-center gap-4">
+                        <img src={unicreditLogo} alt="UniCredit Bank Logo" className="h-16 w-auto object-contain" />
+                        <p className="font-semibold text-muted-foreground">UniCredit Bank</p>
+                    </div>
+                    {/* 2. TBI Bank */}
+                    <div className="flex flex-col items-center justify-center gap-4">
+                        <img src={tbiLogo} alt="TBI Bank Logo" className="h-16 w-auto object-contain" />
+                        <p className="font-semibold text-muted-foreground">TBI Bank</p>
+                    </div>
+                    {/* 3. BT Direct */}
+                    <div className="flex flex-col items-center justify-center gap-4">
+                        <img src={btDirectLogo} alt="BT Direct Logo" className="h-16 w-auto object-contain" />
+                        <p className="font-semibold text-muted-foreground">BT Direct</p>
+                    </div>
+                    {/* 4. Mogo */}
+                    <div className="flex flex-col items-center justify-center gap-4">
+                        <img src={mogoLogo} alt="Mogo Logo" className="h-16 w-auto object-contain" />
+                        <p className="font-semibold text-muted-foreground">Mogo</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* 3. Existing "Leasing Auto" Sub-section */}
+             <div className="mb-12">
+                <h3 className="text-2xl font-semibold text-center mb-8 text-luxury-gold">Leasing Auto</h3>
+                <div className="flex justify-center">
+                    {/* Porsche Leasing Card */}
+                    <div className="flex flex-col items-center justify-center gap-4 p-6 border border-border rounded-lg bg-card w-full max-w-xs">
+                        <img src={porscheLogo} alt="Porsche Leasing Logo" className="h-16 w-auto object-contain" />
+                        <p className="font-semibold text-muted-foreground">Porsche Leasing</p>
+                    </div>
+                </div>
+            </div>
+             <Card className="luxury-card mt-12 max-w-4xl mx-auto bg-luxury-gold/5 border-luxury-gold/20">
+              <div className="grid md:grid-cols-3 items-center">
+                <div className="md:col-span-1 flex items-center justify-center p-8 bg-luxury-darker/50 rounded-l-lg">
+                  <img src={mogoLogo} alt="Mogo Logo" className="w-40 h-auto" />
+                </div>
+                <div className="md:col-span-2 p-8">
+                  <CardHeader className="p-0 mb-4">
+                      <CardTitle className="font-luxury text-xl text-luxury-gold">Finanțare și cu Istoric Negativ?</CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-0">
+                      <p className="text-muted-foreground">Prin parteneriatul nostru strategic cu <strong className="text-foreground">Mogo</strong>, oferim soluții de finanțare chiar și persoanelor cu istoric negativ în biroul de credit. Înțelegem că fiecare situație este unică, de aceea te încurajăm să ne contactezi pentru o evaluare personalizată și confidențială.</p>
+                  </CardContent>
+                </div>
+              </div>
+            </Card>
         </Container>
       </section>
-      
-      {/* Financial Partners Section */}
-       <AnimatedSection className="py-20 bg-background">
-        <Container>
-          <div className="text-center mb-12">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Partenerii Noștri Financiari
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Colaborăm cu lideri de piață pentru a-ți oferi cele mai avantajoase condiții de creditare și leasing.
-            </p>
-          </div>
-          
-          {/* --- Credit Auto Sub-section --- */}
-          <div className="mt-8">
-            <h3 className="font-luxury text-2xl font-semibold text-center mb-6 text-luxury-gold">Credit Auto</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-start text-center max-w-4xl mx-auto py-8">
-               {/* 1. UniCredit Bank */}
-              <div className="flex flex-col items-center justify-center gap-4">
-                <img src={unicreditLogo} alt="UniCredit Bank Logo" className="h-16 w-auto object-contain" />
-                <p className="font-semibold text-muted-foreground">UniCredit Bank</p>
-              </div>
-              {/* 2. TBI Bank */}
-              <div className="flex flex-col items-center justify-center gap-4">
-                <img src={tbiLogo} alt="TBI Bank Logo" className="h-16 w-auto object-contain" />
-                <p className="font-semibold text-muted-foreground">TBI Bank</p>
-              </div>
-              {/* 3. BT Direct */}
-              <div className="flex flex-col items-center justify-center gap-4">
-                <img src={btDirectLogo} alt="BT Direct Logo" className="h-16 w-auto object-contain" />
-                <p className="font-semibold text-muted-foreground">BT Direct</p>
-              </div>
-              {/* 4. Mogo */}
-              <div className="flex flex-col items-center justify-center gap-4">
-                <img src={mogoLogo} alt="Mogo Logo" className="h-16 w-auto object-contain" />
-                <p className="font-semibold text-muted-foreground">Mogo</p>
-              </div>
-            </div>
-          </div>
-          
-          {/* --- Leasing Auto Sub-section --- */}
-          <div className="mt-12">
-            <h3 className="font-luxury text-2xl font-semibold text-center mb-6 text-luxury-gold">Leasing Auto</h3>
-            <div className="flex justify-center">
-              {/* Porsche Leasing Placeholder Card */}
-              <div className="flex flex-col items-center justify-center gap-4 p-6 border border-border rounded-lg bg-card w-full max-w-xs">
-                 <img src={porscheLogo} alt="Porsche Leasing Logo" className="h-16 w-auto object-contain" />
-                 <p className="font-semibold text-muted-foreground">Porsche Leasing</p>
-              </div>
-            </div>
-          </div>
-
-           <Card className="luxury-card mt-12 max-w-4xl mx-auto bg-luxury-gold/5 border-luxury-gold/20">
-            <div className="grid md:grid-cols-3 items-center">
-              <div className="md:col-span-1 flex items-center justify-center p-8 bg-luxury-darker/50 rounded-l-lg">
-                <img src={mogoLogo} alt="Mogo Logo" className="w-40 h-auto" />
-              </div>
-              <div className="md:col-span-2 p-8">
-                <CardHeader className="p-0 mb-4">
-                    <CardTitle className="font-luxury text-xl text-luxury-gold">Finanțare și cu Istoric Negativ?</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0">
-                    <p className="text-muted-foreground">Prin parteneriatul nostru strategic cu <strong className="text-foreground">Mogo</strong>, oferim soluții de finanțare chiar și persoanelor cu istoric negativ în biroul de credit. Înțelegem că fiecare situație este unică, de aceea te încurajăm să ne contactezi pentru o evaluare personalizată și confidențială.</p>
-                </CardContent>
-              </div>
-            </div>
-          </Card>
-        </Container>
-      </AnimatedSection>
 
       {/* Financing Calculator */}
       <AnimatedSection className="py-20 bg-luxury-darker">
