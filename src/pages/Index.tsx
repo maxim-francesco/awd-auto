@@ -48,14 +48,19 @@ const Index = () => {
         <Container className="relative z-10">
           <AnimatedSection className="max-w-4xl mx-auto text-center">
             <h1 className="font-luxury text-4xl md:text-6xl font-black bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6 leading-tight">
-              Mașini Alese Personal, Pentru Liniștea Ta.
+              AWD Auto - Partenerul tău de încredere pentru achiziționarea mașinii perfecte.
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
-              Descoperă o selecție de autoturisme rulate, verificate cu atenție de către echipa noastră, gata să îți ofere o experiență de condus excepțională.
+              Calitate, transparență și servicii premium în Cluj-Napoca.
             </p>
-            <Button asChild size="lg">
-              <Link to="/masini-disponibile">Vezi Toate Mașinile Disponibile</Link>
-            </Button>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+               <Button asChild size="lg">
+                <Link to="/masini-disponibile">Vezi Toate Mașinile Disponibile</Link>
+               </Button>
+               <Button asChild variant="outline" size="lg">
+                <a href="tel:0752228593">Suna-ne</a>
+              </Button>
+            </div>
           </AnimatedSection>
         </Container>
       </section>
