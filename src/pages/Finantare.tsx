@@ -12,7 +12,7 @@ import Container from "@/components/ui/Container"
 
 // Import logos
 import btDirectLogo from '@/assets/logos/btlogo.png';
-import mogoLogo from '@/assets/logos/mogo.png';
+import mogoLogo from '@/assetslogos/mogo.png';
 import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
 import unicreditLogo from '@/assets/logos/UniCredit-Bank-Emblem.png';
 
@@ -50,7 +50,7 @@ const Finantare = () => {
       </section>
       
       {/* Financial Partners Section */}
-      <AnimatedSection className="py-20 bg-background">
+       <AnimatedSection className="py-20 bg-background">
         <Container>
           <div className="text-center mb-12">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -60,30 +60,45 @@ const Finantare = () => {
               Colaborăm cu lideri de piață pentru a-ți oferi cele mai avantajoase condiții de creditare și leasing.
             </p>
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-start text-center max-w-4xl mx-auto py-8">
-            {/* --- BT Direct --- */}
-            <div className="flex flex-col items-center justify-center gap-4">
-              <img src={btDirectLogo} alt="BT Direct Logo" className="h-16 w-auto object-contain" />
-              <p className="font-semibold text-muted-foreground">BT Direct</p>
+          
+          {/* --- Credit Auto Sub-section --- */}
+          <div className="mt-8">
+            <h3 className="font-luxury text-2xl font-semibold text-center mb-6 text-luxury-gold">Credit Auto</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-start text-center max-w-4xl mx-auto py-8">
+               {/* 1. UniCredit Bank */}
+              <div className="flex flex-col items-center justify-center gap-4">
+                <img src={unicreditLogo} alt="UniCredit Bank Logo" className="h-16 w-auto object-contain" />
+                <p className="font-semibold text-muted-foreground">UniCredit Bank</p>
+              </div>
+              {/* 2. TBI Bank */}
+              <div className="flex flex-col items-center justify-center gap-4">
+                <img src={tbiLogo} alt="TBI Bank Logo" className="h-16 w-auto object-contain" />
+                <p className="font-semibold text-muted-foreground">TBI Bank</p>
+              </div>
+              {/* 3. BT Direct */}
+              <div className="flex flex-col items-center justify-center gap-4">
+                <img src={btDirectLogo} alt="BT Direct Logo" className="h-16 w-auto object-contain" />
+                <p className="font-semibold text-muted-foreground">BT Direct</p>
+              </div>
+              {/* 4. Mogo */}
+              <div className="flex flex-col items-center justify-center gap-4">
+                <img src={mogoLogo} alt="Mogo Logo" className="h-16 w-auto object-contain" />
+                <p className="font-semibold text-muted-foreground">Mogo</p>
+              </div>
             </div>
-
-            {/* --- Mogo --- */}
-            <div className="flex flex-col items-center justify-center gap-4">
-              <img src={mogoLogo} alt="Mogo Logo" className="h-16 w-auto object-contain" />
-              <p className="font-semibold text-muted-foreground">Mogo</p>
-            </div>
-
-            {/* --- TBI Bank --- */}
-            <div className="flex flex-col items-center justify-center gap-4">
-              <img src={tbiLogo} alt="TBI Bank Logo" className="h-16 w-auto object-contain" />
-              <p className="font-semibold text-muted-foreground">TBI Bank</p>
-            </div>
-
-            {/* --- UniCredit Bank --- */}
-            <div className="flex flex-col items-center justify-center gap-4">
-              <img src={unicreditLogo} alt="UniCredit Bank Logo" className="h-16 w-auto object-contain" />
-              <p className="font-semibold text-muted-foreground">UniCredit Bank</p>
+          </div>
+          
+          {/* --- Leasing Auto Sub-section --- */}
+          <div className="mt-12">
+            <h3 className="font-luxury text-2xl font-semibold text-center mb-6 text-luxury-gold">Leasing Auto</h3>
+            <div className="flex justify-center">
+              {/* Porsche Leasing Placeholder Card */}
+              <div className="flex flex-col items-center justify-center gap-4 p-6 border border-border rounded-lg bg-card w-full max-w-xs">
+                 <div className="h-16 w-auto flex items-center justify-center">
+                    <p className="text-2xl font-bold text-muted-foreground/50">LOGO</p>
+                 </div>
+                 <p className="font-semibold text-muted-foreground">Porsche Leasing</p>
+              </div>
             </div>
           </div>
 
