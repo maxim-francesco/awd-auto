@@ -12,7 +12,7 @@ import Container from "@/components/ui/Container"
 
 // Import logos
 import btDirectLogo from '@/assets/logos/btlogo.png';
-import mogoLogo from '@/assetslogos/mogo.png';
+import mogoLogo from '@/assets/logos/mogo.png';
 import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
 import unicreditLogo from '@/assets/logos/UniCredit-Bank-Emblem.png';
 
