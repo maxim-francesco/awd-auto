@@ -15,6 +15,7 @@ import btDirectLogo from '@/assets/logos/btlogo.png';
 import mogoLogo from '@/assets/logos/mogo.png';
 import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
 import unicreditLogo from '@/assets/logos/UniCredit-Bank-Emblem.png';
+import porscheLogo from '@/assets/logos/porsche.png';
 
 
 const Finantare = () => {
@@ -94,9 +95,7 @@ const Finantare = () => {
             <div className="flex justify-center">
               {/* Porsche Leasing Placeholder Card */}
               <div className="flex flex-col items-center justify-center gap-4 p-6 border border-border rounded-lg bg-card w-full max-w-xs">
-                 <div className="h-16 w-auto flex items-center justify-center">
-                    <p className="text-2xl font-bold text-muted-foreground/50">LOGO</p>
-                 </div>
+                 <img src={porscheLogo} alt="Porsche Leasing Logo" className="h-16 w-auto object-contain" />
                  <p className="font-semibold text-muted-foreground">Porsche Leasing</p>
               </div>
             </div>
