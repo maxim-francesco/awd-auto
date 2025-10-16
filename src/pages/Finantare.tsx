@@ -35,8 +35,8 @@ const Finantare = () => {
       {/* Unified Hero and Partners Section */}
       <section className="bg-background py-16 md:py-20">
         <Container>
-            {/* 1. New Centered Heading Block */}
-            <div className="text-center mb-16">
+            {/* Main Title Block */}
+            <div className="text-center mb-12">
                 <h1 className="text-4xl lg:text-5xl font-bold text-foreground font-luxury">
                     Soluții de Finanțare Adaptate Nevoilor Tale
                 </h1>
@@ -45,45 +45,50 @@ const Finantare = () => {
                 </p>
             </div>
 
-            {/* 2. Existing "Credit Auto" Sub-section */}
-            <div className="mb-16">
-                <h3 className="text-2xl font-semibold text-center mb-8 text-luxury-gold">Credit Auto</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-start text-center max-w-4xl mx-auto">
-                    {/* 1. UniCredit Bank */}
-                    <div className="flex flex-col items-center justify-center gap-4">
-                        <img src={unicreditLogo} alt="UniCredit Bank Logo" className="h-16 w-auto object-contain" />
-                        <p className="font-semibold text-muted-foreground">UniCredit Bank</p>
+            {/* --- NEW TWO-COLUMN LAYOUT --- */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+                {/* --- Column 1: Credit Auto --- */}
+                <div className="space-y-6">
+                    <h3 className="text-2xl font-semibold text-center text-luxury-gold">Credit Auto</h3>
+                    <p className="text-center text-muted-foreground text-sm">
+                        Soluții clasice de finanțare, ideale pentru achiziția directă a vehiculului.
+                    </p>
+                    <div className="grid grid-cols-2 gap-8 pt-4">
+                        <div className="flex flex-col items-center justify-center gap-4">
+                            <img src={unicreditLogo} alt="UniCredit Bank Logo" className="h-16 w-auto object-contain" />
+                            <p className="font-semibold text-muted-foreground">UniCredit Bank</p>
+                        </div>
+                        <div className="flex flex-col items-center justify-center gap-4">
+                            <img src={tbiLogo} alt="TBI Bank Logo" className="h-16 w-auto object-contain" />
+                            <p className="font-semibold text-muted-foreground">TBI Bank</p>
+                        </div>
+                        <div className="flex flex-col items-center justify-center gap-4">
+                            <img src={btDirectLogo} alt="BT Direct Logo" className="h-16 w-auto object-contain" />
+                            <p className="font-semibold text-muted-foreground">BT Direct</p>
+                        </div>
+                        <div className="flex flex-col items-center justify-center gap-4">
+                            <img src={mogoLogo} alt="Mogo Logo" className="h-16 w-auto object-contain" />
+                            <p className="font-semibold text-muted-foreground">Mogo</p>
+                        </div>
                     </div>
-                    {/* 2. TBI Bank */}
-                    <div className="flex flex-col items-center justify-center gap-4">
-                        <img src={tbiLogo} alt="TBI Bank Logo" className="h-16 w-auto object-contain" />
-                        <p className="font-semibold text-muted-foreground">TBI Bank</p>
-                    </div>
-                    {/* 3. BT Direct */}
-                    <div className="flex flex-col items-center justify-center gap-4">
-                        <img src={btDirectLogo} alt="BT Direct Logo" className="h-16 w-auto object-contain" />
-                        <p className="font-semibold text-muted-foreground">BT Direct</p>
-                    </div>
-                    {/* 4. Mogo */}
-                    <div className="flex flex-col items-center justify-center gap-4">
-                        <img src={mogoLogo} alt="Mogo Logo" className="h-16 w-auto object-contain" />
-                        <p className="font-semibold text-muted-foreground">Mogo</p>
+                </div>
+
+                {/* --- Column 2: Leasing Auto --- */}
+                <div className="space-y-6">
+                    <h3 className="text-2xl font-semibold text-center text-luxury-gold">Leasing Auto</h3>
+                    <p className="text-center text-muted-foreground text-sm">
+                        Opțiuni flexibile de leasing, potrivite atât pentru persoane fizice, cât și juridice.
+                    </p>
+                    <div className="pt-4 flex justify-center">
+                        <div className="flex flex-col items-center justify-center gap-4 p-6 border border-border rounded-lg bg-card w-full max-w-xs">
+                            <img src={porscheLogo} alt="Porsche Leasing Logo" className="h-16 w-auto object-contain" />
+                            <p className="font-semibold text-muted-foreground">Porsche Leasing</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* 3. Existing "Leasing Auto" Sub-section */}
-             <div className="mb-12">
-                <h3 className="text-2xl font-semibold text-center mb-8 text-luxury-gold">Leasing Auto</h3>
-                <div className="flex justify-center">
-                    {/* Porsche Leasing Card */}
-                    <div className="flex flex-col items-center justify-center gap-4 p-6 border border-border rounded-lg bg-card w-full max-w-xs">
-                        <img src={porscheLogo} alt="Porsche Leasing Logo" className="h-16 w-auto object-contain" />
-                        <p className="font-semibold text-muted-foreground">Porsche Leasing</p>
-                    </div>
-                </div>
-            </div>
-             <Card className="luxury-card mt-12 max-w-4xl mx-auto bg-luxury-gold/5 border-luxury-gold/20">
+            <Card className="luxury-card mt-16 max-w-4xl mx-auto bg-luxury-gold/5 border-luxury-gold/20">
               <div className="grid md:grid-cols-3 items-center">
                 <div className="md:col-span-1 flex items-center justify-center p-8 bg-luxury-darker/50 rounded-l-lg">
                   <img src={mogoLogo} alt="Mogo Logo" className="w-40 h-auto" />
