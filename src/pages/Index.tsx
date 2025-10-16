@@ -10,6 +10,7 @@ import CarCard from "@/components/CarCard"
 import { Skeleton } from "@/components/ui/skeleton"
 import { AlertCircle, Shield, Wrench, Search, Handshake } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import heroBg from '@/assets/hero-bg.jpg';
 
 
 const Index = () => {
@@ -40,17 +41,18 @@ const Index = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-luxury-darker via-luxury-dark to-luxury-darker">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.08),transparent_60%)]" />
-        </div>
-        
+      <section 
+        className="relative bg-cover bg-center py-24 md:py-32"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
+        <div className="absolute inset-0 bg-black/60"></div> 
+      
         <Container className="relative z-10">
           <AnimatedSection className="max-w-4xl mx-auto text-center">
-            <h1 className="font-luxury text-4xl md:text-6xl font-black bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6 leading-tight">
+            <h1 className="font-luxury text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
               AWD Auto - Partenerul tău de încredere pentru achiziționarea mașinii perfecte.
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
+            <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto mb-8">
               Calitate, transparență și servicii premium în Cluj-Napoca.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
