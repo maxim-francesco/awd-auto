@@ -45,10 +45,10 @@ const Index = () => {
         <Container className="relative z-10">
           <AnimatedSection className="max-w-4xl mx-auto text-center">
             <h1 className="font-luxury text-4xl md:text-6xl font-black bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6 leading-tight">
-              Găsește Mașina Perfectă. Cumpără cu Încredere.
+              Mașini Alese Personal, Pentru Liniștea Ta.
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
-              De la consultanță transparentă la garanție inclusă, suntem aici pentru a face procesul de achiziție simplu, sigur și plăcut.
+              Descoperă o selecție de autoturisme rulate, verificate cu atenție de către echipa noastră, gata să îți ofere o experiență de condus excepțională.
             </p>
             <Button asChild size="lg">
               <Link to="/masini-disponibile">Vezi Toate Mașinile Disponibile</Link>
