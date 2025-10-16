@@ -164,16 +164,6 @@ const BenefitsWarrantyPage = () => {
               Oferite prin partenerul nostru de încredere <strong className="text-foreground">Defend Insurance</strong>, pentru o experiență fără griji.
             </p>
           </AnimatedSection>
-          
-          <AnimatedSection className="max-w-4xl mx-auto mb-12">
-            <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-6 flex items-center gap-4">
-                <AlertCircle className="h-8 w-8 text-blue-400 flex-shrink-0" />
-                <div>
-                    <h4 className="font-semibold text-foreground">Notă importantă pentru vehicule hibrid</h4>
-                    <p className="text-sm text-muted-foreground">Pentru mașinile de tip PHEV (Plug-in Hybrid) și HEV (Hybrid), pachetele de garanție acoperă și componentele specifice sistemului de propulsie hibrid.</p>
-                </div>
-            </div>
-          </AnimatedSection>
 
           <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {warrantyPlans.map((plan, index) => (
@@ -251,6 +241,17 @@ const BenefitsWarrantyPage = () => {
               </StaggeredItem>
             ))}
           </StaggeredGrid>
+          
+          <AnimatedSection className="max-w-4xl mx-auto mt-12">
+            <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-6 flex items-center gap-4">
+                <AlertCircle className="h-8 w-8 text-blue-400 flex-shrink-0" />
+                <div>
+                    <h4 className="font-semibold text-foreground">Notă importantă pentru vehicule hibrid</h4>
+                    <p className="text-sm text-muted-foreground">Pentru mașinile de tip PHEV (Plug-in Hybrid) și HEV (Hybrid), pachetele de garanție acoperă și componentele specifice sistemului de propulsie hibrid.</p>
+                </div>
+            </div>
+          </AnimatedSection>
+
         </Container>
       </section>
 
