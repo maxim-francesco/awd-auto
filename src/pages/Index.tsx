@@ -10,7 +10,7 @@ import CarCard from "@/components/CarCard"
 import { Skeleton } from "@/components/ui/skeleton"
 import { AlertCircle, Shield, Wrench, Search, Handshake } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
-import heroBg from '@/assets/hero-bg.jpg';
+import heroBg from '@/assets/hero-car.jpg';
 
 
 const Index = () => {
