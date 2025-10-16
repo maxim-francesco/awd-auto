@@ -6,21 +6,6 @@ import Container from "@/components/ui/Container"
 import laurentiuImage from '@/assets/laurentiu.png';
 
 const DespreNoi = () => {
-  const teamMembers = [
-    {
-      name: "Csibi Laurentiu",
-      role: "Administrator & Fondator",
-      image: laurentiuImage,
-      bio: "Pasionat de mașini și dedicat fiecărui client, Laurențiu a fondat AWD Auto pe principiile transparenței și încrederii, asigurându-se personal că fiecare mașină respectă cele mai înalte standarde."
-    },
-    {
-      name: "Nume Prenume",
-      role: "Rol în Companie",
-      image: null,
-      bio: "Acest membru al echipei contribuie la succesul nostru prin dedicarea și profesionalismul său, asigurând servicii de calitate pentru clienții noștri."
-    }
-  ]
-
   const benefits = [
     "Stoc diversificat de mașini rulate și verificate",
     "Kilometraj real și istoric de service la cerere",
