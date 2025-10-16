@@ -45,10 +45,10 @@ const Index = () => {
         <Container className="relative z-10">
           <AnimatedSection className="max-w-4xl mx-auto text-center">
             <h1 className="font-luxury text-4xl md:text-6xl font-black bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6 leading-tight">
-              Calitate și Încredere pe Piața Auto din Cluj
+              Găsește Mașina Perfectă. Cumpără cu Încredere.
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
-              Descoperă o selecție de mașini rulate, verificate riguros, oferite cu garanție și transparență totală.
+              De la consultanță transparentă la garanție inclusă, suntem aici pentru a face procesul de achiziție simplu, sigur și plăcut.
             </p>
             <Button asChild size="lg">
               <Link to="/masini-disponibile">Vezi Toate Mașinile Disponibile</Link>
