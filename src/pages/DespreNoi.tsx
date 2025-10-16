@@ -72,8 +72,42 @@ const DespreNoi = () => {
         </Container>
       </section>
 
-      {/* Mission & Values Section */}
+      {/* Testimonials Section */}
       <section className="py-20 bg-luxury-darker">
+        <Container>
+            <AnimatedSection className="text-center mb-16">
+                 <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+                    Ce Spun Clienții Noștri
+                </h2>
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                    Încrederea și satisfacția clienților sunt cartea noastră de vizită.
+                </p>
+            </AnimatedSection>
+
+            <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                 {testimonials.map((testimonial, index) => (
+                <StaggeredItem key={index}>
+                    <Card className="luxury-card h-full flex flex-col">
+                        <CardContent className="p-8 flex-grow flex flex-col">
+                            <div className="flex mb-4">
+                                {[...Array(testimonial.stars)].map((_, i) => (
+                                    <Star key={i} className="h-5 w-5 text-luxury-gold fill-luxury-gold" />
+                                ))}
+                            </div>
+                            <p className="text-muted-foreground italic flex-grow">"{testimonial.review}"</p>
+                            <footer className="mt-6 font-bold text-foreground text-right">
+                                — {testimonial.name}
+                            </footer>
+                        </CardContent>
+                    </Card>
+                </StaggeredItem>
+                ))}
+            </StaggeredGrid>
+        </Container>
+      </section>
+
+      {/* Mission & Values Section */}
+      <section className="py-20 bg-background">
         <Container>
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -133,40 +167,6 @@ const DespreNoi = () => {
               </Card>
             </StaggeredItem>
           </StaggeredGrid>
-        </Container>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-20 bg-background">
-        <Container>
-            <AnimatedSection className="text-center mb-16">
-                 <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
-                    Ce Spun Clienții Noștri
-                </h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Încrederea și satisfacția clienților sunt cartea noastră de vizită.
-                </p>
-            </AnimatedSection>
-
-            <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                 {testimonials.map((testimonial, index) => (
-                <StaggeredItem key={index}>
-                    <Card className="luxury-card h-full flex flex-col">
-                        <CardContent className="p-8 flex-grow flex flex-col">
-                            <div className="flex mb-4">
-                                {[...Array(testimonial.stars)].map((_, i) => (
-                                    <Star key={i} className="h-5 w-5 text-luxury-gold fill-luxury-gold" />
-                                ))}
-                            </div>
-                            <p className="text-muted-foreground italic flex-grow">"{testimonial.review}"</p>
-                            <footer className="mt-6 font-bold text-foreground text-right">
-                                — {testimonial.name}
-                            </footer>
-                        </CardContent>
-                    </Card>
-                </StaggeredItem>
-                ))}
-            </StaggeredGrid>
         </Container>
       </section>
 
