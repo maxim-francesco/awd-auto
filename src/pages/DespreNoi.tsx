@@ -3,7 +3,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Shield, Search, Handshake, CheckCircle, Star } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import Container from "@/components/ui/Container"
-import laurentiuImage from '@/assets/laurentiu.png';
 
 const DespreNoi = () => {
   const benefits = [
@@ -56,19 +55,16 @@ const DespreNoi = () => {
       {/* Founder's Story Section */}
       <section className="py-20 bg-background">
         <Container>
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <AnimatedSection className="flex justify-center">
-                    <img src={laurentiuImage} alt="Csibi Laurentiu, Fondator AWD Auto" className="rounded-xl shadow-lg w-full max-w-md object-cover"/>
-                </AnimatedSection>
-                <AnimatedSection delay={0.2} className="space-y-6">
+            <AnimatedSection>
+                <div className="max-w-3xl mx-auto text-center space-y-6">
                     <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground">Povestea Noastră</h2>
                     <p className="text-muted-foreground leading-relaxed">Motorul și sufletul acestei afaceri de familie este <strong>Csibi Laurentiu</strong>, omul care demonstrează că pasiunea, onestitatea și responsabilitatea față de clienți sunt valorile care ne propulsează către succes.</p>
-                     <blockquote className="border-l-4 border-luxury-gold pl-6 py-2 italic text-foreground/80">
+                     <blockquote className="border-l-4 border-luxury-gold pl-6 py-2 italic text-foreground/80 text-left md:text-center">
                         "Fiecare mașină are o poveste și fiecare client are un vis. Misiunea mea este să le aduc împreună. La AWD Auto, nu facem compromisuri când vine vorba de calitate și corectitudine. O mașină excelentă și un client fericit sunt cea mai mare satisfacție a mea."
                     </blockquote>
                     <p className="font-semibold text-foreground">- Csibi Laurentiu, Fondator AWD Auto</p>
-                </AnimatedSection>
-            </div>
+                </div>
+            </AnimatedSection>
         </Container>
       </section>
 
