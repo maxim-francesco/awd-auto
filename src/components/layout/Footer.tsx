@@ -67,6 +67,12 @@ const Footer = () => {
                   0752 228 593
                 </span>
               </a>
+               <a href="tel:0752575616" className="flex items-center space-x-3 group">
+                <Phone className="h-4 w-4 text-luxury-gold flex-shrink-0" />
+                <span className="text-muted-foreground group-hover:text-luxury-gold text-sm transition-colors">
+                  0752 575 616
+                </span>
+              </a>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-4 w-4 text-luxury-gold flex-shrink-0" />
                 <span className="text-muted-foreground text-sm">

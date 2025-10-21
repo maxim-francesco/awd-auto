@@ -57,11 +57,14 @@ const Contact = () => {
                       <div className="bg-luxury-gold/10 p-3 rounded-lg">
                         <Phone className="h-6 w-6 text-luxury-gold" />
                       </div>
-                      <div>
+                       <div className="space-y-1">
                         <h3 className="font-semibold text-foreground mb-1">Telefon</h3>
-                        <p className="text-muted-foreground">
+                        <a href="tel:0752228593" className="block text-muted-foreground hover:text-luxury-gold transition-colors">
                           0752 228 593
-                        </p>
+                        </a>
+                        <a href="tel:0752575616" className="block text-muted-foreground hover:text-luxury-gold transition-colors">
+                          0752 575 616
+                        </a>
                       </div>
                     </div>
                   </CardContent>
