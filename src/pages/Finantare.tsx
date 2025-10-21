@@ -19,7 +19,7 @@ import porscheLogo from '@/assets/logos/porsche2.png';
 
 
 const Finantare = () => {
-  const [carPrice, setCarPrice] = useState(25000)
+  const [carPrice, setCarPrice] = useState(125000)
   const [period, setPeriod] = useState(60)
 
   const interestRate = 0.08 // 8% dobândă anuală DAE
@@ -133,15 +133,15 @@ const Finantare = () => {
                 <div className="space-y-6">
                   <div className="space-y-3">
                     <div className="flex justify-between font-medium">
-                      <Label>Suma dorită (EUR)</Label>
-                      <span className="text-luxury-gold font-semibold">€{carPrice.toLocaleString()}</span>
+                      <Label>Suma dorită (RON)</Label>
+                      <span className="text-luxury-gold font-semibold">{carPrice.toLocaleString()} RON</span>
                     </div>
                     <Slider
                       value={[carPrice]}
                       onValueChange={(value) => setCarPrice(value[0])}
-                      min={5000}
-                      max={100000}
-                      step={1000}
+                      min={25000}
+                      max={500000}
+                      step={5000}
                       className="w-full"
                     />
                   </div>
@@ -165,7 +165,7 @@ const Finantare = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                   <div className="bg-card p-4 rounded-lg">
                       <p className="text-sm text-muted-foreground">Rata lunară</p>
-                      <p className="font-bold text-lg text-foreground">€{monthlyPayment}</p>
+                      <p className="font-bold text-lg text-foreground">{monthlyPayment} RON</p>
                   </div>
                   <div className="bg-card p-4 rounded-lg">
                       <p className="text-sm text-muted-foreground">Dobândă (DAE)</p>
@@ -173,7 +173,7 @@ const Finantare = () => {
                   </div>
                    <div className="bg-card p-4 rounded-lg">
                       <p className="text-sm text-muted-foreground">Total de plată</p>
-                      <p className="font-bold text-lg text-foreground">€{totalPayment}</p>
+                      <p className="font-bold text-lg text-foreground">{totalPayment} RON</p>
                   </div>
                 </div>
 
