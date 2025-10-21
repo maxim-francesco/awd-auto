@@ -165,7 +165,7 @@ const BenefitsWarrantyPage = () => {
             </p>
           </AnimatedSection>
 
-          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <StaggeredGrid className="flex flex-col-reverse md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {warrantyPlans.map((plan, index) => (
               <StaggeredItem key={index}>
                 <Card className={`relative luxury-card h-full flex flex-col border-t-4 ${plan.borderColor}`}>
