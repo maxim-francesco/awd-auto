@@ -17,8 +17,8 @@ import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
 import unicreditLogo from '@/assets/logos/UniCredit-Bank-Emblem.png';
 import porscheLogo from '@/assets/logos/porsche2.png';
 import tbiBanner from '@/assets/logos/banner1.jpg';
-import b1Image from '@/assets/b1.png';
-import b2Image from '@/assets/b2.png';
+import b1Image from '@/assets/logos/b1.png';
+import b2Image from '@/assets/logos/b2.png';
 
 
 const Finantare = () => {
