@@ -16,6 +16,7 @@ import mogoLogo from '@/assets/logos/mogo.png';
 import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
 import unicreditLogo from '@/assets/logos/UniCredit-Bank-Emblem.png';
 import porscheLogo from '@/assets/logos/porsche2.png';
+import tbiBanner from '@/assets/logos/tbi_banner1.jpg';
 
 
 const Finantare = () => {
@@ -114,6 +115,15 @@ const Finantare = () => {
               Detalii Finanțare prin TBI Bank
             </h2>
           </div>
+          
+           <div className="max-w-4xl mx-auto my-8">
+            <img 
+              src={tbiBanner} 
+              alt="TBI Bank Finanțare Auto" 
+              className="w-full rounded-lg shadow-md"
+            />
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Left Column: Persoane Fizice */}
             <Card className="luxury-card">
