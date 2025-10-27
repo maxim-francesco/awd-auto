@@ -106,7 +106,7 @@ const Finantare = () => {
         </Container>
       </section>
 
-        {/* TBI Bank Criteria Section */}
+      {/* TBI Bank Criteria Section */}
       <section className="py-20 bg-background">
         <Container>
           <div className="text-center mb-12">
@@ -148,6 +148,25 @@ const Finantare = () => {
                     <li className="flex items-start"><FileText className="h-4 w-4 mr-2 mt-1 text-purple-400 flex-shrink-0" /> Buletin, e-mail și număr de telefon (pentru semnarea electronică a acordurilor GDPR, ANAF și Birou Credit)</li>
                   </ul>
                 </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-3">Criterii pentru Venituri din Străinătate:</h4>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 mt-1 text-green-500 flex-shrink-0" /> Vechime de minim 6 luni cu contract de muncă pe perioadă nedeterminată.</li>
+                    <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 mt-1 text-green-500 flex-shrink-0" /> Contractul de muncă trebuie tradus de un traducător autorizat.</li>
+                    <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 mt-1 text-green-500 flex-shrink-0" /> Dacă aveți istoric de creditare în România în ultimii 5 ani, nu este necesar un girant.</li>
+                    <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 mt-1 text-green-500 flex-shrink-0" /> Dacă nu aveți istoric de creditare, este necesar un girant din România (angajat de min. 3 luni sau pensionar).</li>
+                  </ul>
+                </div>
+                 <div>
+                  <h4 className="font-semibold text-foreground mb-3">Documente Necesare (Venituri din Străinătate):</h4>
+                  <ul className="space-y-2 text-muted-foreground">
+                     <li className="flex items-start"><FileText className="h-4 w-4 mr-2 mt-1 text-purple-400 flex-shrink-0" /> Contract de muncă original și tradus</li>
+                    <li className="flex items-start"><FileText className="h-4 w-4 mr-2 mt-1 text-purple-400 flex-shrink-0" /> Extrase de cont cu venitul lunar</li>
+                    <li className="flex items-start"><FileText className="h-4 w-4 mr-2 mt-1 text-purple-400 flex-shrink-0" /> Poză după buletin</li>
+                    <li className="flex items-start"><FileText className="h-4 w-4 mr-2 mt-1 text-purple-400 flex-shrink-0" /> Adresă de e-mail</li>
+                    <li className="flex items-start"><FileText className="h-4 w-4 mr-2 mt-1 text-purple-400 flex-shrink-0" /> Număr de telefon de România</li>
+                  </ul>
+                </div>
               </CardContent>
             </Card>
 
@@ -161,8 +180,20 @@ const Finantare = () => {
               </CardHeader>
               <CardContent className="space-y-6">
                  <div>
-                  <h4 className="font-semibold text-foreground mb-3">Informații disponibile în curând</h4>
-                   <p className="text-muted-foreground">Lucrăm la actualizarea criteriilor pentru persoane juridice. Vă rugăm să ne contactați direct pentru o ofertă personalizată.</p>
+                  <h4 className="font-semibold text-foreground mb-3">Criterii de Eligibilitate:</h4>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 mt-1 text-green-500 flex-shrink-0" /> Cifră de afaceri minimă: 500.000 RON</li>
+                    <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 mt-1 text-green-500 flex-shrink-0" /> Cifră de afaceri minimă pentru firme de transport și construcții: 1.500.000 RON</li>
+                    <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 mt-1 text-green-500 flex-shrink-0" /> Vechime firmă: minim 1 an</li>
+                    <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 mt-1 text-green-500 flex-shrink-0" /> Bilanțul pe anul anterior trebuie să fie depus.</li>
+                  </ul>
+                </div>
+                 <div>
+                  <h4 className="font-semibold text-foreground mb-3">Detalii Finanțare:</h4>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start"><Banknote className="h-4 w-4 mr-2 mt-1 text-blue-400 flex-shrink-0" /> Sumă maximă finanțată: 250.000 RON</li>
+                    <li className="flex items-start"><Banknote className="h-4 w-4 mr-2 mt-1 text-blue-400 flex-shrink-0" /> Se finanțează până la 10% din cifra de afaceri.</li>
+                  </ul>
                 </div>
               </CardContent>
             </Card>
@@ -204,8 +235,8 @@ const Finantare = () => {
                       value={[carPrice]}
                       onValueChange={(value) => setCarPrice(value[0])}
                       min={25000}
-                      max={500000}
-                      step={5000}
+                      max={250000}
+                      step={2500}
                       className="w-full"
                     />
                   </div>
@@ -219,7 +250,7 @@ const Finantare = () => {
                       value={[period]}
                       onValueChange={(value) => setPeriod(value[0])}
                       min={12}
-                      max={84}
+                      max={60}
                       step={1}
                       className="w-full"
                     />
