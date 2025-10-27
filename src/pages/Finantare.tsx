@@ -2,6 +2,12 @@ import Layout from "@/components/layout/Layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { UserCheck, Building, FileText, CheckCircle, Banknote } from "lucide-react"
 import Container from "@/components/ui/Container"
+import { useState } from "react"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Button } from "@/components/ui/luxury-button"
+
 
 // Import logos
 import btDirectLogo from '@/assets/logos/btlogo.png';
@@ -14,6 +20,7 @@ import heroBg from '@/assets/logos/banner1.jpg';
 
 
 const Finantare = () => {
+  const [isGdprChecked, setIsGdprChecked] = useState(false);
 
   return (
     <Layout>
@@ -35,8 +42,57 @@ const Finantare = () => {
         </Container>
       </section>
 
-      {/* Partners Section - Moved from old hero */}
-      <section className="py-16 bg-background">
+      {/* Pay in installments Section */}
+      <section className="py-20 bg-background">
+        <Container>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                {/* Left Column */}
+                <div className="space-y-6 text-center md:text-left">
+                    <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
+                        Plătește în rate fără avans
+                    </h2>
+                    <p className="text-muted-foreground text-lg">
+                        Aplică folosind formularul alăturat pentru a vedea dacă ești eligibil pentru finanțare.
+                    </p>
+                    <div className="flex justify-center md:justify-start">
+                         <img src={tbiLogo} alt="TBI Bank Logo" className="h-20 w-auto object-contain" />
+                    </div>
+                </div>
+
+                {/* Right Column - Form */}
+                <div>
+                     <Card className="luxury-card">
+                        <CardContent className="p-8 space-y-6">
+                             <div className="space-y-2">
+                                <Label htmlFor="name-contact">Nume*</Label>
+                                <Input id="name-contact" placeholder="Numele tău" required />
+                            </div>
+                             <div className="space-y-2">
+                                <Label htmlFor="email-contact">Email*</Label>
+                                <Input id="email-contact" type="email" placeholder="adresa@email.ro" required />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="phone-contact">Număr de telefon*</Label>
+                                <Input id="phone-contact" type="tel" placeholder="+40 722 123 456" required />
+                            </div>
+                            <div className="flex items-start space-x-3 pt-2">
+                                <Checkbox id="gdpr-finantare" onCheckedChange={(checked) => setIsGdprChecked(checked as boolean)} />
+                                <Label htmlFor="gdpr-finantare" className="text-xs font-normal text-muted-foreground leading-snug">
+                                    Sunt de acord ca datele mele să fie procesate în vederea realizării ofertei solicitate.
+                                </Label>
+                            </div>
+                            <Button className="w-full" size="lg" disabled={!isGdprChecked}>
+                                Aplică Acum
+                            </Button>
+                        </CardContent>
+                    </Card>
+                </div>
+            </div>
+        </Container>
+      </section>
+
+      {/* Partners Section */}
+      <section className="py-16 bg-luxury-darker">
         <Container>
              <div className="text-center mb-12">
                 <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
@@ -94,7 +150,7 @@ const Finantare = () => {
       </section>
 
       {/* TBI Bank Criteria Section */}
-      <section className="py-20 bg-luxury-darker">
+      <section className="py-20 bg-background">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
