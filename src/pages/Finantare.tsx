@@ -55,9 +55,11 @@ const Finantare = () => {
                     <p className="text-muted-foreground text-lg">
                         Aplică folosind formularul alăturat pentru a vedea dacă ești eligibil pentru finanțare.
                     </p>
-                    <div className="flex justify-center md:justify-start">
-                         <img src={tbiLogo} alt="TBI Bank Logo" className="h-20 w-auto object-contain" />
-                    </div>
+                    <img 
+                        src={tbiBanner} 
+                        alt="TBI Bank Finanțare Auto" 
+                        className="w-full rounded-lg shadow-md mt-4" 
+                    />
                 </div>
 
                 {/* Right Column - Form */}
@@ -196,6 +198,7 @@ const Finantare = () => {
       {/* --- NEW FINANCIAL PARTNERS SECTION --- */}
       <section className="py-16 bg-luxury-darker">
         <Container>
+          
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
               Partenerii Noștri de Încredere
