@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Slider } from "@/components/ui/slider"
 import { Label } from "@/components/ui/label"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Car, FileText, CheckCircle, Calculator, ShieldCheck, UserCheck, Percent } from "lucide-react"
+import { Car, FileText, CheckCircle, Calculator, ShieldCheck, UserCheck, Percent, Banknote, Building } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import { useState } from "react"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -106,6 +106,70 @@ const Finantare = () => {
         </Container>
       </section>
 
+        {/* TBI Bank Criteria Section */}
+      <section className="py-20 bg-background">
+        <Container>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
+              Detalii Finanțare prin TBI Bank
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Left Column: Persoane Fizice */}
+            <Card className="luxury-card">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-3">
+                  <UserCheck className="h-6 w-6 text-luxury-gold" />
+                  <span className="text-2xl">Finanțare Persoane Fizice</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div>
+                  <h4 className="font-semibold text-foreground mb-3">Criterii de eligibilitate:</h4>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 mt-1 text-green-500 flex-shrink-0" /> Vârsta: 18-75 ani (la terminarea creditului)</li>
+                    <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 mt-1 text-green-500 flex-shrink-0" /> Vechime de minim 3 luni la actualul angajator</li>
+                    <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 mt-1 text-green-500 flex-shrink-0" /> Salariul minim: 2000 RON</li>
+                    <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 mt-1 text-green-500 flex-shrink-0" /> Pensie minimă: 1250 RON</li>
+                    <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 mt-1 text-green-500 flex-shrink-0" /> Venituri acceptate: salarii, pensii, PFA, șoferi cu diurne, chirii, dividente, indemnizații</li>
+                    <li className="flex items-start"><CheckCircle className="h-4 w-4 mr-2 mt-1 text-green-500 flex-shrink-0" /> Se acceptă un codebitor (nu este obligatoriu să fie din familie)</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-3">Detalii Credit:</h4>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start"><Banknote className="h-4 w-4 mr-2 mt-1 text-blue-400 flex-shrink-0" /> Sumă finanțată: 3.000 - 150.000 RON</li>
+                    <li className="flex items-start"><Banknote className="h-4 w-4 mr-2 mt-1 text-blue-400 flex-shrink-0" /> Timp de răspuns: 15 - 120 minute</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-3">Documente Necesare:</h4>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start"><FileText className="h-4 w-4 mr-2 mt-1 text-purple-400 flex-shrink-0" /> Buletin, e-mail și număr de telefon (pentru semnarea electronică a acordurilor GDPR, ANAF și Birou Credit)</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Right Column: Persoane Juridice */}
+            <Card className="luxury-card">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-3">
+                  <Building className="h-6 w-6 text-luxury-gold" />
+                  <span className="text-2xl">Finanțare Persoane Juridice</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                 <div>
+                  <h4 className="font-semibold text-foreground mb-3">Informații disponibile în curând</h4>
+                   <p className="text-muted-foreground">Lucrăm la actualizarea criteriilor pentru persoane juridice. Vă rugăm să ne contactați direct pentru o ofertă personalizată.</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </Container>
+      </section>
+
       {/* Financing Calculator */}
       <AnimatedSection className="py-20 bg-luxury-darker">
         <Container>
@@ -164,7 +228,7 @@ const Finantare = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                   <div className="bg-card p-4 rounded-lg">
-                      <p className="text-sm text-muted-foreground">Rata lunară</p>
+                      <p className="text-sm text-muted-foreground">Rată lunară</p>
                       <p className="font-bold text-lg text-foreground">{monthlyPayment} RON</p>
                   </div>
                   <div className="bg-card p-4 rounded-lg">
@@ -189,7 +253,7 @@ const Finantare = () => {
       
 
       {/* FAQ Section */}
-      <AnimatedSection className="py-20 bg-luxury-darker">
+      <AnimatedSection className="py-20 bg-background">
         <Container>
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
