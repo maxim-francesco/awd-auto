@@ -29,7 +29,7 @@ const Finantare = () => {
               Finanțare
             </h1>
             <p className="mt-4 text-lg text-gray-200">
-              Colaborăm cu parteneri financiari de renume pentru a oferi soluții de leasing și credit auto personalizate, adaptate nevoilor dumneavoavoastră.
+              Colaborăm cu parteneri financiari de renume pentru a oferi soluții de leasing și credit auto personalizate, adaptate nevoilor dumneavoastră.
             </p>
           </div>
         </Container>
