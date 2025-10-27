@@ -1,7 +1,6 @@
 import Layout from "@/components/layout/Layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { UserCheck, Building, FileText, CheckCircle, Banknote } from "lucide-react"
-import { AnimatedSection } from "@/components/ui/animated-section"
 import Container from "@/components/ui/Container"
 
 // Import logos
@@ -11,49 +10,56 @@ import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
 import unicreditLogo from '@/assets/logos/UniCredit-Bank-Emblem.png';
 import porscheLogo from '@/assets/logos/porsche2.png';
 import tbiBanner from '@/assets/logos/banner1.jpg';
+import heroBg from '@/assets/hero-car.jpg';
 
 
 const Finantare = () => {
 
   return (
     <Layout>
-      {/* Unified Hero and Partners Section */}
-      <section className="bg-background py-16 md:py-20">
-        <Container>
-            {/* Main Title Block */}
-            <div className="text-center mb-12">
-                <h1 className="text-4xl lg:text-5xl font-bold text-foreground font-luxury">
-                    Soluții de Finanțare Adaptate Nevoilor Tale
-                </h1>
-                <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
-                    Obține aprobarea pentru mașina visurilor tale cu ajutorul partenerilor noștri de încredere. Oferim atât opțiuni de credit auto, cât și de leasing.
-                </p>
-            </div>
+      {/* New Hero Section */}
+      <section 
+        className="relative bg-cover bg-center py-20"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
+        <div className="absolute inset-0 bg-black/70"></div>
+        <Container className="relative z-10">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl lg:text-5xl font-bold text-white font-luxury">
+              Finanțare
+            </h1>
+            <p className="mt-4 text-lg text-gray-200">
+              Colaborăm cu parteneri financiari de renume pentru a oferi soluții de leasing și credit auto personalizate, adaptate nevoilor dumneavoavoastră.
+            </p>
+          </div>
+        </Container>
+      </section>
 
-            {/* --- NEW TWO-COLUMN LAYOUT --- */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      {/* Partners Section - Moved from old hero */}
+      <section className="py-16 bg-background">
+        <Container>
+             <div className="text-center mb-12">
+                <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
+                    Partenerii Noștri Financiari
+                </h2>
+                <p className="mt-2 text-muted-foreground">Soluții de credit și leasing de la instituții de încredere.</p>
+            </div>
+             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
                 {/* --- Column 1: Credit Auto --- */}
                 <div className="space-y-6">
                     <h3 className="text-2xl font-semibold text-center text-luxury-gold">Credit Auto</h3>
-                    <p className="text-center text-muted-foreground text-sm">
-                        Soluții clasice de finanțare, ideale pentru achiziția directă a vehiculului.
-                    </p>
                     <div className="grid grid-cols-2 gap-8 pt-4">
                         <div className="flex flex-col items-center justify-center gap-4">
                             <img src={unicreditLogo} alt="UniCredit Bank Logo" className="h-16 w-auto object-contain" />
-                            <p className="font-semibold text-muted-foreground">UniCredit Bank</p>
                         </div>
                         <div className="flex flex-col items-center justify-center gap-4">
                             <img src={tbiLogo} alt="TBI Bank Logo" className="h-16 w-auto object-contain" />
-                            <p className="font-semibold text-muted-foreground">TBI Bank</p>
                         </div>
                         <div className="flex flex-col items-center justify-center gap-4">
                             <img src={btDirectLogo} alt="BT Direct Logo" className="h-16 w-auto object-contain" />
-                            <p className="font-semibold text-muted-foreground">BT Direct</p>
                         </div>
                         <div className="flex flex-col items-center justify-center gap-4">
                             <img src={mogoLogo} alt="Mogo Logo" className="h-16 w-auto object-contain" />
-                            <p className="font-semibold text-muted-foreground">Mogo</p>
                         </div>
                     </div>
                 </div>
@@ -61,13 +67,9 @@ const Finantare = () => {
                 {/* --- Column 2: Leasing Auto --- */}
                 <div className="space-y-6">
                     <h3 className="text-2xl font-semibold text-center text-luxury-gold">Leasing Auto</h3>
-                    <p className="text-center text-muted-foreground text-sm">
-                        Opțiuni flexibile de leasing, potrivite atât pentru persoane fizice, cât și juridice.
-                    </p>
                     <div className="pt-4 flex justify-center">
                         <div className="flex flex-col items-center justify-center gap-4 p-6 border border-border rounded-lg bg-card w-full max-w-xs">
                             <img src={porscheLogo} alt="Porsche Leasing Logo" className="h-16 w-auto object-contain" />
-                            <p className="font-semibold text-muted-foreground">Porsche Leasing</p>
                         </div>
                     </div>
                 </div>
@@ -92,7 +94,7 @@ const Finantare = () => {
       </section>
 
       {/* TBI Bank Criteria Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-luxury-darker">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
