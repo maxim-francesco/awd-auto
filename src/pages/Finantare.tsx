@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/luxury-button"
+import { AnimatedSection } from "@/components/ui/animated-section"
 
 
 // Import logos
@@ -27,16 +28,20 @@ const Finantare = () => {
   return (
     <Layout>
       {/* New Hero Section */}
-      <section 
-        className="bg-black py-20"
-      >
-        <Container className="text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-white font-luxury">
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-luxury-darker via-luxury-dark to-luxury-darker">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(212,175,55,0.1),transparent_50%)]" />
+        </div>
+        
+        <Container className="relative z-10 text-center">
+          <AnimatedSection>
+            <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6">
               Finanțare
             </h1>
-            <p className="mt-4 max-w-3xl mx-auto text-lg text-gray-300">
-              Colaborăm cu parteneri financiari de renume pentru a oferi soluții de leasing și credit auto personalizate, adaptate nevoilor dumneavoastră.
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+               Colaborăm cu parteneri financiari de renume pentru a oferi soluții de leasing și credit auto personalizate, adaptate nevoilor dumneavoastră.
             </p>
+          </AnimatedSection>
         </Container>
       </section>
 
