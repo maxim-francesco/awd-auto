@@ -142,7 +142,7 @@ const Footer = () => {
             </p>
           <div className="text-xs text-muted-foreground mt-4">
             <p>
-              Dezvoltat de <a href="https://www.instagram.com/francesco.maximm/" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-luxury-gold transition-colors">Maxim Francesco</a>
+              Dezvoltat de <a href="https://prezentareauto.maximfrancesco.com/" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-luxury-gold transition-colors">Maxim Francesco</a>
               <span className="mx-2">|</span>
               <a href="tel:+40783117797" className="font-medium text-foreground hover:text-luxury-gold transition-colors">+40783117797</a>
             </p>
