@@ -23,9 +23,10 @@ const Footer = () => {
               AWD Auto - Partenerul tău de încredere pentru achiziționarea mașinii perfecte. Calitate, transparență și servicii premium în Cluj-Napoca.
             </p>
              <div className="pt-2 text-xs text-muted-foreground space-y-1">
-                <p><strong>SC AWD AUTO SRL</strong></p>
-                <p>J12/1234/2025</p>
-                <p>RO12345678</p>
+                <p><strong>AWD Auto Trade SRL</strong></p>
+                <p>Sediul social: Cluj-Napoca, Str. Beclean Nr. 3, Ap. 1</p>
+                <p>J12/306/2022</p>
+                <p>CUI: RO45508352</p>
             </div>
           </div>
 
