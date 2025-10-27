@@ -58,11 +58,11 @@ const DespreNoi = () => {
             <AnimatedSection>
                 <div className="max-w-3xl mx-auto text-center space-y-6">
                     <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground">Povestea Noastră</h2>
-                    <p className="text-muted-foreground leading-relaxed">Motorul și sufletul acestei afaceri de familie este <strong>Csibi Laurentiu</strong>, omul care demonstrează că pasiunea, onestitatea și responsabilitatea față de clienți sunt valorile care ne propulsează către succes.</p>
+                    <p className="text-muted-foreground leading-relaxed">Motorul și sufletul acestei afaceri de familie este Laurentiu Csibi, omul care demonstrează că pasiunea, onestitatea și responsabilitatea față de clienți sunt valorile care ne propulsează către succes.</p>
                      <blockquote className="border-l-4 border-luxury-gold pl-6 py-2 italic text-foreground/80 text-left md:text-center">
                         "Fiecare mașină are o poveste și fiecare client are un vis. Misiunea mea este să le aduc împreună. La AWD Auto, nu facem compromisuri când vine vorba de calitate și corectitudine. O mașină excelentă și un client fericit sunt cea mai mare satisfacție a mea."
                     </blockquote>
-                    <p className="font-semibold text-foreground">- Csibi Laurentiu, Fondator AWD Auto</p>
+                    <p className="font-semibold text-foreground">- Laurentiu Csibi, Fondator AWD Auto</p>
                 </div>
             </AnimatedSection>
         </Container>
