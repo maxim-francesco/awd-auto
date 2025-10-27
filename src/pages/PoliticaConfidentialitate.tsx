@@ -28,10 +28,10 @@ const PoliticaConfidentialitate = () => {
               
               <h2>1. Introducere și Operatorul de Date</h2>
               <p>
-                Confidențialitatea datelor dumneavoastră cu caracter personal reprezintă una dintre preocupările principale ale <strong>SC AWD AUTO SRL</strong>, în calitate de operator de date. Acest document are rolul de a vă informa cu privire la prelucrarea datelor dumneavoastră cu caracter personal, în contextul utilizării paginii de internet <strong>www.awdauto.ro</strong>.
+                Confidențialitatea datelor dumneavoastră cu caracter personal reprezintă una dintre preocupările principale ale <strong>AWD Auto Trade SRL</strong>, în calitate de operator de date. Acest document are rolul de a vă informa cu privire la prelucrarea datelor dumneavoastră cu caracter personal, în contextul utilizării paginii de internet <strong>www.awdauto.ro</strong>.
               </p>
               <p>
-                Operatorul de date este <strong>SC AWD AUTO SRL</strong>, persoană juridică de naționalitate română, având sediul social în Cluj-Napoca, România, înregistrată la Registrul Comerțului sub nr. J12/1234/2025, cod unic de înregistrare fiscală RO12345678 (în continuare "AWD Auto" sau "Operatorul").
+                Operatorul de date este <strong>AWD Auto Trade SRL</strong>, persoană juridică de naționalitate română, având sediul social în Cluj-Napoca, Str. Beclean Nr. 3, Ap. 1, înregistrată la Registrul Comerțului sub nr. J12/306/2022, cod unic de înregistrare fiscală RO45508352 (în continuare "AWD Auto" sau "Operatorul").
               </p>
 
               <h2>2. Categoriile de Date cu Caracter Personal Prelucrate</h2>

@@ -27,12 +27,12 @@ const TermeniConditii = () => {
               
               <h2>1. Introducere și Datele Companiei</h2>
               <p>
-                Prezentul document stabilește termenii și condițiile de utilizare a website-ului <strong>www.awdauto.ro</strong> (denumit în continuare "Site-ul"), operat de <strong>SC AWD AUTO SRL</strong>, o societate comercială de naționalitate română, cu sediul social în Cluj-Napoca, România, înregistrată la Registrul Comerțului sub nr. J12/1234/2025, cod unic de înregistrare (CUI) RO12345678, denumită în continuare "Vânzător" sau "Compania".
+                Prezentul document stabilește termenii și condițiile de utilizare a website-ului <strong>www.awdauto.ro</strong> (denumit în continuare "Site-ul"), operat de <strong>AWD Auto Trade SRL</strong>, o societate comercială de naționalitate română, cu sediul social în Cluj-Napoca, Str. Beclean Nr. 3, Ap. 1, înregistrată la Registrul Comerțului sub nr. J12/306/2022, cod unic de înregistrare (CUI) RO45508352, denumită în continuare "Vânzător" sau "Compania".
               </p>
               
               <h2>2. Definiții</h2>
               <ul>
-                <li><strong>Vânzător:</strong> SC AWD AUTO SRL, proprietarul și operatorul Site-ului.</li>
+                <li><strong>Vânzător:</strong> AWD Auto Trade SRL, proprietarul și operatorul Site-ului.</li>
                 <li><strong>Utilizator/Cumpărător:</strong> Orice persoană fizică sau juridică ce accesează, navighează sau utilizează Site-ul, sau care intenționează să achiziționeze un vehicul de la Vânzător.</li>
                 <li><strong>Site:</strong> Domeniul www.awdauto.ro și toate subdomeniile acestuia.</li>
                 <li><strong>Vehicul:</strong> Orice autoturism rulat (second-hand) comercializat de către Vânzător prin intermediul Site-ului sau la punctul de lucru.</li>
@@ -80,7 +80,7 @@ const TermeniConditii = () => {
 
               <h2>10. Drepturi de Proprietate Intelectuală</h2>
               <p>
-                Întregul conținut al Site-ului – texte, imagini, grafice, logo-uri, elemente de design și cod sursă – reprezintă proprietatea intelectuală a <strong>SC AWD AUTO SRL</strong> și este protejat de legislația română și internațională privind drepturile de autor și drepturile conexe. Orice utilizare neautorizată a acestui conținut constituie o încălcare a legii și va fi sancționată ca atare.
+                Întregul conținut al Site-ului – texte, imagini, grafice, logo-uri, elemente de design și cod sursă – reprezintă proprietatea intelectuală a <strong>AWD Auto Trade SRL</strong> și este protejat de legislația română și internațională privind drepturile de autor și drepturile conexe. Orice utilizare neautorizată a acestui conținut constituie o încălcare a legii și va fi sancționată ca atare.
               </p>
 
               <h2>11. Soluționarea Litigiilor și Legea Aplicabilă</h2>
