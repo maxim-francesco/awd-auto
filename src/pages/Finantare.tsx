@@ -1,12 +1,13 @@
 import Layout from "@/components/layout/Layout"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { UserCheck, Building, FileText, CheckCircle, Banknote } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { UserCheck, Building, FileText, CheckCircle, Banknote, ShieldCheck } from "lucide-react"
 import Container from "@/components/ui/Container"
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/luxury-button"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 
 // Import logos
@@ -91,66 +92,8 @@ const Finantare = () => {
         </Container>
       </section>
 
-      {/* Partners Section */}
-      <section className="py-16 bg-luxury-darker">
-        <Container>
-             <div className="text-center mb-12">
-                <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
-                    Partenerii Noștri Financiari
-                </h2>
-                <p className="mt-2 text-muted-foreground">Soluții de credit și leasing de la instituții de încredere.</p>
-            </div>
-             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-                {/* --- Column 1: Credit Auto --- */}
-                <div className="space-y-6">
-                    <h3 className="text-2xl font-semibold text-center text-luxury-gold">Credit Auto</h3>
-                    <div className="grid grid-cols-2 gap-8 pt-4">
-                        <div className="flex flex-col items-center justify-center gap-4">
-                            <img src={unicreditLogo} alt="UniCredit Bank Logo" className="h-16 w-auto object-contain" />
-                        </div>
-                        <div className="flex flex-col items-center justify-center gap-4">
-                            <img src={tbiLogo} alt="TBI Bank Logo" className="h-16 w-auto object-contain" />
-                        </div>
-                        <div className="flex flex-col items-center justify-center gap-4">
-                            <img src={btDirectLogo} alt="BT Direct Logo" className="h-16 w-auto object-contain" />
-                        </div>
-                        <div className="flex flex-col items-center justify-center gap-4">
-                            <img src={mogoLogo} alt="Mogo Logo" className="h-16 w-auto object-contain" />
-                        </div>
-                    </div>
-                </div>
-
-                {/* --- Column 2: Leasing Auto --- */}
-                <div className="space-y-6">
-                    <h3 className="text-2xl font-semibold text-center text-luxury-gold">Leasing Auto</h3>
-                    <div className="pt-4 flex justify-center">
-                        <div className="flex flex-col items-center justify-center gap-4 p-6 border border-border rounded-lg bg-card w-full max-w-xs">
-                            <img src={porscheLogo} alt="Porsche Leasing Logo" className="h-16 w-auto object-contain" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <Card className="luxury-card mt-16 max-w-4xl mx-auto bg-luxury-gold/5 border-luxury-gold/20">
-              <div className="grid md:grid-cols-3 items-center">
-                <div className="md:col-span-1 flex items-center justify-center p-8 bg-luxury-darker/50 rounded-l-lg">
-                  <img src={mogoLogo} alt="Mogo Logo" className="w-40 h-auto" />
-                </div>
-                <div className="md:col-span-2 p-8">
-                  <CardHeader className="p-0 mb-4">
-                      <CardTitle className="font-luxury text-xl text-luxury-gold">Finanțare și cu Istoric Negativ?</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-0">
-                      <p className="text-muted-foreground">Prin parteneriatul nostru strategic cu <strong className="text-foreground">Mogo</strong>, oferim soluții de finanțare chiar și persoanelor cu istoric negativ în biroul de credit. Înțelegem că fiecare situație este unică, de aceea te încurajăm să ne contactezi pentru o evaluare personalizată și confidențială.</p>
-                  </CardContent>
-                </div>
-              </div>
-            </Card>
-        </Container>
-      </section>
-
       {/* TBI Bank Criteria Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-luxury-darker">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
@@ -249,6 +192,112 @@ const Finantare = () => {
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </Container>
+      </section>
+
+      {/* Individuals Documentation Section */}
+      <section className="py-20 bg-background">
+        <Container>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
+                Persoane Fizice: Documentația Necesară
+              </h2>
+              <p className="text-muted-foreground">
+                Procesul de finanțare pentru persoane fizice este simplificat pentru a vă oferi o experiență cât mai rapidă și eficientă.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-luxury-gold/10 flex items-center justify-center">
+                    <FileText className="h-5 w-5 text-luxury-gold" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground">Cerere de Finanțare</h4>
+                    <p className="text-sm text-muted-foreground">Completați formularul standard de aplicare pus la dispoziție de partenerul nostru financiar.</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-luxury-gold/10 flex items-center justify-center">
+                    <UserCheck className="h-5 w-5 text-luxury-gold" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground">Copie a Cărții de Identitate</h4>
+                    <p className="text-sm text-muted-foreground">O copie validă a actului de identitate al solicitantului.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <img 
+                data-ai-hint="happy driver"
+                src="https://picsum.photos/seed/financedriver/600/500"
+                alt="Persoana fericita in masina noua"
+                className="rounded-lg shadow-lg object-cover w-full h-full"
+              />
+            </div>
+          </div>
+        </Container>
+      </section>
+      
+      {/* Business Documentation Section */}
+      <section className="py-20 bg-luxury-darker">
+        <Container>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="order-2 md:order-1">
+              <img 
+                data-ai-hint="car keys deal"
+                src="https://picsum.photos/seed/businessdeal/600/500"
+                alt="Predare chei masina"
+                className="rounded-lg shadow-lg object-cover w-full h-full"
+              />
+            </div>
+            <div className="space-y-6 order-1 md:order-2">
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
+                Afaceri: Documentația Necesară
+              </h2>
+              <p className="text-muted-foreground">
+                Oferim soluții de finanțare și pentru persoane juridice, cu un pachet de documente adaptat nevoilor de business.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-luxury-gold/10 flex items-center justify-center">
+                    <FileText className="h-5 w-5 text-luxury-gold" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground">Cerere de Finanțare</h4>
+                    <p className="text-sm text-muted-foreground">Formularul de aplicare specific persoanelor juridice.</p>
+                  </div>
+                </li>
+                 <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-luxury-gold/10 flex items-center justify-center">
+                    <UserCheck className="h-5 w-5 text-luxury-gold" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground">Identificare Reprezentant Legal</h4>
+                    <p className="text-sm text-muted-foreground">Copie a actului de identitate pentru administratorul sau reprezentantul legal al firmei.</p>
+                  </div>
+                </li>
+                 <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-luxury-gold/10 flex items-center justify-center">
+                    <Building className="h-5 w-5 text-luxury-gold" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground">Certificat de Înregistrare</h4>
+                    <p className="text-sm text-muted-foreground">Copie a Certificatului de Înregistrare a companiei (CUI).</p>
+                  </div>
+                </li>
+                 <li className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-luxury-gold/10 flex items-center justify-center">
+                    <ShieldCheck className="h-5 w-5 text-luxury-gold" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-foreground">Bilanțuri și Balanțe Contabile</h4>
+                    <p className="text-sm text-muted-foreground">Ultimele bilanțuri anuale și cea mai recentă balanță contabilă lunară.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </Container>
       </section>
