@@ -1,3 +1,4 @@
+
 import Layout from "@/components/layout/Layout"
 import { Card, CardContent } from "@/components/ui/card"
 import { UserCheck, Building, FileText } from "lucide-react"
@@ -17,7 +18,6 @@ import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
 import unicreditLogo from '@/assets/logos/UniCredit-Bank-Emblem.png';
 import porscheLogo from '@/assets/logos/porsche2.png';
 import tbiBanner from '@/assets/logos/banner1.jpg';
-import heroBg from '@/assets/logos/banner1.jpg';
 
 
 const Finantare = () => {
@@ -27,17 +27,15 @@ const Finantare = () => {
     <Layout>
       {/* New Hero Section */}
       <section 
-        className="bg-background py-20"
+        className="bg-black py-20"
       >
-        <Container>
-          <div className="max-w-2xl">
-            <h1 className="text-4xl lg:text-5xl font-bold text-foreground font-luxury">
+        <Container className="text-center">
+            <h1 className="text-4xl lg:text-5xl font-bold text-white font-luxury">
               Finanțare
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="mt-4 max-w-3xl mx-auto text-lg text-gray-300">
               Colaborăm cu parteneri financiari de renume pentru a oferi soluții de leasing și credit auto personalizate, adaptate nevoilor dumneavoastră.
             </p>
-          </div>
         </Container>
       </section>
 
@@ -46,7 +44,7 @@ const Finantare = () => {
         <Container>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 {/* Left Column */}
-                <div className="space-y-6 text-center md:text-left">
+                <div className="space-y-4 text-center md:text-left">
                     <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
                         Plătește în rate fără avans
                     </h2>
@@ -251,4 +249,4 @@ const Finantare = () => {
   )
 }
 
-export default Finantare
+export default Finantare;
