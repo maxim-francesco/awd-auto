@@ -1,6 +1,6 @@
 import Layout from "@/components/layout/Layout"
 import { Card, CardContent } from "@/components/ui/card"
-import { UserCheck, Building, FileText, CheckCircle, Banknote, ShieldCheck } from "lucide-react"
+import { UserCheck, Building, FileText } from "lucide-react"
 import Container from "@/components/ui/Container"
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
@@ -96,6 +96,16 @@ const Finantare = () => {
       <section className="py-20 bg-luxury-darker">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+             {/* Right Column (Image) */}
+             <div>
+              <img 
+                data-ai-hint="happy driver car"
+                src="https://picsum.photos/seed/financedriver/600/500"
+                alt="Persoana fericita in masina noua"
+                className="rounded-lg shadow-lg object-cover w-full h-full"
+              />
+            </div>
+            {/* Left Column (Text) */}
             <div className="space-y-6">
               <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
                 Persoane Fizice: Documentația Necesară
@@ -124,14 +134,6 @@ const Finantare = () => {
                 </li>
               </ul>
             </div>
-            <div>
-              <img 
-                data-ai-hint="happy driver"
-                src="https://picsum.photos/seed/financedriver/600/500"
-                alt="Persoana fericita in masina noua"
-                className="rounded-lg shadow-lg object-cover w-full h-full"
-              />
-            </div>
           </div>
         </Container>
       </section>
@@ -140,15 +142,8 @@ const Finantare = () => {
       <section className="py-20 bg-background">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1">
-              <img 
-                data-ai-hint="car keys deal"
-                src="https://picsum.photos/seed/businessdeal/600/500"
-                alt="Predare chei masina"
-                className="rounded-lg shadow-lg object-cover w-full h-full"
-              />
-            </div>
-            <div className="space-y-6 order-1 md:order-2">
+            {/* Left Column (Text) */}
+            <div className="space-y-6">
               <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
                 Afaceri: Documentația Necesară
               </h2>
@@ -183,21 +178,74 @@ const Finantare = () => {
                     <p className="text-sm text-muted-foreground">Copie a Certificatului de Înregistrare a companiei (CUI).</p>
                   </div>
                 </li>
-                 <li className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-luxury-gold/10 flex items-center justify-center">
-                    <ShieldCheck className="h-5 w-5 text-luxury-gold" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground">Bilanțuri și Balanțe Contabile</h4>
-                    <p className="text-sm text-muted-foreground">Ultimele bilanțuri anuale și cea mai recentă balanță contabilă lunară.</p>
-                  </div>
-                </li>
               </ul>
+            </div>
+             {/* Right Column (Image) */}
+             <div className="order-first md:order-last">
+              <img 
+                data-ai-hint="car keys deal"
+                src="https://picsum.photos/seed/businessdeal/600/500"
+                alt="Predare chei masina"
+                className="rounded-lg shadow-lg object-cover w-full h-full"
+              />
             </div>
           </div>
         </Container>
       </section>
-      
+
+      {/* --- NEW FINANCIAL PARTNERS SECTION --- */}
+      <section className="py-16 bg-luxury-darker">
+        <Container>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
+              Partenerii Noștri de Încredere
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
+              Colaborăm cu lideri de piață pentru a vă oferi cele mai avantajoase și flexibile soluții de finanțare.
+            </p>
+          </div>
+
+          {/* Two-column layout for the partners */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+            {/* --- Column 1: Credit Auto --- */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-semibold text-center text-foreground">Credit Auto</h3>
+              <div className="grid grid-cols-2 gap-8 pt-4">
+                <div className="flex flex-col items-center justify-center gap-4">
+                  <img src={unicreditLogo} alt="UniCredit Bank Logo" className="h-16 w-auto object-contain" />
+                  <p className="font-semibold text-muted-foreground">UniCredit Bank</p>
+                </div>
+                <div className="flex flex-col items-center justify-center gap-4">
+                  <img src={tbiLogo} alt="TBI Bank Logo" className="h-16 w-auto object-contain" />
+                  <p className="font-semibold text-muted-foreground">TBI Bank</p>
+                </div>
+                <div className="flex flex-col items-center justify-center gap-4">
+                  <img src={btDirectLogo} alt="BT Direct Logo" className="h-16 w-auto object-contain" />
+                  <p className="font-semibold text-muted-foreground">BT Direct</p>
+                </div>
+                <div className="flex flex-col items-center justify-center gap-4">
+                  <img src={mogoLogo} alt="Mogo Logo" className="h-16 w-auto object-contain" />
+                  <p className="font-semibold text-muted-foreground">Mogo</p>
+                </div>
+              </div>
+            </div>
+
+            {/* --- Column 2: Leasing Auto --- */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-semibold text-center text-foreground">Leasing Auto</h3>
+              <div className="pt-4 flex justify-center">
+                  <div className="flex flex-col items-center justify-center gap-4 p-6 w-full max-w-xs">
+                    <img src={porscheLogo} alt="Porsche Leasing Logo" className="h-16 w-auto object-contain" />
+                    <p className="font-semibold text-muted-foreground">Porsche Leasing</p>
+                  </div>
+              </div>
+            </div>
+
+          </div>
+        </Container>
+      </section>
+
     </Layout>
   )
 }
