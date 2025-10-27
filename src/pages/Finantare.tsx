@@ -27,16 +27,14 @@ const Finantare = () => {
     <Layout>
       {/* New Hero Section */}
       <section 
-        className="relative bg-cover bg-center py-20"
-        style={{ backgroundImage: `url(${heroBg})` }}
+        className="bg-background py-20"
       >
-        <div className="absolute inset-0 bg-black/70"></div>
-        <Container className="relative z-10">
+        <Container>
           <div className="max-w-2xl">
-            <h1 className="text-4xl lg:text-5xl font-bold text-white font-luxury">
+            <h1 className="text-4xl lg:text-5xl font-bold text-foreground font-luxury">
               Finanțare
             </h1>
-            <p className="mt-4 text-lg text-gray-200">
+            <p className="mt-4 text-lg text-muted-foreground">
               Colaborăm cu parteneri financiari de renume pentru a oferi soluții de leasing și credit auto personalizate, adaptate nevoilor dumneavoastră.
             </p>
           </div>
