@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/luxury-button"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 
 // Import logos
@@ -18,6 +17,8 @@ import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
 import unicreditLogo from '@/assets/logos/UniCredit-Bank-Emblem.png';
 import porscheLogo from '@/assets/logos/porsche2.png';
 import tbiBanner from '@/assets/logos/banner1.jpg';
+import b1Image from '@/assets/b1.png';
+import b2Image from '@/assets/b2.png';
 
 
 const Finantare = () => {
@@ -188,9 +189,8 @@ const Finantare = () => {
              {/* Right Column (Image) */}
              <div>
               <img 
-                data-ai-hint="happy driver car"
-                src="https://picsum.photos/seed/financedriver/600/500"
-                alt="Persoana fericita in masina noua"
+                src={b1Image}
+                alt="Documentație finanțare persoane fizice"
                 className="rounded-lg shadow-lg object-cover w-full h-full"
               />
             </div>
@@ -299,9 +299,8 @@ const Finantare = () => {
              {/* Right Column (Image) */}
              <div className="order-first md:order-last">
               <img 
-                data-ai-hint="car keys deal"
-                src="https://picsum.photos/seed/businessdeal/600/500"
-                alt="Predare chei masina"
+                src={b2Image}
+                alt="Documentație finanțare persoane juridice"
                 className="rounded-lg shadow-lg object-cover w-full h-full"
               />
             </div>
