@@ -10,7 +10,7 @@ import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
 import unicreditLogo from '@/assets/logos/UniCredit-Bank-Emblem.png';
 import porscheLogo from '@/assets/logos/porsche2.png';
 import tbiBanner from '@/assets/logos/banner1.jpg';
-import heroBg from '@/assets/hero-car.jpg';
+import heroBg from '@/assets/logos/banner1.jpg';
 
 
 const Finantare = () => {
