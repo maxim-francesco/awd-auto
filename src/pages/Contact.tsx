@@ -18,7 +18,7 @@ const Contact = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="font-luxury text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Contactează-ne
+            Contactează AWD Auto - Parc Auto în Cluj-Napoca
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Suntem aici să vă ajutăm să găsiți mașina perfectă pentru dumneavoastră. Contactați-ne pentru mai multe informații.
