@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { useParams, useNavigate, useLocation } from "react-router-dom"
 import { motion } from "framer-motion"
+import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout"
 import { Button } from "@/components/ui/luxury-button"
 import { 
@@ -136,7 +137,7 @@ const CarDetails = () => {
     variant: getAttributeValue(car.attributeValues, 'model'),
     price: car.price ?? 0,
     images: car.images,
-    description: car.description,
+    description: car.description.replace(/"/g, '\\"'), // Escape quotes for JSON
     specs: [
       { icon: Gauge, label: "Rulaj", value: `${parseInt(getAttributeValue(car.attributeValues, 'kilometraj'), 10).toLocaleString()} km` },
       { icon: Cog, label: "Capacitate cilindrică", value: `${getAttributeValue(car.attributeValues, 'capacitate cilindrica')} cm³` },
@@ -150,6 +151,37 @@ const CarDetails = () => {
 
   return (
     <Layout>
+       <Helmet>
+        <title>{`${carData.title} | AWD Auto Cluj`}</title>
+        <meta name="description" content={`Cumpără ${carData.title} de la AWD Auto. Preț: ${carData.price.toLocaleString()}€. ${carData.description.substring(0, 120)}...`} />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org/",
+              "@type": "Vehicle",
+              "name": "${carData.title}",
+              "image": "${carData.images?.[0]?.url}",
+              "description": "${carData.description}",
+              "brand": {
+                "@type": "Brand",
+                "name": "${carData.title.split(' ')[0]}"
+              },
+              "offers": {
+                "@type": "Offer",
+                "url": "${window.location.href}",
+                "priceCurrency": "EUR",
+                "price": "${carData.price}"
+              },
+              "mileageFromOdometer": {
+                  "@type": "QuantitativeValue",
+                  "value": ${parseInt(getAttributeValue(car.attributeValues, 'kilometraj'), 10)},
+                  "unitCode": "KMT"
+              },
+              "productionDate": "${carData.year}"
+            }
+          `}
+        </script>
+      </Helmet>
       <div className="min-h-screen bg-background py-8 sm:py-12">
         <Container>
           {/* Back Button */}
@@ -256,7 +288,7 @@ const CarDetails = () => {
                     Descriere Detaliată
                   </h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    {carData.description}
+                    {car.description}
                   </p>
                 </div>
 

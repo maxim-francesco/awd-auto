@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async"; // Importat
 import Index from "./pages/Index";
 import CarDetails from "./pages/CarDetails";
 import Finantare from "./pages/Finantare";
@@ -23,26 +24,28 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <CookieConsentModal />
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/masini-disponibile" element={<CarListings />} />
-          <Route path="/masini-disponibile/:listingId" element={<CarDetails />} />
-          <Route path="/masini-la-comanda" element={<MasiniLaComanda />} />
-          <Route path="/finantare" element={<Finantare />} />
-          <Route path="/beneficii-si-garantie" element={<BenefitsWarrantyPage />} />
-          <Route path="/despre-noi" element={<DespreNoi />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/termeni-conditii" element={<TermeniConditii />} />
-          <Route path="/politica-confidentialitate" element={<PoliticaConfidentialitate />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <HelmetProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <CookieConsentModal />
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/masini-disponibile" element={<CarListings />} />
+            <Route path="/masini-disponibile/:listingId" element={<CarDetails />} />
+            <Route path="/masini-la-comanda" element={<MasiniLaComanda />} />
+            <Route path="/finantare" element={<Finantare />} />
+            <Route path="/beneficii-si-garantie" element={<BenefitsWarrantyPage />} />
+            <Route path="/despre-noi" element={<DespreNoi />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/termeni-conditii" element={<TermeniConditii />} />
+            <Route path="/politica-confidentialitate" element={<PoliticaConfidentialitate />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </HelmetProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
