@@ -29,7 +29,7 @@ const useFilterAttributes = () => {
         const result: AttributeDefinition[] = await response.json();
         
         // Filtrăm atributele pe care nu dorim să le afișăm ca filtre
-        const hiddenAttributes = ['pret', 'price', 'kilometraj', 'capacitate cilindrica'];
+        const hiddenAttributes = ['pret', 'price', 'kilometraj', 'capacitate cilindrica', 'link video'];
         const filteredAttributes = result.filter(attr => !hiddenAttributes.includes(attr.name.toLowerCase()));
         
         setAttributes(filteredAttributes);
