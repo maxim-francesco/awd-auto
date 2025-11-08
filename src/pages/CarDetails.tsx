@@ -16,9 +16,8 @@ import {
   Check,
   ArrowLeft,
   Phone,
-  Mail,
-  AlertCircle,
-  Video
+  Video,
+  AlertCircle
 } from "lucide-react"
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -303,19 +302,12 @@ const CarDetails = () => {
                         </a>
                     </Button>
                     
-                    {hasVideo ? (
+                    {hasVideo && (
                         <Button asChild variant="outline" className="flex-1" size="lg">
                             <a href={videoUrl} target="_blank" rel="noopener noreferrer">
                                 <Video className="h-5 w-5" />
                                 Vezi Video
                             </a>
-                        </Button>
-                    ) : (
-                        <Button asChild variant="outline" className="flex-1" size="lg">
-                            <Link to="/contact">
-                                <Mail className="h-5 w-5" />
-                                Cere Ofertă de Preț
-                            </Link>
                         </Button>
                     )}
                 </div>
@@ -378,3 +370,5 @@ const CarDetails = () => {
 }
 
 export default CarDetails
+
+    
