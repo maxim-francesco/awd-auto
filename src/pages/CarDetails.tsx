@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useParams, useNavigate, useLocation, Link } from "react-router-dom"
+import { useParams, useNavigate, useLocation } from "react-router-dom"
 import { motion } from "framer-motion"
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout"
@@ -36,7 +36,10 @@ const CarDetails = () => {
 
   const car = fetchedCar || listingFromState;
   
+  // State to control if the fullscreen gallery is open
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+
+  // State to store the index of the currently displayed image in the fullscreen gallery
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const loading = apiLoading && !listingFromState;
@@ -316,7 +319,7 @@ const CarDetails = () => {
                 <h2 className="font-luxury text-xl font-semibold text-foreground mb-3">
                   Descriere Detaliată
                 </h2>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
                   {car.description}
                 </p>
               </div>
