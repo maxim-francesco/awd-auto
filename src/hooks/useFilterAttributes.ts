@@ -28,9 +28,30 @@ const useFilterAttributes = () => {
 
         const result: AttributeDefinition[] = await response.json();
         
-        // Filtrăm atributele pe care nu dorim să le afișăm ca filtre
-        const hiddenAttributes = ['pret', 'price', 'kilometraj', 'capacitate cilindrica', 'link video'];
-        const filteredAttributes = result.filter(attr => !hiddenAttributes.includes(attr.name.toLowerCase()));
+        // Atribute numerice care sunt gestionate separat (ex: prin range sliders)
+        const numericHandledSeparately = ['pret', 'price', 'kilometraj', 'capacitate cilindrica', 'an'];
+        
+        const filteredAttributes = result.filter(attr => {
+          const nameLower = attr.name.toLowerCase();
+
+          // 1. Excludem atributele care nu trebuie să fie niciodată filtre
+          if (nameLower === 'link video') {
+            return false;
+          }
+          
+          // 2. Excludem atributele numerice care sunt deja gestionate
+          if (numericHandledSeparately.includes(nameLower)) {
+              return ['an', 'pret'].includes(nameLower); // Păstrăm doar An și Preț ca filtre numerice de bază
+          }
+
+          // 3. Pentru atributele BOOLEAN, păstrăm doar 'TVA Deductibil'
+          if (attr.type === 'BOOLEAN') {
+            return nameLower === 'tva deductibil';
+          }
+
+          // 4. Păstrăm toate celelalte atribute (în principal STRING)
+          return true;
+        });
         
         setAttributes(filteredAttributes);
       } catch (e: any) {
