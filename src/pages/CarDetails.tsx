@@ -143,7 +143,7 @@ const CarDetails = () => {
   const carData = {
     title: car.title,
     year: getAttributeValue(car.attributeValues, 'An'),
-    variant: getAttributeValue(car.attributeValues, 'model'),
+    variant: getAttributeValue(car.attributeValues, 'Caroserie'),
     price: car.price ?? 0,
     images: car.images,
     description: car.description.replace(/"/g, '\\"'), // Escape quotes for JSON
