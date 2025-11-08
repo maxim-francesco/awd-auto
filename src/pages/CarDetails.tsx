@@ -34,19 +34,11 @@ const CarDetails = () => {
   const listingFromState = location.state?.listing as APIListing | undefined;
   const { listing: fetchedCar, loading: apiLoading, error: apiError } = useListingDetails(listingId);
 
-  // THE FIX:
-  // We prioritize the fetchedCar (full data) as soon as it's available.
-  // The listingFromState (partial data) is only used as a fallback while the API is loading.
   const car = fetchedCar || listingFromState;
   
-  // State to control if the fullscreen gallery is open
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
-  // State to store the index of the currently displayed image in the fullscreen gallery
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // THE NEW LOADING LOGIC:
-  // We are "loading" ONLY if the API is still fetching AND we don't even have
-  // the partial data from the state to show as a placeholder.
   const loading = apiLoading && !listingFromState;
   const error = !car && apiError
 
@@ -303,7 +295,7 @@ const CarDetails = () => {
                     </Button>
                     
                     {hasVideo && (
-                        <Button asChild variant="outline" className="flex-1" size="lg">
+                       <Button asChild variant="outline" className="flex-1" size="lg">
                             <a href={videoUrl} target="_blank" rel="noopener noreferrer">
                                 <Video className="h-5 w-5" />
                                 Vezi Video
@@ -329,31 +321,6 @@ const CarDetails = () => {
                 </p>
               </div>
 
-              {/* Features */}
-              {carData.features && carData.features.length > 0 && (
-                <div className="pt-8 mt-8 border-t border-border/40">
-                  <h2 className="font-luxury text-xl font-semibold text-foreground mb-4">
-                    Dotări și Opțiuni
-                  </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                    {carData.features.map((feature, index) => (
-                      <motion.div
-                        key={index}
-                        className="flex items-center gap-2"
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.05 }}
-                      >
-                        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-luxury-gold/20 flex items-center justify-center">
-                          <Check className="h-3 w-3 text-luxury-gold" />
-                        </div>
-                        <span className="text-sm text-muted-foreground">{feature}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </Container>
@@ -370,5 +337,3 @@ const CarDetails = () => {
 }
 
 export default CarDetails
-
-    
