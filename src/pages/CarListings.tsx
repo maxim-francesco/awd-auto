@@ -142,7 +142,7 @@ const CarListings = () => {
       <Container className="py-8">
         <section className="text-center py-8 md:py-12">
           <h1 className="text-4xl lg:text-5xl font-bold text-foreground">
-            Găsește Mașina Potrivită în Stocul Nostru Verificat
+            Găsește Mașina Potrivită în Stocul Nostru
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
             Folosește filtrele de mai jos pentru a explora oferta noastră completă de autoturisme rulate.
