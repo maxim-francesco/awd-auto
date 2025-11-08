@@ -17,7 +17,8 @@ import {
   ArrowLeft,
   Phone,
   Mail,
-  AlertCircle
+  AlertCircle,
+  Video
 } from "lucide-react"
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -138,6 +139,10 @@ const CarDetails = () => {
       </Layout>
     )
   }
+  
+  // Get video URL
+  const videoUrl = getAttributeValue(car.attributeValues, 'Link Video');
+  const hasVideo = videoUrl && videoUrl !== 'N/A';
   
   // Processed values for display
   const carData = {
@@ -290,19 +295,29 @@ const CarDetails = () => {
                 </div>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button asChild className="flex-1" size="lg">
-                    <a href="tel:0752228593">
-                      <Phone className="h-5 w-5" />
-                      Programează un Test Drive
-                    </a>
-                  </Button>
-                  <Button asChild variant="outline" className="flex-1" size="lg">
-                    <Link to="/contact">
-                      <Mail className="h-5 w-5" />
-                      Cere Ofertă de Preț
-                    </Link>
-                  </Button>
+                 <div className="flex flex-col sm:flex-row gap-3">
+                    <Button asChild className="flex-1" size="lg">
+                        <a href="tel:0752228593">
+                            <Phone className="h-5 w-5" />
+                            Programează un Test Drive
+                        </a>
+                    </Button>
+                    
+                    {hasVideo ? (
+                        <Button asChild variant="outline" className="flex-1" size="lg">
+                            <a href={videoUrl} target="_blank" rel="noopener noreferrer">
+                                <Video className="h-5 w-5" />
+                                Vezi Video
+                            </a>
+                        </Button>
+                    ) : (
+                        <Button asChild variant="outline" className="flex-1" size="lg">
+                            <Link to="/contact">
+                                <Mail className="h-5 w-5" />
+                                Cere Ofertă de Preț
+                            </Link>
+                        </Button>
+                    )}
                 </div>
               </div>
             </AnimatedSection>
