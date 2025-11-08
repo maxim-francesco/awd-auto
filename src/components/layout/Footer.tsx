@@ -80,10 +80,10 @@ const Footer = () => {
                   Strada Plevnei 117, Cluj-Napoca, 400394
                 </span>
               </div>
-              <a href="mailto:contact@awdauto-cluj.ro" className="flex items-center space-x-3 group">
+              <a href="mailto:contact@awdauto.ro" className="flex items-center space-x-3 group">
                 <Mail className="h-4 w-4 text-luxury-gold flex-shrink-0" />
                 <span className="text-muted-foreground group-hover:text-luxury-gold text-sm transition-colors">
-                  contact@awdauto-cluj.ro
+                  contact@awdauto.ro
                 </span>
               </a>
               <div className="pt-2">
