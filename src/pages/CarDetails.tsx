@@ -31,14 +31,17 @@ const CarDetails = () => {
   const location = useLocation()
   
   const listingFromState = location.state?.listing as APIListing | undefined;
+  const { listing: fetchedCar, loading: apiLoading, error: apiError } = useListingDetails(listingId);
 
-  const { listing: fetchedCar, loading: apiLoading, error: apiError } = useListingDetails(listingId)
+  // THE FIX:
+  // We prioritize the fetchedCar (full data) as soon as it's available.
+  // The listingFromState (partial data) is only used as a fallback while the API is loading.
+  const car = fetchedCar || listingFromState;
 
-  // Prioritize data from state, fallback to API fetch
-  const car = listingFromState || fetchedCar
-
-  // Loading is only true if we don't have state data and the API is fetching
-  const loading = !car && apiLoading
+  // THE NEW LOADING LOGIC:
+  // We are "loading" ONLY if the API is still fetching AND we don't even have
+  // the partial data from the state to show as a placeholder.
+  const loading = apiLoading && !listingFromState;
   const error = !car && apiError
 
   const [selectedImage, setSelectedImage] = useState(0)
