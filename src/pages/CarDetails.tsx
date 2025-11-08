@@ -38,6 +38,11 @@ const CarDetails = () => {
   // The listingFromState (partial data) is only used as a fallback while the API is loading.
   const car = fetchedCar || listingFromState;
 
+  // State to control if the fullscreen gallery is open
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  // State to store the index of the currently displayed image in the fullscreen gallery
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   // THE NEW LOADING LOGIC:
   // We are "loading" ONLY if the API is still fetching AND we don't even have
   // the partial data from the state to show as a placeholder.
@@ -204,8 +209,12 @@ const CarDetails = () => {
               <div className="space-y-4">
                 {/* Main Image */}
                 <motion.div 
-                  className="relative aspect-video rounded-2xl overflow-hidden bg-luxury-darker border border-border/40"
+                  className="relative aspect-video rounded-2xl overflow-hidden bg-luxury-darker border border-border/40 cursor-pointer"
                   layoutId={`car-image-${car.id}`}
+                   onClick={() => {
+                    setCurrentImageIndex(selectedImage);
+                    setIsGalleryOpen(true);
+                  }}
                 >
                   <img
                     src={carData.images?.length > 0 ? carData.images[selectedImage].url : 'https://via.placeholder.com/1200x800.png?text=AWD+Auto'}
@@ -221,7 +230,7 @@ const CarDetails = () => {
                       <motion.button
                         key={index}
                         onClick={() => setSelectedImage(index)}
-                        className={`relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
+                        className={`relative aspect-video rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
                           selectedImage === index 
                             ? "border-luxury-gold" 
                             : "border-border/40 hover:border-luxury-gold/50"
@@ -233,6 +242,10 @@ const CarDetails = () => {
                           src={image.url}
                           alt={`Thumbnail ${index + 1}`}
                           className="w-full h-full object-cover"
+                           onClick={() => {
+                            setCurrentImageIndex(index);
+                            setIsGalleryOpen(true);
+                          }}
                         />
                       </motion.button>
                     ))}
