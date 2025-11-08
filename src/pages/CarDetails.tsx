@@ -24,6 +24,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import useListingDetails from "@/hooks/useListingDetails"
 import type { APIListing, Attribute } from "@/hooks/useListings";
 import Container from "@/components/ui/Container"
+import FullscreenGallery from "@/components/FullscreenGallery";
 
 const CarDetails = () => {
   const { listingId } = useParams<{ listingId: string }>()
@@ -37,7 +38,7 @@ const CarDetails = () => {
   // We prioritize the fetchedCar (full data) as soon as it's available.
   // The listingFromState (partial data) is only used as a fallback while the API is loading.
   const car = fetchedCar || listingFromState;
-
+  
   // State to control if the fullscreen gallery is open
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   // State to store the index of the currently displayed image in the fullscreen gallery
@@ -242,7 +243,8 @@ const CarDetails = () => {
                           src={image.url}
                           alt={`Thumbnail ${index + 1}`}
                           className="w-full h-full object-cover"
-                           onClick={() => {
+                           onClick={(e) => {
+                            e.stopPropagation(); // Prevent parent onClick from firing
                             setCurrentImageIndex(index);
                             setIsGalleryOpen(true);
                           }}
@@ -288,13 +290,17 @@ const CarDetails = () => {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <Button className="flex-1" size="lg">
-                    <Phone className="h-5 w-5" />
-                    Programează un Test Drive
+                  <Button asChild className="flex-1" size="lg">
+                    <a href="tel:0752228593">
+                      <Phone className="h-5 w-5" />
+                      Programează un Test Drive
+                    </a>
                   </Button>
-                  <Button variant="outline" className="flex-1" size="lg">
-                    <Mail className="h-5 w-5" />
-                    Cere Ofertă de Preț
+                  <Button asChild variant="outline" className="flex-1" size="lg">
+                    <Link to="/contact">
+                      <Mail className="h-5 w-5" />
+                      Cere Ofertă de Preț
+                    </Link>
                   </Button>
                 </div>
 
@@ -338,6 +344,13 @@ const CarDetails = () => {
           </div>
         </Container>
       </div>
+
+       <FullscreenGallery
+        images={carData.images || []}
+        isOpen={isGalleryOpen}
+        onClose={() => setIsGalleryOpen(false)}
+        initialImageIndex={currentImageIndex}
+      />
     </Layout>
   )
 }
