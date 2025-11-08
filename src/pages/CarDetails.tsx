@@ -203,7 +203,8 @@ const CarDetails = () => {
             <ArrowLeft className="h-5 w-5" />
             <span className="text-sm font-medium">Înapoi la listă</span>
           </motion.button>
-
+          
+          {/* --- PART 1: "AT-A-GLANCE" SECTION (Two Columns) --- */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Left Column - Gallery */}
             <AnimatedSection>
@@ -303,44 +304,50 @@ const CarDetails = () => {
                     </Link>
                   </Button>
                 </div>
-
-                {/* Description */}
-                <div className="pt-4">
-                  <h2 className="font-luxury text-xl font-semibold text-foreground mb-3">
-                    Descriere Detaliată
-                  </h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {car.description}
-                  </p>
-                </div>
-
-                {/* Features */}
-                {carData.features && carData.features.length > 0 && (
-                  <div className="pt-4">
-                    <h2 className="font-luxury text-xl font-semibold text-foreground mb-4">
-                      Dotări și Opțiuni
-                    </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {carData.features.map((feature, index) => (
-                        <motion.div
-                          key={index}
-                          className="flex items-center gap-2"
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.05 }}
-                        >
-                          <div className="flex-shrink-0 w-5 h-5 rounded-full bg-luxury-gold/20 flex items-center justify-center">
-                            <Check className="h-3 w-3 text-luxury-gold" />
-                          </div>
-                          <span className="text-sm text-muted-foreground">{feature}</span>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             </AnimatedSection>
+          </div>
+
+          {/* --- PART 2: "IN-DEPTH" SECTION (Full Width) --- */}
+          <div className="mt-16">
+            <div className="max-w-4xl mx-auto">
+              
+              {/* Description */}
+              <div className="pt-4">
+                <h2 className="font-luxury text-xl font-semibold text-foreground mb-3">
+                  Descriere Detaliată
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  {car.description}
+                </p>
+              </div>
+
+              {/* Features */}
+              {carData.features && carData.features.length > 0 && (
+                <div className="pt-8 mt-8 border-t border-border/40">
+                  <h2 className="font-luxury text-xl font-semibold text-foreground mb-4">
+                    Dotări și Opțiuni
+                  </h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {carData.features.map((feature, index) => (
+                      <motion.div
+                        key={index}
+                        className="flex items-center gap-2"
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.05 }}
+                      >
+                        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-luxury-gold/20 flex items-center justify-center">
+                          <Check className="h-3 w-3 text-luxury-gold" />
+                        </div>
+                        <span className="text-sm text-muted-foreground">{feature}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </Container>
       </div>
@@ -356,5 +363,3 @@ const CarDetails = () => {
 }
 
 export default CarDetails
-
-    
