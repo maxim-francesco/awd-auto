@@ -4,6 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { Separator } from "@/components/ui/separator"
 import NumberRangeFilter from "@/components/filters/NumberRangeFilter"
 import StringCheckboxFilter from "@/components/filters/StringCheckboxFilter"
+import BooleanCheckboxFilter from "@/components/filters/BooleanCheckboxFilter"
 import { Button } from "@/components/ui/luxury-button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
@@ -34,13 +35,28 @@ const FilterSidebar = ({ onFilterChange, onApplyFilters, isMobile = false }: Fil
       );
     }
 
-    return attributes.map((attr, index) => (
-      <div key={attr.id}>
-        {index > 0 && <Separator className="my-6" />}
-        {attr.type === 'NUMBER' && <NumberRangeFilter attribute={attr} onChange={onFilterChange} />}
-        {attr.type === 'STRING' && <StringCheckboxFilter attribute={attr} onChange={onFilterChange} />}
-      </div>
-    ));
+    return attributes.map((attr, index) => {
+      switch (attr.type) {
+        case 'NUMBER':
+          return (
+            <div key={attr.id}>
+              {index > 0 && <Separator className="my-6" />}
+              <NumberRangeFilter attribute={attr} onChange={onFilterChange} />
+            </div>
+          );
+        case 'STRING':
+           return (
+            <div key={attr.id}>
+              {index > 0 && <Separator className="my-6" />}
+              <StringCheckboxFilter attribute={attr} onChange={onFilterChange} />
+            </div>
+          );
+        case 'BOOLEAN':
+            return <BooleanCheckboxFilter key={attr.id} attribute={attr} onChange={onFilterChange} />;
+        default:
+          return null;
+      }
+    });
   };
   
   const content = (
