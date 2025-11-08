@@ -35,6 +35,11 @@ const CarCard = ({ listing }: CarCardProps) => {
   const year = getAttributeValue('An');
   const transmission = getAttributeValue('Cutie de viteze');
 
+  // Check for the "TVA Deductibil" attribute
+  const isVatDeductible = listing.attributeValues.find(
+    (attr) => attr.attribute.name.toLowerCase() === 'tva deductibil' && attr.booleanValue === true
+  );
+
   return (
     <motion.div 
       className="luxury-card group"
@@ -50,6 +55,17 @@ const CarCard = ({ listing }: CarCardProps) => {
     >
       {/* Car Image */}
       <div className="relative overflow-hidden rounded-t-xl">
+        {isVatDeductible && (
+          <span 
+            className="absolute top-2 right-2 text-xs font-bold px-2 py-1 rounded-md shadow-lg z-10"
+            style={{ 
+              backgroundColor: '#cd933b', // This is our primary gold color
+              color: '#1c1c1c' // A dark text color for high contrast
+            }}
+          >
+            TVA Deductibil
+          </span>
+        )}
         <img 
           src={listing.images?.[0]?.url || 'https://via.placeholder.com/600x400.png?text=AWD+Auto'} 
           alt={listing.title + ' de vânzare la parc auto Cluj-Napoca'}
