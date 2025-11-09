@@ -49,7 +49,7 @@ const Index = () => {
       
         <Container className="relative z-10">
           <AnimatedSection className="max-w-4xl mx-auto text-center">
-            <h1 className="font-luxury text-4xl md:text-5xl font-bold text-gray-100 leading-relaxed max-w-3xl mx-auto mb-8">
+            <h1 className="font-luxury text-4xl md:text-5xl font-bold leading-relaxed max-w-3xl mx-auto mb-8 bg-gradient-to-r from-primary to-white text-transparent bg-clip-text drop-shadow-md">
               Explorează oferta parcului nostru auto. Toate vehiculele sunt verificate și disponibile pentru test drive.
             </h1>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
