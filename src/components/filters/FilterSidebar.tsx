@@ -75,10 +75,12 @@ const FilterSidebar = ({ onFilterChange, onApplyFilters, isMobile = false }: Fil
      return (
         <div className="flex flex-col h-full bg-card">
             <div className="p-6 border-b border-border">
-                {content}
+                <h2 className="font-luxury text-xl font-bold text-luxury-gold">
+                  Filtrează Rezultatele
+                </h2>
             </div>
             <ScrollArea className="flex-1 p-6">
-                {/* Filters will be rendered inside the header for mobile, this area is for future use or can be removed */}
+                {renderFilters()}
             </ScrollArea>
             <div className="p-6 border-t border-border mt-auto">
                  <Button className="w-full" size="sm" onClick={onApplyFilters}>
