@@ -196,11 +196,59 @@ const Finantare = () => {
             </TabsContent>
 
             {/* --- UniCredit Bank Content --- */}
-            <TabsContent value="unicredit" className="mt-6">
-              <div className="luxury-card p-8 text-center">
-                <p>Detalii despre finanțarea prin UniCredit Bank vor fi adăugate în curând.</p>
-              </div>
+            <TabsContent value="unicredit" className="mt-6 p-6 bg-card rounded-lg">
+                <div className="text-center mb-6">
+                    <img 
+                    src={unicreditLogo} 
+                    alt="UniCredit Bank" 
+                    className="h-16 w-auto mx-auto object-contain" 
+                    />
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    {/* --- Left Column: Product Features --- */}
+                    <div className="space-y-4">
+                    <h3 className="text-xl font-semibold mb-3 text-luxury-gold">Caracteristici Produs</h3>
+                    
+                    <ul className="list-none space-y-3 text-muted-foreground">
+                        <li><strong className="text-foreground">Tip bun:</strong> Autoturism nou / rulat</li>
+                        <li><strong className="text-foreground">Perioadă maximă:</strong> Până la 5 ani</li>
+                        <li><strong className="text-foreground">Dobândă:</strong> Fixă pe toată perioada creditului</li>
+                        <li><strong className="text-foreground">Valoare finanțată:</strong> 16.000 - 300.000 Lei</li>
+                        <li><strong className="text-foreground">Codebitor:</strong> Acceptat</li>
+                        <li><strong className="text-foreground">Asigurare de viață:</strong> Opțională</li>
+                        <li><strong className="text-foreground">Avans minim:</strong>
+                        <ul className="list-['-_'] list-outside pl-5 mt-1 space-y-1">
+                            <li><strong>0%</strong> pentru credite de până la 150.000 RON</li>
+                            <li><strong>10%</strong> pentru credite între 150.001 și 200.000 RON</li>
+                            <li><strong>20%</strong> pentru credite de peste 200.000 RON</li>
+                        </ul>
+                        </li>
+                    </ul>
+                    </div>
+
+                    {/* --- Right Column: Eligibility & Documents --- */}
+                    <div className="space-y-4">
+                        <h3 className="text-xl font-semibold mb-3 text-luxury-gold">Condiții de Acordare (Persoane Fizice)</h3>
+                        
+                        <p className="text-muted-foreground">Vârsta între <strong>22 și 70 de ani</strong> (la finalizarea contractului).</p>
+
+                        <h4 className="font-semibold text-foreground pt-2">Documente Necesare:</h4>
+                        <ul className="list-none space-y-2 text-muted-foreground">
+                            <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Actul de identitate</span></li>
+                            <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Acord de consultare ANAF (se completează la locație)</span></li>
+                            <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Documente doveditoare pentru alte venituri (chirii, dividente, etc.)</span></li>
+                        </ul>
+
+                        <h4 className="font-semibold text-foreground pt-2">Condiții Asigurare CASCO:</h4>
+                        <ul className="list-none space-y-2 text-muted-foreground">
+                            <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.s flex-shrink-0" /><span><strong>CASCO obligatoriu</strong> pentru credite de peste 150.000 Lei la mașini noi.</span></li>
+                        </ul>
+                    </div>
+                </div>
             </TabsContent>
+            
           </Tabs>
         </Container>
       </section>
