@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/luxury-button"
 import { AnimatedSection } from "@/components/ui/animated-section"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 
 // Import logos
@@ -96,94 +97,111 @@ const Finantare = () => {
         </Container>
       </section>
 
-      {/* --- NEW TBI Bank Detailed Criteria Section --- */}
+      {/* --- Detailed Criteria Section with Tabs --- */}
       <section className="py-20 bg-luxury-darker">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
-              Criterii Detaliate de Finanțare prin TBI Bank
+              Detalii Finanțare Parteneri
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            {/* Left Column - Persoane Fizice */}
-            <div className="space-y-6 luxury-card p-8">
-              <h3 className="text-2xl font-bold text-luxury-gold mb-4 border-b border-border pb-3">
-                Finanțare Persoane Fizice
-              </h3>
-              
-              <div className="space-y-4">
-                <h4 className="font-semibold text-foreground">Criterii de eligibilitate:</h4>
-                <ul className="list-none space-y-2 pl-2">
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Vârsta: 18-75 ani (la terminarea creditului)</span></li>
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Minim 3 luni la actualul angajator (3 salarii încasate și declarate la ANAF)</span></li>
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Salariu minim: 2000 lei</span></li>
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Pensie minimă: 1250 lei</span></li>
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Acceptăm venit din: salarii, pensii, PFA, șoferi cu diurne, chirii, dividente, indemnizații</span></li>
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Dacă clientul nu se încadrează singur, TBI Bank acceptă un codebitor (nu este obligatoriu să fie din familie)</span></li>
-                </ul>
-              </div>
+          <Tabs defaultValue="tbi" className="w-full max-w-5xl mx-auto">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="tbi">Detalii TBI Bank</TabsTrigger>
+              <TabsTrigger value="unicredit">Detalii UniCredit Bank</TabsTrigger>
+            </TabsList>
 
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground">Detalii Credit:</h4>
-                <ul className="list-none space-y-2 pl-2">
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Sumă finanțată: 3.000 - 150.000 RON</span></li>
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Timp de răspuns: 15 min - 120 min</span></li>
-                </ul>
-              </div>
+            {/* --- TBI Bank Content --- */}
+            <TabsContent value="tbi" className="mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                {/* Left Column - Persoane Fizice */}
+                <div className="space-y-6 luxury-card p-8">
+                  <h3 className="text-2xl font-bold text-luxury-gold mb-4 border-b border-border pb-3">
+                    Finanțare Persoane Fizice
+                  </h3>
+                  
+                  <div className="space-y-4">
+                    <h4 className="font-semibold text-foreground">Criterii de eligibilitate:</h4>
+                    <ul className="list-none space-y-2 pl-2">
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Vârsta: 18-75 ani (la terminarea creditului)</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Minim 3 luni la actualul angajator (3 salarii încasate și declarate la ANAF)</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Salariu minim: 2000 lei</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Pensie minimă: 1250 lei</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Acceptăm venit din: salarii, pensii, PFA, șoferi cu diurne, chirii, dividente, indemnizații</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Dacă clientul nu se încadrează singur, TBI Bank acceptă un codebitor (nu este obligatoriu să fie din familie)</span></li>
+                    </ul>
+                  </div>
 
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground">Documente necesare pentru analiză:</h4>
-                <ul className="list-none space-y-2 pl-2">
-                   <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Buletin, email, telefon (pentru semnarea electronică a acordului GDPR, ANAF și BIROU CREDIT)</span></li>
-                </ul>
-              </div>
+                  <div className="space-y-2">
+                    <h4 className="font-semibold text-foreground">Detalii Credit:</h4>
+                    <ul className="list-none space-y-2 pl-2">
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Sumă finanțată: 3.000 - 150.000 RON</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Timp de răspuns: 15 min - 120 min</span></li>
+                    </ul>
+                  </div>
 
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground">Criterii pentru Venituri din Străinătate:</h4>
-                <ul className="list-none space-y-2 pl-2">
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Contract de muncă pe perioadă nedeterminată, cu o vechime de minim 6 luni.</span></li>
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Dacă aveți Istoric Creditare în România în ultimii 5 ani, nu aveți nevoie de girant. Dacă nu, este nevoie de un girant angajat de minim 3 luni (se acceptă și pensionari).</span></li>
-                </ul>
-              </div>
+                  <div className="space-y-2">
+                    <h4 className="font-semibold text-foreground">Documente necesare pentru analiză:</h4>
+                    <ul className="list-none space-y-2 pl-2">
+                       <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Buletin, email, telefon (pentru semnarea electronică a acordului GDPR, ANAF și BIROU CREDIT)</span></li>
+                    </ul>
+                  </div>
 
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground">Documente Necesare (Venituri din Străinătate):</h4>
-                <ul className="list-none space-y-2 pl-2">
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Contract de muncă original și tradus de un traducător autorizat</span></li>
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Extrase de cont cu venitul lunar</span></li>
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Poză după buletin</span></li>
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Adresă de e-mail</span></li>
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Număr de telefon de România</span></li>
-                </ul>
-              </div>
-            </div>
+                  <div className="space-y-2">
+                    <h4 className="font-semibold text-foreground">Criterii pentru Venituri din Străinătate:</h4>
+                    <ul className="list-none space-y-2 pl-2">
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Contract de muncă pe perioadă nedeterminată, cu o vechime de minim 6 luni.</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Dacă aveți Istoric Creditare în România în ultimii 5 ani, nu aveți nevoie de girant. Dacă nu, este nevoie de un girant angajat de minim 3 luni (se acceptă și pensionari).</span></li>
+                    </ul>
+                  </div>
 
-            {/* Right Column - Persoane Juridice */}
-            <div className="space-y-6 luxury-card p-8">
-              <h3 className="text-2xl font-bold text-luxury-gold mb-4 border-b border-border pb-3">
-                Finanțare Persoane Juridice
-              </h3>
+                  <div className="space-y-2">
+                    <h4 className="font-semibold text-foreground">Documente Necesare (Venituri din Străinătate):</h4>
+                    <ul className="list-none space-y-2 pl-2">
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Contract de muncă original și tradus de un traducător autorizat</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Extrase de cont cu venitul lunar</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Poză după buletin</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Adresă de e-mail</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Număr de telefon de România</span></li>
+                    </ul>
+                  </div>
+                </div>
 
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground">Criterii de Eligibilitate:</h4>
-                <ul className="list-none space-y-2 pl-2">
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Cifră de afaceri minimă: 500.000 RON</span></li>
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Cifră de afaceri minimă (transport și construcții): 1.500.000 RON</span></li>
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Vechime firmă: minim 1 an</span></li>
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Bilanțul pe anul anterior trebuie să fie depus.</span></li>
-                </ul>
-              </div>
+                {/* Right Column - Persoane Juridice */}
+                <div className="space-y-6 luxury-card p-8">
+                  <h3 className="text-2xl font-bold text-luxury-gold mb-4 border-b border-border pb-3">
+                    Finanțare Persoane Juridice
+                  </h3>
 
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground">Detalii Finanțare:</h4>
-                <ul className="list-none space-y-2 pl-2">
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Sumă maximă finanțată: 250.000 RON</span></li>
-                  <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Se finanțează până la 10% din cifra de afaceri.</span></li>
-                </ul>
+                  <div className="space-y-2">
+                    <h4 className="font-semibold text-foreground">Criterii de Eligibilitate:</h4>
+                    <ul className="list-none space-y-2 pl-2">
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Cifră de afaceri minimă: 500.000 RON</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Cifră de afaceri minimă (transport și construcții): 1.500.000 RON</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Vechime firmă: minim 1 an</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Bilanțul pe anul anterior trebuie să fie depus.</span></li>
+                    </ul>
+                  </div>
+
+                  <div className="space-y-2">
+                    <h4 className="font-semibold text-foreground">Detalii Finanțare:</h4>
+                    <ul className="list-none space-y-2 pl-2">
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Sumă maximă finanțată: 250.000 RON</span></li>
+                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Se finanțează până la 10% din cifra de afaceri.</span></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </TabsContent>
+
+            {/* --- UniCredit Bank Content --- */}
+            <TabsContent value="unicredit" className="mt-6">
+              <div className="luxury-card p-8 text-center">
+                <p>Detalii despre finanțarea prin UniCredit Bank vor fi adăugate în curând.</p>
+              </div>
+            </TabsContent>
+          </Tabs>
         </Container>
       </section>
 
