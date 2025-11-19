@@ -141,13 +141,6 @@ const Finantare = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <h4 className="font-semibold text-foreground">Documente necesare pentru analiză:</h4>
-                    <ul className="list-none space-y-2 pl-2">
-                       <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Buletin, email, telefon (pentru semnarea electronică a acordului GDPR, ANAF și BIROU CREDIT)</span></li>
-                    </ul>
-                  </div>
-
-                  <div className="space-y-2">
                     <h4 className="font-semibold text-foreground">Criterii pentru Venituri din Străinătate:</h4>
                     <ul className="list-none space-y-2 pl-2">
                       <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Contract de muncă pe perioadă nedeterminată, cu o vechime de minim 6 luni.</span></li>
@@ -261,15 +254,6 @@ const Finantare = () => {
                 Oferim soluții de finanțare și pentru persoane juridice, cu un pachet de documente adaptat nevoilor de business.
               </p>
               <ul className="space-y-4">
-                <li className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-luxury-gold/10 flex items-center justify-center">
-                    <FileText className="h-5 w-5 text-luxury-gold" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground">Cerere de Finanțare</h4>
-                     <p className="text-sm text-muted-foreground">Formularul de aplicare specific persoanelor juridice.</p>
-                  </div>
-                </li>
                  <li className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-8 h-8 rounded-full bg-luxury-gold/10 flex items-center justify-center">
                     <UserCheck className="h-5 w-5 text-luxury-gold" />
