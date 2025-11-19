@@ -63,7 +63,7 @@ const TermeniConditii = () => {
 
               <h2>7. Politica de Finanțare</h2>
               <p>
-                AWD Auto acționează ca un facilitator în procesul de obținere a finanțării (credit auto sau leasing). Soluțiile de finanțare sunt oferite prin intermediari și parteneri financiari autorizați (ex: TBI Bank, Unicredit Bank, Mogo, etc.). Aprobarea creditului, condițiile de finanțare (avans, dobândă, perioadă) și termenii contractuali sunt stabilite exclusiv de către instituția financiară parteneră. AWD Auto nu este parte în contractul de creditare și nu poate fi tras la răspundere pentru deciziile sau condițiile impuse de finanțator.
+                AWD Auto acționează ca un facilitator în procesul de obținere a finanțării (credit auto sau leasing). Soluțiile de finanțare sunt oferite prin intermediari și parteneri financiari autorizați (ex: TBI Bank, UniCredit Consumer Finacing, Mogo, etc.). Aprobarea creditului, condițiile de finanțare (avans, dobândă, perioadă) și termenii contractuali sunt stabilite exclusiv de către instituția financiară parteneră. AWD Auto nu este parte în contractul de creditare și nu poate fi tras la răspundere pentru deciziile sau condițiile impuse de finanțator.
               </p>
 
               <h2>8. Drepturile și Obligațiile Utilizatorului/Cumpărătorului</h2>

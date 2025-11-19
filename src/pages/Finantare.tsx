@@ -109,7 +109,7 @@ const Finantare = () => {
           <Tabs defaultValue="tbi" className="w-full max-w-5xl mx-auto">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="tbi">Detalii TBI Bank</TabsTrigger>
-              <TabsTrigger value="unicredit">Detalii UniCredit Bank</TabsTrigger>
+              <TabsTrigger value="unicredit">Detalii UniCredit Consumer Finacing</TabsTrigger>
             </TabsList>
 
             {/* --- TBI Bank Content --- */}
@@ -200,7 +200,7 @@ const Finantare = () => {
                 <div className="text-center mb-6">
                     <img 
                     src={unicreditLogo} 
-                    alt="UniCredit Bank" 
+                    alt="UniCredit Consumer Finacing" 
                     className="h-16 w-auto mx-auto object-contain" 
                     />
                 </div>
@@ -400,8 +400,8 @@ const Finantare = () => {
               <h3 className="text-2xl font-semibold text-center text-foreground">Credit Auto</h3>
               <div className="grid grid-cols-2 gap-8 pt-4">
                 <div className="flex flex-col items-center justify-center gap-4">
-                  <img src={unicreditLogo} alt="UniCredit Bank Logo" className="h-16 w-auto object-contain" />
-                  <p className="font-semibold text-muted-foreground">UniCredit Bank</p>
+                  <img src={unicreditLogo} alt="UniCredit Consumer Finacing Logo" className="h-16 w-auto object-contain" />
+                  <p className="font-semibold text-muted-foreground">UniCredit Consumer Finacing</p>
                 </div>
                 <div className="flex flex-col items-center justify-center gap-4">
                   <img src={tbiLogo} alt="TBI Bank Logo" className="h-16 w-auto object-contain" />

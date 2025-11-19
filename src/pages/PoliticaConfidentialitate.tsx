@@ -69,7 +69,7 @@ const PoliticaConfidentialitate = () => {
                 Pentru îndeplinirea scopurilor de prelucrare, AWD Auto poate dezvălui datele dumneavoastră către următoarele categorii de destinatari:
               </p>
               <ul>
-                <li><strong>Parteneri financiari</strong> (ex: Unicredit, TBI Bank, BT Direct, Mogo), la cererea dumneavoastră explicită pentru o ofertă de finanțare.</li>
+                <li><strong>Parteneri financiari</strong> (ex: UniCredit Consumer Finacing, TBI Bank, BT Direct, Mogo), la cererea dumneavoastră explicită pentru o ofertă de finanțare.</li>
                 <li><strong>Partenerul de garanție</strong> (DEFEND Insurance), în vederea emiterii poliței de garanție.</li>
                 <li><strong>Furnizori de servicii IT</strong> (ex: servicii de hosting, mentenanță web, analiză de trafic).</li>
                 <li><strong>Autorități publice</strong> (instanțe judecătorești, poliție, etc.), în cazul unei solicitări legale.</li>
