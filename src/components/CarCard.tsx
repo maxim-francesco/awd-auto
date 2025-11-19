@@ -36,7 +36,7 @@ const CarCard = ({ listing }: CarCardProps) => {
   const year = getAttributeValue('An');
   const transmission = getAttributeValue('Cutie de viteze');
 
-  const isVatDeductible = listing.attributeValues.find(
+  const isVatDeductible = listing.attributeValues && listing.attributeValues.find(
     (attr) => attr.attribute.name.toLowerCase() === 'tva deductibil' && attr.booleanValue === true
   );
 
