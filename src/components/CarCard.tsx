@@ -89,7 +89,10 @@ const CarCard = ({ listing }: CarCardProps) => {
 
       <div className="p-6 space-y-4">
         <div className="space-y-2">
-          <h3 className={cn("font-luxury text-xl font-bold text-foreground transition-colors truncate", !isSold && "group-hover:text-luxury-gold")}>
+          <h3 className={cn(
+            "font-luxury text-xl font-bold text-foreground transition-colors",
+            isSold ? "whitespace-normal" : "truncate group-hover:text-luxury-gold"
+          )}>
             {listing.title}
           </h3>
           <p className={cn("text-2xl font-bold text-luxury-gold", isSold && "text-muted-foreground")}>
@@ -97,38 +100,44 @@ const CarCard = ({ listing }: CarCardProps) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 text-sm">
-          <div className="flex items-center space-x-2 text-muted-foreground">
-            <Calendar className="h-4 w-4 text-luxury-gold" />
-            <span>{year}</span>
-          </div>
-          <div className="flex items-center space-x-2 text-muted-foreground">
-            <Gauge className="h-4 w-4 text-luxury-gold" />
-            <span>{mileage} km</span>
-          </div>
-          <div className="flex items-center space-x-2 text-muted-foreground">
-            <Fuel className="h-4 w-4 text-luxury-gold" />
-            <span>{fuelType}</span>
-          </div>
-          <div className="flex items-center space-x-2 text-muted-foreground">
-            <Settings className="h-4 w-4 text-luxury-gold" />
-            <span>{transmission}</span>
-          </div>
-        </div>
+        {!isSold && (
+            <>
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div className="flex items-center space-x-2 text-muted-foreground">
+                    <Calendar className="h-4 w-4 text-luxury-gold" />
+                    <span>{year}</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-muted-foreground">
+                    <Gauge className="h-4 w-4 text-luxury-gold" />
+                    <span>{mileage} km</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-muted-foreground">
+                    <Fuel className="h-4 w-4 text-luxury-gold" />
+                    <span>{fuelType}</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-muted-foreground">
+                    <Settings className="h-4 w-4 text-luxury-gold" />
+                    <span>{transmission}</span>
+                  </div>
+                </div>
 
-        <div className="pt-2">
-            {isSold ? (
+                <div className="pt-2">
+                    <Link to={`/masini-disponibile/${listing.id}`} state={{ listing }} className="block">
+                        <Button className="w-full" size="sm">
+                            Vezi Detalii
+                        </Button>
+                    </Link>
+                </div>
+            </>
+        )}
+        
+         {isSold && (
+            <div className="pt-2">
                 <Button className="w-full" size="sm" disabled>
                     Vândut
                 </Button>
-            ) : (
-                <Link to={`/masini-disponibile/${listing.id}`} state={{ listing }} className="block">
-                    <Button className="w-full" size="sm">
-                        Vezi Detalii
-                    </Button>
-                </Link>
-            )}
-        </div>
+            </div>
+        )}
       </div>
     </motion.div>
   )
