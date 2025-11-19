@@ -122,37 +122,6 @@ const BenefitsWarrantyPage = () => {
         </Container>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-20 bg-background">
-        <Container>
-          <AnimatedSection className="text-center mb-16">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Beneficiile Tale Când Alegi AWD Auto
-            </h2>
-          </AnimatedSection>
-
-          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-            {benefits.map((benefit, index) => (
-              <StaggeredItem key={index}>
-                <Card className="luxury-card h-full text-center group">
-                  <CardContent className="p-8">
-                    <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:bg-luxury-gold/20 group-hover:scale-110">
-                      <benefit.icon className="h-10 w-10 text-luxury-gold" />
-                    </div>
-                    <h3 className="font-luxury text-xl font-bold text-foreground mb-4">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed text-sm">
-                      {benefit.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </StaggeredItem>
-            ))}
-          </StaggeredGrid>
-        </Container>
-      </section>
-      
       {/* Warranty Plans Section */}
       <section className="py-20 bg-luxury-darker">
         <Container>
@@ -252,6 +221,37 @@ const BenefitsWarrantyPage = () => {
             </div>
           </AnimatedSection>
 
+        </Container>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-20 bg-background">
+        <Container>
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Beneficiile Tale Când Alegi AWD Auto
+            </h2>
+          </AnimatedSection>
+
+          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            {benefits.map((benefit, index) => (
+              <StaggeredItem key={index}>
+                <Card className="luxury-card h-full text-center group">
+                  <CardContent className="p-8">
+                    <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:bg-luxury-gold/20 group-hover:scale-110">
+                      <benefit.icon className="h-10 w-10 text-luxury-gold" />
+                    </div>
+                    <h3 className="font-luxury text-xl font-bold text-foreground mb-4">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm">
+                      {benefit.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </StaggeredItem>
+            ))}
+          </StaggeredGrid>
         </Container>
       </section>
 
