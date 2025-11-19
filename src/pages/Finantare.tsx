@@ -195,7 +195,7 @@ const Finantare = () => {
               </div>
             </TabsContent>
 
-            {/* --- UniCredit Bank Content --- */}
+            {/* --- UniCredit Consumer Finacing Content --- */}
             <TabsContent value="unicredit" className="mt-6 p-6 bg-card rounded-lg">
                 <div className="text-center mb-6">
                     <img 
@@ -420,8 +420,7 @@ const Finantare = () => {
               <div className="pt-4 flex justify-center">
                   <div className="flex flex-col items-center justify-center gap-4 p-6 w-full max-w-xs">
                     <img src={porscheLogo} alt="Porsche Leasing Logo" className="h-16 w-auto object-contain" />
-                    <p className="font-semibold text-muted-foreground">Porsche Leasing</p>
-                  </div>
+                    <p className="font-semibold text-muted-foreground">Porsche Leasing</p>                  </div>
               </div>
             </div>
 
