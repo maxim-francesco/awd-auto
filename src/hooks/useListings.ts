@@ -21,6 +21,7 @@ export interface APIListing {
   description: string;
   price: number | null;
   createdAt: string;
+  status?: 'AVAILABLE' | 'SOLD'; // Added optional status
   attributeValues: Attribute[];
   images: ListingImage[];
 }

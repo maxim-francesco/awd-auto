@@ -3,11 +3,12 @@
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/luxury-button"
-import { Calendar, Fuel, Gauge, Settings, Cog } from "lucide-react"
-import type { APIListing } from "@/hooks/useLatestListings" // Changed to APIListing
+import { Calendar, Fuel, Gauge, Settings } from "lucide-react"
+import type { APIListing } from "@/hooks/useLatestListings"
+import { cn } from "@/lib/utils"
 
 interface CarCardProps {
-  listing: APIListing; // Changed to APIListing
+  listing: APIListing;
 }
 
 const CarCard = ({ listing }: CarCardProps) => {
@@ -35,32 +36,40 @@ const CarCard = ({ listing }: CarCardProps) => {
   const year = getAttributeValue('An');
   const transmission = getAttributeValue('Cutie de viteze');
 
-  // Check for the "TVA Deductibil" attribute
   const isVatDeductible = listing.attributeValues.find(
     (attr) => attr.attribute.name.toLowerCase() === 'tva deductibil' && attr.booleanValue === true
   );
+
+  const isSold = listing.status === 'SOLD';
 
   return (
     <motion.div 
       className="luxury-card group"
       whileHover={{ 
-        scale: 1.03, 
-        y: -5,
-        boxShadow: "0 25px 50px -12px hsl(var(--luxury-gold) / 0.4)"
+        scale: isSold ? 1 : 1.03, 
+        y: isSold ? 0 : -5,
+        boxShadow: isSold ? "0 10px 30px -10px hsl(220 13% 6% / 0.8)" : "0 25px 50px -12px hsl(var(--luxury-gold) / 0.4)"
       }}
       transition={{ 
         duration: 0.3, 
         ease: [0.4, 0, 0.2, 1] 
       }}
     >
-      {/* Car Image */}
       <div className="relative overflow-hidden rounded-t-xl">
-        {isVatDeductible && (
+        {isSold && (
+          <div className="absolute inset-0 flex items-center justify-center z-20 bg-black/30">
+            <div className="border-4 border-white bg-black/60 text-white text-2xl font-bold px-6 py-2 -rotate-12 transform uppercase tracking-widest backdrop-blur-sm">
+              VÂNDUT
+            </div>
+          </div>
+        )}
+        
+        {isVatDeductible && !isSold && (
           <span 
             className="absolute top-2 right-2 text-xs font-bold px-2 py-1 rounded-md shadow-lg z-10"
             style={{ 
-              backgroundColor: '#cd933b', // This is our primary gold color
-              color: '#1c1c1c' // A dark text color for high contrast
+              backgroundColor: '#cd933b',
+              color: '#1c1c1c'
             }}
           >
             TVA Deductibil
@@ -69,24 +78,25 @@ const CarCard = ({ listing }: CarCardProps) => {
         <img 
           src={listing.images?.[0]?.url || 'https://via.placeholder.com/600x400.png?text=AWD+Auto'} 
           alt={listing.title + ' de vânzare la parc auto Cluj-Napoca'}
-          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+          className={cn(
+            "w-full h-48 object-cover transition-transform duration-500",
+            !isSold && "group-hover:scale-110",
+            isSold && "grayscale"
+          )}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+        <div className={cn("absolute inset-0 bg-gradient-to-t from-black/60 to-transparent", isSold && "from-black/80")} />
       </div>
 
-      {/* Card Content */}
       <div className="p-6 space-y-4">
-        {/* Title and Price */}
         <div className="space-y-2">
-          <h3 className="font-luxury text-xl font-bold text-foreground group-hover:text-luxury-gold transition-colors truncate">
+          <h3 className={cn("font-luxury text-xl font-bold text-foreground transition-colors truncate", !isSold && "group-hover:text-luxury-gold")}>
             {listing.title}
           </h3>
-          <p className="text-2xl font-bold text-luxury-gold">
+          <p className={cn("text-2xl font-bold text-luxury-gold", isSold && "text-muted-foreground")}>
             €{(listing.price || 0).toLocaleString()}
           </p>
         </div>
 
-        {/* Specifications */}
         <div className="grid grid-cols-2 gap-3 text-sm">
           <div className="flex items-center space-x-2 text-muted-foreground">
             <Calendar className="h-4 w-4 text-luxury-gold" />
@@ -106,12 +116,19 @@ const CarCard = ({ listing }: CarCardProps) => {
           </div>
         </div>
 
-        {/* Action Button */}
-        <Link to={`/masini-disponibile/${listing.id}`} state={{ listing }} className="block">
-          <Button className="w-full" size="sm">
-            Vezi Detalii
-          </Button>
-        </Link>
+        <div className="pt-2">
+            {isSold ? (
+                <Button className="w-full" size="sm" disabled>
+                    Vândut
+                </Button>
+            ) : (
+                <Link to={`/masini-disponibile/${listing.id}`} state={{ listing }} className="block">
+                    <Button className="w-full" size="sm">
+                        Vezi Detalii
+                    </Button>
+                </Link>
+            )}
+        </div>
       </div>
     </motion.div>
   )
