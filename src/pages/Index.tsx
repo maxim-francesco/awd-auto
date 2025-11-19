@@ -107,38 +107,48 @@ const Index = () => {
         </Container>
       </section>
 
-      {/* --- Recently Sold Section --- */}
-      {soldListings && soldListings.length > 0 && (
-        <section className="py-20 bg-background">
-          <Container>
-            <AnimatedSection className="text-center mb-16">
-              <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Ultimele Vândute
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Mașini care și-au găsit recent un nou proprietar. Aducem constant vehicule noi în stoc!
-              </p>
-            </AnimatedSection>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {soldLoading ? (
-                [...Array(4)].map((_, index) => (
-                  <div key={index} className="luxury-card">
-                    <Skeleton className="h-48 w-full rounded-t-xl" />
-                    <div className="p-6 space-y-4">
-                      <Skeleton className="h-6 w-3/4" />
-                      <Skeleton className="h-8 w-1/2" />
-                      <Skeleton className="h-9 w-full" />
-                    </div>
-                  </div>
-                ))
-              ) : (
-                soldListings.map(listing => <CarCard key={listing.id} listing={listing} />)
-              )}
+      {/* --- SECȚIUNEA ULTIMELE VÂNDUTE (DEBUG MODE) --- */}
+      <section className="py-12 bg-gray-900/50">
+        <Container>
+          <h2 className="text-3xl font-bold text-center mb-8 text-foreground">
+            Ultimele Vândute
+          </h2>
+
+          {/* Loading State */}
+          {soldLoading && (
+            <p className="text-center text-yellow-500">Se încarcă mașinile vândute...</p>
+          )}
+
+          {/* Error State */}
+          {soldError && (
+            <div className="text-center text-red-500">
+              <p>Eroare la preluarea datelor:</p>
+              <pre>{JSON.stringify(soldError, null, 2)}</pre>
             </div>
-          </Container>
-        </section>
-      )}
+          )}
+
+          {/* Empty State (Debug info) */}
+          {!soldLoading && !soldError && soldListings.length === 0 && (
+            <div className="text-center p-6 border border-dashed border-gray-600 rounded-lg">
+              <p className="text-xl text-muted-foreground">
+                Nu au fost găsite mașini cu statusul "SOLD" în baza de date.
+              </p>
+              <p className="text-sm text-gray-500 mt-2">
+                (Verifică dacă mașinile au fost marcate oficial ca vândute în panoul de admin sau API)
+              </p>
+            </div>
+          )}
+
+          {/* Data State - Render Cards */}
+          {soldListings.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {soldListings.map((listing) => (
+                <CarCard key={listing.id} listing={{ ...listing, status: 'SOLD' }} />
+              ))}
+            </div>
+          )}
+        </Container>
+      </section>
 
       {/* Benefits Section */}
       <section className="py-20 bg-luxury-darker">
