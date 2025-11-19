@@ -45,7 +45,13 @@ const BenefitsWarrantyPage = () => {
       borderColor: "border-purple-500/30",
       eligibility: { age: 6, mileage: 160000 },
       coverage: "Asigurare împotriva daunelor mecanice, electrice și electronice.",
-      coveredComponents: ["Acoperire completă, similară cu garanția producătorului"],
+      coveredComponents: [
+        "Transmisie", "Motor", "Diferențial", "Consumabile", "Tractare auto",
+        "Tracțiune pe 4 roți", "Ambreiaj", "Frâne",
+        "Sistem de alimentare", "Instalație electrică",
+        "Direcție (inclusiv servodirecție)", "Sistem de răcire al motorului",
+        "Sistem de injecție de combustibil", "Aer condiționat"
+      ],
       period: "12, 24, sau 36 de luni",
       claimLimit: "Până la prețul de achiziție"
     },
@@ -58,7 +64,13 @@ const BenefitsWarrantyPage = () => {
       borderColor: "border-blue-500/30",
       eligibility: { age: 6, mileage: 200000 },
       coverage: "Asigurare împotriva daunelor mecanice, electrice și electronice.",
-      coveredComponents: ["Motor", "Transmisie", "Diferențial", "Sistem de frânare", "Sistem de direcție", "Componente electrice"],
+      coveredComponents: [
+        "Transmisie", "Motor", "Diferențial", "Consumabile", "Tractare auto",
+        "Tracțiune pe 4 roți", "Ambreiaj", "Frâne",
+        "Sistem de alimentare", "Instalație electrică",
+        "Direcție (inclusiv servodirecție)", "Sistem de răcire al motorului",
+        "Sistem de injecție de combustibil", "Aer condiționat"
+      ],
       period: "12, 24, sau 36 de luni"
     },
     {
@@ -70,7 +82,12 @@ const BenefitsWarrantyPage = () => {
       borderColor: "border-green-500/30",
       eligibility: { age: 10, mileage: 250000 },
       coverage: "Asigurare împotriva daunelor mecanice sau electrice.",
-      coveredComponents: ["Motor", "Transmisie automată", "Sistem de frânare", "Sistem de direcție", "Ambreiaj", "Volantă", "Turbosuflantă", "Electromotor", "Alternator"],
+      coveredComponents: [
+        "Transmisie", "Motor", "Diferențial", "Consumabile", "Tractare auto",
+        "Tracțiune pe 4 roți", "Ambreiaj", "Frâne",
+        "Sistem de alimentare", "Instalație electrică",
+        "Direcție (inclusiv servodirecție)", "Sistem de răcire al motorului"
+      ],
       period: "12, 24, sau 36 de luni"
     },
     {
@@ -82,7 +99,9 @@ const BenefitsWarrantyPage = () => {
       borderColor: "border-luxury-gold",
       eligibility: { age: 15, mileage: 300000 },
       coverage: "Asigurare împotriva daunelor mecanice.",
-      coveredComponents: ["Motor", "Transmisie manuală", "Sistem de răcire", "Diferențial"],
+      coveredComponents: [
+        "Transmisie", "Motor", "Diferențial", "Consumabile", "Tractare auto"
+      ],
       period: "12, 24, sau 36 de luni"
     }
   ]
@@ -187,7 +206,7 @@ const BenefitsWarrantyPage = () => {
                     
                     <div className="space-y-3">
                         <h4 className="font-semibold text-foreground text-center">Exemple de componente acoperite</h4>
-                        <ul className={`grid ${plan.title === 'DELUXE' ? 'grid-cols-1' : 'grid-cols-2'} gap-x-4 gap-y-2`}>
+                        <ul className={`grid grid-cols-2 gap-x-4 gap-y-2`}>
                             {plan.coveredComponents.map((comp, i) => (
                                 <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
                                     <Check className="h-4 w-4 text-green-500" />
