@@ -16,7 +16,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import btDirectLogo from '@/assets/logos/btlogo.png';
 import mogoLogo from '@/assets/logos/mogo.png';
 import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
-import unicreditLogo from '@/assets/logos/UniCredit-Bank-Emblem.png';
+import unicreditLogo from '@/assets/unicreditfinancing.png';
 import porscheLogo from '@/assets/logos/porsche2.png';
 import tbiBanner from '@/assets/logos/banner1.jpg';
 import b2Image from '@/assets/logos/b2.png';
@@ -145,17 +145,6 @@ const Finantare = () => {
                     <ul className="list-none space-y-2 pl-2">
                       <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Contract de muncă pe perioadă nedeterminată, cu o vechime de minim 6 luni.</span></li>
                       <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Dacă aveți Istoric Creditare în România în ultimii 5 ani, nu aveți nevoie de girant. Dacă nu, este nevoie de un girant angajat de minim 3 luni (se acceptă și pensionari).</span></li>
-                    </ul>
-                  </div>
-
-                  <div className="space-y-2">
-                    <h4 className="font-semibold text-foreground">Documente Necesare (Venituri din Străinătate):</h4>
-                    <ul className="list-none space-y-2 pl-2">
-                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Contract de muncă original și tradus de un traducător autorizat</span></li>
-                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Extrase de cont cu venitul lunar</span></li>
-                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Poză după buletin</span></li>
-                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Adresă de e-mail</span></li>
-                      <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Număr de telefon de România</span></li>
                     </ul>
                   </div>
                 </div>
@@ -288,15 +277,6 @@ const Finantare = () => {
                   <div>
                     <h4 className="font-semibold text-foreground">Balanță Contabilă Lunară</h4>
                      <p className="text-sm text-muted-foreground">Cea mai recentă balanță contabilă lunară.</p>
-                  </div>
-                </li>
-                 <li className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-luxury-gold/10 flex items-center justify-center">
-                    <UserCheck className="h-5 w-5 text-luxury-gold" />
-                  </div>
-                   <div>
-                    <h4 className="font-semibold text-foreground">Identificare Semnatar</h4>
-                    <p className="text-sm text-muted-foreground">Copie a actului de identitate pentru semnatarul contractului.</p>
                   </div>
                 </li>
               </ul>
