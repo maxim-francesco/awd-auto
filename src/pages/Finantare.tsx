@@ -16,7 +16,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import btDirectLogo from '@/assets/logos/btlogo.png';
 import mogoLogo from '@/assets/logos/mogo.png';
 import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
-import unicreditLogo from '@/assets/unicreditfinancing.png';
+import unicreditLogo from '@/assets/logos/unicreditfinancing.png';
 import porscheLogo from '@/assets/logos/porsche2.png';
 import tbiBanner from '@/assets/logos/banner1.jpg';
 import b2Image from '@/assets/logos/b2.png';
@@ -314,7 +314,7 @@ const Finantare = () => {
               <h3 className="text-2xl font-semibold text-center text-foreground">Credit Auto</h3>
               <div className="grid grid-cols-2 gap-8 pt-4">
                 <div className="flex flex-col items-center justify-center gap-4">
-                  <img src={unicreditLogo} alt="UniCredit Consumer Finacing Logo" className="h-16 w-auto object-contain" />
+                  <img src={unicreditLogo} alt="Logo UniCredit Consumer Finacing" className="h-16 w-auto object-contain" />
                   <p className="font-semibold text-muted-foreground">UniCredit Consumer Finacing</p>
                 </div>
                 <div className="flex flex-col items-center justify-center gap-4">
