@@ -6,6 +6,7 @@ import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/a
 import { Button } from "@/components/ui/luxury-button"
 import { Link } from "react-router-dom"
 import useLatestListings from "@/hooks/useLatestListings"
+import useSoldListings from "@/hooks/useSoldListings" // Import the new hook
 import CarCard from "@/components/CarCard"
 import { Skeleton } from "@/components/ui/skeleton"
 import { AlertCircle, Shield, Wrench, Search, Handshake } from "lucide-react"
@@ -15,6 +16,8 @@ import heroBg from '@/assets/logos/herocar.jpg';
 
 const Index = () => {
   const { listings, loading, error } = useLatestListings();
+  const { soldListings, loading: soldLoading, error: soldError } = useSoldListings(4); // Call the new hook
+  
   const benefits = [
     {
       icon: Search,
@@ -104,8 +107,41 @@ const Index = () => {
         </Container>
       </section>
 
+      {/* --- Recently Sold Section --- */}
+      {soldListings && soldListings.length > 0 && (
+        <section className="py-20 bg-background">
+          <Container>
+            <AnimatedSection className="text-center mb-16">
+              <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Ultimele Vândute
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Mașini care și-au găsit recent un nou proprietar. Aducem constant vehicule noi în stoc!
+              </p>
+            </AnimatedSection>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {soldLoading ? (
+                [...Array(4)].map((_, index) => (
+                  <div key={index} className="luxury-card">
+                    <Skeleton className="h-48 w-full rounded-t-xl" />
+                    <div className="p-6 space-y-4">
+                      <Skeleton className="h-6 w-3/4" />
+                      <Skeleton className="h-8 w-1/2" />
+                      <Skeleton className="h-9 w-full" />
+                    </div>
+                  </div>
+                ))
+              ) : (
+                soldListings.map(listing => <CarCard key={listing.id} listing={listing} />)
+              )}
+            </div>
+          </Container>
+        </section>
+      )}
+
       {/* Benefits Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-luxury-darker">
         <Container>
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
