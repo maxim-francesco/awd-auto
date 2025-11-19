@@ -19,7 +19,6 @@ import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
 import unicreditLogo from '@/assets/logos/UniCredit-Bank-Emblem.png';
 import porscheLogo from '@/assets/logos/porsche2.png';
 import tbiBanner from '@/assets/logos/banner1.jpg';
-import b1Image from '@/assets/logos/b1.png';
 import b2Image from '@/assets/logos/b2.png';
 
 
@@ -246,51 +245,6 @@ const Finantare = () => {
             </TabsContent>
             
           </Tabs>
-        </Container>
-      </section>
-
-      {/* Individuals Documentation Section */}
-      <section className="py-20 bg-background">
-        <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-             {/* Right Column (Image) */}
-             <div>
-              <img 
-                src={b1Image}
-                alt="Documentație finanțare persoane fizice"
-                className="rounded-lg shadow-lg object-cover w-full h-full"
-              />
-            </div>
-            {/* Left Column (Text) */}
-            <div className="space-y-6">
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
-                Persoane Fizice: Documentația Necesară pentru Finanțare
-              </h2>
-              <p className="text-muted-foreground">
-                Procesul de finanțare pentru persoane fizice este simplificat pentru a vă oferi o experiență cât mai rapidă și eficientă.
-              </p>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-luxury-gold/10 flex items-center justify-center">
-                    <FileText className="h-5 w-5 text-luxury-gold" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground">Cerere de Finanțare</h4>
-                    <p className="text-sm text-muted-foreground">Completați formularul standard de aplicare pus la dispoziție de partenerul nostru financiar.</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-luxury-gold/10 flex items-center justify-center">
-                    <UserCheck className="h-5 w-5 text-luxury-gold" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground">Copie a Cărții de Identitate</h4>
-                    <p className="text-sm text-muted-foreground">O copie validă a actului de identitate al solicitantului.</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
         </Container>
       </section>
       
