@@ -11,6 +11,7 @@ const useSoldListings = (limit: number = 4) => {
       try {
         setLoading(true);
         setError(null);
+        console.log("Fetching sold listings...");
         const businessId = "cmg5ligro0175s52cn0jimm7s";
         
         const url = `https://saas-platform-backend.onrender.com/api/public/listings/status/sold?businessId=${businessId}&limit=${limit}`;
@@ -22,11 +23,18 @@ const useSoldListings = (limit: number = 4) => {
         }
 
         const result = await response.json();
-        setSoldListings(result.data || []);
+        console.log("Sold listings response:", result); // <-- Check this in console
+
+        // API returns an object like { data: [...] }
+        if (result && Array.isArray(result.data)) {
+          setSoldListings(result.data);
+        } else {
+          setSoldListings([]);
+        }
         
       } catch (e: any) {
+        console.error("Error fetching sold listings:", e);
         setError(e);
-        console.error("Failed to fetch sold listings:", e);
       } finally {
         setLoading(false);
       }
