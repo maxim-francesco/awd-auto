@@ -11,25 +11,30 @@ const useSoldListings = (limit: number = 4) => {
       try {
         setLoading(true);
         setError(null);
-        console.log("Fetching sold listings...");
         const businessId = "cmg5ligro0175s52cn0jimm7s";
         
         const url = `https://saas-platform-backend.onrender.com/api/public/listings/status/sold?businessId=${businessId}&limit=${limit}`;
+        console.log("Fetching from:", url); // Keep for debug
 
         const response = await fetch(url);
 
         if (!response.ok) {
-          throw new Error('Network response was not ok while fetching sold listings');
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const result = await response.json();
-        console.log("Sold listings response:", result); // <-- Check this in console
+        console.log("API Response Data:", result); // Keep for debug
 
-        // API returns an object like { data: [...] }
+        // ROBUST DATA HANDLING:
         if (result && Array.isArray(result.data)) {
+          // Handle case where data is wrapped in a 'data' property
           setSoldListings(result.data);
+        } else if (Array.isArray(result)) {
+           // Handle case where API returns a direct array
+          setSoldListings(result);
         } else {
-          setSoldListings([]);
+          console.warn("Unexpected data format received:", result);
+          setSoldListings([]); // Fallback to empty array
         }
         
       } catch (e: any) {
