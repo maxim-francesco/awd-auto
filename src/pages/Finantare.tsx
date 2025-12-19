@@ -18,7 +18,7 @@ import mogoLogo from '@/assets/logos/mogo.png';
 import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
 import unicreditLogo from '@/assets/logos/unicreditfinancing.png';
 import porscheLogo from '@/assets/logos/porsche2.png';
-import tbiBanner from '@/assets/logos/banner1.jpg';
+import newBanner from '@/assets/0.jpg';
 import b2Image from '@/assets/logos/b2.png';
 
 
@@ -58,7 +58,7 @@ const Finantare = () => {
                         Aplică folosind formularul alăturat pentru a vedea dacă ești eligibil pentru finanțare.
                     </p>
                     <img 
-                        src={tbiBanner} 
+                        src={newBanner} 
                         alt="TBI Bank Finanțare Auto" 
                         className="w-full rounded-lg shadow-md mt-4" 
                     />
