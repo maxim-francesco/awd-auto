@@ -18,6 +18,7 @@ import PoliticaConfidentialitate from "./pages/PoliticaConfidentialitate";
 import CookieConsentModal from "./components/CookieConsentModal";
 import BenefitsWarrantyPage from "./pages/BenefitsWarrantyPage";
 import CarListings from "./pages/CarListings";
+import MasiniVandute from "./pages/MasiniVandute";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/termeni-conditii" element={<TermeniConditii />} />
             <Route path="/politica-confidentialitate" element={<PoliticaConfidentialitate />} />
+            <Route path="/masini-vandute" element={<MasiniVandute />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

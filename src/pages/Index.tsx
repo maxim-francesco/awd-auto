@@ -6,17 +6,17 @@ import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/a
 import { Button } from "@/components/ui/luxury-button"
 import { Link } from "react-router-dom"
 import useLatestListings from "@/hooks/useLatestListings"
-import useSoldListings from "@/hooks/useSoldListings" // Import the new hook
+import useSoldListings from "@/hooks/useSoldListings"
 import CarCard from "@/components/CarCard"
 import { Skeleton } from "@/components/ui/skeleton"
 import { AlertCircle, Shield, Wrench, Search, Handshake } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import heroBg from '@/assets/logos/herocar.jpg';
-
+import GoogleReviewsSection from '@/components/GoogleReviewsSection'; // Import the new component
 
 const Index = () => {
   const { listings, loading, error } = useLatestListings();
-  const { soldListings, loading: soldLoading, error: soldError } = useSoldListings(4); // Call the new hook
+  const { soldListings, loading: soldLoading, error: soldError } = useSoldListings(4);
   
   const benefits = [
     {
@@ -107,39 +107,44 @@ const Index = () => {
         </Container>
       </section>
 
-      {/* --- SECȚIUNEA ULTIMELE VÂNDUTE (DEBUG MODE) --- */}
+      {/* --- SECȚIUNEA ULTIMELE VÂNDUTE --- */}
       <section className="py-12 bg-gray-900/50">
         <Container>
           <h2 className="text-3xl font-bold text-center mb-8 text-foreground">
             Ultimele Vândute
           </h2>
 
-          {/* Loading State */}
           {soldLoading && (
-            <p className="text-center text-yellow-500">Se încarcă mașinile vândute...</p>
-          )}
-
-          {/* Error State */}
-          {soldError && (
-            <div className="text-center text-red-500">
-              <p>Eroare la preluarea datelor:</p>
-              <pre>{JSON.stringify(soldError, null, 2)}</pre>
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                {[...Array(4)].map((_, index) => (
+                    <div key={index} className="luxury-card">
+                    <Skeleton className="h-48 w-full rounded-t-xl" />
+                    <div className="p-6 space-y-4">
+                        <Skeleton className="h-6 w-3/4" />
+                        <Skeleton className="h-8 w-1/2" />
+                        <Skeleton className="h-9 w-full" />
+                    </div>
+                    </div>
+                ))}
             </div>
           )}
 
-          {/* Empty State (Debug info) */}
+          {soldError && (
+            <div className="col-span-full text-center text-red-500 bg-red-500/10 p-6 rounded-lg border border-red-500/30">
+                <AlertCircle className="mx-auto h-12 w-12 mb-4" />
+                <h3 className="text-xl font-semibold">Eroare la încărcare</h3>
+                <p>Nu am putut prelua ultimele mașini vândute.</p>
+            </div>
+          )}
+
           {!soldLoading && !soldError && soldListings.length === 0 && (
             <div className="text-center p-6 border border-dashed border-gray-600 rounded-lg">
               <p className="text-xl text-muted-foreground">
-                Nu au fost găsite mașini cu statusul "SOLD" în baza de date.
-              </p>
-              <p className="text-sm text-gray-500 mt-2">
-                (Verifică dacă mașinile au fost marcate oficial ca vândute în panoul de admin sau API)
+                Nu sunt mașini vândute de afișat momentan.
               </p>
             </div>
           )}
 
-          {/* Data State - Render Cards */}
           {soldListings.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {soldListings.map((listing) => (
@@ -147,8 +152,16 @@ const Index = () => {
               ))}
             </div>
           )}
+           <AnimatedSection className="text-center mt-12">
+                <Button asChild variant={"outline"}>
+                    <Link to="/masini-vandute">Vezi toate vândute</Link>
+                </Button>
+            </AnimatedSection>
         </Container>
       </section>
+      
+      {/* Google Reviews Section */}
+      <GoogleReviewsSection />
 
       {/* Benefits Section */}
       <section className="py-20 bg-luxury-darker">

@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
-import type { APIListing } from './useListings'; // Reusing the type from existing hooks
+import type { APIListing } from './useListings';
 
-const useSoldListings = (limit: number = 4) => {
+// The hook now accepts an optional limit.
+// If no limit is provided, it will fetch all sold listings.
+const useSoldListings = (limit?: number) => {
   const [soldListings, setSoldListings] = useState<APIListing[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -13,8 +15,15 @@ const useSoldListings = (limit: number = 4) => {
         setError(null);
         const businessId = "cmg5ligro0175s52cn0jimm7s";
         
-        const url = `https://saas-platform-backend.onrender.com/api/public/listings/status/sold?businessId=${businessId}&limit=${limit}`;
-        console.log("Fetching from:", url); // Keep for debug
+        // Base URL
+        let url = `https://saas-platform-backend.onrender.com/api/public/listings/status/sold?businessId=${businessId}`;
+
+        // Conditionally add the limit parameter only if a limit is provided
+        if (limit && limit > 0) {
+          url += `&limit=${limit}`;
+        }
+
+        console.log("Fetching from:", url); // For debugging
 
         const response = await fetch(url);
 
@@ -23,18 +32,15 @@ const useSoldListings = (limit: number = 4) => {
         }
 
         const result = await response.json();
-        console.log("API Response Data:", result); // Keep for debug
+        console.log("API Response Data:", result); // For debugging
 
-        // ROBUST DATA HANDLING:
         if (result && Array.isArray(result.data)) {
-          // Handle case where data is wrapped in a 'data' property
           setSoldListings(result.data);
         } else if (Array.isArray(result)) {
-           // Handle case where API returns a direct array
           setSoldListings(result);
         } else {
           console.warn("Unexpected data format received:", result);
-          setSoldListings([]); // Fallback to empty array
+          setSoldListings([]);
         }
         
       } catch (e: any) {
