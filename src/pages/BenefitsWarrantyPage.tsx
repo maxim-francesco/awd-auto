@@ -1,6 +1,6 @@
 import Layout from "@/components/layout/Layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { AlertCircle, Search, ListChecks, Percent, Shield, Clock, HardDrive, Cpu, Check, Calendar, Users, Target, ShieldCheck, Wrench } from "lucide-react"
+import { AlertCircle, Search, ListChecks, Percent, Shield, Clock, HardDrive, Cpu, Check, Calendar, Users, Target, ShieldCheck } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import { Separator } from "@/components/ui/separator";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -12,11 +12,6 @@ const BenefitsWarrantyPage = () => {
       icon: Search,
       title: "Istoric Verificat",
       description: "Fiecare mașină din parcul nostru vine cu un istoric de service transparent. Cumpără cu încredere, știind exact trecutul mașinii tale."
-    },
-    {
-      icon: Wrench,
-      title: "Revizie",
-      description: "Pentru a ne asigura că pleci la drum în siguranță, efectuăm o revizie completă înainte de predarea mașinii, ce include schimbul de ulei și filtre motor."
     },
     {
       icon: ListChecks,
