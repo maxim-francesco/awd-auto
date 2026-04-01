@@ -9,7 +9,7 @@ import useLatestListings from "@/hooks/useLatestListings"
 import useSoldListings from "@/hooks/useSoldListings"
 import CarCard from "@/components/CarCard"
 import { Skeleton } from "@/components/ui/skeleton"
-import { AlertCircle, Shield, Search, Handshake } from "lucide-react"
+import { AlertCircle, Shield, Search, Handshake, ShieldCheck } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import heroBg from '@/assets/logos/herocar.jpg';
 import GoogleReviewsSection from '@/components/GoogleReviewsSection'; // Import the new component
@@ -23,6 +23,11 @@ const Index = () => {
       icon: Search,
       title: "Istoric Verificat",
       description: "Fiecare mașină din parcul nostru vine cu un istoric de service transparent. Cumpără cu încredere, știind exact trecutul mașinii tale."
+    },
+    {
+      icon: ShieldCheck,
+      title: "RAR Efectuat",
+      description: "Pentru siguranța ta și un plus de confort, toate mașinile noastre vin cu RAR-ul deja efectuat. Ne asigurăm că fiecare detaliu tehnic este în regulă, oferindu-ți servicii de cea mai înaltă calitate."
     },
     {
       icon: Shield,

@@ -8,6 +8,7 @@ const DespreNoi = () => {
   const benefits = [
     "Stoc diversificat de mașini rulate și verificate",
     "Kilometraj real și istoric de service la cerere",
+    "RAR efectuat pentru toate autoturismele",
     "Garanție inclusă pentru majoritatea vehiculelor",
     "Consultanță specializată și test drive",
     "Proces de achiziție rapid și transparent",

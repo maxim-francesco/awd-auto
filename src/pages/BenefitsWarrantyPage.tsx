@@ -19,6 +19,11 @@ const BenefitsWarrantyPage = () => {
       description: "Înainte de a fi listată, fiecare mașină este supusă unei inspecții amănunțite în peste 100 de puncte de către mecanicii noștri parteneri."
     },
     {
+      icon: ShieldCheck,
+      title: "RAR Efectuat",
+      description: "Pentru siguranța ta și un plus de confort, toate mașinile noastre vin cu RAR-ul deja efectuat. Ne asigurăm că fiecare detaliu tehnic este în regulă, oferindu-ți servicii de cea mai înaltă calitate."
+    },
+    {
       icon: Percent,
       title: "Finanțare Personalizată",
       description: "Oferim soluții de finanțare rapide și flexibile prin partenerii noștri de încredere, adaptate perfect bugetului și nevoilor tale."
