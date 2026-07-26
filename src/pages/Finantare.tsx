@@ -1,4 +1,4 @@
-
+﻿
 import Layout from "@/components/layout/Layout"
 import { Card, CardContent } from "@/components/ui/card"
 import { UserCheck, Building, FileText, CheckCircle } from "lucide-react"
@@ -48,7 +48,7 @@ const Finantare = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 {/* Left Column */}
                 <div className="space-y-4 text-center md:text-left">
-                    <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
+                    <h2 className="text-3xl lg:text-4xl font-bold text-luxury-gold font-luxury">
                         Plătește în rate fără avans
                     </h2>
                     <p className="text-muted-foreground text-lg">
@@ -92,7 +92,7 @@ const Finantare = () => {
       <section className="py-20 bg-luxury-darker">
         <Container>
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
+            <h2 className="text-3xl lg:text-4xl font-bold text-luxury-gold font-luxury">
               Detalii Finanțare Parteneri
             </h2>
           </div>
@@ -113,7 +113,7 @@ const Finantare = () => {
                   </h3>
                   
                   <div className="space-y-4">
-                    <h4 className="font-semibold text-foreground">Criterii de eligibilitate:</h4>
+                    <h4 className="font-semibold text-luxury-gold">Criterii de eligibilitate:</h4>
                     <ul className="list-none space-y-2 pl-2">
                       <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Vârsta: 18-75 ani (la terminarea creditului)</span></li>
                       <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Minim 3 luni la actualul angajator (3 salarii încasate și declarate la ANAF)</span></li>
@@ -125,7 +125,7 @@ const Finantare = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <h4 className="font-semibold text-foreground">Detalii Credit:</h4>
+                    <h4 className="font-semibold text-luxury-gold">Detalii Credit:</h4>
                     <ul className="list-none space-y-2 pl-2">
                       <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Sumă finanțată: 3.000 - 150.000 RON</span></li>
                       <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Timp de răspuns: 15 min - 120 min</span></li>
@@ -133,7 +133,7 @@ const Finantare = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <h4 className="font-semibold text-foreground">Criterii pentru Venituri din Străinătate:</h4>
+                    <h4 className="font-semibold text-luxury-gold">Criterii pentru Venituri din Străinătate:</h4>
                     <ul className="list-none space-y-2 pl-2">
                       <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Contract de muncă pe perioadă nedeterminată, cu o vechime de minim 6 luni.</span></li>
                       <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Dacă aveți Istoric Creditare în România în ultimii 5 ani, nu aveți nevoie de girant. Dacă nu, este nevoie de un girant angajat de minim 3 luni (se acceptă și pensionari).</span></li>
@@ -148,7 +148,7 @@ const Finantare = () => {
                   </h3>
 
                   <div className="space-y-2">
-                    <h4 className="font-semibold text-foreground">Criterii de Eligibilitate:</h4>
+                    <h4 className="font-semibold text-luxury-gold">Criterii de Eligibilitate:</h4>
                     <ul className="list-none space-y-2 pl-2">
                       <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Cifră de afaceri minimă: 500.000 RON</span></li>
                       <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Cifră de afaceri minimă (transport și construcții): 1.500.000 RON</span></li>
@@ -158,7 +158,7 @@ const Finantare = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <h4 className="font-semibold text-foreground">Detalii Finanțare:</h4>
+                    <h4 className="font-semibold text-luxury-gold">Detalii Finanțare:</h4>
                     <ul className="list-none space-y-2 pl-2">
                       <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Sumă maximă finanțată: 250.000 RON</span></li>
                       <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Se finanțează până la 10% din cifra de afaceri.</span></li>
@@ -207,7 +207,7 @@ const Finantare = () => {
                         
                         <p className="text-muted-foreground">Vârsta între <strong>22 și 70 de ani</strong> (la finalizarea contractului).</p>
 
-                        <h4 className="font-semibold text-foreground pt-2">Documente Necesare:</h4>
+                        <h4 className="font-semibold text-luxury-gold pt-2">Documente Necesare:</h4>
                         <ul className="list-none space-y-2 text-muted-foreground">
                             <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Actul de identitate</span></li>
                             <li className="flex items-start gap-3"><CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" /><span>Acord de consultare ANAF (se completează la locație)</span></li>
@@ -228,7 +228,7 @@ const Finantare = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Left Column (Text) */}
             <div className="space-y-6">
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
+              <h2 className="text-3xl lg:text-4xl font-bold text-luxury-gold font-luxury">
                 Afaceri: Documentația Necesară Pentru Finanțare
               </h2>
               <p className="text-muted-foreground">
@@ -240,7 +240,7 @@ const Finantare = () => {
                     <UserCheck className="h-5 w-5 text-luxury-gold" />
                   </div>
                    <div>
-                    <h4 className="font-semibold text-foreground">Identificare Reprezentant Legal</h4>
+                    <h4 className="font-semibold text-luxury-gold">Identificare Reprezentant Legal</h4>
                     <p className="text-sm text-muted-foreground">Copie a actului de identitate pentru administratorul sau reprezentantul legal al firmei.</p>
                   </div>
                 </li>
@@ -249,7 +249,7 @@ const Finantare = () => {
                     <Building className="h-5 w-5 text-luxury-gold" />
                   </div>
                    <div>
-                    <h4 className="font-semibold text-foreground">Certificat de Înregistrare</h4>
+                    <h4 className="font-semibold text-luxury-gold">Certificat de Înregistrare</h4>
                     <p className="text-sm text-muted-foreground">Copie a Certificatului de Înregistrare a companiei (CUI).</p>
                   </div>
                 </li>
@@ -258,7 +258,7 @@ const Finantare = () => {
                     <FileText className="h-5 w-5 text-luxury-gold" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground">Bilanțuri Contabile</h4>
+                    <h4 className="font-semibold text-luxury-gold">Bilanțuri Contabile</h4>
                      <p className="text-sm text-muted-foreground">Ultimele bilanțuri contabile anuale.</p>
                   </div>
                 </li>
@@ -267,7 +267,7 @@ const Finantare = () => {
                     <FileText className="h-5 w-5 text-luxury-gold" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground">Balanță Contabilă Lunară</h4>
+                    <h4 className="font-semibold text-luxury-gold">Balanță Contabilă Lunară</h4>
                      <p className="text-sm text-muted-foreground">Cea mai recentă balanță contabilă lunară.</p>
                   </div>
                 </li>
@@ -290,7 +290,7 @@ const Finantare = () => {
         <Container>
           
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground font-luxury">
+            <h2 className="text-3xl lg:text-4xl font-bold text-luxury-gold font-luxury">
               Partenerii Noștri de Încredere
             </h2>
             <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
@@ -303,7 +303,7 @@ const Finantare = () => {
 
             {/* --- Column 1: Credit Auto --- */}
             <div className="space-y-6">
-              <h3 className="text-2xl font-semibold text-center text-foreground">Credit Auto</h3>
+              <h3 className="text-2xl font-semibold text-center text-luxury-gold">Credit Auto</h3>
               <div className="grid grid-cols-2 gap-8 pt-4">
                 <div className="flex flex-col items-center justify-center gap-4">
                   <img src={unicreditLogo} alt="Logo UniCredit Consumer Financing" className="h-20 w-auto object-contain" />
@@ -318,7 +318,7 @@ const Finantare = () => {
 
             {/* --- Column 2: Leasing Auto --- */}
             <div className="space-y-6">
-              <h3 className="text-2xl font-semibold text-center text-foreground">Leasing Auto</h3>
+              <h3 className="text-2xl font-semibold text-center text-luxury-gold">Leasing Auto</h3>
               <div className="pt-4 flex justify-center">
                   <div className="flex flex-col items-center justify-center gap-4 p-6 w-full max-w-xs">
                     <img src={porscheLogo} alt="Porsche Leasing Logo" className="h-16 w-auto object-contain" />

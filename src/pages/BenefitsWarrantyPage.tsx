@@ -1,4 +1,4 @@
-import Layout from "@/components/layout/Layout"
+﻿import Layout from "@/components/layout/Layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { AlertCircle, Search, ListChecks, Percent, Shield, Clock, HardDrive, Cpu, Check, Calendar, Users, Target, ShieldCheck } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
@@ -131,7 +131,7 @@ const BenefitsWarrantyPage = () => {
        <section className="bg-luxury-darker py-16 md:py-20">
         <Container className="text-center">
             <AnimatedSection>
-                <h1 className="text-4xl lg:text-5xl font-bold text-foreground font-luxury">
+                <h1 className="text-4xl lg:text-5xl font-bold text-luxury-gold font-luxury">
                 Liniștea Ta Este Prioritatea Noastră
                 </h1>
                 <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
@@ -145,7 +145,7 @@ const BenefitsWarrantyPage = () => {
       <section className="py-20 bg-luxury-darker">
         <Container>
           <AnimatedSection className="text-center mb-16">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
               Pachete de Garanție Extinsă
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -205,7 +205,7 @@ const BenefitsWarrantyPage = () => {
                     <Separator />
                     
                     <div className="space-y-3">
-                        <h4 className="font-semibold text-foreground text-center">Exemple de componente acoperite</h4>
+                        <h4 className="font-semibold text-luxury-gold text-center">Exemple de componente acoperite</h4>
                         <ul className={`grid grid-cols-2 gap-x-4 gap-y-2`}>
                             {plan.coveredComponents.map((comp, i) => (
                                 <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -218,7 +218,7 @@ const BenefitsWarrantyPage = () => {
 
                     <div className="mt-auto pt-6">
                         <Separator className="mb-6"/>
-                        <h4 className="font-semibold text-foreground text-center mb-3">Parametri Opționali</h4>
+                        <h4 className="font-semibold text-luxury-gold text-center mb-3">Parametri Opționali</h4>
                         <div className="space-y-2 text-sm">
                             <p><strong className="text-muted-foreground">Perioadă:</strong> <span className="text-foreground">{plan.period}</span></p>
                         </div>
@@ -234,7 +234,7 @@ const BenefitsWarrantyPage = () => {
             <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-6 flex items-center gap-4">
                 <AlertCircle className="h-8 w-8 text-blue-400 flex-shrink-0" />
                 <div>
-                    <h4 className="font-semibold text-foreground">Notă importantă pentru vehicule hibrid</h4>
+                    <h4 className="font-semibold text-luxury-gold">Notă importantă pentru vehicule hibrid</h4>
                     <p className="text-sm text-muted-foreground">Pentru mașinile de tip PHEV (Plug-in Hybrid) și HEV (Hybrid), pachetele de garanție acoperă și componentele specifice sistemului de propulsie hibrid.</p>
                 </div>
             </div>
@@ -247,7 +247,7 @@ const BenefitsWarrantyPage = () => {
       <section className="py-20 bg-background">
         <Container>
           <AnimatedSection className="text-center mb-16">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
               Beneficiile Tale Când Alegi AWD Auto
             </h2>
           </AnimatedSection>
@@ -260,7 +260,7 @@ const BenefitsWarrantyPage = () => {
                     <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:bg-luxury-gold/20 group-hover:scale-110">
                       <benefit.icon className="h-10 w-10 text-luxury-gold" />
                     </div>
-                    <h3 className="font-luxury text-xl font-bold text-foreground mb-4">
+                    <h3 className="font-luxury text-xl font-bold text-luxury-gold mb-4">
                       {benefit.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed text-sm">
@@ -278,7 +278,7 @@ const BenefitsWarrantyPage = () => {
       <AnimatedSection className="py-20 bg-background">
         <Container className="max-w-screen-lg">
           <div className="text-center mb-16">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
               Întrebări Frecvente
             </h2>
           </div>

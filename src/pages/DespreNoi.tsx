@@ -1,4 +1,4 @@
-import Layout from "@/components/layout/Layout"
+﻿import Layout from "@/components/layout/Layout"
 import { Card, CardContent } from "@/components/ui/card"
 import { Shield, Search, Handshake, CheckCircle, Star } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
@@ -58,7 +58,7 @@ const DespreNoi = () => {
         <Container>
             <AnimatedSection>
                 <div className="max-w-3xl mx-auto text-center space-y-6">
-                    <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground">Povestea Noastră</h2>
+                    <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold">Povestea Noastră</h2>
                     <p className="text-muted-foreground leading-relaxed">Motorul și sufletul acestei afaceri de familie este Laurentiu Csibi, omul care demonstrează că pasiunea, onestitatea și responsabilitatea față de clienți sunt valorile care ne propulsează către succes.</p>
                      <blockquote className="border-l-4 border-luxury-gold pl-6 py-2 italic text-foreground/80 text-left md:text-center">
                         "Fiecare mașină are o poveste și fiecare client are un vis. Misiunea mea este să le aduc împreună. La AWD Auto, nu facem compromisuri când vine vorba de calitate și corectitudine. O mașină excelentă și un client fericit sunt cea mai mare satisfacție a mea."
@@ -73,7 +73,7 @@ const DespreNoi = () => {
       <section className="py-20 bg-luxury-darker">
         <Container>
             <AnimatedSection className="text-center mb-16">
-                 <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+                 <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
                     Ce Spun Clienții Noștri
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -107,7 +107,7 @@ const DespreNoi = () => {
       <section className="py-20 bg-background">
         <Container>
           <AnimatedSection className="text-center mb-16">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
               Valorile care Ne Ghidează
             </h2>
           </AnimatedSection>
@@ -119,7 +119,7 @@ const DespreNoi = () => {
                   <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                     <Search className="h-10 w-10 text-luxury-gold" />
                   </div>
-                  <h3 className="font-luxury text-xl font-bold text-foreground mb-4">
+                  <h3 className="font-luxury text-xl font-bold text-luxury-gold mb-4">
                     Transparență
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
@@ -136,7 +136,7 @@ const DespreNoi = () => {
                   <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                     <Shield className="h-10 w-10 text-luxury-gold" />
                   </div>
-                  <h3 className="font-luxury text-xl font-bold text-foreground mb-4">
+                  <h3 className="font-luxury text-xl font-bold text-luxury-gold mb-4">
                     Calitate Garantată
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
@@ -153,7 +153,7 @@ const DespreNoi = () => {
                   <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                     <Handshake className="h-10 w-10 text-luxury-gold" />
                   </div>
-                  <h3 className="font-luxury text-xl font-bold text-foreground mb-4">
+                  <h3 className="font-luxury text-xl font-bold text-luxury-gold mb-4">
                     Respect pentru Client
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
@@ -172,7 +172,7 @@ const DespreNoi = () => {
         <Container>
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+              <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
                 Beneficiile AWD Auto
               </h2>
             </div>

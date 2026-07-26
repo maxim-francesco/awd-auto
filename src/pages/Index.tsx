@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import Layout from "@/components/layout/Layout"
 import Container from "@/components/ui/Container"
@@ -71,7 +71,7 @@ const Index = () => {
       <section className="py-20 bg-luxury-darker">
         <Container>
           <AnimatedSection className="text-center mb-16">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
               Ultimele Noutăți în Stoc
             </h2>
           </AnimatedSection>
@@ -110,7 +110,7 @@ const Index = () => {
       {/* --- SECȚIUNEA ULTIMELE VÂNDUTE --- */}
       <section className="py-12 bg-gray-900/50">
         <Container>
-          <h2 className="text-3xl font-bold text-center mb-8 text-foreground">
+          <h2 className="text-3xl font-bold text-center mb-8 text-luxury-gold">
             Ultimele Vândute
           </h2>
 
@@ -167,7 +167,7 @@ const Index = () => {
       <section className="py-20 bg-luxury-darker">
         <Container>
           <AnimatedSection className="text-center mb-16">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
               Promisiunea Noastră: Pasiune și Încredere
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -183,7 +183,7 @@ const Index = () => {
                     <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:bg-luxury-gold/20 group-hover:scale-110">
                       <benefit.icon className="h-10 w-10 text-luxury-gold" />
                     </div>
-                    <h3 className="font-luxury text-xl font-bold text-foreground mb-4">
+                    <h3 className="font-luxury text-xl font-bold text-luxury-gold mb-4">
                       {benefit.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed text-sm">

@@ -1,4 +1,4 @@
-import Layout from "@/components/layout/Layout"
+﻿import Layout from "@/components/layout/Layout"
 import { Button } from "@/components/ui/luxury-button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -60,7 +60,7 @@ const MasiniLaComanda = () => {
       <section className="py-20 bg-background">
         <Container>
           <AnimatedSection className="text-center mb-16">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
               Cum Funcționează?
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -76,7 +76,7 @@ const MasiniLaComanda = () => {
                     <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                       <step.icon className="h-10 w-10 text-luxury-gold" />
                     </div>
-                    <h3 className="font-luxury text-xl font-bold text-foreground mb-4">
+                    <h3 className="font-luxury text-xl font-bold text-luxury-gold mb-4">
                       {step.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed text-sm">

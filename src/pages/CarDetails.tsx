@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useState, useEffect } from "react"
 import { useParams, useNavigate, useLocation } from "react-router-dom"
@@ -316,7 +316,7 @@ const CarDetails = () => {
               
               {/* Description */}
               <div className="pt-4">
-                <h2 className="font-luxury text-xl font-semibold text-foreground mb-3">
+                <h2 className="font-luxury text-xl font-semibold text-luxury-gold mb-3">
                   Descriere Detaliată
                 </h2>
                 <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap">

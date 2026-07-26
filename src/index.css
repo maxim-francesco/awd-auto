@@ -10,7 +10,7 @@ All colors MUST be HSL for perfect luxury automotive aesthetic.
   :root {
     /* Premium Dark Theme - Luxury Automotive */
     --background: 220 13% 9%;
-    --foreground: 210 40% 98%;
+    --foreground: 43 25% 95%;
 
     --card: 220 13% 12%;
     --card-foreground: 210 40% 98%;
@@ -27,7 +27,7 @@ All colors MUST be HSL for perfect luxury automotive aesthetic.
     --secondary-foreground: 210 40% 98%;
 
     --muted: 220 13% 15%;
-    --muted-foreground: 210 20% 65%;
+    --muted-foreground: 43 22% 74%;
 
     /* Premium Gold Accent - New Premium Gold */
     --accent: 43 59% 59%;
@@ -106,7 +106,7 @@ All colors MUST be HSL for perfect luxury automotive aesthetic.
 
   /* Typography Hierarchy */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-luxury font-bold tracking-tight;
+    @apply font-luxury font-bold tracking-tight text-luxury-gold;
   }
 
   .hero-text {

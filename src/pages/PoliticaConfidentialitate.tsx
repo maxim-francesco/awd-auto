@@ -1,4 +1,4 @@
-import Layout from "@/components/layout/Layout";
+﻿import Layout from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import Container from "@/components/ui/Container";
 
@@ -16,7 +16,7 @@ const PoliticaConfidentialitate = () => {
         <Container className="max-w-screen-lg">
           <AnimatedSection>
             <div className="mb-12 text-center">
-              <h1 className="font-luxury text-4xl md:text-5xl font-bold text-foreground">
+              <h1 className="font-luxury text-4xl md:text-5xl font-bold text-luxury-gold">
                 Politică de Confidențialitate
               </h1>
               <p className="mt-4 text-muted-foreground">
@@ -24,7 +24,7 @@ const PoliticaConfidentialitate = () => {
               </p>
             </div>
 
-            <div className="prose prose-invert max-w-none mx-auto text-muted-foreground prose-h2:text-foreground prose-h2:font-luxury prose-h3:text-foreground prose-h3:font-luxury prose-strong:text-foreground prose-a:text-luxury-gold hover:prose-a:text-luxury-gold-hover">
+            <div className="prose prose-invert max-w-none mx-auto text-muted-foreground prose-h2:text-luxury-gold prose-h2:font-luxury prose-h3:text-foreground prose-h3:font-luxury prose-strong:text-foreground prose-a:text-luxury-gold hover:prose-a:text-luxury-gold-hover">
               
               <h2>1. Introducere și Operatorul de Date</h2>
               <p>

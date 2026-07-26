@@ -1,4 +1,4 @@
-import Layout from "@/components/layout/Layout"
+﻿import Layout from "@/components/layout/Layout"
 import { Button } from "@/components/ui/luxury-button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -17,7 +17,7 @@ const Contact = () => {
       <Container className="py-12">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="font-luxury text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h1 className="font-luxury text-4xl md:text-5xl font-bold text-luxury-gold mb-4">
             Contactează AWD Auto - Parc Auto în Cluj-Napoca
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -41,7 +41,7 @@ const Contact = () => {
                         <MapPin className="h-6 w-6 text-luxury-gold" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-foreground mb-1">Adresa</h3>
+                        <h3 className="font-semibold text-luxury-gold mb-1">Adresa</h3>
                         <p className="text-muted-foreground">
                           Strada Plevnei 117<br />
                           Cluj-Napoca, 400394, România
@@ -58,7 +58,7 @@ const Contact = () => {
                         <Phone className="h-6 w-6 text-luxury-gold" />
                       </div>
                        <div className="space-y-1">
-                        <h3 className="font-semibold text-foreground mb-1">Telefon</h3>
+                        <h3 className="font-semibold text-luxury-gold mb-1">Telefon</h3>
                         <a href="tel:0752228593" className="block text-muted-foreground hover:text-luxury-gold transition-colors">
                           0752 228 593
                         </a>
@@ -77,7 +77,7 @@ const Contact = () => {
                         <Mail className="h-6 w-6 text-luxury-gold" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-foreground mb-1">Email</h3>
+                        <h3 className="font-semibold text-luxury-gold mb-1">Email</h3>
                         <p className="text-muted-foreground">
                           contact@awdauto.ro<br />
                           vanzari@awdauto.ro
@@ -94,7 +94,7 @@ const Contact = () => {
                         <Clock className="h-6 w-6 text-luxury-gold" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-foreground mb-1">Program</h3>
+                        <h3 className="font-semibold text-luxury-gold mb-1">Program</h3>
                         <div className="text-muted-foreground space-y-1">
                           <p>Luni - Vineri: 09:00 - 18:00</p>
                           <p>Sâmbătă: 09:00 - 14:00</p>

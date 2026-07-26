@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import Layout from "@/components/layout/Layout"
 import Container from "@/components/ui/Container"
@@ -17,7 +17,7 @@ const MasiniVandute = () => {
       <section className="py-20 bg-luxury-darker">
         <Container>
           <AnimatedSection className="text-center mb-16">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
               Mașini Vândute
             </h2>
           </AnimatedSection>

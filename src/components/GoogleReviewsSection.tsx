@@ -1,4 +1,4 @@
-import useGoogleReviews, { GoogleReview } from '@/hooks/useGoogleReviews';
+﻿import useGoogleReviews, { GoogleReview } from '@/hooks/useGoogleReviews';
 import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Star, StarHalf, AlertCircle } from 'lucide-react';
@@ -33,7 +33,7 @@ const GoogleReviewsSection = () => {
     <section className="py-20 bg-luxury-darker">
       <div className="container mx-auto">
         <AnimatedSection className="text-center mb-16">
-          <h2 className="font-luxury text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
             Ce spun clienții noștri
           </h2>
           {placeDetails && (
