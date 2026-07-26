@@ -13,12 +13,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 
 // Import logos
-import btDirectLogo from '@/assets/logos/btlogo.png';
-import mogoLogo from '@/assets/logos/mogo.png';
 import tbiLogo from '@/assets/logos/tbi-featured_logo.png';
-import unicreditLogo from '@/assets/logos/unicreditfinancing.png';
+import unicreditLogo from '@/assets/logos/ucfin-logo-white.svg';
 import porscheLogo from '@/assets/logos/porsche2.png';
-import newBanner from '@/assets/0.jpg';
 import b2Image from '@/assets/logos/b2.png';
 
 
@@ -30,7 +27,7 @@ const Finantare = () => {
       {/* New Hero Section */}
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-luxury-darker via-luxury-dark to-luxury-darker">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(212,175,55,0.1),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(212,176,88,0.1),transparent_50%)]" />
         </div>
         
         <Container className="relative z-10 text-center">
@@ -57,11 +54,6 @@ const Finantare = () => {
                     <p className="text-muted-foreground text-lg">
                         Aplică folosind formularul alăturat pentru a vedea dacă ești eligibil pentru finanțare.
                     </p>
-                    <img 
-                        src={newBanner} 
-                        alt="TBI Bank Finanțare Auto" 
-                        className="w-full rounded-lg shadow-md mt-4" 
-                    />
                 </div>
 
                 {/* Right Column - Form */}
@@ -105,10 +97,10 @@ const Finantare = () => {
             </h2>
           </div>
 
-          <Tabs defaultValue="tbi" className="w-full max-w-5xl mx-auto">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="tbi">Detalii TBI Bank</TabsTrigger>
-              <TabsTrigger value="unicredit">Detalii UniCredit Consumer Finacing</TabsTrigger>
+          <Tabs defaultValue="unicredit" className="w-full max-w-5xl mx-auto">
+            <TabsList className="grid w-full grid-cols-2 h-auto bg-muted p-1">
+              <TabsTrigger value="tbi" className="py-2.5 data-[state=active]:bg-luxury-gold data-[state=active]:text-luxury-dark data-[state=active]:font-semibold">Detalii TBI Bank</TabsTrigger>
+              <TabsTrigger value="unicredit" className="py-2.5 data-[state=active]:bg-luxury-gold data-[state=active]:text-luxury-dark data-[state=active]:font-semibold">Detalii UniCredit Consumer Financing</TabsTrigger>
             </TabsList>
 
             {/* --- TBI Bank Content --- */}
@@ -176,13 +168,13 @@ const Finantare = () => {
               </div>
             </TabsContent>
 
-            {/* --- UniCredit Consumer Finacing Content --- */}
+            {/* --- UniCredit Consumer Financing Content --- */}
             <TabsContent value="unicredit" className="mt-6 p-6 bg-card rounded-lg">
                 <div className="text-center mb-6">
                     <img 
                     src={unicreditLogo} 
-                    alt="UniCredit Consumer Finacing" 
-                    className="h-16 w-auto mx-auto object-contain" 
+                    alt="UniCredit Consumer Financing" 
+                    className="h-20 md:h-24 w-auto mx-auto object-contain" 
                     />
                 </div>
                 
@@ -314,20 +306,12 @@ const Finantare = () => {
               <h3 className="text-2xl font-semibold text-center text-foreground">Credit Auto</h3>
               <div className="grid grid-cols-2 gap-8 pt-4">
                 <div className="flex flex-col items-center justify-center gap-4">
-                  <img src={unicreditLogo} alt="Logo UniCredit Consumer Finacing" className="h-16 w-auto object-contain" />
-                  <p className="font-semibold text-muted-foreground">UniCredit Consumer Finacing</p>
+                  <img src={unicreditLogo} alt="Logo UniCredit Consumer Financing" className="h-20 w-auto object-contain" />
+                  <p className="font-semibold text-muted-foreground">UniCredit Consumer Financing</p>
                 </div>
                 <div className="flex flex-col items-center justify-center gap-4">
                   <img src={tbiLogo} alt="TBI Bank Logo" className="h-16 w-auto object-contain" />
                   <p className="font-semibold text-muted-foreground">TBI Bank</p>
-                </div>
-                <div className="flex flex-col items-center justify-center gap-4">
-                  <img src={btDirectLogo} alt="BT Direct Logo" className="h-16 w-auto object-contain" />
-                  <p className="font-semibold text-muted-foreground">BT Direct</p>
-                </div>
-                <div className="flex flex-col items-center justify-center gap-4">
-                  <img src={mogoLogo} alt="Mogo Logo" className="h-16 w-auto object-contain" />
-                  <p className="font-semibold text-muted-foreground">Mogo</p>
                 </div>
               </div>
             </div>

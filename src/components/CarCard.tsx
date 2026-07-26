@@ -68,7 +68,7 @@ const CarCard = ({ listing }: CarCardProps) => {
           <span 
             className="absolute top-2 right-2 text-xs font-bold px-2 py-1 rounded-md shadow-lg z-10"
             style={{ 
-              backgroundColor: '#cd933b',
+              backgroundColor: 'hsl(var(--luxury-gold))',
               color: '#1c1c1c'
             }}
           >
