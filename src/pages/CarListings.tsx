@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { motion } from "framer-motion"
 import { useState, useMemo, useEffect } from "react"
@@ -15,6 +15,8 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { AlertCircle } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import Container from "@/components/ui/Container"
+import { useDebounce } from "@/hooks/useDebounce"
+import { Badge } from "@/components/ui/badge"
 import {
   Pagination,
   PaginationContent,
@@ -28,23 +30,32 @@ import {
 
 const CarListings = () => {
   const [filters, setFilters] = useState<Record<string, any>>({});
-  const [activeFilters, setActiveFilters] = useState<Record<string, any>>({});
   const [sortOption, setSortOption] = useState("newest");
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [resetKey, setResetKey] = useState(0);
 
   useEffect(() => {
     console.log('%c Starea FILTERS s-a actualizat:', 'color: orange; font-weight: bold;', filters);
   }, [filters]);
+
+  const debouncedFilters = useDebounce(filters, 300);
   
   const finalFilters = useMemo(() => {
-    const combinedFilters = { ...activeFilters };
-    if (sortOption) {
-      combinedFilters.sortBy = sortOption;
+    const cleaned: Record<string, any> = {};
+    for (const key in debouncedFilters) {
+      const value = debouncedFilters[key];
+      if (value !== null && value !== undefined && value !== '' && (!Array.isArray(value) || value.length > 0)) {
+        cleaned[key] = value;
+      }
     }
-    return combinedFilters;
-  }, [activeFilters, sortOption]);
+    if (sortOption) cleaned.sortBy = sortOption;
+    return cleaned;
+  }, [debouncedFilters, sortOption]);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [debouncedFilters]);
 
   console.log('%c Filtre ACTIVE trimise către hook:', 'color: green; font-weight: bold;', finalFilters);
   const { listings, pagination, loading, error } = useListings(finalFilters, currentPage);
@@ -67,18 +78,17 @@ const CarListings = () => {
     });
   };
 
-  const handleApplyFilters = () => {
-    const cleanedFilters: Record<string, any> = {};
-    for (const key in filters) {
-      const value = filters[key];
-      if (value !== null && value !== undefined && value !== '' && (!Array.isArray(value) || value.length > 0)) {
-        cleanedFilters[key] = value;
-      }
-    }
-    setActiveFilters(cleanedFilters);
-    setCurrentPage(1); // Reset page to 1 when filters are applied
-    setIsSheetOpen(false); // Close sheet on mobile after applying
+  const handleResetFilters = () => {
+    setFilters({});
+    setSortOption("newest");
+    setCurrentPage(1);
+    setResetKey(k => k + 1);
   };
+
+  const activeFilterCount = Object.keys(filters).filter(k => {
+    const v = filters[k];
+    return v !== null && v !== undefined && v !== '' && (!Array.isArray(v) || v.length > 0);
+  }).length;
   
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -154,8 +164,10 @@ const CarListings = () => {
           <aside className="hidden lg:block lg:col-span-1">
             <div className="luxury-card p-6 sticky top-24">
                <FilterSidebar 
+                key={resetKey}
                 onFilterChange={handleFilterChange}
-                onApplyFilters={handleApplyFilters}
+                onReset={handleResetFilters}
+                activeCount={activeFilterCount}
                />
             </div>
           </aside>
@@ -169,16 +181,24 @@ const CarListings = () => {
                 <div className="lg:hidden">
                     <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                         <SheetTrigger asChild>
-                            <Button variant="outline" className="flex items-center gap-2">
+                            <Button variant="outline" className="flex items-center gap-2 relative">
                                 <Filter className="h-4 w-4" />
                                 <span>Filtrează</span>
+                                {activeFilterCount > 0 && (
+                                  <Badge variant="default" className="ml-1 h-5 min-w-5 flex items-center justify-center p-0 text-[10px]">
+                                    {activeFilterCount}
+                                  </Badge>
+                                )}
                             </Button>
                         </SheetTrigger>
                         <SheetContent side="left" className="p-0">
                            <FilterSidebar 
+                                key={resetKey}
                                 onFilterChange={handleFilterChange}
-                                onApplyFilters={handleApplyFilters}
+                                onReset={handleResetFilters}
+                                activeCount={activeFilterCount}
                                 isMobile={true}
+                                onClose={() => setIsSheetOpen(false)}
                             />
                         </SheetContent>
                     </Sheet>

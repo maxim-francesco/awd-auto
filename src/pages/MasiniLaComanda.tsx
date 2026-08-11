@@ -1,4 +1,4 @@
-﻿import Layout from "@/components/layout/Layout"
+import Layout from "@/components/layout/Layout"
 import { Button } from "@/components/ui/luxury-button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -9,9 +9,55 @@ import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/a
 import { useState } from "react"
 import { Checkbox } from "@/components/ui/checkbox"
 import Container from "@/components/ui/Container"
+import { toast } from "sonner"
+import { API_BASE_URL, BUSINESS_ID } from "@/config/apiConfig"
 
 const MasiniLaComanda = () => {
   const [isGdprChecked, setIsGdprChecked] = useState(false);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isGdprChecked) return;
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/public/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          businessId: BUSINESS_ID,
+          name,
+          email,
+          phone,
+          message,
+          type: "ORDER",
+        }),
+      });
+
+      if (response.ok) {
+        toast.success("Mesajul a fost trimis. Te contactăm în curând.");
+        setName("");
+        setEmail("");
+        setPhone("");
+        setMessage("");
+        setIsGdprChecked(false);
+      } else {
+        toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const steps = [
     {
@@ -100,43 +146,67 @@ const MasiniLaComanda = () => {
                     Trimite o Cerere de Ofertă
                     </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                        <Label htmlFor="name">Nume și Prenume</Label>
-                        <Input id="name" placeholder="Numele tău" />
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="phone">Telefon</Label>
-                        <Input id="phone" type="tel" placeholder="+40 722 123 456" />
-                    </div>
-                    </div>
+                <form onSubmit={handleSubmit}>
+                  <CardContent className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                          <Label htmlFor="name">Nume și Prenume</Label>
+                          <Input
+                            id="name"
+                            placeholder="Numele tău"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                          />
+                      </div>
+                      <div className="space-y-2">
+                          <Label htmlFor="phone">Telefon</Label>
+                          <Input
+                            id="phone"
+                            type="tel"
+                            placeholder="+40 722 123 456"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                          />
+                      </div>
+                      </div>
 
-                    <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" placeholder="adresa@email.ro" />
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <Label htmlFor="message">Descrie mașina dorită</Label>
-                      <Textarea 
-                        id="message" 
-                        placeholder="Ex: Audi A6, după 2019, sub 100.000 km, buget ~25.000€, scaune încălzite, trapă..."
-                        className="min-h-[150px]"
-                      />
-                    </div>
-                    
-                    <div className="flex items-start space-x-3">
-                      <Checkbox id="gdpr-comanda" onCheckedChange={(checked) => setIsGdprChecked(checked as boolean)} />
-                      <Label htmlFor="gdpr-comanda" className="text-sm font-normal text-muted-foreground leading-snug">
-                        Am citit și sunt de acord cu <a href="/politica-confidentialitate" target="_blank" rel="noopener noreferrer" className="underline text-luxury-gold hover:text-luxury-gold-hover">Politica de Confidențialitate</a> a site-ului.
-                      </Label>
-                    </div>
+                      <div className="space-y-2">
+                          <Label htmlFor="email">Email</Label>
+                          <Input
+                            id="email"
+                            type="email"
+                            placeholder="adresa@email.ro"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                          />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <Label htmlFor="message">Descrie mașina dorită</Label>
+                        <Textarea 
+                          id="message" 
+                          placeholder="Ex: Audi A6, după 2019, sub 100.000 km, buget ~25.000€, scaune încălzite, trapă..."
+                          className="min-h-[150px]"
+                          value={message}
+                          onChange={(e) => setMessage(e.target.value)}
+                          required
+                        />
+                      </div>
+                      
+                      <div className="flex items-start space-x-3">
+                        <Checkbox id="gdpr-comanda" checked={isGdprChecked} onCheckedChange={(checked) => setIsGdprChecked(checked as boolean)} />
+                        <Label htmlFor="gdpr-comanda" className="text-sm font-normal text-muted-foreground leading-snug">
+                          Am citit și sunt de acord cu <a href="/politica-confidentialitate" target="_blank" rel="noopener noreferrer" className="underline text-luxury-gold hover:text-luxury-gold-hover">Politica de Confidențialitate</a> a site-ului.
+                        </Label>
+                      </div>
 
-                    <Button className="w-full" size="lg" disabled={!isGdprChecked}>
-                        Trimite Cererea
-                    </Button>
-                </CardContent>
+                      <Button className="w-full" size="lg" type="submit" disabled={!isGdprChecked || isSubmitting}>
+                          {isSubmitting ? "Se trimite..." : "Trimite Cererea"}
+                      </Button>
+                  </CardContent>
+                </form>
                 </Card>
             </div>
         </Container>

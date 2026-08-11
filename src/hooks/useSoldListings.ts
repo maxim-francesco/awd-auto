@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL, BUSINESS_ID } from '@/config/apiConfig';
+
 import type { APIListing } from './useListings';
 
 // The hook now accepts an optional limit.
@@ -13,10 +15,10 @@ const useSoldListings = (limit?: number) => {
       try {
         setLoading(true);
         setError(null);
-        const businessId = "cmg5ligro0175s52cn0jimm7s";
+        const businessId = BUSINESS_ID;
         
         // Base URL
-        let url = `https://saas-platform-backend.onrender.com/api/public/listings/status/sold?businessId=${businessId}`;
+        let url = `${API_BASE_URL}/api/public/listings/status/sold?businessId=${businessId}`;
 
         // Conditionally add the limit parameter only if a limit is provided
         if (limit && limit > 0) {

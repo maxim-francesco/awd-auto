@@ -4,6 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { AttributeDefinition } from "@/hooks/useFilterAttributes";
 import { getUniqueAttributeValues } from "@/services/apiFilters";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface StringCheckboxFilterProps {
   attribute: AttributeDefinition;
@@ -51,25 +52,34 @@ const StringCheckboxFilter = ({ attribute, onChange }: StringCheckboxFilterProps
     )
   }
   
-  if(options.length === 0) return null;
+  if (options.length === 0) return null;
+
+  const optionsList = (
+    <div className="space-y-1.5">
+      {options.map((option) => (
+        <div key={option} className="flex items-center space-x-2 hover:bg-luxury-gold/5 rounded px-2 py-1.5 transition-colors">
+          <Checkbox
+            id={`${attribute.id}-${option}`}
+            onCheckedChange={(checked) => handleCheckedChange(checked, option)}
+            checked={selectedValues.includes(option)}
+          />
+          <Label htmlFor={`${attribute.id}-${option}`} className="text-sm font-normal cursor-pointer flex-1 py-0.5">
+            {option}
+          </Label>
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <div className="space-y-3">
-      <Label className="text-sm font-medium capitalize">{attribute.name}</Label>
-      <div className="space-y-2">
-        {options.map((option) => (
-          <div key={option} className="flex items-center space-x-2">
-            <Checkbox
-              id={`${attribute.id}-${option}`}
-              onCheckedChange={(checked) => handleCheckedChange(checked, option)}
-              checked={selectedValues.includes(option)}
-            />
-            <Label htmlFor={`${attribute.id}-${option}`} className="text-sm font-normal cursor-pointer">
-              {option}
-            </Label>
-          </div>
-        ))}
-      </div>
+      {options.length > 6 ? (
+        <ScrollArea className="h-48 pr-3">
+          {optionsList}
+        </ScrollArea>
+      ) : (
+        optionsList
+      )}
     </div>
   );
 };

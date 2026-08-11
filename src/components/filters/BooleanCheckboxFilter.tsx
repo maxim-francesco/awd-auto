@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 import type { AttributeDefinition } from "@/hooks/useFilterAttributes";
 
 interface BooleanCheckboxFilterProps {
@@ -20,22 +19,16 @@ const BooleanCheckboxFilter = ({ attribute, onChange }: BooleanCheckboxFilterPro
   };
 
   return (
-    <>
-      <Separator className="my-6" />
-      <div className="space-y-3">
-         <Label className="text-sm font-medium capitalize">{attribute.name}</Label>
-        <div className="flex items-center space-x-2 pt-2">
-          <Checkbox
-            id={attribute.id}
-            checked={isChecked}
-            onCheckedChange={handleChange}
-          />
-          <Label htmlFor={attribute.id} className="text-sm font-normal cursor-pointer">
-            Afișează doar mașinile cu TVA deductibil
-          </Label>
-        </div>
-      </div>
-    </>
+    <div className="flex items-center space-x-2 hover:bg-luxury-gold/5 rounded px-2 py-1.5 transition-colors">
+      <Checkbox
+        id={attribute.id}
+        checked={isChecked}
+        onCheckedChange={handleChange}
+      />
+      <Label htmlFor={attribute.id} className="text-sm font-normal cursor-pointer flex-1 py-0.5">
+        Afișează doar mașinile cu TVA deductibil
+      </Label>
+    </div>
   );
 };
 

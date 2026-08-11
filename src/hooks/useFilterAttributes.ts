@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL } from '@/config/apiConfig';
+
 
 export interface AttributeDefinition {
   id: string;
@@ -18,7 +20,7 @@ const useFilterAttributes = () => {
         setLoading(true);
         setError(null);
         const categoryId = "cmg5m9pkm017bs52coh75y43d";
-        const url = `https://saas-platform-backend.onrender.com/api/public/categories/${categoryId}/attributes`;
+        const url = `${API_BASE_URL}/api/public/categories/${categoryId}/attributes`;
 
         const response = await fetch(url);
 
@@ -28,28 +30,16 @@ const useFilterAttributes = () => {
 
         const result: AttributeDefinition[] = await response.json();
         
-        // Atribute numerice care sunt gestionate separat (ex: prin range sliders)
-        const numericHandledSeparately = ['pret', 'price', 'kilometraj', 'capacitate cilindrica', 'an'];
-        
+        const norm = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
         const filteredAttributes = result.filter(attr => {
-          const nameLower = attr.name.toLowerCase();
-
-          // 1. Excludem atributele care nu trebuie să fie niciodată filtre
-          if (nameLower === 'link video') {
-            return false;
-          }
-          
-          // 2. Excludem atributele numerice care sunt deja gestionate
-          if (numericHandledSeparately.includes(nameLower)) {
-              return ['an', 'pret'].includes(nameLower); // Păstrăm doar An și Preț ca filtre numerice de bază
-          }
-
-          // 3. Pentru atributele BOOLEAN, păstrăm doar 'TVA Deductibil'
-          if (attr.type === 'BOOLEAN') {
-            return nameLower === 'tva deductibil';
-          }
-
-          // 4. Păstrăm toate celelalte atribute (în principal STRING)
+          const n = norm(attr.name);
+          // never-filters
+          if (['link video', 'vin'].includes(n)) return false;
+          // numeric: keep ONLY an + pret; drop kilometraj, capacitate cilindrica, putere (cp), and any other NUMBER
+          if (attr.type === 'NUMBER') return n === 'an' || n === 'pret';
+          // boolean: keep ONLY tva deductibil
+          if (attr.type === 'BOOLEAN') return n === 'tva deductibil';
+          // string: keep all remaining (marca, model, combustibil, cutie de viteze, tractiune, caroserie, norma de poluare, culoare, tara de origine)
           return true;
         });
         

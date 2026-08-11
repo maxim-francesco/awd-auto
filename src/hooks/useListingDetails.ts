@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL } from '@/config/apiConfig';
+
 import type { APIListing, Attribute } from './useListings'; // Refolosim tipurile
 
 const useListingDetails = (listingId: string | undefined) => {
@@ -19,7 +21,7 @@ const useListingDetails = (listingId: string | undefined) => {
         setLoading(true);
         setError(null);
         
-        const url = `https://saas-platform-backend.onrender.com/api/public/listings/${listingId}`;
+        const url = `${API_BASE_URL}/api/public/listings/${listingId}`;
         console.log(`%c Fetching details from: ${url}`, 'color: cyan');
 
         const response = await fetch(url);

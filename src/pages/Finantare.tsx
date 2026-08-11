@@ -1,4 +1,4 @@
-﻿
+
 import Layout from "@/components/layout/Layout"
 import { Card, CardContent } from "@/components/ui/card"
 import { UserCheck, Building, FileText, CheckCircle } from "lucide-react"
@@ -10,6 +10,8 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/luxury-button"
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { toast } from "sonner"
+import { API_BASE_URL, BUSINESS_ID } from "@/config/apiConfig"
 
 
 // Import logos
@@ -21,6 +23,49 @@ import b2Image from '@/assets/logos/b2.png';
 
 const Finantare = () => {
   const [isGdprChecked, setIsGdprChecked] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isGdprChecked) return;
+
+    setIsSubmitting(true);
+    try {
+      const message = "Solicitare finanțare";
+      const response = await fetch(`${API_BASE_URL}/api/public/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          businessId: BUSINESS_ID,
+          name,
+          email,
+          phone,
+          message,
+          type: "FINANCING",
+        }),
+      });
+
+      if (response.ok) {
+        toast.success("Mesajul a fost trimis. Te contactăm în curând.");
+        setName("");
+        setEmail("");
+        setPhone("");
+        setIsGdprChecked(false);
+      } else {
+        toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <Layout>
@@ -59,30 +104,52 @@ const Finantare = () => {
                 {/* Right Column - Form */}
                 <div>
                      <Card className="luxury-card">
-                        <CardContent className="p-8 space-y-6">
+                       <form onSubmit={handleSubmit}>
+                         <CardContent className="p-8 space-y-6">
+                              <div className="space-y-2">
+                                 <Label htmlFor="name-contact">Nume*</Label>
+                                 <Input
+                                    id="name-contact"
+                                    placeholder="Numele tău"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    required
+                                 />
+                             </div>
+                              <div className="space-y-2">
+                                 <Label htmlFor="email-contact">Email*</Label>
+                                 <Input
+                                    id="email-contact"
+                                    type="email"
+                                    placeholder="adresa@email.ro"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                 />
+                             </div>
                              <div className="space-y-2">
-                                <Label htmlFor="name-contact">Nume*</Label>
-                                <Input id="name-contact" placeholder="Numele tău" required />
-                            </div>
-                             <div className="space-y-2">
-                                <Label htmlFor="email-contact">Email*</Label>
-                                <Input id="email-contact" type="email" placeholder="adresa@email.ro" required />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="phone-contact">Număr de telefon*</Label>
-                                <Input id="phone-contact" type="tel" placeholder="+40 722 123 456" required />
-                            </div>
-                            <div className="flex items-start space-x-3 pt-2">
-                                <Checkbox id="gdpr-finantare" onCheckedChange={(checked) => setIsGdprChecked(checked as boolean)} />
-                                <Label htmlFor="gdpr-finantare" className="text-xs font-normal text-muted-foreground leading-snug">
-                                    Sunt de acord ca datele mele să fie procesate în vederea realizării ofertei solicitate.
-                                </Label>
-                            </div>
-                            <Button className="w-full" size="lg" disabled={!isGdprChecked}>
-                                Aplică Acum
-                            </Button>
-                        </CardContent>
-                    </Card>
+                                 <Label htmlFor="phone-contact">Număr de telefon*</Label>
+                                 <Input
+                                    id="phone-contact"
+                                    type="tel"
+                                    placeholder="+40 722 123 456"
+                                    value={phone}
+                                    onChange={(e) => setPhone(e.target.value)}
+                                    required
+                                 />
+                             </div>
+                             <div className="flex items-start space-x-3 pt-2">
+                                 <Checkbox id="gdpr-finantare" checked={isGdprChecked} onCheckedChange={(checked) => setIsGdprChecked(checked as boolean)} />
+                                 <Label htmlFor="gdpr-finantare" className="text-xs font-normal text-muted-foreground leading-snug">
+                                     Sunt de acord ca datele mele să fie procesate în vederea realizării ofertei solicitate.
+                                 </Label>
+                             </div>
+                             <Button className="w-full" size="lg" type="submit" disabled={!isGdprChecked || isSubmitting}>
+                                 {isSubmitting ? "Se trimite..." : "Aplică Acum"}
+                             </Button>
+                         </CardContent>
+                       </form>
+                     </Card>
                 </div>
             </div>
         </Container>

@@ -1,4 +1,5 @@
-const API_BASE_URL = "https://saas-platform-backend.onrender.com/api/public";
+import { API_BASE_URL as API_ROOT } from '@/config/apiConfig';
+const API_BASE_URL = `${API_ROOT}/api/public`;
 
 export const getAttributeStats = async (attributeId: string) => {
   const response = await fetch(`${API_BASE_URL}/attributes/${attributeId}/stats`);

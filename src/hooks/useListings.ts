@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL, BUSINESS_ID } from '@/config/apiConfig';
+import { buildFilterParams } from '@/lib/filterKeyMap';
+
 
 // Tipuri partajate, ar putea fi mutate într-un fișier dedicat de tipuri
 export interface ListingImage {
@@ -47,7 +50,7 @@ const useListings = (activeFilters: Record<string, any>, page: number = 1) => {
         setLoading(true);
         setError(null);
         
-        const businessId = "cmg5ligro0175s52cn0jimm7s";
+        const businessId = BUSINESS_ID;
         const categoryId = "cmg5m9pkm017bs52coh75y43d";
         
         const params = new URLSearchParams({
@@ -59,17 +62,10 @@ const useListings = (activeFilters: Record<string, any>, page: number = 1) => {
 
         // Verificăm dacă activeFilters este un obiect valid și nu este gol
         if (activeFilters && typeof activeFilters === 'object' && Object.keys(activeFilters).length > 0) {
-          for (const key in activeFilters) {
-            const value = activeFilters[key];
-            if (Array.isArray(value) && value.length > 0) {
-              value.forEach(v => params.append(key, v));
-            } else if (value !== undefined && value !== null && value !== '' && !Array.isArray(value)) {
-              params.append(key, value.toString());
-            }
-          }
+          buildFilterParams(activeFilters, params);
         }
         
-        const url = `https://saas-platform-backend.onrender.com/api/public/listings/search?${params.toString()}`;
+        const url = `${API_BASE_URL}/api/public/listings/search?${params.toString()}`;
         console.log('%c URL Final apelat de hook:', 'color: blue; font-weight: bold;', url);
 
         const response = await fetch(url);

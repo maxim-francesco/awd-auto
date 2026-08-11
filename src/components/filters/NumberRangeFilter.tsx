@@ -73,13 +73,21 @@ const NumberRangeFilter = ({ attribute, onChange }: NumberRangeFilterProps) => {
   const currentRange = value || [stats.min, stats.max];
   const stepValue = attribute.name.toLowerCase().includes('an') ? 1 : 1000;
 
+  const fmt = (n: number) => stepValue === 1 ? n.toString() : n.toLocaleString('ro-RO');
+
   return (
-    <div className="space-y-3">
-      <Label className="text-sm font-medium capitalize flex justify-between">
-        <span>{attribute.name}</span>
-        <span className="text-luxury-gold font-semibold">
-          {`${currentRange[0].toLocaleString()} - ${currentRange[1].toLocaleString()}`}
-        </span>
+    <div className="space-y-4">
+      <Label className="text-xs font-medium capitalize flex justify-between items-center text-muted-foreground">
+        <span>Interval selectat</span>
+        <div className="flex items-center gap-1.5">
+          <span className="bg-luxury-gold/10 border border-luxury-gold/30 rounded px-2 py-0.5 text-xs text-luxury-gold font-semibold">
+            {fmt(currentRange[0])}
+          </span>
+          <span className="text-muted-foreground text-[10px]">—</span>
+          <span className="bg-luxury-gold/10 border border-luxury-gold/30 rounded px-2 py-0.5 text-xs text-luxury-gold font-semibold">
+            {fmt(currentRange[1])}
+          </span>
+        </div>
       </Label>
       <Slider
         value={currentRange}

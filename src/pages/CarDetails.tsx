@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useState, useEffect } from "react"
 import { useParams, useNavigate, useLocation } from "react-router-dom"
@@ -17,14 +17,18 @@ import {
   ArrowLeft,
   Phone,
   Video,
-  AlertCircle
+  AlertCircle,
+  Image as ImageIcon
 } from "lucide-react"
-import { AnimatedSection } from "@/components/ui/animated-section"
+import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
+import { Badge } from "@/components/ui/badge"
+import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 import useListingDetails from "@/hooks/useListingDetails"
 import type { APIListing, Attribute } from "@/hooks/useListings";
 import Container from "@/components/ui/Container"
 import FullscreenGallery from "@/components/FullscreenGallery";
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
 
 const CarDetails = () => {
   const { listingId } = useParams<{ listingId: string }>()
@@ -53,8 +57,10 @@ const CarDetails = () => {
     }
   }, [car]);
 
+  const normalizeName = (s: string): string =>
+    s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
   const getAttributeValue = (attributes: Attribute[], name: string): string => {
-    const attr = attributes.find(a => a.attribute.name.toLowerCase() === name.toLowerCase());
+    const attr = attributes.find(a => normalizeName(a.attribute.name) === normalizeName(name));
     if (!attr) return "N/A";
     
     // Prioritize stringValue, then numberValue, then booleanValue
@@ -103,7 +109,7 @@ const CarDetails = () => {
                      <div className="flex flex-col sm:flex-row gap-3">
                         <Skeleton className="h-12 w-full" />
                         <Skeleton className="h-12 w-full" />
-                    </div>
+                     </div>
                     <div className="space-y-3 pt-4">
                         <Skeleton className="h-6 w-1/3" />
                         <Skeleton className="h-5 w-full" />
@@ -210,7 +216,7 @@ const CarDetails = () => {
               <div className="space-y-4">
                 {/* Main Image */}
                 <motion.div 
-                  className="relative aspect-video rounded-2xl overflow-hidden bg-luxury-darker border border-border/40 cursor-pointer"
+                  className="luxury-card relative aspect-video rounded-2xl overflow-hidden bg-luxury-darker cursor-pointer"
                   layoutId={`car-image-${car.id}`}
                    onClick={() => {
                     setCurrentImageIndex(selectedImage);
@@ -222,35 +228,64 @@ const CarDetails = () => {
                     alt={carData.title}
                     className="w-full h-full object-cover"
                   />
+                  {/* Bottom shadow overlay for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
                 </motion.div>
 
-                {/* Thumbnails */}
+                {/* Thumbnails slider */}
                 {carData.images && carData.images.length > 1 && (
-                  <div className="grid grid-cols-6 gap-2">
-                    {carData.images.map((image, index) => (
-                      <motion.button
-                        key={index}
-                        onClick={() => setSelectedImage(index)}
-                        className={`relative aspect-video rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
-                          selectedImage === index 
-                            ? "border-luxury-gold" 
-                            : "border-border/40 hover:border-luxury-gold/50"
-                        }`}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <img
-                          src={image.url}
-                          alt={`Thumbnail ${index + 1}`}
-                          className="w-full h-full object-cover"
-                           onClick={(e) => {
-                            e.stopPropagation(); // Prevent parent onClick from firing
-                            setCurrentImageIndex(index);
-                            setIsGalleryOpen(true);
-                          }}
-                        />
-                      </motion.button>
-                    ))}
+                  <div className="space-y-2">
+                    {/* Photo counter */}
+                    <div className="flex items-center justify-between px-1">
+                      <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <ImageIcon className="h-3.5 w-3.5 text-luxury-gold" />
+                        {selectedImage + 1} / {carData.images.length} fotografii
+                      </span>
+                      <span className="text-[10px] uppercase tracking-wider text-muted-foreground/70 hidden sm:inline">
+                        Glisează pentru mai multe
+                      </span>
+                    </div>
+
+                    <Carousel
+                      opts={{ align: "start", dragFree: true, containScroll: "trimSnaps" }}
+                      className="w-full px-1"
+                    >
+                      <CarouselContent className="-ml-2">
+                        {carData.images.map((image, index) => (
+                          <CarouselItem
+                            key={index}
+                            className="pl-2 basis-1/3 sm:basis-1/4 lg:basis-1/5"
+                          >
+                            <motion.button
+                              onClick={() => setSelectedImage(index)}
+                              className={`relative aspect-video w-full rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
+                                selectedImage === index
+                                  ? "border-luxury-gold ring-1 ring-luxury-gold/40"
+                                  : "border-border/40 hover:border-luxury-gold/50"
+                              }`}
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <img
+                                src={image.url}
+                                alt={`Thumbnail ${index + 1}`}
+                                className="w-full h-full object-cover"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setCurrentImageIndex(index);
+                                  setIsGalleryOpen(true);
+                                }}
+                              />
+                              {selectedImage !== index && (
+                                <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors pointer-events-none" />
+                              )}
+                            </motion.button>
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      <CarouselPrevious className="left-0 bg-luxury-darker/80 border-luxury-gold/40 text-luxury-gold hover:bg-luxury-gold hover:text-black" />
+                      <CarouselNext className="right-0 bg-luxury-darker/80 border-luxury-gold/40 text-luxury-gold hover:bg-luxury-gold hover:text-black" />
+                    </Carousel>
                   </div>
                 )}
               </div>
@@ -261,10 +296,29 @@ const CarDetails = () => {
               <div className="space-y-6">
                 {/* Title & Price */}
                 <div>
-                  <h1 className="font-luxury text-3xl sm:text-4xl font-bold text-foreground mb-2">
+                  <h1 className="font-luxury text-4xl sm:text-5xl font-bold text-foreground mb-3">
                     {carData.title}
                   </h1>
-                  <p className="text-lg text-muted-foreground mb-4">{carData.year}, {carData.variant}</p>
+                  
+                  {/* Badges Row */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {carData.year && carData.year !== 'N/A' && (
+                      <Badge variant="outline" className="border-luxury-gold/40 text-luxury-gold bg-luxury-gold/10 px-3 py-1 font-medium">
+                        {carData.year}
+                      </Badge>
+                    )}
+                    {carData.variant && carData.variant !== 'N/A' && (
+                      <Badge variant="outline" className="border-luxury-gold/40 text-luxury-gold bg-luxury-gold/10 px-3 py-1 font-medium">
+                        {carData.variant}
+                      </Badge>
+                    )}
+                    {getAttributeValue(car.attributeValues, 'combustibil') !== 'N/A' && (
+                      <Badge variant="outline" className="border-luxury-gold/40 text-luxury-gold bg-luxury-gold/10 px-3 py-1 font-medium">
+                        {getAttributeValue(car.attributeValues, 'combustibil')}
+                      </Badge>
+                    )}
+                  </div>
+
                   <div className="flex items-baseline gap-2">
                     <span className="font-luxury text-4xl sm:text-5xl font-bold text-luxury-gold">
                       {carData.price.toLocaleString()} €
@@ -273,23 +327,23 @@ const CarDetails = () => {
                   </div>
                 </div>
 
-                {/* Key Specifications */}
-                <div className="grid grid-cols-2 gap-4 py-6 border-y border-border/40">
+                {/* Key Specifications - Staggered Grid of Tiles */}
+                <StaggeredGrid className="grid grid-cols-2 lg:grid-cols-3 gap-4 py-6 border-y border-border/40">
                   {carData.specs.map((spec, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <div className="p-2 rounded-lg bg-luxury-gold/10">
+                    <StaggeredItem key={index} className="luxury-card p-4 flex items-start gap-3">
+                      <div className="p-2 rounded-full bg-luxury-gold/10 flex-shrink-0">
                         <spec.icon className="h-5 w-5 text-luxury-gold" />
                       </div>
                       <div>
-                        <p className="text-xs text-muted-foreground">{spec.label}</p>
-                        <p className="text-sm font-semibold text-foreground">{spec.value}</p>
+                        <p className="text-[10px] uppercase tracking-wider text-muted-foreground">{spec.label}</p>
+                        <p className="text-sm font-semibold text-foreground mt-0.5">{spec.value}</p>
                       </div>
-                    </div>
+                    </StaggeredItem>
                   ))}
-                </div>
+                </StaggeredGrid>
 
                 {/* CTA Buttons */}
-                 <div className="flex flex-col sm:flex-row gap-3">
+                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
                     <Button asChild className="flex-1" size="lg">
                         <a href="tel:0752228593">
                             <Phone className="h-5 w-5" />
@@ -310,16 +364,41 @@ const CarDetails = () => {
             </AnimatedSection>
           </div>
 
+          <Separator className="my-12" />
+
           {/* --- PART 2: "IN-DEPTH" SECTION (Full Width) --- */}
-          <div className="mt-16">
-            <div className="max-w-4xl mx-auto">
+          <div className="mt-6">
+            <div className="max-w-5xl mx-auto space-y-8">
               
+              {/* Dotări / Features */}
+              {carData.features && carData.features.length > 0 && (
+                <div className="luxury-card p-6 sm:p-8">
+                  <div className="flex items-center gap-2 mb-6">
+                    <div className="w-1.5 h-6 bg-luxury-gold rounded-full" />
+                    <h2 className="font-luxury text-xl sm:text-2xl font-semibold text-luxury-gold">
+                      Dotări
+                    </h2>
+                  </div>
+                  <StaggeredGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {carData.features.map((feature, index) => (
+                      <StaggeredItem key={index} className="border border-border/60 bg-luxury-darker/40 rounded-lg px-3 py-2 flex items-center gap-2 transition-all hover:border-luxury-gold/30">
+                        <Check className="h-4 w-4 text-luxury-gold flex-shrink-0" />
+                        <span className="text-sm text-foreground">{feature}</span>
+                      </StaggeredItem>
+                    ))}
+                  </StaggeredGrid>
+                </div>
+              )}
+
               {/* Description */}
-              <div className="pt-4">
-                <h2 className="font-luxury text-xl font-semibold text-luxury-gold mb-3">
-                  Descriere Detaliată
-                </h2>
-                <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
+              <div className="luxury-card p-6 sm:p-8">
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="w-1.5 h-6 bg-luxury-gold rounded-full" />
+                  <h2 className="font-luxury text-xl sm:text-2xl font-semibold text-luxury-gold">
+                    Descriere Detaliată
+                  </h2>
+                </div>
+                <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap text-sm sm:text-base">
                   {car.description}
                 </p>
               </div>
