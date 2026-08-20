@@ -1,119 +1,144 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useState, useMemo, useEffect } from "react"
+import { useMemo } from "react"
+import { useSearchParams } from "react-router-dom"
 import Layout from "@/components/layout/Layout"
 import CarCard from "@/components/CarCard"
 import { AnimatedSection } from "@/components/ui/animated-section"
-import { Button } from "@/components/ui/luxury-button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Filter } from "lucide-react"
 import useListings, { APIListing } from "@/hooks/useListings"
-import FilterSidebar from "@/components/filters/FilterSidebar"
 import { Skeleton } from "@/components/ui/skeleton"
 import { AlertCircle } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import Container from "@/components/ui/Container"
-import { useDebounce } from "@/hooks/useDebounce"
-import { Badge } from "@/components/ui/badge"
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-  PaginationEllipsis,
-} from "@/components/ui/pagination";
-
+import { StockFilters, DesktopFilterSidebar, useStockFacets } from "@/components/StockFilters"
+import { FilterState, getAttributeValueById } from "@/lib/attributes"
+import { Button } from "@/components/ui/luxury-button"
 
 const CarListings = () => {
-  const [filters, setFilters] = useState<Record<string, any>>({});
-  const [sortOption, setSortOption] = useState("newest");
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [resetKey, setResetKey] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { listings: allListings, loading, error } = useListings();
 
-  useEffect(() => {
-    console.log('%c Starea FILTERS s-a actualizat:', 'color: orange; font-weight: bold;', filters);
-  }, [filters]);
+  // 1. Parse FilterState from useSearchParams
+  const filters: FilterState = useMemo(() => {
+    return {
+      marca: searchParams.get("marca") ? searchParams.get("marca")!.split(",").filter(Boolean) : [],
+      model: searchParams.get("model") ? searchParams.get("model")!.split(",").filter(Boolean) : [],
+      combustibil: searchParams.get("combustibil") ? searchParams.get("combustibil")!.split(",").filter(Boolean) : [],
+      cutie: searchParams.get("cutie") ? searchParams.get("cutie")!.split(",").filter(Boolean) : [],
+      caroserie: searchParams.get("caroserie") ? searchParams.get("caroserie")!.split(",").filter(Boolean) : [],
+      an_min: searchParams.get("an_min") || "",
+      an_max: searchParams.get("an_max") || "",
+      pret_min: searchParams.get("pret_min") || "",
+      pret_max: searchParams.get("pret_max") || "",
+      km_min: searchParams.get("km_min") || "",
+      km_max: searchParams.get("km_max") || "",
+      q: searchParams.get("q") || "",
+    };
+  }, [searchParams]);
 
-  const debouncedFilters = useDebounce(filters, 300);
-  
-  const finalFilters = useMemo(() => {
-    const cleaned: Record<string, any> = {};
-    for (const key in debouncedFilters) {
-      const value = debouncedFilters[key];
-      if (value !== null && value !== undefined && value !== '' && (!Array.isArray(value) || value.length > 0)) {
-        cleaned[key] = value;
-      }
+  const sortOption = searchParams.get("sort") || "newest";
+
+  // 2. Call useStockFacets ONCE
+  const facets = useStockFacets(allListings, filters);
+
+  // 3. Client-side Sort of filteredListings
+  const sortedFilteredListings = useMemo(() => {
+    const list = [...facets.filteredListings];
+    if (sortOption === "price_asc") {
+      list.sort((a, b) => (a.price ?? 0) - (b.price ?? 0));
+    } else if (sortOption === "price_desc") {
+      list.sort((a, b) => (b.price ?? 0) - (a.price ?? 0));
+    } else if (sortOption === "mileage_asc") {
+      list.sort((a, b) => {
+        const kmA = getAttributeValueById(a, ["attr:mileage"], ["kilometraj", "rulaj"]);
+        const kmB = getAttributeValueById(b, ["attr:mileage"], ["kilometraj", "rulaj"]);
+        const numA = typeof kmA === "number" ? kmA : (typeof kmA === "string" ? parseInt(kmA, 10) : 0);
+        const numB = typeof kmB === "number" ? kmB : (typeof kmB === "string" ? parseInt(kmB, 10) : 0);
+        return numA - numB;
+      });
+    } else if (sortOption === "mileage_desc") {
+      list.sort((a, b) => {
+        const kmA = getAttributeValueById(a, ["attr:mileage"], ["kilometraj", "rulaj"]);
+        const kmB = getAttributeValueById(b, ["attr:mileage"], ["kilometraj", "rulaj"]);
+        const numA = typeof kmA === "number" ? kmA : (typeof kmA === "string" ? parseInt(kmA, 10) : 0);
+        const numB = typeof kmB === "number" ? kmB : (typeof kmB === "string" ? parseInt(kmB, 10) : 0);
+        return numB - numA;
+      });
+    } else {
+      // "newest"
+      list.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     }
-    if (sortOption) cleaned.sortBy = sortOption;
-    return cleaned;
-  }, [debouncedFilters, sortOption]);
+    return list;
+  }, [facets.filteredListings, sortOption]);
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [debouncedFilters]);
+  // 4. Filter change handler updating searchParams
+  const handleFilterChange = (newFilters: FilterState) => {
+    const params = new URLSearchParams(searchParams);
 
-  console.log('%c Filtre ACTIVE trimise către hook:', 'color: green; font-weight: bold;', finalFilters);
-  const { listings, pagination, loading, error } = useListings(finalFilters, currentPage);
-  
-  const handleFilterChange = (attributeName: string, value: any) => {
-    setFilters(prevFilters => {
-      const newFilters = { ...prevFilters };
-
-      const attributeKey = attributeName.replace(/ /g, '_');
-
-      if ((Array.isArray(value) && value.length === 0) || value === undefined || value === null) {
-        delete newFilters[attributeKey];
-        delete newFilters[`${attributeKey}_min`];
-        delete newFilters[`${attributeKey}_max`];
+    const setOrDelete = (key: string, val: string | string[]) => {
+      if (Array.isArray(val)) {
+        if (val.length > 0) params.set(key, val.join(","));
+        else params.delete(key);
       } else {
-        newFilters[attributeKey] = value;
+        if (val && val.trim()) params.set(key, val.trim());
+        else params.delete(key);
       }
-      
-      return newFilters;
-    });
+    };
+
+    setOrDelete("marca", newFilters.marca);
+    setOrDelete("model", newFilters.model);
+    setOrDelete("combustibil", newFilters.combustibil);
+    setOrDelete("cutie", newFilters.cutie);
+    setOrDelete("caroserie", newFilters.caroserie);
+    setOrDelete("an_min", newFilters.an_min);
+    setOrDelete("an_max", newFilters.an_max);
+    setOrDelete("pret_min", newFilters.pret_min);
+    setOrDelete("pret_max", newFilters.pret_max);
+    setOrDelete("km_min", newFilters.km_min);
+    setOrDelete("km_max", newFilters.km_max);
+    setOrDelete("q", newFilters.q);
+
+    setSearchParams(params, { replace: true });
   };
 
-  const handleResetFilters = () => {
-    setFilters({});
-    setSortOption("newest");
-    setCurrentPage(1);
-    setResetKey(k => k + 1);
+  const handleSortChange = (newSort: string) => {
+    const params = new URLSearchParams(searchParams);
+    if (newSort && newSort !== "newest") {
+      params.set("sort", newSort);
+    } else {
+      params.delete("sort");
+    }
+    setSearchParams(params, { replace: true });
   };
 
-  const activeFilterCount = Object.keys(filters).filter(k => {
-    const v = filters[k];
-    return v !== null && v !== undefined && v !== '' && (!Array.isArray(v) || v.length > 0);
-  }).length;
-  
-  const handlePageChange = (newPage: number) => {
-    setCurrentPage(newPage);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const clearAllFilters = () => {
+    const params = new URLSearchParams();
+    if (sortOption && sortOption !== "newest") {
+      params.set("sort", sortOption);
+    }
+    setSearchParams(params, { replace: true });
   };
-  
+
   const renderListings = () => {
     if (loading) {
       return (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
-          {[...Array(9)].map((_, index) => (
-              <Card key={index} className="luxury-card">
-                <Skeleton className="h-48 w-full rounded-t-xl" />
-                <CardContent className="p-6 space-y-4">
-                  <Skeleton className="h-6 w-3/4" />
-                  <Skeleton className="h-8 w-1/2" />
-                  <div className="grid grid-cols-2 gap-3">
-                    <Skeleton className="h-5 w-full" />
-                    <Skeleton className="h-5 w-full" />
-                    <Skeleton className="h-5 w-full" />
-                    <Skeleton className="h-5 w-full" />
-                  </div>
-                  <Skeleton className="h-9 w-full" />
-                </CardContent>
-              </Card>
+          {[...Array(6)].map((_, index) => (
+            <Card key={index} className="luxury-card">
+              <Skeleton className="h-48 w-full rounded-t-xl" />
+              <CardContent className="p-6 space-y-4">
+                <Skeleton className="h-6 w-3/4" />
+                <Skeleton className="h-8 w-1/2" />
+                <div className="grid grid-cols-2 gap-3">
+                  <Skeleton className="h-5 w-full" />
+                  <Skeleton className="h-5 w-full" />
+                  <Skeleton className="h-5 w-full" />
+                  <Skeleton className="h-5 w-full" />
+                </div>
+                <Skeleton className="h-9 w-full" />
+              </CardContent>
+            </Card>
           ))}
         </div>
       );
@@ -128,20 +153,25 @@ const CarListings = () => {
         </div>
       );
     }
-    
-    if (listings.length === 0) {
+
+    if (sortedFilteredListings.length === 0) {
       return (
-         <div className="text-center text-muted-foreground bg-card p-6 rounded-lg border border-border col-span-full">
-          <h3 className="text-xl font-semibold">Nicio mașină găsită</h3>
-          <p>Momentan nu sunt anunțuri în stoc care să corespundă filtrelor tale.</p>
+        <div className="text-center text-muted-foreground bg-card p-8 rounded-lg border border-border col-span-full my-8 space-y-4">
+          <h3 className="text-xl font-semibold text-foreground">Nicio mașină găsită</h3>
+          <p className="max-w-md mx-auto text-sm">
+            Niciun autoturism nu corespunde filtrelor selectate. Încearcă să elimini din filtre sau să cauți altceva.
+          </p>
+          <Button onClick={clearAllFilters} variant="outline" className="min-h-[44px] px-6">
+            Șterge tot
+          </Button>
         </div>
-      )
+      );
     }
 
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
-        {listings.map((listing: APIListing) => (
-            <CarCard key={listing.id} listing={listing} />
+        {sortedFilteredListings.map((listing: APIListing) => (
+          <CarCard key={listing.id} listing={listing} />
         ))}
       </div>
     );
@@ -159,135 +189,61 @@ const CarListings = () => {
           </p>
         </section>
 
+        {/* Top Search & Active Filters Bar */}
+        <StockFilters
+          facets={facets}
+          filters={filters}
+          onFilterChange={handleFilterChange}
+          filteredCount={facets.filteredListings.length}
+          totalCount={allListings.length}
+        />
+
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Filters Sidebar for Desktop */}
-          <aside className="hidden lg:block lg:col-span-1">
-            <div className="luxury-card p-6 sticky top-24">
-               <FilterSidebar 
-                key={resetKey}
-                onFilterChange={handleFilterChange}
-                onReset={handleResetFilters}
-                activeCount={activeFilterCount}
-               />
-            </div>
-          </aside>
+          {/* Desktop Filter Sidebar */}
+          <DesktopFilterSidebar
+            facets={facets}
+            filters={filters}
+            onFilterChange={handleFilterChange}
+            filteredCount={facets.filteredListings.length}
+            totalCount={allListings.length}
+          />
 
-          {/* Main Content */}
+          {/* Main Listings Content */}
           <main className="lg:col-span-3">
-            {/* Header */}
-            <AnimatedSection className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 space-y-4 sm:space-y-0">
-               <div className="flex items-center gap-4">
-                 {/* Mobile Filter Trigger */}
-                <div className="lg:hidden">
-                    <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-                        <SheetTrigger asChild>
-                            <Button variant="outline" className="flex items-center gap-2 relative">
-                                <Filter className="h-4 w-4" />
-                                <span>Filtrează</span>
-                                {activeFilterCount > 0 && (
-                                  <Badge variant="default" className="ml-1 h-5 min-w-5 flex items-center justify-center p-0 text-[10px]">
-                                    {activeFilterCount}
-                                  </Badge>
-                                )}
-                            </Button>
-                        </SheetTrigger>
-                        <SheetContent side="left" className="p-0">
-                           <FilterSidebar 
-                                key={resetKey}
-                                onFilterChange={handleFilterChange}
-                                onReset={handleResetFilters}
-                                activeCount={activeFilterCount}
-                                isMobile={true}
-                                onClose={() => setIsSheetOpen(false)}
-                            />
-                        </SheetContent>
-                    </Sheet>
-                </div>
+            {/* Header Result Count & Sort Dropdown */}
+            <AnimatedSection className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 space-y-4 sm:space-y-0">
+              <div className="text-sm text-muted-foreground font-medium">
+                {!loading && (
+                  <span>
+                    Afișare <strong className="text-foreground">{facets.filteredListings.length}</strong> din{" "}
+                    <strong className="text-foreground">{allListings.length}</strong> mașini
+                  </span>
+                )}
+              </div>
 
-                <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                    <Select value={sortOption} onValueChange={setSortOption}>
-                    <SelectTrigger className="w-48">
-                        <SelectValue placeholder="Sortează după" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="newest">Cele mai noi</SelectItem>
-                        <SelectItem value="price_asc">Preț crescător</SelectItem>
-                        <SelectItem value="price_desc">Preț descrescător</SelectItem>
-                        <SelectItem value="mileage_asc">Kilometraj crescător</SelectItem>
-                        <SelectItem value="mileage_desc">Kilometraj descrescător</SelectItem>
-                    </SelectContent>
-                    </Select>
-                </motion.div>
+              <div className="flex items-center gap-3">
+                <Select value={sortOption} onValueChange={handleSortChange}>
+                  <SelectTrigger className="w-48 min-h-[44px]">
+                    <SelectValue placeholder="Sortează după" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="newest">Cele mai noi</SelectItem>
+                    <SelectItem value="price_asc">Preț crescător</SelectItem>
+                    <SelectItem value="price_desc">Preț descrescător</SelectItem>
+                    <SelectItem value="mileage_asc">Kilometraj crescător</SelectItem>
+                    <SelectItem value="mileage_desc">Kilometraj descrescător</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </AnimatedSection>
 
             {/* Car Grid */}
             {renderListings()}
-
-            {/* --- PAGINATION SECTION --- */}
-            {pagination && pagination.totalPages > 1 && (
-              <div className="mt-12">
-                <Pagination>
-                  <PaginationContent>
-                    {/* Previous Button */}
-                    <PaginationItem>
-                      <PaginationPrevious
-                        href="#"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (currentPage > 1) {
-                            handlePageChange(currentPage - 1);
-                          }
-                        }}
-                        // Disable the button if we are on the first page
-                        className={currentPage === 1 ? 'pointer-events-none opacity-50' : ''}
-                      />
-                    </PaginationItem>
-
-                    {/* Page Number Buttons */}
-                    {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map(page => (
-                      <PaginationItem key={page}>
-                        <PaginationLink
-                          href="#"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handlePageChange(page);
-                          }}
-                          // Highlight the currently active page
-                          isActive={currentPage === page}
-                        >
-                          {page}
-                        </PaginationLink>
-                      </PaginationItem>
-                    ))}
-
-                    {/* Next Button */}
-                    <PaginationItem>
-                      <PaginationNext
-                        href="#"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (currentPage < pagination.totalPages) {
-                            handlePageChange(currentPage + 1);
-                          }
-                        }}
-                        // Disable the button if we are on the last page
-                        className={currentPage === pagination.totalPages ? 'pointer-events-none opacity-50' : ''}
-                      />
-                    </PaginationItem>
-                  </PaginationContent>
-                </Pagination>
-              </div>
-            )}
           </main>
         </div>
       </Container>
     </Layout>
-  )
-}
+  );
+};
 
-export default CarListings
+export default CarListings;
