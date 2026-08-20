@@ -38,7 +38,7 @@ export interface PaginationData {
 }
 
 
-const useListings = (activeFilters: Record<string, any>, page: number = 1) => {
+const useListings = () => {
   const [listings, setListings] = useState<APIListing[]>([]);
   const [pagination, setPagination] = useState<PaginationData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -53,17 +53,14 @@ const useListings = (activeFilters: Record<string, any>, page: number = 1) => {
         const businessId = BUSINESS_ID;
         const categoryId = "cmg5m9pkm017bs52coh75y43d";
         
+        // The backend defaults to 10 listings if limit is absent.
+        // This site performs filtering client-side over the entire catalog.
+        // limit=200 is a ceiling for client-side filtering, not a hard guarantee.
         const params = new URLSearchParams({
           businessId,
           categoryId,
-          page: page.toString(), // Adăugăm numărul paginii
-          limit: '9' // Setăm o limită, de exemplu 9 anunturi pe pagina
+          limit: '200'
         });
-
-        // Verificăm dacă activeFilters este un obiect valid și nu este gol
-        if (activeFilters && typeof activeFilters === 'object' && Object.keys(activeFilters).length > 0) {
-          buildFilterParams(activeFilters, params);
-        }
         
         const url = `${API_BASE_URL}/api/public/listings/search?${params.toString()}`;
         console.log('%c URL Final apelat de hook:', 'color: blue; font-weight: bold;', url);
@@ -91,7 +88,7 @@ const useListings = (activeFilters: Record<string, any>, page: number = 1) => {
     };
 
     fetchListings();
-  }, [activeFilters, page]);
+  }, []);
 
   return { listings, pagination, loading, error };
 };
