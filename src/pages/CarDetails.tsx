@@ -6,6 +6,11 @@ import { motion } from "framer-motion"
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout"
 import { Button } from "@/components/ui/luxury-button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { 
   Gauge, 
   Fuel, 
@@ -18,17 +23,20 @@ import {
   Phone,
   Video,
   AlertCircle,
-  Image as ImageIcon
+  Image as ImageIcon,
+  Send
 } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 import useListingDetails from "@/hooks/useListingDetails"
-import type { APIListing, Attribute } from "@/hooks/useListings";
+import { APIListing, AttributeValue, getAttributeValueById } from "@/lib/attributes";
 import Container from "@/components/ui/Container"
 import FullscreenGallery from "@/components/FullscreenGallery";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
+import { toast } from "sonner"
+import { API_BASE_URL, BUSINESS_ID } from "@/config/apiConfig"
 
 const CarDetails = () => {
   const { listingId } = useParams<{ listingId: string }>()
@@ -51,31 +59,98 @@ const CarDetails = () => {
 
   const [selectedImage, setSelectedImage] = useState(0)
 
+  // Form State for Inline Enquiry
+  const [enquiryName, setEnquiryName] = useState("");
+  const [enquiryPhone, setEnquiryPhone] = useState("");
+  const [enquiryEmail, setEnquiryEmail] = useState("");
+  const [enquiryMessage, setEnquiryMessage] = useState("");
+  const [enquiryGdpr, setEnquiryGdpr] = useState(false);
+  const [isSubmittingEnquiry, setIsSubmittingEnquiry] = useState(false);
+
   useEffect(() => {
     if (car) {
       console.log("Date complete pentru mașina selectată:", car);
+      setEnquiryMessage(`Bună ziua, sunt interesat de ${car.title}. Aș dori mai multe detalii.`);
     }
   }, [car]);
 
-  const normalizeName = (s: string): string =>
-    s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-  const getAttributeValue = (attributes: Attribute[], name: string): string => {
-    const attr = attributes.find(a => normalizeName(a.attribute.name) === normalizeName(name));
-    if (!attr) return "N/A";
-    
-    // Prioritize stringValue, then numberValue, then booleanValue
-    if (attr.stringValue) return attr.stringValue;
-    if (attr.numberValue !== null && attr.numberValue !== undefined) return attr.numberValue.toString();
-    if (attr.booleanValue !== null && attr.booleanValue !== undefined) return attr.booleanValue ? "Da" : "Nu";
-    
-    return "N/A";
+  const getAttrVal = (attrIds: string | string[], fallbackNames: string[]): string => {
+    if (!car) return "N/A";
+    const val = getAttributeValueById(car, attrIds, fallbackNames);
+    if (val === null || val === undefined || val === "") return "N/A";
+    if (typeof val === "boolean") return val ? "Da" : "Nu";
+    return String(val);
   };
   
-  const getFeatures = (attributes: Attribute[]): string[] => {
-      return attributes
-          .filter(attr => attr.attribute.type === 'BOOLEAN' && attr.booleanValue === true)
-          .map(attr => attr.attribute.name);
-  }
+  const getFeatures = (attributes?: AttributeValue[]): string[] => {
+    if (!attributes) return [];
+    return attributes
+      .filter(attr => attr.attribute?.type === 'BOOLEAN' && attr.booleanValue === true)
+      .map(attr => attr.attribute.name);
+  };
+
+  const handleEnquirySubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!car) return;
+
+    if (!enquiryName.trim()) {
+      toast.error("Vă rugăm să introduceți numele dumneavoastră.");
+      return;
+    }
+    if (!enquiryPhone.trim()) {
+      toast.error("Vă rugăm să introduceți numărul de telefon.");
+      return;
+    }
+    if (!enquiryEmail.trim()) {
+      toast.error("Vă rugăm să introduceți adresa de email.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(enquiryEmail.trim())) {
+      toast.error("Vă rugăm să introduceți o adresă de email validă.");
+      return;
+    }
+
+    if (!enquiryGdpr) {
+      toast.error("Trebuie să fiți de acord cu politica de confidențialitate.");
+      return;
+    }
+
+    setIsSubmittingEnquiry(true);
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/public/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          businessId: BUSINESS_ID,
+          name: enquiryName.trim(),
+          phone: enquiryPhone.trim(),
+          email: enquiryEmail.trim(),
+          message: enquiryMessage.trim(),
+          type: "STOCK",
+          listingId: car.id,
+        }),
+      });
+
+      if (response.ok) {
+        toast.success("Mesajul a fost trimis. Te contactăm în curând.");
+        setEnquiryName("");
+        setEnquiryPhone("");
+        setEnquiryEmail("");
+        setEnquiryGdpr(false);
+      } else {
+        toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
+    } finally {
+      setIsSubmittingEnquiry(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -140,25 +215,35 @@ const CarDetails = () => {
     )
   }
   
-  // Get video URL
-  const videoUrl = getAttributeValue(car.attributeValues, 'Link Video');
+  // Get video URL using attributeId with display-name fallback
+  const videoUrl = getAttrVal(["attr:videoUrl"], ["link video"]);
   const hasVideo = videoUrl && videoUrl !== 'N/A';
   
   // Processed values for display
+  const kmString = getAttrVal(["attr:mileage"], ["kilometraj", "rulaj"]);
+  const kmNum = parseInt(kmString, 10);
+  const formattedKm = !isNaN(kmNum) ? `${kmNum.toLocaleString()} km` : "N/A";
+
+  const ccString = getAttrVal(["attr:engineCapacity"], ["capacitate cilindrica"]);
+  const formattedCc = ccString !== "N/A" ? `${ccString} cm³` : "N/A";
+
+  const hpString = getAttrVal(["attr:powerHp"], ["putere (cp)", "putere"]);
+  const formattedHp = hpString !== "N/A" ? `${hpString} CP` : "N/A";
+
   const carData = {
     title: car.title,
-    year: getAttributeValue(car.attributeValues, 'An'),
-    variant: getAttributeValue(car.attributeValues, 'Caroserie'),
+    year: getAttrVal(["attr:year"], ["an"]),
+    variant: getAttrVal(["attr:bodyType"], ["caroserie"]),
     price: car.price ?? 0,
     images: car.images,
     description: car.description.replace(/"/g, '\\"'), // Escape quotes for JSON
     specs: [
-      { icon: Gauge, label: "Rulaj", value: `${parseInt(getAttributeValue(car.attributeValues, 'kilometraj'), 10).toLocaleString()} km` },
-      { icon: Cog, label: "Capacitate cilindrică", value: `${getAttributeValue(car.attributeValues, 'capacitate cilindrica')} cm³` },
-      { icon: Zap, label: "Putere", value: `${getAttributeValue(car.attributeValues, 'Putere (CP)')} CP` },
-      { icon: Fuel, label: "Combustibil", value: getAttributeValue(car.attributeValues, 'combustibil') },
-      { icon: Settings, label: "Transmisie", value: getAttributeValue(car.attributeValues, 'Cutie de viteze') },
-      { icon: Calendar, label: "An fabricație", value: getAttributeValue(car.attributeValues, 'An') }
+      { icon: Gauge, label: "Rulaj", value: formattedKm },
+      { icon: Cog, label: "Capacitate cilindrică", value: formattedCc },
+      { icon: Zap, label: "Putere", value: formattedHp },
+      { icon: Fuel, label: "Combustibil", value: getAttrVal(["attr:fuelType"], ["combustibil"]) },
+      { icon: Settings, label: "Transmisie", value: getAttrVal(["attr:gearbox", "attr:transmission"], ["cutie de viteze", "transmisie"]) },
+      { icon: Calendar, label: "An fabricație", value: getAttrVal(["attr:year"], ["an"]) }
     ],
     features: getFeatures(car.attributeValues)
   }
@@ -188,7 +273,7 @@ const CarDetails = () => {
               },
               "mileageFromOdometer": {
                   "@type": "QuantitativeValue",
-                  "value": ${parseInt(getAttributeValue(car.attributeValues, 'kilometraj'), 10)},
+                  "value": ${!isNaN(kmNum) ? kmNum : 0},
                   "unitCode": "KMT"
               },
               "productionDate": "${carData.year}"
@@ -312,9 +397,9 @@ const CarDetails = () => {
                         {carData.variant}
                       </Badge>
                     )}
-                    {getAttributeValue(car.attributeValues, 'combustibil') !== 'N/A' && (
+                    {getAttrVal(["attr:fuelType"], ["combustibil"]) !== 'N/A' && (
                       <Badge variant="outline" className="border-luxury-gold/40 text-luxury-gold bg-luxury-gold/10 px-3 py-1 font-medium">
-                        {getAttributeValue(car.attributeValues, 'combustibil')}
+                        {getAttrVal(["attr:fuelType"], ["combustibil"])}
                       </Badge>
                     )}
                   </div>
@@ -344,7 +429,7 @@ const CarDetails = () => {
 
                 {/* CTA Buttons */}
                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                    <Button asChild className="flex-1" size="lg">
+                    <Button asChild className="flex-1 min-h-[44px]" size="lg">
                         <a href="tel:0752228593">
                             <Phone className="h-5 w-5" />
                             Programează un Test Drive
@@ -352,7 +437,7 @@ const CarDetails = () => {
                     </Button>
                     
                     {hasVideo && (
-                       <Button asChild variant="outline" className="flex-1" size="lg">
+                       <Button asChild variant="outline" className="flex-1 min-h-[44px]" size="lg">
                             <a href={videoUrl} target="_blank" rel="noopener noreferrer">
                                 <Video className="h-5 w-5" />
                                 Vezi Video
@@ -366,9 +451,106 @@ const CarDetails = () => {
 
           <Separator className="my-12" />
 
-          {/* --- PART 2: "IN-DEPTH" SECTION (Full Width) --- */}
+          {/* --- PART 2: INLINE ENQUIRY FORM & "IN-DEPTH" SECTION --- */}
           <div className="mt-6">
             <div className="max-w-5xl mx-auto space-y-8">
+
+              {/* Inline Enquiry Form */}
+              <AnimatedSection>
+                <Card className="luxury-card border-luxury-gold/30">
+                  <CardHeader>
+                    <CardTitle className="font-luxury text-2xl font-bold text-luxury-gold">
+                      Ești interesat de această mașină?
+                    </CardTitle>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      Lasă-ne datele tale și te contactăm în cel mai scurt timp.
+                    </p>
+                  </CardHeader>
+                  <form onSubmit={handleEnquirySubmit}>
+                    <CardContent className="space-y-4">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="space-y-1.5">
+                          <Label htmlFor="enquiry-name" className="text-xs font-medium">Nume și Prenume *</Label>
+                          <Input
+                            id="enquiry-name"
+                            type="text"
+                            placeholder="Numele tău"
+                            value={enquiryName}
+                            onChange={(e) => setEnquiryName(e.target.value)}
+                            className="min-h-[44px] text-sm bg-muted/40"
+                            required
+                          />
+                        </div>
+                        <div className="space-y-1.5">
+                          <Label htmlFor="enquiry-phone" className="text-xs font-medium">Telefon *</Label>
+                          <Input
+                            id="enquiry-phone"
+                            type="tel"
+                            placeholder="+40 722 123 456"
+                            value={enquiryPhone}
+                            onChange={(e) => setEnquiryPhone(e.target.value)}
+                            className="min-h-[44px] text-sm bg-muted/40"
+                            required
+                          />
+                        </div>
+                        <div className="space-y-1.5">
+                          <Label htmlFor="enquiry-email" className="text-xs font-medium">Email *</Label>
+                          <Input
+                            id="enquiry-email"
+                            type="email"
+                            placeholder="adresa@email.ro"
+                            value={enquiryEmail}
+                            onChange={(e) => setEnquiryEmail(e.target.value)}
+                            className="min-h-[44px] text-sm bg-muted/40"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div className="space-y-1.5">
+                        <Label htmlFor="enquiry-message" className="text-xs font-medium">Mesaj</Label>
+                        <Textarea
+                          id="enquiry-message"
+                          value={enquiryMessage}
+                          onChange={(e) => setEnquiryMessage(e.target.value)}
+                          className="min-h-[90px] text-sm bg-muted/40"
+                        />
+                      </div>
+
+                      <div className="flex items-start space-x-3 pt-2">
+                        <Checkbox
+                          id="enquiry-gdpr"
+                          checked={enquiryGdpr}
+                          onCheckedChange={(checked) => setEnquiryGdpr(checked as boolean)}
+                          className="data-[state=checked]:bg-luxury-gold data-[state=checked]:text-black mt-0.5"
+                        />
+                        <Label htmlFor="enquiry-gdpr" className="text-xs font-normal text-muted-foreground leading-snug">
+                          Am citit și sunt de acord cu{" "}
+                          <a
+                            href="/politica-confidentialitate"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline text-luxury-gold hover:text-luxury-gold-hover"
+                          >
+                            Politica de Confidențialitate
+                          </a>{" "}
+                          a site-ului.
+                        </Label>
+                      </div>
+
+                      <Button
+                        type="submit"
+                        disabled={!enquiryGdpr || isSubmittingEnquiry}
+                        className="w-full sm:w-auto min-h-[44px] px-8 gap-2"
+                        size="lg"
+                      >
+                        <Send className="w-4 h-4" />
+                        {isSubmittingEnquiry ? "Se trimite..." : "Trimite solicitarea"}
+                      </Button>
+                    </CardContent>
+                  </form>
+                </Card>
+              </AnimatedSection>
               
               {/* Dotări / Features */}
               {carData.features && carData.features.length > 0 && (

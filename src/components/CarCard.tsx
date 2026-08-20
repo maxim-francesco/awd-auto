@@ -4,41 +4,29 @@ import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/luxury-button"
 import { Calendar, Fuel, Gauge, Settings } from "lucide-react"
-import type { APIListing } from "@/hooks/useLatestListings"
 import { cn } from "@/lib/utils"
+import { APIListing, getAttributeValueById } from "@/lib/attributes"
 
 interface CarCardProps {
   listing: APIListing;
 }
 
 const CarCard = ({ listing }: CarCardProps) => {
-  const getAttributeValue = (attributeName: string) => {
-    if (!listing || !listing.attributeValues) {
-      return 'N/A';
-    }
-  
-    const attribute = listing.attributeValues.find(
-      (attr) => attr.attribute.name.toLowerCase() === attributeName.toLowerCase()
-    );
-  
-    if (!attribute) {
-      return 'N/A';
-    }
-    
-    // Returnează valoarea care nu este null
-    const value = attribute.stringValue || attribute.numberValue;
-    return value !== undefined && value !== null ? value.toString() : 'N/A';
-  };
+  const yearVal = getAttributeValueById(listing, ["attr:year"], ["an"]);
+  const year = yearVal !== null && yearVal !== undefined ? String(yearVal) : "N/A";
 
-  const mileageValue = getAttributeValue('kilometraj');
-  const mileage = !isNaN(parseInt(mileageValue)) ? parseInt(mileageValue).toLocaleString() : 'N/A';
-  const fuelType = getAttributeValue('combustibil');
-  const year = getAttributeValue('An');
-  const transmission = getAttributeValue('Cutie de viteze');
+  const kmVal = getAttributeValueById(listing, ["attr:mileage"], ["kilometraj", "rulaj"]);
+  const mileageNum = typeof kmVal === "number" ? kmVal : (typeof kmVal === "string" ? parseInt(kmVal, 10) : null);
+  const mileage = mileageNum !== null && !isNaN(mileageNum) ? mileageNum.toLocaleString() : "N/A";
 
-  const isVatDeductible = listing.attributeValues && listing.attributeValues.find(
-    (attr) => attr.attribute.name.toLowerCase() === 'tva deductibil' && attr.booleanValue === true
-  );
+  const fuelVal = getAttributeValueById(listing, ["attr:fuelType"], ["combustibil"]);
+  const fuelType = fuelVal !== null && fuelVal !== undefined ? String(fuelVal) : "N/A";
+
+  const transVal = getAttributeValueById(listing, ["attr:gearbox", "attr:transmission"], ["cutie de viteze", "transmisie"]);
+  const transmission = transVal !== null && transVal !== undefined ? String(transVal) : "N/A";
+
+  const vatVal = getAttributeValueById(listing, ["attr:vatDeductible"], ["tva deductibil"]);
+  const isVatDeductible = vatVal === true || String(vatVal).toLowerCase() === "true";
 
   const isSold = listing.status === 'SOLD';
 
@@ -123,7 +111,7 @@ const CarCard = ({ listing }: CarCardProps) => {
 
                 <div className="pt-2">
                     <Link to={`/masini-disponibile/${listing.id}`} state={{ listing }} className="block">
-                        <Button className="w-full" size="sm">
+                        <Button className="w-full min-h-[44px]" size="sm">
                             Vezi Detalii
                         </Button>
                     </Link>
@@ -133,7 +121,7 @@ const CarCard = ({ listing }: CarCardProps) => {
         
          {isSold && (
             <div className="pt-2">
-                <Button className="w-full" size="sm" disabled>
+                <Button className="w-full min-h-[44px]" size="sm" disabled>
                     Vândut
                 </Button>
             </div>
