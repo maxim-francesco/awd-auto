@@ -18,9 +18,7 @@ import {
   Cog, 
   Zap, 
   Settings,
-  Check,
   ArrowLeft,
-  Phone,
   Video,
   AlertCircle,
   Image as ImageIcon,
@@ -31,7 +29,7 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 import useListingDetails from "@/hooks/useListingDetails"
-import { APIListing, AttributeValue, getAttributeValueById } from "@/lib/attributes";
+import { APIListing, getAttributeValueById } from "@/lib/attributes";
 import Container from "@/components/ui/Container"
 import FullscreenGallery from "@/components/FullscreenGallery";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
@@ -81,13 +79,6 @@ const CarDetails = () => {
     if (val === null || val === undefined || val === "") return "N/A";
     if (typeof val === "boolean") return val ? "Da" : "Nu";
     return String(val);
-  };
-  
-  const getFeatures = (attributes?: AttributeValue[]): string[] => {
-    if (!attributes) return [];
-    return attributes
-      .filter(attr => attr.attribute?.type === 'BOOLEAN' && attr.booleanValue === true)
-      .map(attr => attr.attribute.name);
   };
 
   const handleEnquirySubmit = async (e: React.FormEvent) => {
@@ -246,8 +237,7 @@ const CarDetails = () => {
       { icon: Fuel, label: "Combustibil", value: getAttrVal(["attr:fuelType"], ["combustibil"]) },
       { icon: Settings, label: "Transmisie", value: getAttrVal(["attr:gearbox", "attr:transmission"], ["cutie de viteze", "transmisie"]) },
       { icon: Calendar, label: "An fabricație", value: getAttrVal(["attr:year"], ["an"]) }
-    ],
-    features: getFeatures(car.attributeValues)
+    ]
   }
 
   return (
@@ -429,24 +419,17 @@ const CarDetails = () => {
                   ))}
                 </StaggeredGrid>
 
-                {/* CTA Buttons */}
-                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                    <Button asChild className="flex-1 min-h-[44px]" size="lg">
-                        <a href="tel:0752228593">
-                            <Phone className="h-5 w-5" />
-                            Programează un Test Drive
-                        </a>
+                {/* CTA Button */}
+                {hasVideo && (
+                  <div className="pt-4">
+                    <Button asChild variant="outline" className="w-full sm:w-auto min-h-[44px] px-8 gap-2" size="lg">
+                      <a href={videoUrl} target="_blank" rel="noopener noreferrer">
+                        <Video className="h-5 w-5" />
+                        Vezi Video
+                      </a>
                     </Button>
-                    
-                    {hasVideo && (
-                       <Button asChild variant="outline" className="flex-1 min-h-[44px]" size="lg">
-                            <a href={videoUrl} target="_blank" rel="noopener noreferrer">
-                                <Video className="h-5 w-5" />
-                                Vezi Video
-                            </a>
-                        </Button>
-                    )}
-                </div>
+                  </div>
+                )}
               </div>
             </AnimatedSection>
           </div>
@@ -568,26 +551,6 @@ const CarDetails = () => {
                   </form>
                 </Card>
               </AnimatedSection>
-              
-              {/* Dotări / Features */}
-              {carData.features && carData.features.length > 0 && (
-                <div className="luxury-card p-6 sm:p-8">
-                  <div className="flex items-center gap-2 mb-6">
-                    <div className="w-1.5 h-6 bg-luxury-gold rounded-full" />
-                    <h2 className="font-luxury text-xl sm:text-2xl font-semibold text-luxury-gold">
-                      Dotări
-                    </h2>
-                  </div>
-                  <StaggeredGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                    {carData.features.map((feature, index) => (
-                      <StaggeredItem key={index} className="border border-border/60 bg-luxury-darker/40 rounded-lg px-3 py-2 flex items-center gap-2 transition-all hover:border-luxury-gold/30">
-                        <Check className="h-4 w-4 text-luxury-gold flex-shrink-0" />
-                        <span className="text-sm text-foreground">{feature}</span>
-                      </StaggeredItem>
-                    ))}
-                  </StaggeredGrid>
-                </div>
-              )}
 
             </div>
           </div>
