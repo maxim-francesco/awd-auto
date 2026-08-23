@@ -455,6 +455,21 @@ const CarDetails = () => {
           <div className="mt-6">
             <div className="max-w-5xl mx-auto space-y-8">
 
+              {/* Description */}
+              {car.description && car.description.trim().length > 0 && (
+                <div className="luxury-card p-6 sm:p-8">
+                  <div className="flex items-center gap-2 mb-6">
+                    <div className="w-1.5 h-6 bg-luxury-gold rounded-full" />
+                    <h2 className="font-luxury text-xl sm:text-2xl font-semibold text-luxury-gold">
+                      Descriere Detaliată
+                    </h2>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap text-sm sm:text-base">
+                    {car.description}
+                  </p>
+                </div>
+              )}
+
               {/* Inline Enquiry Form */}
               <AnimatedSection>
                 <Card className="luxury-card border-luxury-gold/30">
@@ -571,19 +586,6 @@ const CarDetails = () => {
                   </StaggeredGrid>
                 </div>
               )}
-
-              {/* Description */}
-              <div className="luxury-card p-6 sm:p-8">
-                <div className="flex items-center gap-2 mb-6">
-                  <div className="w-1.5 h-6 bg-luxury-gold rounded-full" />
-                  <h2 className="font-luxury text-xl sm:text-2xl font-semibold text-luxury-gold">
-                    Descriere Detaliată
-                  </h2>
-                </div>
-                <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap text-sm sm:text-base">
-                  {car.description}
-                </p>
-              </div>
 
             </div>
           </div>
