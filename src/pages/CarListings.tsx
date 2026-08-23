@@ -27,6 +27,7 @@ const CarListings = () => {
       combustibil: searchParams.get("combustibil") ? searchParams.get("combustibil")!.split(",").filter(Boolean) : [],
       cutie: searchParams.get("cutie") ? searchParams.get("cutie")!.split(",").filter(Boolean) : [],
       caroserie: searchParams.get("caroserie") ? searchParams.get("caroserie")!.split(",").filter(Boolean) : [],
+      tva: searchParams.get("tva") ? searchParams.get("tva")!.split(",").filter(Boolean) : [],
       an_min: searchParams.get("an_min") || "",
       an_max: searchParams.get("an_max") || "",
       pret_min: searchParams.get("pret_min") || "",
@@ -91,6 +92,7 @@ const CarListings = () => {
     setOrDelete("combustibil", newFilters.combustibil);
     setOrDelete("cutie", newFilters.cutie);
     setOrDelete("caroserie", newFilters.caroserie);
+    setOrDelete("tva", newFilters.tva);
     setOrDelete("an_min", newFilters.an_min);
     setOrDelete("an_max", newFilters.an_max);
     setOrDelete("pret_min", newFilters.pret_min);

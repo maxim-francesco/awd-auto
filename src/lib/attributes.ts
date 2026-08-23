@@ -36,6 +36,7 @@ export interface FilterState {
   combustibil: string[];
   cutie: string[];
   caroserie: string[];
+  tva: string[];
   an_min: string;
   an_max: string;
   pret_min: string;

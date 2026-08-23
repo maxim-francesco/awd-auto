@@ -77,6 +77,23 @@ export function useStockFacets(allListings: APIListing[], filters: FilterState) 
       }
     }
 
+    // 7. TVA
+    if (!excludeKeys.includes("tva") && filters.tva.length > 0) {
+      const val = getAttributeValueById(car, ["attr:vatDeductible"], ["tva deductibil"]);
+      if (val === null || val === undefined) {
+        return false;
+      }
+      let carVatLabel: string | null = null;
+      if (val === true || (typeof val === "string" && val.toLowerCase() === "true")) {
+        carVatLabel = "TVA deductibil";
+      } else if (val === false || (typeof val === "string" && val.toLowerCase() === "false")) {
+        carVatLabel = "TVA nedeductibil";
+      }
+      if (!carVatLabel || !filters.tva.some((t) => normalizeText(carVatLabel!) === normalizeText(t))) {
+        return false;
+      }
+    }
+
     // 7. An
     if (!excludeKeys.includes("an")) {
       const yearVal = getAttributeValueById(car, ["attr:year"], ["an"]);
@@ -217,7 +234,23 @@ export function useStockFacets(allListings: APIListing[], filters: FilterState) 
       a.display.localeCompare(b.display)
     );
 
-    // 6. An range bounds
+    // 6. TVA facet
+    const tvaSubset = allListings.filter((c) => matchListingExcluding(c, ["tva"]));
+    const tvaCountsMap = new Map<string, { display: string; count: number }>([
+      ["TVA deductibil", { display: "TVA deductibil", count: 0 }],
+      ["TVA nedeductibil", { display: "TVA nedeductibil", count: 0 }],
+    ]);
+    tvaSubset.forEach((c) => {
+      const val = getAttributeValueById(c, ["attr:vatDeductible"], ["tva deductibil"]);
+      if (val === true || (typeof val === "string" && val.toLowerCase() === "true")) {
+        tvaCountsMap.get("TVA deductibil")!.count += 1;
+      } else if (val === false || (typeof val === "string" && val.toLowerCase() === "false")) {
+        tvaCountsMap.get("TVA nedeductibil")!.count += 1;
+      }
+    });
+    const tvaOptions = Array.from(tvaCountsMap.values());
+
+    // 7. An range bounds
     const anSubset = allListings.filter((c) => matchListingExcluding(c, ["an"]));
     let minYear = Infinity;
     let maxYear = -Infinity;
@@ -271,6 +304,7 @@ export function useStockFacets(allListings: APIListing[], filters: FilterState) 
       fuelOptions,
       gearboxOptions,
       bodyOptions,
+      tvaOptions,
       yearBounds,
       priceBounds,
       kmBounds,
@@ -372,6 +406,7 @@ const getActiveKeys = (f: FilterState): string[] => {
   if (f.combustibil.length > 0) keys.push("combustibil");
   if (f.cutie.length > 0) keys.push("cutie");
   if (f.caroserie.length > 0) keys.push("caroserie");
+  if (f.tva.length > 0) keys.push("tva");
   if (f.an_min || f.an_max) keys.push("an");
   if (f.pret_min || f.pret_max) keys.push("pret");
   if (f.km_min || f.km_max) keys.push("km");
@@ -389,7 +424,7 @@ function FacetsAccordionContent({
   onFilterChange: (newFilters: FilterState) => void;
 }) {
   const toggleMultiSelect = (
-    key: "marca" | "model" | "combustibil" | "cutie" | "caroserie",
+    key: "marca" | "model" | "combustibil" | "cutie" | "caroserie" | "tva",
     value: string
   ) => {
     const current = filters[key];
@@ -545,6 +580,29 @@ function FacetsAccordionContent({
         </AccordionItem>
       )}
 
+      {/* TVA Facet */}
+      {facets.tvaOptions.length > 0 && (
+        <AccordionItem value="tva" className="border-border/60">
+          <AccordionTrigger className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground py-3 hover:no-underline">
+            <span className="flex items-center gap-2">
+              TVA
+              {filters.tva.length > 0 && (
+                <span className="text-[11px] font-normal text-muted-foreground">
+                  ({filters.tva.length})
+                </span>
+              )}
+            </span>
+          </AccordionTrigger>
+          <AccordionContent>
+            <FacetOptionList
+              options={facets.tvaOptions}
+              selectedValues={filters.tva}
+              onToggle={(val) => toggleMultiSelect("tva", val)}
+            />
+          </AccordionContent>
+        </AccordionItem>
+      )}
+
       {/* Preț Range */}
       <AccordionItem value="pret" className="border-border/60">
         <AccordionTrigger className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground py-3 hover:no-underline">
@@ -677,6 +735,7 @@ export function StockFilters({
     filters.combustibil.length > 0 ||
     filters.cutie.length > 0 ||
     filters.caroserie.length > 0 ||
+    filters.tva.length > 0 ||
     Boolean(filters.an_min) ||
     Boolean(filters.an_max) ||
     Boolean(filters.pret_min) ||
@@ -691,6 +750,7 @@ export function StockFilters({
     filters.combustibil.length +
     filters.cutie.length +
     filters.caroserie.length +
+    filters.tva.length +
     (filters.an_min || filters.an_max ? 1 : 0) +
     (filters.pret_min || filters.pret_max ? 1 : 0) +
     (filters.km_min || filters.km_max ? 1 : 0) +
@@ -703,6 +763,7 @@ export function StockFilters({
       combustibil: [],
       cutie: [],
       caroserie: [],
+      tva: [],
       an_min: "",
       an_max: "",
       pret_min: "",
@@ -887,6 +948,28 @@ export function StockFilters({
             </span>
           ))}
 
+          {filters.tva.map((t) => (
+            <span
+              key={`tva-${t}`}
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-muted/80 border border-border text-foreground text-xs shrink-0"
+            >
+              TVA: {t}
+              <button
+                type="button"
+                onClick={() =>
+                  onFilterChange({
+                    ...filters,
+                    tva: filters.tva.filter((item) => item !== t),
+                  })
+                }
+                className="hover:text-primary min-w-[20px] min-h-[20px] flex items-center justify-center"
+                aria-label={`Șterge TVA ${t}`}
+              >
+                <X className="w-3 h-3" />
+              </button>
+            </span>
+          ))}
+
           {(filters.an_min || filters.an_max) && (
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-muted/80 border border-border text-foreground text-xs shrink-0">
               An: {filters.an_min || "Min"} - {filters.an_max || "Max"}
@@ -969,6 +1052,7 @@ export function DesktopFilterSidebar({
     filters.combustibil.length > 0 ||
     filters.cutie.length > 0 ||
     filters.caroserie.length > 0 ||
+    filters.tva.length > 0 ||
     Boolean(filters.an_min) ||
     Boolean(filters.an_max) ||
     Boolean(filters.pret_min) ||
@@ -984,6 +1068,7 @@ export function DesktopFilterSidebar({
       combustibil: [],
       cutie: [],
       caroserie: [],
+      tva: [],
       an_min: "",
       an_max: "",
       pret_min: "",
