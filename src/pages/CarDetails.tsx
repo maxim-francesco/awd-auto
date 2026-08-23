@@ -396,11 +396,23 @@ const CarDetails = () => {
                     )}
                   </div>
 
-                  <div className="flex items-baseline gap-2">
-                    <span className="font-luxury text-4xl sm:text-5xl font-bold text-luxury-gold">
-                      {carData.price.toLocaleString()} €
-                    </span>
-                    <span className="text-sm text-muted-foreground">(TVA Inclus)</span>
+                  {/* Price Row & Desktop Video CTA */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-luxury text-4xl sm:text-5xl font-bold text-luxury-gold">
+                        {carData.price.toLocaleString()} €
+                      </span>
+                      <span className="text-sm text-muted-foreground">(TVA Inclus)</span>
+                    </div>
+
+                    {hasVideo && (
+                      <Button asChild variant="outline" className="hidden lg:inline-flex min-h-[44px] px-8 gap-2" size="lg">
+                        <a href={videoUrl} target="_blank" rel="noopener noreferrer">
+                          <Video className="h-5 w-5" />
+                          Vezi Video
+                        </a>
+                      </Button>
+                    )}
                   </div>
                 </div>
 
@@ -419,10 +431,10 @@ const CarDetails = () => {
                   ))}
                 </StaggeredGrid>
 
-                {/* CTA Button */}
+                {/* CTA Button (Mobile only) */}
                 {hasVideo && (
-                  <div className="pt-4">
-                    <Button asChild variant="outline" className="w-full sm:w-auto min-h-[44px] px-8 gap-2" size="lg">
+                  <div className="pt-4 lg:hidden">
+                    <Button asChild variant="outline" className="w-full min-h-[44px] px-8 gap-2" size="lg">
                       <a href={videoUrl} target="_blank" rel="noopener noreferrer">
                         <Video className="h-5 w-5" />
                         Vezi Video
