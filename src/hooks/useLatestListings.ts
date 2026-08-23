@@ -24,6 +24,7 @@ export interface APIListing {
   price: number | null;
   createdAt: string;
   status?: 'AVAILABLE' | 'SOLD'; // Added optional status
+  youtubeVideoId?: string | null;
   attributeValues: Attribute[];
   images: ListingImage[];
 }

@@ -37,6 +37,7 @@ import FullscreenGallery from "@/components/FullscreenGallery";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
 import { toast } from "sonner"
 import { API_BASE_URL, BUSINESS_ID } from "@/config/apiConfig"
+import { formatVideoUrl } from "@/lib/videoUtils"
 
 const CarDetails = () => {
   const { listingId } = useParams<{ listingId: string }>()
@@ -215,9 +216,10 @@ const CarDetails = () => {
     )
   }
   
-  // Get video URL using attributeId with display-name fallback
-  const videoUrl = getAttrVal(["attr:videoUrl"], ["link video"]);
-  const hasVideo = videoUrl && videoUrl !== 'N/A';
+  // Get video URL: check top-level youtubeVideoId first, fallback to "attr:videoUrl" / "link video" attribute
+  const rawVideoLink = car?.youtubeVideoId?.trim() || getAttrVal(["attr:videoUrl"], ["link video"]);
+  const videoUrl = formatVideoUrl(rawVideoLink);
+  const hasVideo = Boolean(videoUrl);
   
   // Processed values for display
   const kmString = getAttrVal(["attr:mileage"], ["kilometraj", "rulaj"]);
