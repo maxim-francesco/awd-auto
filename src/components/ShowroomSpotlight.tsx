@@ -173,6 +173,10 @@ const ShowroomSpotlight = ({ listing }: ShowroomSpotlightProps) => {
               <span>Sună Dealer</span>
             </a>
           </div>
+
+          <p className="text-[10px] text-slate-500 pt-1 text-center sm:text-left">
+            * Pachetul de garanție inclus, disponibilitatea în parcul auto și condițiile finale de finanțare sunt supuse confirmării prealabile cu un consultant AWD Auto.
+          </p>
         </div>
       </div>
     </div>

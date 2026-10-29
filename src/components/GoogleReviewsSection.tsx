@@ -48,8 +48,7 @@ const GoogleReviewsSection = () => {
   const { reviews, placeDetails } = useGoogleReviews(PLACE_ID);
 
   const displayReviews = (reviews && reviews.length > 0) ? reviews.slice(0, 3) : FALLBACK_REVIEWS;
-  const ratingScore = placeDetails?.rating || 4.9;
-  const totalReviewsCount = placeDetails?.user_ratings_total || 48;
+  const hasLiveRating = Boolean(placeDetails?.rating);
 
   return (
     <section className="py-24 bg-[#F5F2EB] text-[#161B21] border-y border-[#E2DDD2] relative overflow-hidden">
@@ -61,21 +60,36 @@ const GoogleReviewsSection = () => {
         <AnimatedSection className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EAE4D7] text-[#473B2A] text-xs font-semibold tracking-wider uppercase">
             <ShieldCheck className="w-4 h-4 text-[#B88E4B]" />
-            Recenzii Verificate Google
+            Experiențe Verificate Google Maps
           </div>
 
           <h2 className="font-luxury text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#141921]">
             Încrederea Clienților Noștri
           </h2>
 
-          <div className="flex items-center justify-center gap-3 pt-1">
+          <div className="flex flex-wrap items-center justify-center gap-2.5 pt-1">
             <div className="flex items-center gap-1.5">
               {renderStars(5)}
             </div>
-            <span className="font-heading font-bold text-lg text-[#141921]">{ratingScore} / 5</span>
-            <span className="text-sm text-[#5C6675]">
-              (evaluare verificată pe Google Maps)
-            </span>
+            {hasLiveRating ? (
+              <>
+                <span className="font-heading font-bold text-lg text-[#141921]">
+                  {placeDetails?.rating?.toFixed(1)} / 5
+                </span>
+                <span className="text-sm text-[#5C6675]">
+                  ({placeDetails?.user_ratings_total} recenzii în timp real pe Google Maps)
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="font-heading font-bold text-base sm:text-lg text-[#141921]">
+                  Apreciere de Top pe Google Maps
+                </span>
+                <span className="text-xs sm:text-sm text-[#5C6675]">
+                  (profil de afaceri verificat)
+                </span>
+              </>
+            )}
           </div>
 
           <p className="text-base sm:text-lg text-[#4E5867] max-w-2xl mx-auto leading-relaxed">
@@ -116,15 +130,18 @@ const GoogleReviewsSection = () => {
           ))}
         </StaggeredGrid>
 
-        <AnimatedSection className="text-center mt-12">
+        <AnimatedSection className="text-center mt-12 space-y-3">
           <a 
             href={REVIEWS_URL} 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl font-semibold text-sm bg-[#161B21] text-white hover:bg-[#C8A86B] hover:text-[#0F1318] transition-all duration-300 shadow-md hover:shadow-lg"
           >
-            <span>Citește Toate Recenziile pe Google Maps</span>
+            <span>Consultă Profilul și Toate Recenziile pe Google Maps</span>
           </a>
+          <p className="text-xs text-[#6F7A8A] max-w-xl mx-auto">
+            * Recenzii reale preluate din profilul public AWD Auto Cluj-Napoca. Pentru consultarea scorului agregat calculat în timp real, accesați direct pagina Google Maps a showroom-ului.
+          </p>
         </AnimatedSection>
       </div>
     </section>

@@ -149,8 +149,18 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Commercial Accuracy & Transparency Note */}
+        <div className="mt-10 pt-6 border-t border-white/5 text-[11px] text-slate-500 leading-relaxed space-y-1.5">
+          <p>
+            <strong className="text-slate-400">Notă privind transparența comercială și financiară:</strong> Informațiile referitoare la disponibilitatea autovehiculelor, prețurile de listă, specificațiile tehnice, pachetele de garanție Defend Insurance și simulările de finanțare afișate pe acest website au caracter exclusiv informativ și orientativ, fără valoare de ofertă contractuală fermă.
+          </p>
+          <p>
+            Condițiile comerciale finale, eligibilitatea pentru garanția extinsă și aprobarea dosarelor de finanțare sunt stabilite exclusiv în baza verificării punctuale și a confirmării exprese cu reprezentanții de vânzări AWD Auto și partenerii financiari/asigurători autorizați înainte de încheierea oricărui contract.
+          </p>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
           <p>© {currentYear} AWD Auto Trade SRL. Toate drepturile rezervate.</p>
           <div className="flex items-center gap-2">
             <span>Dezvoltat de</span>

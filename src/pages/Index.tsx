@@ -276,7 +276,7 @@ const Index = () => {
 
           {/* Embedded Interactive Finance Calculator */}
           <div className="max-w-5xl mx-auto mb-16">
-            <FinanceCalculatorWidget initialPrice={spotlightCar?.price || 16500} />
+            <FinanceCalculatorWidget initialPrice={15000} />
           </div>
 
           {/* Banking Partners Banner */}

@@ -262,6 +262,13 @@ export default function AwdStandardInteractive() {
             </motion.div>
           </AnimatePresence>
         </div>
+
+        {/* Commercial Disclaimer Note */}
+        <div className="mt-12 text-center">
+          <p className="text-xs text-slate-500 max-w-2xl mx-auto leading-relaxed">
+            * Criteriile specifice de garanție (Defend Insurance), verificarea tehnică și condițiile de creditare/leasing depind de istoricul și vechimea fiecărui autoturism și sunt reconfirmate punctual de către un consultant de vânzări AWD Auto.
+          </p>
+        </div>
       </div>
     </section>
   )

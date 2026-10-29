@@ -387,6 +387,16 @@ const Finantare = () => {
             </div>
 
           </div>
+
+          {/* Transparency and Dealer Reconfirmation Note */}
+          <div className="mt-16 p-6 rounded-2xl bg-card border border-border/80 text-xs text-muted-foreground space-y-2 max-w-4xl mx-auto text-center sm:text-left">
+            <p className="font-semibold text-foreground">
+              Notă privind condițiile comerciale și aprobarea finanțării:
+            </p>
+            <p className="leading-relaxed">
+              Criteriile de eligibilitate, plafoanele de creditare, avansul minim și timpii de răspuns prezentați pe această pagină reflectă condițiile generale ale partenerilor financiari (UniCredit Consumer Financing, TBI Bank, Porsche Leasing etc.). Aprobarea finală a creditului sau leasingului, valoarea dobânzii aplicabile și structura completă a costurilor (inclusiv DAE contractual și eventualele comisioane de administrare) depind exclusiv de analiza profilului de risc și a bonității solicitantului efectuată de instituția creditoare. AWD Auto acționează exclusiv ca intermediar/facilitator comercial, iar termenii aplicabili fiecărui autoturism necesită reconfirmare cu echipa de vânzări.
+            </p>
+          </div>
         </Container>
       </section>
 
