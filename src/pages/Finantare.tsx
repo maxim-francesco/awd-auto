@@ -35,7 +35,7 @@ const Finantare = () => {
     setIsSubmitting(true);
     try {
       await new Promise(resolve => setTimeout(resolve, 600));
-      toast.success("Mod Previzualizare Redesign: Solicitarea de finanțare a fost simulată cu succes! În producție, datele sunt transmise direct consultanților financiari AWD Auto.", {
+      toast.success("Aceasta este o demonstrație. Solicitarea nu a fost transmisă către AWD Auto.", {
         duration: 6000,
       });
       setName("");

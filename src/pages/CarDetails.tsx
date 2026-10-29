@@ -112,7 +112,7 @@ const CarDetails = () => {
     setIsSubmittingEnquiry(true);
     try {
       await new Promise(resolve => setTimeout(resolve, 600));
-      toast.success("Mod Previzualizare Redesign: Solicitarea a fost simulată cu succes! În versiunea de producție, cererea ajunge instant la dealerul AWD Auto.", {
+      toast.success("Aceasta este o demonstrație. Solicitarea nu a fost transmisă către AWD Auto.", {
         duration: 6000,
       });
       setEnquiryName("");

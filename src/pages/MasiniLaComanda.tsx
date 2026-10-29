@@ -27,7 +27,7 @@ const MasiniLaComanda = () => {
     setIsSubmitting(true);
     try {
       await new Promise(resolve => setTimeout(resolve, 600));
-      toast.success("Mod Previzualizare Redesign: Cererea de mașină la comandă a fost simulată cu succes! În producție, specificațiile ajung direct la departamentul de achiziții AWD Auto.", {
+      toast.success("Aceasta este o demonstrație. Solicitarea nu a fost transmisă către AWD Auto.", {
         duration: 6000,
       });
       setName("");

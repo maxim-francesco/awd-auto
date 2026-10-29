@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import Layout from "@/components/layout/Layout"
 import Container from "@/components/ui/Container"
@@ -7,11 +8,14 @@ import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/a
 import useLatestListings from "@/hooks/useLatestListings"
 import useSoldListings from "@/hooks/useSoldListings"
 import CarCard from "@/components/CarCard"
-import GoogleReviewsSection from '@/components/GoogleReviewsSection'
-import heroBg from '@/assets/logos/herocar.jpg'
-import uniCreditLogo from '@/assets/logos/UniCreditBank.png'
-import btDirectLogo from '@/assets/logos/bt-direct_2187_4_1730210636.png'
-import tbiLogo from '@/assets/logos/tbi-featured_logo.png'
+import ShowroomSpotlight from "@/components/ShowroomSpotlight"
+import AwdStandardInteractive from "@/components/AwdStandardInteractive"
+import FinanceCalculatorWidget from "@/components/FinanceCalculatorWidget"
+import GoogleReviewsSection from "@/components/GoogleReviewsSection"
+import heroBg from "@/assets/logos/herocar.jpg"
+import uniCreditLogo from "@/assets/logos/UniCreditBank.png"
+import btDirectLogo from "@/assets/logos/bt-direct_2187_4_1730210636.png"
+import tbiLogo from "@/assets/logos/tbi-featured_logo.png"
 import { 
   ShieldCheck, 
   FileCheck, 
@@ -24,146 +28,149 @@ import {
   MapPin,
   Clock,
   ChevronRight,
-  AlertCircle
+  AlertCircle,
+  ChevronDown
 } from "lucide-react"
 
 const Index = () => {
-  const { listings, loading, error } = useLatestListings();
-  const { soldListings, loading: soldLoading, error: soldError } = useSoldListings(4);
+  const { listings, loading, error } = useLatestListings()
+  const { soldListings, loading: soldLoading, error: soldError } = useSoldListings(4)
+  const [selectedBrandFilter, setSelectedBrandFilter] = useState<string>("all")
 
-  const pillars = [
-    {
-      num: "01",
-      icon: FileCheck,
-      title: "Istoric 100% Transparent",
-      desc: "Documente complete de service, kilometraj certificat contractual și verificare riguroasă a fiecărui vehicul înainte de expunere.",
-    },
-    {
-      num: "02",
-      icon: ShieldCheck,
-      title: "RAR Deja Efectuat",
-      desc: "Autoturismele vin cu Cartea de Identitate a Vehiculului (CIV) și inspecția tehnică RAR finalizată. Economisești timp și efort.",
-    },
-    {
-      num: "03",
-      icon: Sparkles,
-      title: "Garanție Inclusă Defend",
-      desc: "Fiecare mașină comercializată beneficiază de pachetul de garanție extinsă Defend Insurance, asigurându-ți mobilitate fără griji.",
-    },
-    {
-      num: "04",
-      icon: BadgePercent,
-      title: "Finanțare Rapidă PF & PJ",
-      desc: "Leasing sau credit auto cu aprobare în maximum 24h prin partenerii noștri bancari: UniCredit, BT Direct și TBI Bank.",
-    },
-  ];
+  // Filter cars if a brand is selected
+  const spotlightCar = listings && listings.length > 0 ? listings[0] : null
+  const showroomCars = listings && listings.length > 0
+    ? (selectedBrandFilter === "all" 
+        ? listings.slice(1, 5) 
+        : listings.filter(c => c.title.toLowerCase().includes(selectedBrandFilter.toLowerCase())).slice(0, 4))
+    : []
+
+  const brands = [
+    { label: "Toate Mărcile", value: "all" },
+    { label: "BMW", value: "BMW" },
+    { label: "Mercedes-Benz", value: "Mercedes" },
+    { label: "Audi", value: "Audi" },
+    { label: "Volkswagen", value: "Volkswagen" },
+    { label: "Renault", value: "Renault" }
+  ]
 
   return (
     <Layout>
       {/* ========================================================
-          1. HERO — DARK CINEMATIC
+          1. CINEMATIC HERO V2 — ASYMMETRIC AUTOMOTIVE EDITORIAL
       ======================================================== */}
-      <section className="relative min-h-[88vh] flex items-center justify-center bg-[#0C1015] overflow-hidden">
-        {/* Background Image with Cinematic Overlay */}
+      <section className="relative min-h-[92vh] flex items-center bg-[#090C11] overflow-hidden pt-12 pb-20">
+        {/* Background automotive image with controlled focal lighting */}
         <div 
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 scale-105"
+          className="absolute inset-0 bg-cover bg-center md:bg-[center_right_20%] opacity-90 scale-100 transition-transform duration-1000"
           style={{ backgroundImage: `url(${heroBg})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0C1015]/95 via-[#0C1015]/85 to-[#0C1015]/90" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0C1015] via-transparent to-[#0C1015]/50" />
-        <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/70 pointer-events-none" />
+        {/* Gradient overlays designed so car silhouette remains clearly visible on right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#090C11] via-[#090C11]/85 to-transparent md:w-3/4 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#090C11] via-transparent to-[#090C11]/60 pointer-events-none" />
 
-        <Container className="relative z-10 py-20 sm:py-28">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            {/* Top pill badge */}
-            <AnimatedSection>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white/90 text-xs sm:text-sm font-medium">
-                <span className="w-2 h-2 rounded-full bg-[#C8A86B] animate-pulse" />
-                <span>Showroom Auto Cluj-Napoca • Str. Plevnei 117</span>
-              </div>
-            </AnimatedSection>
-
-            {/* Main Title */}
-            <AnimatedSection>
-              <h1 className="font-luxury text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
-                Excelență Auto. <br />
-                <span className="bg-gradient-to-r from-[#D8BA81] via-[#F4E8D1] to-[#C8A86B] bg-clip-text text-transparent">
-                  Transparență Fără Compromis.
-                </span>
-              </h1>
-            </AnimatedSection>
-
-            {/* Subtitle */}
-            <AnimatedSection>
-              <p className="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed">
-                Descoperă selecția de autoturisme rulate premium verificate pe 150+ puncte, cu RAR efectuat, kilometraj garantat și finanțare pe loc.
-              </p>
-            </AnimatedSection>
-
-            {/* CTA Buttons */}
-            <AnimatedSection>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-                <Link 
-                  to="/masini-disponibile" 
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-base bg-gradient-to-r from-[#C29D5D] via-[#D8BA81] to-[#C29D5D] text-[#0F1318] hover:brightness-110 shadow-[0_15px_30px_-10px_rgba(200,168,107,0.4)] transition-all duration-300 hover:-translate-y-0.5"
-                >
-                  <Car className="w-5 h-5" />
-                  <span>Vezi Mașinile Disponibile</span>
-                  <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
-
-                <a 
-                  href="tel:0752228593" 
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-base border border-white/20 bg-white/5 hover:bg-white/10 text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5"
-                >
-                  <Phone className="w-4 h-4 text-[#D8BA81]" />
-                  <span>Sună la Showroom</span>
-                </a>
-              </div>
-            </AnimatedSection>
-
-            {/* Trust Highlights Row */}
-            <AnimatedSection>
-              <div className="pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-5 h-5 text-[#C8A86B] shrink-0" />
-                  <span className="text-xs sm:text-sm text-slate-200 font-medium">100% RAR Efectuat</span>
+        <Container className="relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Left Content Column: Bold Editorial Hierarchy */}
+            <div className="lg:col-span-8 space-y-6 sm:space-y-8">
+              {/* Badge with stock counter */}
+              <AnimatedSection>
+                <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/15 text-white text-xs sm:text-sm font-medium">
+                  <span className="w-2 h-2 rounded-full bg-[#C8A86B] animate-pulse" />
+                  <span className="font-semibold text-[#E5D5B8]">Showroom Cluj-Napoca</span>
+                  <span className="text-white/40">•</span>
+                  <span className="text-white/80">{listings ? `${listings.length} vehicule verificate în stoc` : "Stoc Premium Disponibil"}</span>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-5 h-5 text-[#C8A86B] shrink-0" />
-                  <span className="text-xs sm:text-sm text-slate-200 font-medium">Garanție Extinsă Defend</span>
+              </AnimatedSection>
+
+              {/* Main Headline */}
+              <AnimatedSection>
+                <h1 className="font-heading text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.08]">
+                  Automobile Rulate. <br />
+                  <span className="bg-gradient-to-r from-[#D8BA81] via-[#F5EAD4] to-[#C8A86B] bg-clip-text text-transparent">
+                    Standardul Transparenței.
+                  </span>
+                </h1>
+              </AnimatedSection>
+
+              {/* Subtitle */}
+              <AnimatedSection>
+                <p className="text-base sm:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed">
+                  Fiecare vehicul este atent selecționat, inspectat în 150+ puncte, cu RAR efectuat, kilometraj garantat contractual și finanțare aprobată pe loc în 24 de ore.
+                </p>
+              </AnimatedSection>
+
+              {/* Primary & Secondary Action CTAs */}
+              <AnimatedSection>
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                  <Link 
+                    to="/masini-disponibile" 
+                    className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-bold text-base bg-gradient-to-r from-[#C29D5D] via-[#D8BA81] to-[#C29D5D] text-[#0A0D12] hover:brightness-110 shadow-[0_15px_30px_-8px_rgba(200,168,107,0.45)] transition-all duration-300 hover:-translate-y-0.5"
+                  >
+                    <Car className="w-5 h-5" />
+                    <span>Explorează Stocul Disponibil</span>
+                    <ArrowRight className="w-4 h-4 ml-1" />
+                  </Link>
+
+                  <a 
+                    href="tel:0752228593" 
+                    className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-semibold text-base border border-white/20 bg-white/5 hover:bg-white/10 text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5"
+                  >
+                    <Phone className="w-4 h-4 text-[#D8BA81]" />
+                    <span>0752 228 593 • Showroom</span>
+                  </a>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-5 h-5 text-[#C8A86B] shrink-0" />
-                  <span className="text-xs sm:text-sm text-slate-200 font-medium">Km Certificați pe Factură</span>
+              </AnimatedSection>
+
+              {/* Trust Indicators */}
+              <AnimatedSection>
+                <div className="pt-6 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#C8A86B] shrink-0" />
+                    <span className="text-xs sm:text-sm text-slate-200 font-medium">100% RAR Efectuat</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#C8A86B] shrink-0" />
+                    <span className="text-xs sm:text-sm text-slate-200 font-medium">Garanție Până la 36 Luni</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#C8A86B] shrink-0" />
+                    <span className="text-xs sm:text-sm text-slate-200 font-medium">Km Certificați pe Factură</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#C8A86B] shrink-0" />
+                    <span className="text-xs sm:text-sm text-slate-200 font-medium">Finanțare Online 24h</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-5 h-5 text-[#C8A86B] shrink-0" />
-                  <span className="text-xs sm:text-sm text-slate-200 font-medium">Finanțare Rapidă 24h</span>
-                </div>
-              </div>
-            </AnimatedSection>
+              </AnimatedSection>
+            </div>
           </div>
         </Container>
+
+        {/* Scroll Discovery Cue */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/50 text-xs hidden md:flex flex-col items-center gap-1 pointer-events-none">
+          <span className="tracking-widest uppercase font-mono text-[10px]">Descoperă Showroom-ul</span>
+          <ChevronDown className="w-4 h-4 animate-bounce text-[#C8A86B]" />
+        </div>
       </section>
 
       {/* ========================================================
-          2. STOC AUTO — PREMIUM LIGHT SHOWROOM (WARM IVORY)
+          2. SHOWROOM EDITORIAL V2 — WARM IVORY WITH SPOTLIGHT
       ======================================================== */}
-      <section className="py-24 bg-[#F5F2EB] text-[#141921] border-b border-[#E3DDD1] relative">
+      <section className="py-20 sm:py-28 bg-[#F6F4EE] text-[#141921] border-b border-[#E3DDD1] relative">
         <Container>
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
             <AnimatedSection className="space-y-3 max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8E2D5] text-[#524430] text-xs font-semibold tracking-wider uppercase">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EAE4D7] text-[#554734] text-xs font-bold tracking-wider uppercase">
                 <Car className="w-3.5 h-3.5 text-[#B88E4B]" />
-                Showroom Cluj-Napoca
+                Colecția Curentă • Showroom Cluj-Napoca
               </div>
-              <h2 className="font-luxury text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#141921]">
-                Ultimele Sosiri în Stoc
+              <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#141921]">
+                Selecția Editorială AWD Auto
               </h2>
               <p className="text-[#55606E] text-base sm:text-lg">
-                Fiecare vehicul este atent selecționat, inspectat tehnic și pregătit pentru predare imediată.
+                Fiecare automobil din stoc este verificat tehnic riguros, are revizia la zi și documentele pregătite pentru înmatriculare imediată.
               </p>
             </AnimatedSection>
 
@@ -172,10 +179,37 @@ const Index = () => {
                 to="/masini-disponibile" 
                 className="inline-flex items-center gap-2 text-sm font-bold text-[#141921] hover:text-[#B88E4B] transition-colors group"
               >
-                <span>Explorează tot stocul disponibil</span>
+                <span>Vezi toate cele {listings?.length || 33} mașini</span>
                 <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1 text-[#B88E4B]" />
               </Link>
             </AnimatedSection>
+          </div>
+
+          {/* Featured Spotlight Vehicle (If loaded) */}
+          {spotlightCar && (
+            <AnimatedSection>
+              <ShowroomSpotlight listing={spotlightCar} />
+            </AnimatedSection>
+          )}
+
+          {/* Brand Filter Shortcuts */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500 mr-2 shrink-0">
+              Filtrare Rapidă:
+            </span>
+            {brands.map((b) => (
+              <button
+                key={b.value}
+                onClick={() => setSelectedBrandFilter(b.value)}
+                className={`px-4 py-2 rounded-xl text-xs font-bold tracking-wide shrink-0 transition-all ${
+                  selectedBrandFilter === b.value
+                    ? "bg-[#141921] text-white shadow-md"
+                    : "bg-white text-slate-700 border border-[#E3DDD1] hover:border-slate-400"
+                }`}
+              >
+                {b.label}
+              </button>
+            ))}
           </div>
 
           {/* Cars Grid */}
@@ -198,19 +232,19 @@ const Index = () => {
                 </Link>
               </div>
             ) : (
-              listings.slice(0, 4).map((car) => (
+              showroomCars.map((car) => (
                 <CarCard key={car.id} listing={car} variant="light" />
               ))
             )}
           </div>
 
           {/* Bottom Callout */}
-          <AnimatedSection className="text-center pt-6">
+          <AnimatedSection className="text-center pt-4">
             <Link 
               to="/masini-disponibile" 
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-sm bg-[#161B21] text-white hover:bg-[#C8A86B] hover:text-[#0F1318] transition-all duration-300 shadow-md hover:shadow-lg"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-sm bg-[#161B21] text-white hover:bg-[#C8A86B] hover:text-[#0F1318] transition-all duration-300 shadow-lg hover:shadow-xl"
             >
-              <span>Vezi Toate Mașinile Disponibile</span>
+              <span>Explorează Întregul Parc Auto</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </AnimatedSection>
@@ -218,165 +252,43 @@ const Index = () => {
       </section>
 
       {/* ========================================================
-          3. AVANTAJE AWD AUTO — GRAPHITE DARK
+          3. THE AWD STANDARD — SIGNATURE INTERACTIVE EXPERIENCE V2
       ======================================================== */}
-      <section className="py-24 bg-[#141921] text-white relative overflow-hidden border-b border-white/5">
-        {/* Decorative background glows */}
-        <div className="absolute top-0 right-10 w-96 h-96 bg-[#C8A86B]/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
-
-        <Container className="relative z-10">
-          <AnimatedSection className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-[#D8BA81] text-xs font-semibold tracking-wider uppercase border border-white/10">
-              <Sparkles className="w-3.5 h-3.5" />
-              Standardul AWD Auto
-            </div>
-
-            <h2 className="font-luxury text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
-              De Ce Clienții Aleg AWD Auto
-            </h2>
-
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
-              Achiziția unei mașini rulate trebuie să ofere aceeași siguranță și încântare ca un automobil nou. Iată pilonii garantați pentru fiecare client.
-            </p>
-          </AnimatedSection>
-
-          <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {pillars.map((pillar, index) => (
-              <StaggeredItem key={index}>
-                <div className="h-full bg-[#1A202A] border border-white/10 rounded-2xl p-7 flex flex-col justify-between hover:border-[#C8A86B]/50 transition-all duration-300 group hover:-translate-y-1">
-                  <div className="space-y-5">
-                    <div className="flex items-center justify-between">
-                      <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D8BA81] group-hover:bg-[#C8A86B] group-hover:text-[#0F1318] transition-colors duration-300">
-                        <pillar.icon className="w-6 h-6" />
-                      </div>
-                      <span className="font-luxury text-xs font-bold text-slate-500 tracking-wider">
-                        {pillar.num}
-                      </span>
-                    </div>
-
-                    <h3 className="font-luxury text-xl font-bold text-white group-hover:text-[#D8BA81] transition-colors">
-                      {pillar.title}
-                    </h3>
-
-                    <p className="text-slate-300 text-sm leading-relaxed">
-                      {pillar.desc}
-                    </p>
-                  </div>
-
-                  <div className="pt-6 mt-6 border-t border-white/5 flex items-center gap-1.5 text-xs font-semibold text-[#D8BA81] opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span>Află mai multe</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </div>
-                </div>
-              </StaggeredItem>
-            ))}
-          </StaggeredGrid>
-        </Container>
-      </section>
+      <AwdStandardInteractive />
 
       {/* ========================================================
-          4. FINANȚARE ȘI PARTENERI — SOPHISTICATED LIGHT (SILVER MIST)
+          4. FINANȚARE ȘI CALCULATOR INTERACTIV — SILVER MIST V2
       ======================================================== */}
-      <section className="py-24 bg-[#E8ECEF] text-[#141921] border-b border-[#D8DFE4]">
+      <section className="py-20 sm:py-28 bg-[#EAEEF2] text-[#141921] border-b border-[#D8DFE4]">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Content */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DCE2E7] text-[#344050] text-xs font-semibold tracking-wider uppercase">
-                <BadgePercent className="w-3.5 h-3.5 text-[#B88E4B]" />
-                Soluții Financiare Flexibile
-              </div>
-
-              <h2 className="font-luxury text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#141921] leading-tight">
-                Finanțare Auto pe Loc. <br />
-                <span className="text-[#B88E4B]">Fără Bătăi de Cap.</span>
-              </h2>
-
-              <p className="text-[#4A5568] text-base sm:text-lg leading-relaxed">
-                Colaborăm direct cu cele mai renumite instituții financiare pentru a-ți asigura cele mai avantajoase condiții de credit auto sau leasing financiar. Aprobare rapidă, avans de la 0% și rate fixe în lei sau euro.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="p-4 rounded-xl bg-white border border-[#D5DCE2] shadow-sm">
-                  <h4 className="font-luxury font-bold text-base text-[#141921] mb-1">Persoane Fizice</h4>
-                  <p className="text-xs text-[#5D6B7C]">Credit auto doar cu buletinul, venituri declarate ANAF, rate fixe pe toată perioada.</p>
-                </div>
-                <div className="p-4 rounded-xl bg-white border border-[#D5DCE2] shadow-sm">
-                  <h4 className="font-luxury font-bold text-base text-[#141921] mb-1">Persoane Juridice</h4>
-                  <p className="text-xs text-[#5D6B7C]">Leasing financiar deductibil, avans flexibil, finanțare inclusiv pentru firme noi.</p>
-                </div>
-              </div>
-
-              <div className="pt-4 flex flex-wrap gap-4">
-                <Link 
-                  to="/finantare" 
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm bg-[#161B21] text-white hover:bg-[#C8A86B] hover:text-[#0F1318] transition-all duration-300 shadow-md"
-                >
-                  <span>Calculează Rata Estimată</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link 
-                  to="/masini-la-comanda" 
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm bg-white border border-[#CCD4DC] text-[#141921] hover:bg-[#F0F3F6] transition-all duration-300"
-                >
-                  <span>Mașini la Comandă</span>
-                </Link>
-              </div>
+          <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16 space-y-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DCE2E8] text-[#344050] text-xs font-bold tracking-wider uppercase">
+              <BadgePercent className="w-3.5 h-3.5 text-[#B88E4B]" />
+              Finanțare Transparentă
             </div>
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#141921]">
+              Planuri de Finanțare Adaptate Bugetului Tău
+            </h2>
+            <p className="text-[#4A5568] text-base sm:text-lg">
+              Aprobare dosar în sub 24 de ore, consultanță dedicată și parteneriate oficiale cu cele mai respectate bănci din România.
+            </p>
+          </div>
 
-            {/* Right Card with Banking Partners */}
-            <div className="lg:col-span-5">
-              <div className="bg-white rounded-3xl p-8 border border-[#D2DCE3] shadow-[0_20px_50px_-15px_rgba(20,30,45,0.08)] space-y-6">
-                <h3 className="font-luxury font-bold text-xl text-[#141921] pb-2 border-b border-[#E8EEF2]">
-                  Parteneri Financiari Oficiali
-                </h3>
+          {/* Embedded Interactive Finance Calculator */}
+          <div className="max-w-5xl mx-auto mb-16">
+            <FinanceCalculatorWidget initialPrice={spotlightCar?.price || 16500} />
+          </div>
 
-                <div className="space-y-4">
-                  {/* UniCredit */}
-                  <div className="flex items-center justify-between p-4 rounded-xl bg-[#F6F8FA] border border-[#E3E8EC]">
-                    <img 
-                      src={uniCreditLogo} 
-                      alt="UniCredit Bank" 
-                      className="h-9 w-auto object-contain max-w-[150px]" 
-                    />
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-[#E8EEF2] text-[#334155]">
-                      Leasing & Credit
-                    </span>
-                  </div>
-
-                  {/* BT Direct */}
-                  <div className="flex items-center justify-between p-4 rounded-xl bg-[#F6F8FA] border border-[#E3E8EC]">
-                    <img 
-                      src={btDirectLogo} 
-                      alt="BT Direct" 
-                      className="h-8 w-auto object-contain max-w-[140px]" 
-                    />
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-[#E8EEF2] text-[#334155]">
-                      Credit Rapid
-                    </span>
-                  </div>
-
-                  {/* TBI Bank */}
-                  <div className="flex items-center justify-between p-4 rounded-xl bg-[#F6F8FA] border border-[#E3E8EC]">
-                    <img 
-                      src={tbiLogo} 
-                      alt="TBI Bank" 
-                      className="h-8 w-auto object-contain max-w-[130px]" 
-                    />
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-[#E8EEF2] text-[#334155]">
-                      Rate Online
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-4 rounded-xl bg-[#EAF0F6] border border-[#D5E1EC] flex items-start gap-3">
-                  <ShieldCheck className="w-5 h-5 text-[#2A6496] shrink-0 mt-0.5" />
-                  <p className="text-xs text-[#2A4365] leading-relaxed">
-                    Îți oferim asistență completă pentru dosarul de finanțare, fără deplasări suplimentare la bănci.
-                  </p>
-                </div>
-              </div>
+          {/* Banking Partners Banner */}
+          <div className="max-w-5xl mx-auto bg-white rounded-2xl p-6 sm:p-8 border border-[#D5DCE2] shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="space-y-1 text-center md:text-left">
+              <h4 className="text-base font-extrabold text-slate-900">Parteneri Financiari Acreditați</h4>
+              <p className="text-xs text-slate-500">Colaborare directă pentru persoane fizice și persoane juridice.</p>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8">
+              <img src={uniCreditLogo} alt="UniCredit Bank" className="h-8 w-auto object-contain max-w-[130px]" />
+              <img src={btDirectLogo} alt="BT Direct" className="h-7 w-auto object-contain max-w-[120px]" />
+              <img src={tbiLogo} alt="TBI Bank" className="h-7 w-auto object-contain max-w-[110px]" />
             </div>
           </div>
         </Container>
@@ -385,7 +297,7 @@ const Index = () => {
       {/* ========================================================
           5. MAȘINI VÂNDUTE — DARK AUTOMOTIVE GALLERY
       ======================================================== */}
-      <section className="py-24 bg-[#0F1318] text-white border-b border-white/5">
+      <section className="py-20 sm:py-28 bg-[#0D1016] text-white border-b border-white/5">
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <AnimatedSection className="space-y-3 max-w-2xl">
@@ -393,7 +305,7 @@ const Index = () => {
                 <Car className="w-3.5 h-3.5" />
                 Portofoliu AWD Auto
               </div>
-              <h2 className="font-luxury text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
+              <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
                 Vehicule Livrate Clienților
               </h2>
               <p className="text-slate-400 text-base sm:text-lg">
@@ -457,7 +369,7 @@ const Index = () => {
                 Vino la Showroom
               </div>
 
-              <h2 className="font-luxury text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+              <h2 className="font-heading text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
                 Te Așteptăm la un Test Drive în Cluj-Napoca
               </h2>
 
@@ -472,7 +384,7 @@ const Index = () => {
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-[#C8A86B] shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-luxury font-bold text-sm text-white">Adresă Showroom</h4>
+                    <h4 className="font-bold text-sm text-white">Adresă Showroom</h4>
                     <p className="text-xs text-slate-400 mt-0.5">Strada Plevnei 117, Cluj-Napoca, 400394</p>
                   </div>
                 </div>
@@ -480,7 +392,7 @@ const Index = () => {
                 <div className="flex items-start gap-3">
                   <Clock className="w-5 h-5 text-[#C8A86B] shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-luxury font-bold text-sm text-white">Program de Lucru</h4>
+                    <h4 className="font-bold text-sm text-white">Program de Lucru</h4>
                     <p className="text-xs text-slate-400 mt-0.5">Luni - Vineri: 09:00 - 18:00<br />Sâmbătă: 09:00 - 14:00</p>
                   </div>
                 </div>
@@ -488,7 +400,7 @@ const Index = () => {
                 <div className="flex items-start gap-3">
                   <Phone className="w-5 h-5 text-[#C8A86B] shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-luxury font-bold text-sm text-white">Contact Vânzări</h4>
+                    <h4 className="font-bold text-sm text-white">Contact Vânzări</h4>
                     <p className="text-xs text-slate-400 mt-0.5">0752 228 593<br />0752 575 616</p>
                   </div>
                 </div>
@@ -500,7 +412,7 @@ const Index = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
                 <a 
                   href="tel:0752228593" 
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-base bg-gradient-to-r from-[#C29D5D] via-[#D8BA81] to-[#C29D5D] text-[#0F1318] hover:brightness-110 shadow-lg transition-all duration-300"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-base bg-gradient-to-r from-[#C29D5D] via-[#D8BA81] to-[#C29D5D] text-[#0F1318] hover:brightness-110 shadow-lg transition-all duration-300"
                 >
                   <Phone className="w-4 h-4" />
                   <span>Programează o Vizită la Showroom</span>

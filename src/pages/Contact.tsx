@@ -28,7 +28,7 @@ const Contact = () => {
     setIsSubmitting(true);
     try {
       await new Promise(resolve => setTimeout(resolve, 600));
-      toast.success("Mod Previzualizare Redesign: Mesajul a fost simulat cu succes! În producție, mesajul este expediat instantaneu echipei de suport și vânzări AWD Auto.", {
+      toast.success("Aceasta este o demonstrație. Solicitarea nu a fost transmisă către AWD Auto.", {
         duration: 6000,
       });
       setFirstName("");
