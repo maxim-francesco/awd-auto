@@ -173,7 +173,7 @@ const CarListings = () => {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
         {sortedFilteredListings.map((listing: APIListing) => (
-          <CarCard key={listing.id} listing={listing} />
+          <CarCard key={listing.id} listing={listing} variant="light" />
         ))}
       </div>
     );
@@ -181,69 +181,82 @@ const CarListings = () => {
 
   return (
     <Layout>
-      <Container className="py-8">
-        <section className="text-center py-8 md:py-12">
-          <h1 className="text-4xl lg:text-5xl font-bold text-luxury-gold">
-            Găsește Mașina Potrivită în Stocul Nostru
-          </h1>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Folosește filtrele de mai jos pentru a explora oferta noastră completă de autoturisme rulate.
-          </p>
-        </section>
+      {/* Editorial Dark Header */}
+      <section className="bg-[#0C1015] border-b border-white/10 py-12 md:py-16 text-white relative">
+        <Container>
+          <div className="max-w-3xl mx-auto text-center space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#D8BA81] text-xs font-semibold uppercase tracking-wider border border-white/10">
+              Stoc Showroom Cluj-Napoca
+            </div>
+            <h1 className="font-luxury text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+              Autoturisme Disponibile în Stoc
+            </h1>
+            <p className="text-slate-300 text-base max-w-xl mx-auto">
+              Găsește mașina ideală pentru tine. Fiecare vehicul este verificat riguros, are RAR-ul efectuat și beneficiază de garanție inclusă.
+            </p>
+          </div>
+        </Container>
+      </section>
 
-        {/* Top Search & Active Filters Bar */}
-        <StockFilters
-          facets={facets}
-          filters={filters}
-          onFilterChange={handleFilterChange}
-          filteredCount={facets.filteredListings.length}
-          totalCount={allListings.length}
-        />
+      {/* Light Showroom Main Section */}
+      <section className="bg-[#F5F2EB] text-[#141921] py-10 min-h-screen border-b border-[#E3DDD1]">
+        <Container>
+          {/* Top Search & Active Filters Bar */}
+          <div className="mb-6">
+            <StockFilters
+              facets={facets}
+              filters={filters}
+              onFilterChange={handleFilterChange}
+              filteredCount={facets.filteredListings.length}
+              totalCount={allListings.length}
+            />
+          </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Desktop Filter Sidebar */}
-          <DesktopFilterSidebar
-            facets={facets}
-            filters={filters}
-            onFilterChange={handleFilterChange}
-            filteredCount={facets.filteredListings.length}
-            totalCount={allListings.length}
-          />
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {/* Desktop Filter Sidebar */}
+            <DesktopFilterSidebar
+              facets={facets}
+              filters={filters}
+              onFilterChange={handleFilterChange}
+              filteredCount={facets.filteredListings.length}
+              totalCount={allListings.length}
+            />
 
-          {/* Main Listings Content */}
-          <main className="lg:col-span-3">
-            {/* Header Result Count & Sort Dropdown */}
-            <AnimatedSection className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 space-y-4 sm:space-y-0">
-              <div className="text-sm text-muted-foreground font-medium">
-                {!loading && (
-                  <span>
-                    Afișare <strong className="text-foreground">{facets.filteredListings.length}</strong> din{" "}
-                    <strong className="text-foreground">{allListings.length}</strong> mașini
-                  </span>
-                )}
-              </div>
+            {/* Main Listings Content */}
+            <main className="lg:col-span-3">
+              {/* Header Result Count & Sort Dropdown */}
+              <AnimatedSection className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 space-y-4 sm:space-y-0 pb-4 border-b border-[#E0D9CC]">
+                <div className="text-sm text-[#4E5967] font-medium">
+                  {!loading && (
+                    <span>
+                      Afișare <strong className="text-[#141921]">{facets.filteredListings.length}</strong> din{" "}
+                      <strong className="text-[#141921]">{allListings.length}</strong> autoturisme
+                    </span>
+                  )}
+                </div>
 
-              <div className="flex items-center gap-3">
-                <Select value={sortOption} onValueChange={handleSortChange}>
-                  <SelectTrigger className="w-48 min-h-[44px]">
-                    <SelectValue placeholder="Sortează după" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="newest">Cele mai noi</SelectItem>
-                    <SelectItem value="price_asc">Preț crescător</SelectItem>
-                    <SelectItem value="price_desc">Preț descrescător</SelectItem>
-                    <SelectItem value="mileage_asc">Kilometraj crescător</SelectItem>
-                    <SelectItem value="mileage_desc">Kilometraj descrescător</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </AnimatedSection>
+                <div className="flex items-center gap-3">
+                  <Select value={sortOption} onValueChange={handleSortChange}>
+                    <SelectTrigger className="w-52 min-h-[44px] bg-white border-[#D6CFC2] text-[#141921] shadow-sm">
+                      <SelectValue placeholder="Sortează după" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-white border-[#D6CFC2] text-[#141921]">
+                      <SelectItem value="newest">Cele mai noi</SelectItem>
+                      <SelectItem value="price_asc">Preț: de la mic la mare</SelectItem>
+                      <SelectItem value="price_desc">Preț: de la mare la mic</SelectItem>
+                      <SelectItem value="mileage_asc">Kilometraj: cel mai mic</SelectItem>
+                      <SelectItem value="mileage_desc">Kilometraj: cel mai mare</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </AnimatedSection>
 
-            {/* Car Grid */}
-            {renderListings()}
-          </main>
-        </div>
-      </Container>
+              {/* Car Grid */}
+              {renderListings()}
+            </main>
+          </div>
+        </Container>
+      </section>
     </Layout>
   );
 };

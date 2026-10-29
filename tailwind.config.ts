@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -14,8 +15,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        luxury: ['Poppins', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        luxury: ['Outfit', 'Poppins', 'sans-serif'],
+        editorial: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+        body: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -59,6 +61,19 @@ export default {
         "luxury-silver": "hsl(var(--luxury-silver))",
         "luxury-dark": "hsl(var(--luxury-dark))",
         "luxury-darker": "hsl(var(--luxury-darker))",
+        // Editorial Light/Dark Redesign Palette
+        editorial: {
+          obsidian: "#0F1318",
+          graphite: "#1E252E",
+          "graphite-subtle": "#28303B",
+          ivory: "#F5F2EB",
+          "ivory-card": "#FFFFFF",
+          "silver-mist": "#E2E7EB",
+          "dark-text": "#161B21",
+          "light-text": "#FAF8F5",
+          champagne: "#C8A86B",
+          "champagne-hover": "#D6BB85",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -109,5 +124,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;

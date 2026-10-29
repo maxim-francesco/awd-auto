@@ -1,4 +1,4 @@
-﻿import Layout from "@/components/layout/Layout"
+import Layout from "@/components/layout/Layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { AlertCircle, Search, ListChecks, Percent, Shield, Clock, HardDrive, Cpu, Check, Calendar, Users, Target, ShieldCheck } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
@@ -127,38 +127,41 @@ const BenefitsWarrantyPage = () => {
 
   return (
     <Layout>
-      {/* Hero Section */}
-       <section className="bg-luxury-darker py-16 md:py-20">
+      {/* Hero Section - Dark Cinematic */}
+      <section className="bg-[#0C1015] border-b border-white/10 py-16 md:py-24 text-white relative">
         <Container className="text-center">
-            <AnimatedSection>
-                <h1 className="text-4xl lg:text-5xl font-bold text-luxury-gold font-luxury">
-                Liniștea Ta Este Prioritatea Noastră
+            <AnimatedSection className="max-w-3xl mx-auto space-y-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#D8BA81] text-xs font-semibold uppercase tracking-wider border border-white/10">
+                  Parteneriat Oficial Defend Insurance
+                </div>
+                <h1 className="text-3xl sm:text-5xl font-extrabold font-luxury text-white">
+                  Liniștea Ta Este Prioritatea Noastră
                 </h1>
-                <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
-                Află detalii despre pachetul de garanție PLUS inclus la fiecare achiziție și despre opțiunile de upgrade disponibile pentru liniștea ta completă.
+                <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+                  Fiecare autoturism AWD Auto include pachetul de garanție de bază PLUS. Descoperă opțiunile de acoperire extinsă pentru siguranță deplină pe orice traseu.
                 </p>
             </AnimatedSection>
         </Container>
       </section>
 
-      {/* Warranty Plans Section */}
-      <section className="py-20 bg-luxury-darker">
+      {/* Warranty Plans Section - Warm Light Showroom */}
+      <section className="py-20 bg-[#F5F2EB] text-[#141921] border-b border-[#E3DDD1]">
         <Container>
-          <AnimatedSection className="text-center mb-16">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
+          <AnimatedSection className="text-center mb-16 space-y-3">
+            <h2 className="font-luxury text-3xl md:text-4xl font-extrabold text-[#141921]">
               Pachete de Garanție Extinsă
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Oferite prin partenerul nostru de încredere <strong className="text-foreground">Defend Insurance</strong>, pentru o experiență fără griji.
+            <p className="text-[#55606E] max-w-2xl mx-auto text-base">
+              Oferite prin partenerul nostru de încredere <strong className="text-[#141921]">Defend Insurance</strong>, pentru o experiență fără griji.
             </p>
           </AnimatedSection>
 
           <StaggeredGrid className="flex flex-col-reverse md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {warrantyPlans.map((plan, index) => (
               <StaggeredItem key={index}>
-                <Card className={`relative luxury-card h-full flex flex-col border-t-4 ${plan.borderColor}`}>
+                <Card className={`relative bg-white border border-[#E2DDD2] shadow-md rounded-2xl h-full flex flex-col border-t-4 ${plan.borderColor} transition-all duration-300 hover:shadow-xl`}>
                  {plan.isIncluded && (
-                    <div className="absolute -top-4 right-4 bg-luxury-gold text-black px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                    <div className="absolute -top-4 right-4 bg-[#C8A86B] text-[#0F1318] px-3.5 py-1 rounded-full text-xs font-extrabold shadow-md">
                       INCLUS ÎN PREȚ
                     </div>
                   )}
@@ -170,54 +173,54 @@ const BenefitsWarrantyPage = () => {
                       Programul {plan.title}
                     </CardTitle>
                     {plan.isUpgrade && (
-                        <p className="text-sm font-semibold text-muted-foreground">Opțiune de Upgrade</p>
+                        <p className="text-xs font-semibold text-[#6B7888] uppercase tracking-wider mt-1">Opțiune de Upgrade</p>
                     )}
                   </CardHeader>
-                  <CardContent className="space-y-6 flex-grow flex flex-col">
+                  <CardContent className="space-y-6 flex-grow flex flex-col p-6">
                     <div className="space-y-4 text-center">
-                      <div className="bg-card p-4 rounded-lg">
-                        <p className="text-xs font-semibold text-muted-foreground uppercase">Eligibilitate</p>
+                      <div className="bg-[#F8F6F0] p-4 rounded-xl border border-[#EAE4D7]">
+                        <p className="text-xs font-semibold text-[#5B6776] uppercase tracking-wider">Eligibilitate</p>
                         <div className="flex justify-center gap-4 mt-2">
                             <div className="flex items-center gap-2">
-                                <Calendar className="h-4 w-4 text-muted-foreground" />
-                                <span className="text-sm text-foreground">Maxim {plan.eligibility.age} ani</span>
+                                <Calendar className="h-4 w-4 text-[#5B6776]" />
+                                <span className="text-sm font-semibold text-[#141921]">Maxim {plan.eligibility.age} ani</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <Target className="h-4 w-4 text-muted-foreground" />
-                                <span className="text-sm text-foreground">Maxim {plan.eligibility.mileage.toLocaleString()} km</span>
+                                <Target className="h-4 w-4 text-[#5B6776]" />
+                                <span className="text-sm font-semibold text-[#141921]">Maxim {plan.eligibility.mileage.toLocaleString()} km</span>
                             </div>
                         </div>
                       </div>
                       
-                      <div className="bg-card p-4 rounded-lg">
-                          <p className="text-xs font-semibold text-muted-foreground uppercase">Acoperire</p>
-                          <p className="text-foreground mt-1">{plan.coverage}</p>
+                      <div className="bg-[#F8F6F0] p-4 rounded-xl border border-[#EAE4D7]">
+                          <p className="text-xs font-semibold text-[#5B6776] uppercase tracking-wider">Acoperire</p>
+                          <p className="text-sm text-[#242C37] mt-1 font-medium">{plan.coverage}</p>
                       </div>
                        
                        {plan.claimLimit && (
-                        <div className="bg-card p-4 rounded-lg">
-                          <p className="text-xs font-semibold text-muted-foreground uppercase">Limită de îndeplinire</p>
-                          <p className="text-foreground mt-1">{plan.claimLimit}</p>
+                        <div className="bg-[#F8F6F0] p-4 rounded-xl border border-[#EAE4D7]">
+                          <p className="text-xs font-semibold text-[#5B6776] uppercase tracking-wider">Limită Despăgubire</p>
+                          <p className="text-sm text-[#242C37] mt-1 font-bold">{plan.claimLimit}</p>
                       </div>
                       )}
                     </div>
                     
-                    <Separator />
+                    <Separator className="bg-[#EAE4D7]" />
                     
                     <div className="space-y-3">
-                        <h4 className="font-semibold text-luxury-gold text-center">Exemple de componente acoperite</h4>
-                        <ul className={`grid grid-cols-2 gap-x-4 gap-y-2`}>
+                        <h4 className="font-luxury font-bold text-sm text-[#141921] text-center">Componente Asigurate</h4>
+                        <ul className="grid grid-cols-2 gap-x-3 gap-y-2 text-xs">
                             {plan.coveredComponents.map((comp, i) => (
-                                <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
-                                    <Check className="h-4 w-4 text-green-500" />
-                                    <span>{comp}</span>
+                                <li key={i} className="flex items-center gap-1.5 text-[#3E4A59]">
+                                    <Check className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
+                                    <span className="truncate">{comp}</span>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
                     <div className="mt-auto pt-6">
-                        <Separator className="mb-6"/>
+                        <Separator className="mb-6 bg-[#EAE4D7]"/>
                         <h4 className="font-semibold text-luxury-gold text-center mb-3">Parametri Opționali</h4>
                         <div className="space-y-2 text-sm">
                             <p><strong className="text-muted-foreground">Perioadă:</strong> <span className="text-foreground">{plan.period}</span></p>

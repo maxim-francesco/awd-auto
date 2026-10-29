@@ -27,39 +27,20 @@ const Contact = () => {
 
     setIsSubmitting(true);
     try {
-      const trimmedName = `${firstName} ${lastName}`.trim();
-      const combinedMessage = `Subiect: ${subject}\n\n${message}`;
-
-      const response = await fetch(`${API_BASE_URL}/api/public/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          businessId: BUSINESS_ID,
-          name: trimmedName,
-          email,
-          phone,
-          message: combinedMessage,
-          type: "GENERAL",
-        }),
+      await new Promise(resolve => setTimeout(resolve, 600));
+      toast.success("Mod Previzualizare Redesign: Mesajul a fost simulat cu succes! În producție, mesajul este expediat instantaneu echipei de suport și vânzări AWD Auto.", {
+        duration: 6000,
       });
-
-      if (response.ok) {
-        toast.success("Mesajul a fost trimis. Te contactăm în curând.");
-        setFirstName("");
-        setLastName("");
-        setEmail("");
-        setPhone("");
-        setSubject("");
-        setMessage("");
-        setIsGdprChecked(false);
-      } else {
-        toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
-      }
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPhone("");
+      setSubject("");
+      setMessage("");
+      setIsGdprChecked(false);
     } catch (err) {
       console.error(err);
-      toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
+      toast.error("A apărut o problemă la simulare.");
     } finally {
       setIsSubmitting(false);
     }

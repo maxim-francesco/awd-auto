@@ -111,34 +111,17 @@ const CarDetails = () => {
 
     setIsSubmittingEnquiry(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/api/public/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          businessId: BUSINESS_ID,
-          name: enquiryName.trim(),
-          phone: enquiryPhone.trim(),
-          email: enquiryEmail.trim(),
-          message: enquiryMessage.trim(),
-          type: "STOCK",
-          listingId: car.id,
-        }),
+      await new Promise(resolve => setTimeout(resolve, 600));
+      toast.success("Mod Previzualizare Redesign: Solicitarea a fost simulată cu succes! În versiunea de producție, cererea ajunge instant la dealerul AWD Auto.", {
+        duration: 6000,
       });
-
-      if (response.ok) {
-        toast.success("Mesajul a fost trimis. Te contactăm în curând.");
-        setEnquiryName("");
-        setEnquiryPhone("");
-        setEnquiryEmail("");
-        setEnquiryGdpr(false);
-      } else {
-        toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
-      }
+      setEnquiryName("");
+      setEnquiryPhone("");
+      setEnquiryEmail("");
+      setEnquiryGdpr(false);
     } catch (err) {
       console.error(err);
-      toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
+      toast.error("A apărut o problemă la simulare.");
     } finally {
       setIsSubmittingEnquiry(false);
     }

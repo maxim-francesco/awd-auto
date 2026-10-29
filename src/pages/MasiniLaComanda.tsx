@@ -26,34 +26,18 @@ const MasiniLaComanda = () => {
 
     setIsSubmitting(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/api/public/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          businessId: BUSINESS_ID,
-          name,
-          email,
-          phone,
-          message,
-          type: "ORDER",
-        }),
+      await new Promise(resolve => setTimeout(resolve, 600));
+      toast.success("Mod Previzualizare Redesign: Cererea de mașină la comandă a fost simulată cu succes! În producție, specificațiile ajung direct la departamentul de achiziții AWD Auto.", {
+        duration: 6000,
       });
-
-      if (response.ok) {
-        toast.success("Mesajul a fost trimis. Te contactăm în curând.");
-        setName("");
-        setEmail("");
-        setPhone("");
-        setMessage("");
-        setIsGdprChecked(false);
-      } else {
-        toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
-      }
+      setName("");
+      setEmail("");
+      setPhone("");
+      setMessage("");
+      setIsGdprChecked(false);
     } catch (err) {
       console.error(err);
-      toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
+      toast.error("A apărut o problemă la simulare.");
     } finally {
       setIsSubmitting(false);
     }
