@@ -785,7 +785,7 @@ export function StockFilters({
             placeholder="Caută după titlu, marcă sau model..."
             value={filters.q}
             onChange={(e) => onFilterChange({ ...filters, q: e.target.value })}
-            className="pl-10 min-h-[44px] bg-muted/40 border-border text-sm"
+            className="pl-10 min-h-[44px] bg-card border-border text-sm shadow-sm"
           />
         </div>
 
@@ -803,7 +803,7 @@ export function StockFilters({
                 )}
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-full sm:max-w-md flex flex-col p-0 bg-background">
+            <SheetContent side="left" className="w-full sm:max-w-md flex flex-col p-0 bg-background theme-light-ivory">
               <SheetHeader className="p-4 border-b border-border text-left">
                 <SheetTitle className="text-base font-semibold">Filtre Stoc</SheetTitle>
               </SheetHeader>

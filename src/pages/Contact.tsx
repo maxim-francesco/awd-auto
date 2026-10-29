@@ -27,36 +27,17 @@ const Contact = () => {
 
     setIsSubmitting(true);
     try {
-      const trimmedName = `${firstName} ${lastName}`.trim();
-      const combinedMessage = `Subiect: ${subject}\n\n${message}`;
-
-      const response = await fetch(`${API_BASE_URL}/api/public/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          businessId: BUSINESS_ID,
-          name: trimmedName,
-          email,
-          phone,
-          message: combinedMessage,
-          type: "GENERAL",
-        }),
+      await new Promise((resolve) => setTimeout(resolve, 600));
+      toast.success("Mediu de previzualizare: solicitarea a fost simulată și nu a fost transmisă către AWD Auto.", {
+        duration: 6000,
       });
-
-      if (response.ok) {
-        toast.success("Mesajul a fost trimis. Te contactăm în curând.");
-        setFirstName("");
-        setLastName("");
-        setEmail("");
-        setPhone("");
-        setSubject("");
-        setMessage("");
-        setIsGdprChecked(false);
-      } else {
-        toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
-      }
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPhone("");
+      setSubject("");
+      setMessage("");
+      setIsGdprChecked(false);
     } catch (err) {
       console.error(err);
       toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
@@ -67,18 +48,23 @@ const Contact = () => {
 
   return (
     <Layout>
-      <Container className="py-12">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="font-luxury text-4xl md:text-5xl font-bold text-luxury-gold mb-4">
-            Contactează AWD Auto - Parc Auto în Cluj-Napoca
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Suntem aici să vă ajutăm să găsiți mașina perfectă pentru dumneavoastră. Contactați-ne pentru mai multe informații.
-          </p>
+      <div className="awd-catalog-canvas min-h-screen">
+        {/* Header in Deep Obsidian -> Graphite */}
+        <div className="text-center pt-10 pb-10 theme-dark-obsidian">
+          <Container>
+            <h1 className="font-luxury text-4xl md:text-5xl font-bold text-luxury-gold mb-4">
+              Contactează AWD Auto - Parc Auto în Cluj-Napoca
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Suntem aici să vă ajutăm să găsiți mașina perfectă pentru dumneavoastră. Contactați-ne pentru mai multe informații.
+            </p>
+          </Container>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        {/* Contact Body in Warm Ivory -> Soft Stone */}
+        <div className="theme-light-ivory pb-28 pt-16">
+          <Container>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
@@ -269,7 +255,9 @@ const Contact = () => {
             </Card>
           </div>
         </div>
-      </Container>
+          </Container>
+        </div>
+      </div>
     </Layout>
   )
 }

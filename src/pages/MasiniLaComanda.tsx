@@ -26,31 +26,15 @@ const MasiniLaComanda = () => {
 
     setIsSubmitting(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/api/public/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          businessId: BUSINESS_ID,
-          name,
-          email,
-          phone,
-          message,
-          type: "ORDER",
-        }),
+      await new Promise((resolve) => setTimeout(resolve, 600));
+      toast.success("Mediu de previzualizare: solicitarea a fost simulată și nu a fost transmisă către AWD Auto.", {
+        duration: 6000,
       });
-
-      if (response.ok) {
-        toast.success("Mesajul a fost trimis. Te contactăm în curând.");
-        setName("");
-        setEmail("");
-        setPhone("");
-        setMessage("");
-        setIsGdprChecked(false);
-      } else {
-        toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
-      }
+      setName("");
+      setEmail("");
+      setPhone("");
+      setMessage("");
+      setIsGdprChecked(false);
     } catch (err) {
       console.error(err);
       toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
@@ -85,14 +69,10 @@ const MasiniLaComanda = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-luxury-darker via-luxury-dark to-luxury-darker">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(212,176,88,0.1),transparent_50%)]" />
-        </div>
-        
+      <section className="relative min-h-[48vh] flex items-center justify-center overflow-hidden awd-subhero-to-light theme-dark-obsidian pt-16 pb-24">
         <Container className="relative z-10 text-center">
           <AnimatedSection>
-            <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6">
+            <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-[#E0BA65] via-[#F9F7F2] to-[#E0BA65] bg-clip-text text-transparent mb-6">
               Nu găsești mașina dorită? <br/>O aducem noi pentru tine!
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
@@ -103,8 +83,8 @@ const MasiniLaComanda = () => {
       </section>
 
       {/* How it Works Section */}
-      <section className="py-20 bg-background">
-        <Container>
+      <section className="py-20 awd-section-light-to-dark theme-light-ivory">
+        <Container className="relative z-10">
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
               Cum Funcționează?
@@ -119,7 +99,7 @@ const MasiniLaComanda = () => {
               <StaggeredItem key={index}>
                 <Card className="luxury-card h-full text-center">
                   <CardContent className="p-8">
-                    <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 ring-1 ring-luxury-gold/25">
                       <step.icon className="h-10 w-10 text-luxury-gold" />
                     </div>
                     <h3 className="font-luxury text-xl font-bold text-luxury-gold mb-4">
@@ -137,8 +117,8 @@ const MasiniLaComanda = () => {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-20 bg-luxury-darker">
-        <Container>
+      <section className="py-24 awd-stage-obsidian-ambient theme-dark-obsidian">
+        <Container className="relative z-10">
             <div className="max-w-3xl mx-auto">
                 <Card className="luxury-card">
                 <CardHeader className="text-center">

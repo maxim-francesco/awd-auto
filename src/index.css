@@ -1,96 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* AWD Auto Premium Automotive Design System
-All colors MUST be HSL for perfect luxury automotive aesthetic.
+/* AWD Auto — Premium Dark/Light Color Flow System
+   Preserving 1:1 Original Content & Structure with Art-Directed Surface & Transition Architecture
 */
 
 @layer base {
   :root {
-    /* Premium Dark Theme - Luxury Automotive */
-    --background: 220 13% 9%;
-    --foreground: 43 25% 95%;
+    /* Base Dark: Deep Obsidian (#0D1117 -> 215 28% 7%) & Graphite (#1C242C -> 210 22% 14%) */
+    --background: 215 28% 7%;
+    --foreground: 40 25% 96%;
 
-    --card: 220 13% 12%;
-    --card-foreground: 210 40% 98%;
+    --card: 210 22% 14%;
+    --card-foreground: 40 25% 96%;
 
-    --popover: 220 13% 12%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 210 22% 14%;
+    --popover-foreground: 40 25% 96%;
 
-    /* Metallic Gold Primary - New Premium Gold */
+    /* Metallic Gold Primary - AWD Auto Identity */
     --primary: 43 59% 59%;
-    --primary-foreground: 220 13% 9%;
+    --primary-foreground: 215 28% 7%;
 
-    /* Silver Secondary - luxury automotive accent */
-    --secondary: 210 20% 25%;
-    --secondary-foreground: 210 40% 98%;
+    /* Soft Charcoal Secondary (#313A43 -> 210 15% 23%) */
+    --secondary: 210 15% 23%;
+    --secondary-foreground: 40 25% 96%;
 
-    --muted: 220 13% 15%;
-    --muted-foreground: 43 22% 74%;
+    --muted: 210 19% 16%;
+    --muted-foreground: 210 14% 72%;
 
-    /* Premium Gold Accent - New Premium Gold */
+    /* Premium Gold Accent */
     --accent: 43 59% 59%;
-    --accent-foreground: 220 13% 9%;
+    --accent-foreground: 215 28% 7%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 13% 20%;
-    --input: 220 13% 15%;
+    --border: 210 18% 22%;
+    --input: 210 18% 18%;
     --ring: 43 59% 59%;
 
     --radius: 0.75rem;
 
-    /* Custom AWD Auto Design Tokens - New Premium Gold */
+    /* Custom AWD Auto Design Tokens */
     --luxury-gold: 43 59% 59%;
     --luxury-gold-hover: 43 62% 66%;
     --luxury-gold-deep: 33 60% 43%;
     --luxury-silver: 210 40% 85%;
-    --luxury-dark: 220 13% 9%;
-    --luxury-darker: 220 15% 6%;
-    
+    --luxury-dark: 210 22% 14%;
+    --luxury-darker: 215 28% 7%;
+
+    /* Palette Reference Tokens */
+    --awd-obsidian: #0D1117;
+    --awd-graphite: #1C242C;
+    --awd-charcoal: #313A43;
+    --awd-ivory: #F4F0E8;
+    --awd-stone: #E9E4DC;
+    --awd-silver-mist: #E3E8EB;
+    --awd-pearl: #F9F7F2;
+
     /* Premium Gradients */
     --gradient-gold: linear-gradient(135deg, hsl(var(--luxury-gold-deep)), hsl(var(--luxury-gold)) 50%, hsl(var(--luxury-gold-hover)));
     --gradient-silver: linear-gradient(135deg, hsl(210 40% 85%), hsl(210 30% 75%));
-    --gradient-dark: linear-gradient(180deg, hsl(220 13% 12%), hsl(220 13% 9%));
-    
+    --gradient-dark: linear-gradient(180deg, #1C242C, #0D1117);
+
     /* Luxury Shadows */
-    --shadow-luxury: 0 25px 50px -12px hsl(var(--luxury-gold) / 0.25);
-    --shadow-card: 0 10px 30px -10px hsl(220 13% 6% / 0.8);
-    --shadow-hero: 0 35px 60px -15px hsl(220 13% 4% / 0.6);
-    
+    --shadow-luxury: 0 22px 45px -12px hsl(43 59% 59% / 0.28);
+    --shadow-card: 0 18px 40px -15px rgba(5, 8, 12, 0.65);
+    --shadow-hero: 0 35px 60px -15px rgba(5, 8, 12, 0.7);
+
     /* Typography Scale */
     --font-luxury: 'Poppins', sans-serif;
     --font-body: 'Inter', sans-serif;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  /* Light mode variants - subtle luxury */
+  /* Contextual Light Surface Scope (Warm Ivory / Soft Stone / Silver Mist / Pearl White) */
+  .theme-light-ivory,
+  .theme-light-stone,
+  .theme-light-mist,
+  .theme-light-pearl,
   .light {
-    --background: 210 40% 98%;
-    --foreground: 220 13% 9%;
+    --background: 40 33% 93%; /* #F4F0E8 Warm Ivory */
+    --foreground: 215 28% 10%; /* #121820 Deep Obsidian Text */
+    --card: 43 38% 97%; /* #F9F7F2 Pearl White */
+    --card-foreground: 215 28% 10%;
+    --popover: 43 38% 97%;
+    --popover-foreground: 215 28% 10%;
+    --primary: 39 64% 46%;
+    --primary-foreground: 43 38% 97%;
+    --secondary: 37 22% 89%; /* #E9E4DC Soft Stone */
+    --secondary-foreground: 215 28% 12%;
+    --muted: 37 20% 88%;
+    --muted-foreground: 210 16% 34%; /* #485460 High-contrast Slate */
+    --accent: 39 64% 46%;
+    --accent-foreground: 43 38% 97%;
+    --border: 36 18% 81%;
+    --input: 36 18% 83%;
+    --ring: 38 66% 42%;
+    /* Recalibrate luxury-gold inside light surfaces for WCAG AA+ contrast */
+    --luxury-gold: 37 68% 36%; /* Rich Burnished Bronze-Gold #9A6B1D for crisp readability on light ivory */
+    --luxury-gold-hover: 37 72% 30%;
+    --shadow-card: 0 18px 42px -14px rgba(18, 24, 32, 0.09), 0 4px 12px -2px rgba(18, 24, 32, 0.04);
+    --shadow-luxury: 0 18px 38px -10px rgba(154, 107, 29, 0.24);
+  }
+
+  .theme-light-stone {
+    --background: 37 22% 89%; /* #E9E4DC Soft Stone */
+    --card: 43 38% 97%; /* #F9F7F2 Pearl White */
+  }
+
+  .theme-light-mist {
+    --background: 202 18% 91%; /* #E3E8EB Silver Mist */
+    --card: 43 38% 97%; /* #F9F7F2 Pearl White */
+    --muted: 202 16% 86%;
+    --border: 204 16% 80%;
+  }
+
+  .theme-light-pearl {
+    --background: 43 38% 97%; /* #F9F7F2 Pearl White */
     --card: 0 0% 100%;
-    --card-foreground: 220 13% 9%;
-    --primary: 43 59% 59%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 40% 92%;
-    --secondary-foreground: 220 13% 9%;
+    --muted: 40 25% 92%;
+    --border: 38 18% 84%;
+  }
+
+  /* Contextual Dark Surface Scopes */
+  .theme-dark-obsidian {
+    --background: 215 28% 7%; /* #0D1117 Deep Obsidian */
+    --foreground: 40 25% 96%;
+    --card: 210 22% 13%; /* #1A2129 Graphite Card */
+    --card-foreground: 40 25% 96%;
+    --muted: 210 20% 16%;
+    --muted-foreground: 210 14% 74%;
+    --border: 210 18% 21%;
+    --input: 210 18% 17%;
+    --luxury-gold: 43 59% 59%;
+    --luxury-gold-hover: 43 62% 66%;
+  }
+
+  .theme-dark-graphite {
+    --background: 210 22% 14%; /* #1C242C Graphite */
+    --foreground: 40 25% 96%;
+    --card: 210 18% 18%; /* Elevated Charcoal-Graphite */
+    --card-foreground: 40 25% 96%;
+    --muted: 210 16% 21%;
+    --muted-foreground: 210 14% 76%;
+    --border: 210 16% 25%;
+    --input: 210 16% 20%;
+    --luxury-gold: 43 59% 59%;
+    --luxury-gold-hover: 43 62% 66%;
+  }
+
+  .theme-dark-charcoal {
+    --background: 210 15% 23%; /* #313A43 Soft Charcoal */
+    --foreground: 40 25% 96%;
+    --card: 212 22% 14%; /* Contrasting deep Graphite card on Soft Charcoal */
+    --card-foreground: 40 25% 96%;
+    --muted: 210 18% 18%;
+    --muted-foreground: 210 15% 78%;
+    --border: 210 15% 30%;
+    --input: 210 18% 18%;
+    --luxury-gold: 43 62% 62%;
+    --luxury-gold-hover: 43 66% 68%;
   }
 }
 
@@ -99,9 +180,14 @@ All colors MUST be HSL for perfect luxury automotive aesthetic.
     @apply border-border;
   }
 
+  html {
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-background text-foreground font-body antialiased;
-    background: hsl(var(--luxury-dark));
+    background-color: #0D1117;
+    overflow-x: hidden;
   }
 
   /* Typography Hierarchy */
@@ -114,19 +200,227 @@ All colors MUST be HSL for perfect luxury automotive aesthetic.
   }
 
   .luxury-card {
-    @apply bg-card border border-border rounded-xl shadow-[var(--shadow-card)] backdrop-blur-sm;
+    @apply bg-card border border-border rounded-xl shadow-[var(--shadow-card)] backdrop-blur-sm transition-all duration-300;
   }
 
+  /* Surface-aware luxury card refinements */
+  .theme-light-ivory .luxury-card,
+  .theme-light-stone .luxury-card,
+  .theme-light-mist .luxury-card,
+  .theme-light-pearl .luxury-card {
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.96) 0%, rgba(249, 247, 242, 0.94) 100%);
+    border-color: rgba(154, 107, 29, 0.18);
+    box-shadow:
+      0 20px 44px -16px rgba(18, 24, 32, 0.08),
+      0 4px 12px -2px rgba(18, 24, 32, 0.04),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.85);
+  }
+
+  .theme-dark-obsidian .luxury-card,
+  .theme-dark-graphite .luxury-card,
+  .theme-dark-charcoal .luxury-card {
+    background: linear-gradient(165deg, rgba(34, 43, 53, 0.88) 0%, rgba(20, 26, 33, 0.94) 100%);
+    border-color: rgba(212, 176, 88, 0.16);
+    box-shadow:
+      0 22px 48px -16px rgba(5, 8, 12, 0.72),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+  }
+
+  /* Buttons preserve metallic gold luxury across all themes */
   .luxury-button {
-    @apply bg-gradient-to-r from-luxury-gold to-luxury-gold hover:from-luxury-gold-hover hover:to-luxury-gold-hover;
-    @apply text-black font-semibold px-8 py-3 rounded-xl transition-all duration-300;
-    @apply shadow-[var(--shadow-luxury)] hover:shadow-2xl hover:scale-105;
+    background: linear-gradient(135deg, #CFA44A 0%, #E0BA65 50%, #C89B3C 100%);
+    @apply text-[#0D1117] font-semibold px-8 py-3 rounded-xl transition-all duration-300;
+    @apply shadow-[var(--shadow-luxury)] hover:shadow-2xl hover:scale-[1.03];
+  }
+
+  .luxury-button:hover {
+    background: linear-gradient(135deg, #D9B158 0%, #E8C675 50%, #D2A648 100%);
   }
 
   .luxury-button-outline {
     @apply border-2 border-luxury-gold text-luxury-gold hover:bg-luxury-gold hover:text-black [&:hover_*]:text-black;
     @apply px-8 py-3 rounded-xl transition-all duration-300 font-semibold;
   }
+
+  .theme-light-ivory .luxury-button-outline,
+  .theme-light-stone .luxury-button-outline,
+  .theme-light-mist .luxury-button-outline,
+  .theme-light-pearl .luxury-button-outline {
+    border-color: #9A6B1D;
+    color: #7D5514;
+    background-color: rgba(249, 247, 242, 0.65);
+  }
+
+  .theme-light-ivory .luxury-button-outline:hover,
+  .theme-light-stone .luxury-button-outline:hover,
+  .theme-light-mist .luxury-button-outline:hover,
+  .theme-light-pearl .luxury-button-outline:hover {
+    background-color: #C89B3C;
+    border-color: #C89B3C;
+    color: #0D1117;
+  }
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+/* ============================================================================
+   STAGE 04 — SIGNATURE COLOR TRANSITIONS & ART-DIRECTED SURFACE COMPOSITIONS
+   Each transition is bespoke, organic, non-repetitive, and continuous.
+   ============================================================================ */
+
+/* 01. Hero Obsidian-to-Warm-Ivory Atmospheric Crest
+   Blends the dark photographic hero bottom into the Warm Ivory showcase below
+   with an organic asymmetric horizon curve + ambient gold-champagne mist. */
+.awd-hero-atmosphere {
+  position: relative;
+  isolation: isolate;
+}
+
+.awd-hero-atmosphere::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 110px;
+  pointer-events: none;
+  z-index: 5;
+  background:
+    radial-gradient(85% 95% at 50% 100%, rgba(244, 240, 232, 0.92) 0%, rgba(244, 240, 232, 0.45) 48%, transparent 78%),
+    linear-gradient(180deg, rgba(13, 17, 23, 0) 0%, rgba(28, 36, 44, 0.38) 42%, #F4F0E8 100%);
+}
+
+/* 02. Warm Ivory -> Soft Stone -> Graphite/Charcoal Sculpted Diagonal Flow
+   Transitions from the bright stock showcase ("Ultimele Noutăți în Stoc")
+   into the deep metallic slate ("Ultimele Vândute"). */
+.awd-flow-ivory-to-charcoal {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(65% 50% at 85% 12%, rgba(227, 232, 235, 0.65) 0%, transparent 65%),
+    radial-gradient(55% 45% at 12% 30%, rgba(212, 176, 88, 0.08) 0%, transparent 60%),
+    linear-gradient(180deg, #F4F0E8 0%, #EFEAE0 58%, #E5DFD3 82%, #1C242C 100%);
+  padding-bottom: 7.5rem;
+}
+
+.awd-flow-ivory-to-charcoal::after {
+  content: "";
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  bottom: -1px;
+  height: 96px;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(177.2deg, transparent 42%, rgba(28, 36, 44, 0.65) 42.5%, #1C242C 68%);
+}
+
+/* 03. Soft Charcoal / Graphite -> Silver Mist & Pearl White Editorial Diffusion
+   Used on "Ultimele Vândute" transitioning into Google Reviews ("Ce spun clienții noștri").
+   Features ambient radial lighting on dark slate, melting into luminous Silver Mist (#E3E8EB). */
+.awd-flow-charcoal-to-mist {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(50% 60% at 20% 25%, rgba(49, 58, 67, 0.72) 0%, transparent 70%),
+    radial-gradient(45% 50% at 82% 20%, rgba(212, 176, 88, 0.09) 0%, transparent 65%),
+    linear-gradient(180deg, #1C242C 0%, #26303A 48%, #313A43 76%, #6B7680 90%, #E3E8EB 100%);
+  padding-top: 4.5rem;
+  padding-bottom: 7rem;
+}
+
+/* 04. Silver Mist / Pearl White -> Deep Obsidian & Graphite Architectural Arch
+   Used on Google Reviews transitioning into "Promisiunea Noastră: Pasiune și Încredere". */
+.awd-flow-mist-to-obsidian {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 55% at 50% 15%, #F9F7F2 0%, rgba(249, 247, 242, 0) 72%),
+    linear-gradient(180deg, #E3E8EB 0%, #EDEBE6 35%, #F4F0E8 72%, #D8D3C8 88%, #141B22 100%);
+  padding-top: 5rem;
+  padding-bottom: 7.5rem;
+}
+
+.awd-flow-mist-to-obsidian::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 88px;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    radial-gradient(120% 100% at 62% 100%, #141B22 0%, #141B22 54%, rgba(20, 27, 34, 0) 55%);
+}
+
+/* 05. Deep Graphite-Obsidian Ambient Stage (for Benefits / Final Homepage Anchor)
+   Rich nocturnal depth with warm gold atmospheric halo and seamless transition to Obsidian footer. */
+.awd-stage-obsidian-ambient {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(55% 50% at 50% 0%, rgba(212, 176, 88, 0.11) 0%, transparent 68%),
+    radial-gradient(45% 45% at 15% 80%, rgba(49, 58, 67, 0.45) 0%, transparent 65%),
+    linear-gradient(180deg, #141B22 0%, #1C242C 45%, #0D1117 100%);
+}
+
+/* Secondary Pages — Bespoke Color-Flow Surfaces */
+
+/* Subpage Hero: Obsidian & Graphite with soft transition into Warm Ivory or Soft Stone */
+.awd-subhero-to-light {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(50% 60% at 30% 40%, rgba(212, 176, 88, 0.14) 0%, transparent 65%),
+    radial-gradient(45% 50% at 75% 30%, rgba(49, 58, 67, 0.55) 0%, transparent 65%),
+    linear-gradient(180deg, #0D1117 0%, #1C242C 62%, #2B343E 82%, #F4F0E8 100%);
+  padding-bottom: 5.5rem;
+}
+
+/* Warm Ivory / Pearl White Section flowing into Graphite/Charcoal */
+.awd-section-light-to-dark {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 50% at 20% 20%, #F9F7F2 0%, transparent 70%),
+    linear-gradient(180deg, #F4F0E8 0%, #EAE5DC 74%, #262F38 94%, #1C242C 100%);
+  padding-bottom: 6.5rem;
+}
+
+/* Graphite/Charcoal Section flowing into Soft Stone / Warm Ivory */
+.awd-section-dark-to-light {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(55% 50% at 78% 22%, rgba(212, 176, 88, 0.1) 0%, transparent 65%),
+    linear-gradient(180deg, #1C242C 0%, #252E37 68%, #47515B 86%, #E9E4DC 100%);
+  padding-bottom: 6.5rem;
+}
+
+/* Soft Stone -> Pearl White -> Obsidian Footer Transition */
+.awd-section-stone-to-footer {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(65% 55% at 50% 25%, #F9F7F2 0%, transparent 75%),
+    linear-gradient(180deg, #E9E4DC 0%, #F4F0E8 68%, #D5CFC4 86%, #0D1117 100%);
+  padding-bottom: 6.5rem;
+}
+
+/* Stock Catalog & Vehicle Details — High-Clarity Editorial Light & Dark Balance */
+.awd-catalog-canvas {
+  background:
+    radial-gradient(50% 35% at 50% 0%, rgba(212, 176, 88, 0.10) 0%, transparent 70%),
+    linear-gradient(180deg, #0D1117 0%, #1C242C 150px, #F4F0E8 280px, #E9E4DC 94%, #0D1117 100%);
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

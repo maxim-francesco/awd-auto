@@ -34,31 +34,14 @@ const Finantare = () => {
 
     setIsSubmitting(true);
     try {
-      const message = "Solicitare finanțare";
-      const response = await fetch(`${API_BASE_URL}/api/public/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          businessId: BUSINESS_ID,
-          name,
-          email,
-          phone,
-          message,
-          type: "FINANCING",
-        }),
+      await new Promise((resolve) => setTimeout(resolve, 600));
+      toast.success("Mediu de previzualizare: solicitarea a fost simulată și nu a fost transmisă către AWD Auto.", {
+        duration: 6000,
       });
-
-      if (response.ok) {
-        toast.success("Mesajul a fost trimis. Te contactăm în curând.");
-        setName("");
-        setEmail("");
-        setPhone("");
-        setIsGdprChecked(false);
-      } else {
-        toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
-      }
+      setName("");
+      setEmail("");
+      setPhone("");
+      setIsGdprChecked(false);
     } catch (err) {
       console.error(err);
       toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
@@ -70,14 +53,10 @@ const Finantare = () => {
   return (
     <Layout>
       {/* New Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-luxury-darker via-luxury-dark to-luxury-darker">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(212,176,88,0.1),transparent_50%)]" />
-        </div>
-        
+      <section className="relative min-h-[46vh] flex items-center justify-center overflow-hidden awd-subhero-to-light theme-dark-obsidian pt-16 pb-24">
         <Container className="relative z-10 text-center">
           <AnimatedSection>
-            <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6">
+            <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-[#E0BA65] via-[#F9F7F2] to-[#E0BA65] bg-clip-text text-transparent mb-6">
               Finanțare
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
@@ -88,8 +67,8 @@ const Finantare = () => {
       </section>
 
       {/* Pay in installments Section */}
-      <section className="py-20 bg-background">
-        <Container>
+      <section className="py-20 awd-section-light-to-dark theme-light-ivory">
+        <Container className="relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 {/* Left Column */}
                 <div className="space-y-4 text-center md:text-left">
@@ -156,8 +135,8 @@ const Finantare = () => {
       </section>
 
       {/* --- Detailed Criteria Section with Tabs --- */}
-      <section className="py-20 bg-luxury-darker">
-        <Container>
+      <section className="py-20 awd-section-dark-to-light theme-dark-graphite">
+        <Container className="relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-luxury-gold font-luxury">
               Detalii Finanțare Parteneri
@@ -165,9 +144,9 @@ const Finantare = () => {
           </div>
 
           <Tabs defaultValue="unicredit" className="w-full max-w-5xl mx-auto">
-            <TabsList className="grid w-full grid-cols-2 h-auto bg-muted p-1">
-              <TabsTrigger value="tbi" className="py-2.5 data-[state=active]:bg-luxury-gold data-[state=active]:text-luxury-dark data-[state=active]:font-semibold">Detalii TBI Bank</TabsTrigger>
-              <TabsTrigger value="unicredit" className="py-2.5 data-[state=active]:bg-luxury-gold data-[state=active]:text-luxury-dark data-[state=active]:font-semibold">Detalii UniCredit Consumer Financing</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-2 h-auto bg-[#0D1117]/80 border border-border/60 p-1.5 rounded-xl">
+              <TabsTrigger value="tbi" className="py-2.5 rounded-lg data-[state=active]:bg-luxury-gold data-[state=active]:text-[#0D1117] data-[state=active]:font-semibold">Detalii TBI Bank</TabsTrigger>
+              <TabsTrigger value="unicredit" className="py-2.5 rounded-lg data-[state=active]:bg-luxury-gold data-[state=active]:text-[#0D1117] data-[state=active]:font-semibold">Detalii UniCredit Consumer Financing</TabsTrigger>
             </TabsList>
 
             {/* --- TBI Bank Content --- */}
@@ -236,7 +215,7 @@ const Finantare = () => {
             </TabsContent>
 
             {/* --- UniCredit Consumer Financing Content --- */}
-            <TabsContent value="unicredit" className="mt-6 p-6 bg-card rounded-lg">
+            <TabsContent value="unicredit" className="mt-6 p-8 luxury-card">
                 <div className="text-center mb-6">
                     <img 
                     src={unicreditLogo} 
@@ -290,8 +269,8 @@ const Finantare = () => {
       </section>
       
       {/* Business Documentation Section */}
-      <section className="py-20 bg-luxury-darker">
-        <Container>
+      <section className="py-20 awd-section-light-to-dark theme-light-stone">
+        <Container className="relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Left Column (Text) */}
             <div className="space-y-6">
@@ -303,7 +282,7 @@ const Finantare = () => {
               </p>
               <ul className="space-y-4">
                  <li className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-luxury-gold/10 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-luxury-gold/10 ring-1 ring-luxury-gold/25 flex items-center justify-center">
                     <UserCheck className="h-5 w-5 text-luxury-gold" />
                   </div>
                    <div>
@@ -312,7 +291,7 @@ const Finantare = () => {
                   </div>
                 </li>
                  <li className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-luxury-gold/10 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-luxury-gold/10 ring-1 ring-luxury-gold/25 flex items-center justify-center">
                     <Building className="h-5 w-5 text-luxury-gold" />
                   </div>
                    <div>
@@ -321,7 +300,7 @@ const Finantare = () => {
                   </div>
                 </li>
                  <li className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-luxury-gold/10 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-luxury-gold/10 ring-1 ring-luxury-gold/25 flex items-center justify-center">
                     <FileText className="h-5 w-5 text-luxury-gold" />
                   </div>
                   <div>
@@ -330,7 +309,7 @@ const Finantare = () => {
                   </div>
                 </li>
                  <li className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-luxury-gold/10 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-luxury-gold/10 ring-1 ring-luxury-gold/25 flex items-center justify-center">
                     <FileText className="h-5 w-5 text-luxury-gold" />
                   </div>
                   <div>
@@ -345,7 +324,7 @@ const Finantare = () => {
               <img 
                 src={b2Image}
                 alt="Documentație finanțare persoane juridice"
-                className="rounded-lg shadow-lg object-cover w-full h-full"
+                className="rounded-2xl shadow-xl border border-black/10 object-cover w-full h-full"
               />
             </div>
           </div>
@@ -353,8 +332,8 @@ const Finantare = () => {
       </section>
 
       {/* --- NEW FINANCIAL PARTNERS SECTION --- */}
-      <section className="py-16 bg-background">
-        <Container>
+      <section className="py-20 awd-stage-obsidian-ambient theme-dark-obsidian">
+        <Container className="relative z-10">
           
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-luxury-gold font-luxury">

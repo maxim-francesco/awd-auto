@@ -1,4 +1,4 @@
-﻿import useGoogleReviews, { GoogleReview } from '@/hooks/useGoogleReviews';
+import useGoogleReviews, { GoogleReview } from '@/hooks/useGoogleReviews';
 import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Star, StarHalf, AlertCircle } from 'lucide-react';
@@ -30,8 +30,8 @@ const GoogleReviewsSection = () => {
   const topReviews = reviews.slice(0, 5);
 
   return (
-    <section className="py-20 bg-luxury-darker">
-      <div className="container mx-auto">
+    <section className="py-20 awd-flow-mist-to-obsidian theme-light-mist">
+      <div className="container mx-auto relative z-10">
         <AnimatedSection className="text-center mb-16">
           <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
             Ce spun clienții noștri
@@ -64,10 +64,10 @@ const GoogleReviewsSection = () => {
         )}
 
         {error && (
-          <div className="text-center text-red-500 bg-red-500/10 p-6 rounded-lg border border-red-500/30">
-            <AlertCircle className="mx-auto h-12 w-12 mb-4" />
-            <h3 className="text-xl font-semibold">Eroare la încărcare</h3>
-            <p>{error}</p>
+          <div className="max-w-2xl mx-auto text-center text-red-700 bg-red-500/10 p-8 rounded-2xl border border-red-500/25 shadow-sm backdrop-blur-sm">
+            <AlertCircle className="mx-auto h-12 w-12 mb-4 text-red-600" />
+            <h3 className="text-xl font-semibold text-foreground mb-1">Eroare la încărcare</h3>
+            <p className="text-sm text-muted-foreground">{error}</p>
           </div>
         )}
 

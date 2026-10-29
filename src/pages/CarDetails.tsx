@@ -111,31 +111,14 @@ const CarDetails = () => {
 
     setIsSubmittingEnquiry(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/api/public/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          businessId: BUSINESS_ID,
-          name: enquiryName.trim(),
-          phone: enquiryPhone.trim(),
-          email: enquiryEmail.trim(),
-          message: enquiryMessage.trim(),
-          type: "STOCK",
-          listingId: car.id,
-        }),
+      await new Promise((resolve) => setTimeout(resolve, 600));
+      toast.success("Mediu de previzualizare: solicitarea a fost simulată și nu a fost transmisă către AWD Auto.", {
+        duration: 6000,
       });
-
-      if (response.ok) {
-        toast.success("Mesajul a fost trimis. Te contactăm în curând.");
-        setEnquiryName("");
-        setEnquiryPhone("");
-        setEnquiryEmail("");
-        setEnquiryGdpr(false);
-      } else {
-        toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
-      }
+      setEnquiryName("");
+      setEnquiryPhone("");
+      setEnquiryEmail("");
+      setEnquiryGdpr(false);
     } catch (err) {
       console.error(err);
       toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
@@ -273,183 +256,188 @@ const CarDetails = () => {
           `}
         </script>
       </Helmet>
-      <div className="min-h-screen bg-background py-8 sm:py-12">
-        <Container>
-          {/* Back Button */}
-          <motion.button
-            onClick={() => navigate(-1)}
-            className="flex items-center gap-2 text-muted-foreground hover:text-luxury-gold transition-colors mb-6"
-            whileHover={{ x: -4 }}
-            transition={{ duration: 0.2 }}
-          >
-            <ArrowLeft className="h-5 w-5" />
-            <span className="text-sm font-medium">Înapoi la listă</span>
-          </motion.button>
-          
-          {/* --- PART 1: "AT-A-GLANCE" SECTION (Two Columns) --- */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {/* Left Column - Gallery */}
-            <AnimatedSection>
-              <div className="space-y-4">
-                {/* Main Image */}
-                <motion.div 
-                  className="luxury-card relative aspect-video rounded-2xl overflow-hidden bg-luxury-darker cursor-pointer"
-                  layoutId={`car-image-${car.id}`}
-                   onClick={() => {
-                    setCurrentImageIndex(selectedImage);
-                    setIsGalleryOpen(true);
-                  }}
-                >
-                  <img
-                    src={carData.images?.length > 0 ? carData.images[selectedImage].url : 'https://via.placeholder.com/1200x800.png?text=AWD+Auto'}
-                    alt={carData.title}
-                    className="w-full h-full object-cover"
-                  />
-                  {/* Bottom shadow overlay for depth */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
-                </motion.div>
+      <div className="min-h-screen">
+        {/* Top Gallery & Specs Stage in Deep Obsidian -> Graphite */}
+        <div className="awd-section-dark-to-light theme-dark-obsidian pt-8 sm:pt-12 pb-16">
+          <Container>
+            {/* Back Button */}
+            <motion.button
+              onClick={() => navigate(-1)}
+              className="flex items-center gap-2 text-muted-foreground hover:text-luxury-gold transition-colors mb-6"
+              whileHover={{ x: -4 }}
+              transition={{ duration: 0.2 }}
+            >
+              <ArrowLeft className="h-5 w-5" />
+              <span className="text-sm font-medium">Înapoi la listă</span>
+            </motion.button>
+            
+            {/* --- PART 1: "AT-A-GLANCE" SECTION (Two Columns) --- */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+              {/* Left Column - Gallery */}
+              <AnimatedSection>
+                <div className="space-y-4">
+                  {/* Main Image */}
+                  <motion.div 
+                    className="luxury-card relative aspect-video rounded-2xl overflow-hidden bg-luxury-darker cursor-pointer"
+                    layoutId={`car-image-${car.id}`}
+                     onClick={() => {
+                      setCurrentImageIndex(selectedImage);
+                      setIsGalleryOpen(true);
+                    }}
+                  >
+                    <img
+                      src={carData.images?.length > 0 ? carData.images[selectedImage].url : 'https://via.placeholder.com/1200x800.png?text=AWD+Auto'}
+                      alt={carData.title}
+                      className="w-full h-full object-cover"
+                    />
+                    {/* Bottom shadow overlay for depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+                  </motion.div>
 
-                {/* Thumbnails slider */}
-                {carData.images && carData.images.length > 1 && (
-                  <div className="space-y-2">
-                    {/* Photo counter */}
-                    <div className="flex items-center justify-between px-1">
-                      <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                        <ImageIcon className="h-3.5 w-3.5 text-luxury-gold" />
-                        {selectedImage + 1} / {carData.images.length} fotografii
-                      </span>
-                      <span className="text-[10px] uppercase tracking-wider text-muted-foreground/70 hidden sm:inline">
-                        Glisează pentru mai multe
-                      </span>
-                    </div>
+                  {/* Thumbnails slider */}
+                  {carData.images && carData.images.length > 1 && (
+                    <div className="space-y-2">
+                      {/* Photo counter */}
+                      <div className="flex items-center justify-between px-1">
+                        <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                          <ImageIcon className="h-3.5 w-3.5 text-luxury-gold" />
+                          {selectedImage + 1} / {carData.images.length} fotografii
+                        </span>
+                        <span className="text-[10px] uppercase tracking-wider text-muted-foreground/70 hidden sm:inline">
+                          Glisează pentru mai multe
+                        </span>
+                      </div>
 
-                    <Carousel
-                      opts={{ align: "start", dragFree: true, containScroll: "trimSnaps" }}
-                      className="w-full px-1"
-                    >
-                      <CarouselContent className="-ml-2">
-                        {carData.images.map((image, index) => (
-                          <CarouselItem
-                            key={index}
-                            className="pl-2 basis-1/3 sm:basis-1/4 lg:basis-1/5"
-                          >
-                            <motion.button
-                              onClick={() => setSelectedImage(index)}
-                              className={`relative aspect-video w-full rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
-                                selectedImage === index
-                                  ? "border-luxury-gold ring-1 ring-luxury-gold/40"
-                                  : "border-border/40 hover:border-luxury-gold/50"
-                              }`}
-                              whileHover={{ scale: 1.05 }}
-                              whileTap={{ scale: 0.95 }}
+                      <Carousel
+                        opts={{ align: "start", dragFree: true, containScroll: "trimSnaps" }}
+                        className="w-full px-1"
+                      >
+                        <CarouselContent className="-ml-2">
+                          {carData.images.map((image, index) => (
+                            <CarouselItem
+                              key={index}
+                              className="pl-2 basis-1/3 sm:basis-1/4 lg:basis-1/5"
                             >
-                              <img
-                                src={image.url}
-                                alt={`Thumbnail ${index + 1}`}
-                                className="w-full h-full object-cover"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setCurrentImageIndex(index);
-                                  setIsGalleryOpen(true);
-                                }}
-                              />
-                              {selectedImage !== index && (
-                                <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors pointer-events-none" />
-                              )}
-                            </motion.button>
-                          </CarouselItem>
-                        ))}
-                      </CarouselContent>
-                      <CarouselPrevious className="left-0 bg-luxury-darker/80 border-luxury-gold/40 text-luxury-gold hover:bg-luxury-gold hover:text-black" />
-                      <CarouselNext className="right-0 bg-luxury-darker/80 border-luxury-gold/40 text-luxury-gold hover:bg-luxury-gold hover:text-black" />
-                    </Carousel>
-                  </div>
-                )}
-              </div>
-            </AnimatedSection>
+                              <motion.button
+                                onClick={() => setSelectedImage(index)}
+                                className={`relative aspect-video w-full rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
+                                  selectedImage === index
+                                    ? "border-luxury-gold ring-1 ring-luxury-gold/40"
+                                    : "border-border/40 hover:border-luxury-gold/50"
+                                }`}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                              >
+                                <img
+                                  src={image.url}
+                                  alt={`Thumbnail ${index + 1}`}
+                                  className="w-full h-full object-cover"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setCurrentImageIndex(index);
+                                    setIsGalleryOpen(true);
+                                  }}
+                                />
+                                {selectedImage !== index && (
+                                  <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors pointer-events-none" />
+                                )}
+                              </motion.button>
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="left-0 bg-luxury-darker/80 border-luxury-gold/40 text-luxury-gold hover:bg-luxury-gold hover:text-black" />
+                        <CarouselNext className="right-0 bg-luxury-darker/80 border-luxury-gold/40 text-luxury-gold hover:bg-luxury-gold hover:text-black" />
+                      </Carousel>
+                    </div>
+                  )}
+                </div>
+              </AnimatedSection>
 
-            {/* Right Column - Information */}
-            <AnimatedSection delay={0.1}>
-              <div className="space-y-6">
-                {/* Title & Price */}
-                <div>
-                  <h1 className="font-luxury text-4xl sm:text-5xl font-bold text-foreground mb-3">
-                    {carData.title}
-                  </h1>
-                  
-                  {/* Badges Row */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {carData.year && carData.year !== 'N/A' && (
-                      <Badge variant="outline" className="border-luxury-gold/40 text-luxury-gold bg-luxury-gold/10 px-3 py-1 font-medium">
-                        {carData.year}
-                      </Badge>
-                    )}
-                    {carData.variant && carData.variant !== 'N/A' && (
-                      <Badge variant="outline" className="border-luxury-gold/40 text-luxury-gold bg-luxury-gold/10 px-3 py-1 font-medium">
-                        {carData.variant}
-                      </Badge>
-                    )}
-                    {getAttrVal(["attr:fuelType"], ["combustibil"]) !== 'N/A' && (
-                      <Badge variant="outline" className="border-luxury-gold/40 text-luxury-gold bg-luxury-gold/10 px-3 py-1 font-medium">
-                        {getAttrVal(["attr:fuelType"], ["combustibil"])}
-                      </Badge>
-                    )}
-                  </div>
-
-                  {/* Price Row & Desktop Video CTA */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-luxury text-4xl sm:text-5xl font-bold text-luxury-gold">
-                        {carData.price.toLocaleString()} €
-                      </span>
-                      <span className="text-sm text-muted-foreground">(TVA Inclus)</span>
+              {/* Right Column - Information */}
+              <AnimatedSection delay={0.1}>
+                <div className="space-y-6">
+                  {/* Title & Price */}
+                  <div>
+                    <h1 className="font-luxury text-4xl sm:text-5xl font-bold text-foreground mb-3">
+                      {carData.title}
+                    </h1>
+                    
+                    {/* Badges Row */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {carData.year && carData.year !== 'N/A' && (
+                        <Badge variant="outline" className="border-luxury-gold/40 text-luxury-gold bg-luxury-gold/10 px-3 py-1 font-medium">
+                          {carData.year}
+                        </Badge>
+                      )}
+                      {carData.variant && carData.variant !== 'N/A' && (
+                        <Badge variant="outline" className="border-luxury-gold/40 text-luxury-gold bg-luxury-gold/10 px-3 py-1 font-medium">
+                          {carData.variant}
+                        </Badge>
+                      )}
+                      {getAttrVal(["attr:fuelType"], ["combustibil"]) !== 'N/A' && (
+                        <Badge variant="outline" className="border-luxury-gold/40 text-luxury-gold bg-luxury-gold/10 px-3 py-1 font-medium">
+                          {getAttrVal(["attr:fuelType"], ["combustibil"])}
+                        </Badge>
+                      )}
                     </div>
 
-                    {hasVideo && (
-                      <Button asChild variant="outline" className="hidden lg:inline-flex min-h-[44px] px-8 gap-2" size="lg">
+                    {/* Price Row & Desktop Video CTA */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      <div className="flex items-baseline gap-2">
+                        <span className="font-luxury text-4xl sm:text-5xl font-bold text-luxury-gold">
+                          {carData.price.toLocaleString()} €
+                        </span>
+                        <span className="text-sm text-muted-foreground">(TVA Inclus)</span>
+                      </div>
+
+                      {hasVideo && (
+                        <Button asChild variant="outline" className="hidden lg:inline-flex min-h-[44px] px-8 gap-2" size="lg">
+                          <a href={videoUrl} target="_blank" rel="noopener noreferrer">
+                            <Video className="h-5 w-5" />
+                            Vezi Video
+                          </a>
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Key Specifications - Staggered Grid of Tiles */}
+                  <StaggeredGrid className="grid grid-cols-2 lg:grid-cols-3 gap-4 py-6 border-y border-border/40">
+                    {carData.specs.map((spec, index) => (
+                      <StaggeredItem key={index} className="luxury-card p-4 flex items-start gap-3">
+                        <div className="p-2 rounded-full bg-luxury-gold/10 flex-shrink-0">
+                          <spec.icon className="h-5 w-5 text-luxury-gold" />
+                        </div>
+                        <div>
+                          <p className="text-[10px] uppercase tracking-wider text-muted-foreground">{spec.label}</p>
+                          <p className="text-sm font-semibold text-foreground mt-0.5">{spec.value}</p>
+                        </div>
+                      </StaggeredItem>
+                    ))}
+                  </StaggeredGrid>
+
+                  {/* CTA Button (Mobile only) */}
+                  {hasVideo && (
+                    <div className="pt-4 lg:hidden">
+                      <Button asChild variant="outline" className="w-full min-h-[44px] px-8 gap-2" size="lg">
                         <a href={videoUrl} target="_blank" rel="noopener noreferrer">
                           <Video className="h-5 w-5" />
                           Vezi Video
                         </a>
                       </Button>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
+              </AnimatedSection>
+            </div>
+          </Container>
+        </div>
 
-                {/* Key Specifications - Staggered Grid of Tiles */}
-                <StaggeredGrid className="grid grid-cols-2 lg:grid-cols-3 gap-4 py-6 border-y border-border/40">
-                  {carData.specs.map((spec, index) => (
-                    <StaggeredItem key={index} className="luxury-card p-4 flex items-start gap-3">
-                      <div className="p-2 rounded-full bg-luxury-gold/10 flex-shrink-0">
-                        <spec.icon className="h-5 w-5 text-luxury-gold" />
-                      </div>
-                      <div>
-                        <p className="text-[10px] uppercase tracking-wider text-muted-foreground">{spec.label}</p>
-                        <p className="text-sm font-semibold text-foreground mt-0.5">{spec.value}</p>
-                      </div>
-                    </StaggeredItem>
-                  ))}
-                </StaggeredGrid>
+        {/* --- PART 2: INLINE ENQUIRY FORM & "IN-DEPTH" SECTION (Warm Stone -> Pearl White -> Obsidian Footer) --- */}
+        <div className="awd-section-stone-to-footer theme-light-stone pt-12 pb-24">
+          <Container>
+            <Separator className="mb-10 opacity-40" />
 
-                {/* CTA Button (Mobile only) */}
-                {hasVideo && (
-                  <div className="pt-4 lg:hidden">
-                    <Button asChild variant="outline" className="w-full min-h-[44px] px-8 gap-2" size="lg">
-                      <a href={videoUrl} target="_blank" rel="noopener noreferrer">
-                        <Video className="h-5 w-5" />
-                        Vezi Video
-                      </a>
-                    </Button>
-                  </div>
-                )}
-              </div>
-            </AnimatedSection>
-          </div>
-
-          <Separator className="my-12" />
-
-          {/* --- PART 2: INLINE ENQUIRY FORM & "IN-DEPTH" SECTION --- */}
-          <div className="mt-6">
             <div className="max-w-5xl mx-auto space-y-8">
 
               {/* Description */}
@@ -489,7 +477,7 @@ const CarDetails = () => {
                             placeholder="Numele tău"
                             value={enquiryName}
                             onChange={(e) => setEnquiryName(e.target.value)}
-                            className="min-h-[44px] text-sm bg-muted/40"
+                            className="min-h-[44px] text-sm bg-card"
                             required
                           />
                         </div>
@@ -501,7 +489,7 @@ const CarDetails = () => {
                             placeholder="+40 722 123 456"
                             value={enquiryPhone}
                             onChange={(e) => setEnquiryPhone(e.target.value)}
-                            className="min-h-[44px] text-sm bg-muted/40"
+                            className="min-h-[44px] text-sm bg-card"
                             required
                           />
                         </div>
@@ -513,7 +501,7 @@ const CarDetails = () => {
                             placeholder="adresa@email.ro"
                             value={enquiryEmail}
                             onChange={(e) => setEnquiryEmail(e.target.value)}
-                            className="min-h-[44px] text-sm bg-muted/40"
+                            className="min-h-[44px] text-sm bg-card"
                             required
                           />
                         </div>
@@ -525,7 +513,7 @@ const CarDetails = () => {
                           id="enquiry-message"
                           value={enquiryMessage}
                           onChange={(e) => setEnquiryMessage(e.target.value)}
-                          className="min-h-[90px] text-sm bg-muted/40"
+                          className="min-h-[90px] text-sm bg-card"
                         />
                       </div>
 
@@ -565,8 +553,8 @@ const CarDetails = () => {
               </AnimatedSection>
 
             </div>
-          </div>
-        </Container>
+          </Container>
+        </div>
       </div>
 
        <FullscreenGallery

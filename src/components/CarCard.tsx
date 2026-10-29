@@ -54,10 +54,10 @@ const CarCard = ({ listing }: CarCardProps) => {
         
         {isVatDeductible && !isSold && (
           <span 
-            className="absolute top-2 right-2 text-xs font-bold px-2 py-1 rounded-md shadow-lg z-10"
+            className="absolute top-3 right-3 text-xs font-bold px-2.5 py-1 rounded-md shadow-lg z-10 border border-black/10"
             style={{ 
-              backgroundColor: 'hsl(var(--luxury-gold))',
-              color: '#1c1c1c'
+              background: 'linear-gradient(135deg, #CFA44A 0%, #E0BA65 50%, #C89B3C 100%)',
+              color: '#0D1117'
             }}
           >
             TVA Deductibil
@@ -66,6 +66,8 @@ const CarCard = ({ listing }: CarCardProps) => {
         <img 
           src={listing.images?.[0]?.url || 'https://via.placeholder.com/600x400.png?text=AWD+Auto'} 
           alt={listing.title + ' de vânzare la parc auto Cluj-Napoca'}
+          loading="eager"
+          decoding="async"
           className={cn(
             "w-full h-48 object-cover transition-transform duration-500",
             !isSold && "group-hover:scale-110",

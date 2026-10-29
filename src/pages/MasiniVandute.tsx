@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import Layout from "@/components/layout/Layout"
 import Container from "@/components/ui/Container"
@@ -14,15 +14,20 @@ const MasiniVandute = () => {
 
   return (
     <Layout>
-      <section className="py-20 bg-luxury-darker">
-        <Container>
-          <AnimatedSection className="text-center mb-16">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
-              Mașini Vândute
-            </h2>
-          </AnimatedSection>
+      <section className="awd-catalog-canvas min-h-screen">
+        <div className="pt-10 pb-10 theme-dark-obsidian text-center">
+          <Container>
+            <AnimatedSection>
+              <h2 className="font-luxury text-3xl md:text-5xl font-bold text-luxury-gold">
+                Mașini Vândute
+              </h2>
+            </AnimatedSection>
+          </Container>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="pt-14 pb-24 theme-light-ivory">
+          <Container>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {loading ? (
               // Show a reasonable number of skeletons while loading
               [...Array(8)].map((_, index) => (
@@ -50,8 +55,9 @@ const MasiniVandute = () => {
                 </p>
               </div>
             )}
-          </div>
-        </Container>
+            </div>
+          </Container>
+        </div>
       </section>
     </Layout>
   )

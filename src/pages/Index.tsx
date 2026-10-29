@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import Layout from "@/components/layout/Layout"
 import Container from "@/components/ui/Container"
@@ -45,21 +45,21 @@ const Index = () => {
     <Layout>
       {/* Hero Section */}
       <section 
-        className="relative bg-cover bg-center py-24 md:py-32"
+        className="relative bg-cover bg-center py-28 md:py-36 awd-hero-atmosphere"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
-        <div className="absolute inset-0 bg-black/60"></div> 
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0D1117]/75 via-[#0D1117]/60 to-[#1C242C]/80"></div> 
       
-        <Container className="relative z-10">
+        <Container className="relative z-10 pb-8">
           <AnimatedSection className="max-w-4xl mx-auto text-center">
-            <h1 className="font-luxury text-4xl md:text-5xl font-bold leading-relaxed max-w-3xl mx-auto mb-8 bg-gradient-to-r from-primary to-white text-transparent bg-clip-text drop-shadow-md">
+            <h1 className="font-luxury text-4xl md:text-5xl font-bold leading-relaxed max-w-3xl mx-auto mb-8 bg-gradient-to-r from-[#E0BA65] via-[#F9F7F2] to-[#E3E8EB] text-transparent bg-clip-text drop-shadow-md">
               Explorează oferta parcului nostru auto. Toate vehiculele sunt verificate și disponibile pentru test drive.
             </h1>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
                <Button asChild size="lg">
                 <Link to="/masini-disponibile">Vezi Toate Mașinile Disponibile</Link>
                </Button>
-               <Button asChild variant="outline" size="lg">
+               <Button asChild variant="outline" size="lg" className="bg-[#0D1117]/40 backdrop-blur-sm border-[#E0BA65] text-[#F9F7F2] hover:bg-[#E0BA65] hover:text-[#0D1117]">
                 <a href="tel:0752228593">Suna-ne</a>
               </Button>
             </div>
@@ -68,8 +68,8 @@ const Index = () => {
       </section>
 
       {/* Latest Cars Teaser Section */}
-      <section className="py-20 bg-luxury-darker">
-        <Container>
+      <section className="pt-16 pb-28 awd-flow-ivory-to-charcoal theme-light-ivory">
+        <Container className="relative z-10">
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
               Ultimele Noutăți în Stoc
@@ -89,7 +89,7 @@ const Index = () => {
                 </div>
               ))
             ) : error ? (
-              <div className="col-span-full text-center text-red-500 bg-red-500/10 p-6 rounded-lg border border-red-500/30">
+              <div className="col-span-full text-center text-red-700 bg-red-500/10 p-6 rounded-lg border border-red-500/30">
                 <AlertCircle className="mx-auto h-12 w-12 mb-4" />
                 <h3 className="text-xl font-semibold">Eroare la încărcare</h3>
                 <p>Nu am putut prelua ultimele noutăți. Te rugăm să încerci din nou mai târziu.</p>
@@ -108,9 +108,9 @@ const Index = () => {
       </section>
 
       {/* --- SECȚIUNEA ULTIMELE VÂNDUTE --- */}
-      <section className="py-12 bg-gray-900/50">
-        <Container>
-          <h2 className="text-3xl font-bold text-center mb-8 text-luxury-gold">
+      <section className="py-20 awd-flow-charcoal-to-mist theme-dark-charcoal">
+        <Container className="relative z-10">
+          <h2 className="text-3xl md:text-4xl font-luxury font-bold text-center mb-12 text-luxury-gold">
             Ultimele Vândute
           </h2>
 
@@ -130,7 +130,7 @@ const Index = () => {
           )}
 
           {soldError && (
-            <div className="col-span-full text-center text-red-500 bg-red-500/10 p-6 rounded-lg border border-red-500/30">
+            <div className="col-span-full text-center text-red-400 bg-red-500/10 p-6 rounded-lg border border-red-500/30">
                 <AlertCircle className="mx-auto h-12 w-12 mb-4" />
                 <h3 className="text-xl font-semibold">Eroare la încărcare</h3>
                 <p>Nu am putut prelua ultimele mașini vândute.</p>
@@ -153,7 +153,7 @@ const Index = () => {
             </div>
           )}
            <AnimatedSection className="text-center mt-12">
-                <Button asChild variant={"outline"}>
+                <Button asChild variant={"outline"} className="bg-[#1C242C]/80 backdrop-blur-sm">
                     <Link to="/masini-vandute">Vezi toate vândute</Link>
                 </Button>
             </AnimatedSection>
@@ -164,8 +164,8 @@ const Index = () => {
       <GoogleReviewsSection />
 
       {/* Benefits Section */}
-      <section className="py-20 bg-luxury-darker">
-        <Container>
+      <section className="py-24 awd-stage-obsidian-ambient theme-dark-obsidian">
+        <Container className="relative z-10">
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
               Promisiunea Noastră: Pasiune și Încredere
@@ -178,9 +178,9 @@ const Index = () => {
           <StaggeredGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (
               <StaggeredItem key={index}>
-                <Card className="luxury-card h-full text-center group">
+                <Card className="luxury-card h-full text-center group hover:border-luxury-gold/40">
                   <CardContent className="p-8">
-                    <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:bg-luxury-gold/20 group-hover:scale-110">
+                    <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:bg-luxury-gold/20 group-hover:scale-110 ring-1 ring-luxury-gold/25">
                       <benefit.icon className="h-10 w-10 text-luxury-gold" />
                     </div>
                     <h3 className="font-luxury text-xl font-bold text-luxury-gold mb-4">

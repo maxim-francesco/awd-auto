@@ -1,4 +1,4 @@
-﻿import Layout from "@/components/layout/Layout"
+import Layout from "@/components/layout/Layout"
 import { Card, CardContent } from "@/components/ui/card"
 import { Shield, Search, Handshake, CheckCircle, Star } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
@@ -36,14 +36,10 @@ const DespreNoi = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-luxury-darker via-luxury-dark to-luxury-darker">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(212,176,88,0.15),transparent_50%)]" />
-        </div>
-        
+      <section className="relative min-h-[48vh] flex items-center justify-center overflow-hidden awd-subhero-to-light theme-dark-obsidian pt-16 pb-24">
         <Container className="relative z-10">
           <AnimatedSection className="max-w-4xl mx-auto text-center">
-            <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-luxury-gold via-white to-luxury-gold bg-clip-text text-transparent mb-6">
+            <h1 className="font-luxury text-4xl md:text-6xl font-bold bg-gradient-to-r from-[#E0BA65] via-[#F9F7F2] to-[#E0BA65] bg-clip-text text-transparent mb-6">
               Pasiune pentru Mașini de Calitate, Respect pentru Clienți
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
@@ -54,13 +50,13 @@ const DespreNoi = () => {
       </section>
 
       {/* Founder's Story Section */}
-      <section className="py-20 bg-background">
-        <Container>
+      <section className="py-20 awd-section-light-to-dark theme-light-ivory">
+        <Container className="relative z-10">
             <AnimatedSection>
                 <div className="max-w-3xl mx-auto text-center space-y-6">
                     <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold">Povestea Noastră</h2>
                     <p className="text-muted-foreground leading-relaxed">Motorul și sufletul acestei afaceri de familie este Laurentiu Csibi, omul care demonstrează că pasiunea, onestitatea și responsabilitatea față de clienți sunt valorile care ne propulsează către succes.</p>
-                     <blockquote className="border-l-4 border-luxury-gold pl-6 py-2 italic text-foreground/80 text-left md:text-center">
+                     <blockquote className="border-l-4 border-luxury-gold pl-6 py-4 italic text-foreground/90 text-left md:text-center bg-card/80 rounded-r-xl shadow-sm">
                         "Fiecare mașină are o poveste și fiecare client are un vis. Misiunea mea este să le aduc împreună. La AWD Auto, nu facem compromisuri când vine vorba de calitate și corectitudine. O mașină excelentă și un client fericit sunt cea mai mare satisfacție a mea."
                     </blockquote>
                     <p className="font-semibold text-foreground">- Laurentiu Csibi, Fondator AWD Auto</p>
@@ -70,8 +66,8 @@ const DespreNoi = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-luxury-darker">
-        <Container>
+      <section className="py-20 awd-section-dark-to-light theme-dark-graphite">
+        <Container className="relative z-10">
             <AnimatedSection className="text-center mb-16">
                  <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
                     Ce Spun Clienții Noștri
@@ -104,8 +100,8 @@ const DespreNoi = () => {
       </section>
 
       {/* Mission & Values Section */}
-      <section className="py-20 bg-background">
-        <Container>
+      <section className="py-20 awd-section-light-to-dark theme-light-stone">
+        <Container className="relative z-10">
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
               Valorile care Ne Ghidează
@@ -116,7 +112,7 @@ const DespreNoi = () => {
             <StaggeredItem>
               <Card className="luxury-card h-full">
                 <CardContent className="p-8 text-center">
-                  <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 ring-1 ring-luxury-gold/25">
                     <Search className="h-10 w-10 text-luxury-gold" />
                   </div>
                   <h3 className="font-luxury text-xl font-bold text-luxury-gold mb-4">
@@ -133,7 +129,7 @@ const DespreNoi = () => {
             <StaggeredItem>
               <Card className="luxury-card h-full">
                 <CardContent className="p-8 text-center">
-                  <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 ring-1 ring-luxury-gold/25">
                     <Shield className="h-10 w-10 text-luxury-gold" />
                   </div>
                   <h3 className="font-luxury text-xl font-bold text-luxury-gold mb-4">
@@ -150,7 +146,7 @@ const DespreNoi = () => {
             <StaggeredItem>
               <Card className="luxury-card h-full">
                 <CardContent className="p-8 text-center">
-                  <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 ring-1 ring-luxury-gold/25">
                     <Handshake className="h-10 w-10 text-luxury-gold" />
                   </div>
                   <h3 className="font-luxury text-xl font-bold text-luxury-gold mb-4">
@@ -168,8 +164,8 @@ const DespreNoi = () => {
       </section>
 
       {/* Why Choose Us Section */}
-      <AnimatedSection className="py-20 bg-luxury-darker">
-        <Container>
+      <AnimatedSection className="py-24 awd-stage-obsidian-ambient theme-dark-obsidian">
+        <Container className="relative z-10">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">

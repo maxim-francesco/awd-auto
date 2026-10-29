@@ -31,10 +31,10 @@ const Header = () => {
 
   return (
     <motion.header 
-      className={`sticky top-0 z-50 w-full border-b border-border/40 transition-all duration-300 ${
+      className={`sticky top-0 z-50 w-full border-b border-white/10 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-luxury-darker/80 backdrop-blur-xl shadow-lg' 
-          : 'bg-luxury-darker/95 backdrop-blur-md'
+          ? 'bg-[#0D1117]/90 backdrop-blur-xl shadow-[0_12px_32px_-12px_rgba(0,0,0,0.75)]' 
+          : 'bg-gradient-to-b from-[#0D1117] to-[#141B22]/95 backdrop-blur-md'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}

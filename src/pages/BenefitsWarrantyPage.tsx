@@ -1,4 +1,4 @@
-﻿import Layout from "@/components/layout/Layout"
+import Layout from "@/components/layout/Layout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { AlertCircle, Search, ListChecks, Percent, Shield, Clock, HardDrive, Cpu, Check, Calendar, Users, Target, ShieldCheck } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
@@ -128,8 +128,8 @@ const BenefitsWarrantyPage = () => {
   return (
     <Layout>
       {/* Hero Section */}
-       <section className="bg-luxury-darker py-16 md:py-20">
-        <Container className="text-center">
+       <section className="awd-subhero-to-light theme-dark-obsidian pt-16 pb-20 md:pt-20 md:pb-24">
+        <Container className="text-center relative z-10">
             <AnimatedSection>
                 <h1 className="text-4xl lg:text-5xl font-bold text-luxury-gold font-luxury">
                 Liniștea Ta Este Prioritatea Noastră
@@ -142,8 +142,8 @@ const BenefitsWarrantyPage = () => {
       </section>
 
       {/* Warranty Plans Section */}
-      <section className="py-20 bg-luxury-darker">
-        <Container>
+      <section className="py-20 awd-section-dark-to-light theme-dark-graphite">
+        <Container className="relative z-10">
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
               Pachete de Garanție Extinsă
@@ -175,7 +175,7 @@ const BenefitsWarrantyPage = () => {
                   </CardHeader>
                   <CardContent className="space-y-6 flex-grow flex flex-col">
                     <div className="space-y-4 text-center">
-                      <div className="bg-card p-4 rounded-lg">
+                      <div className="bg-[#0D1117]/60 border border-border/50 p-4 rounded-lg">
                         <p className="text-xs font-semibold text-muted-foreground uppercase">Eligibilitate</p>
                         <div className="flex justify-center gap-4 mt-2">
                             <div className="flex items-center gap-2">
@@ -189,13 +189,13 @@ const BenefitsWarrantyPage = () => {
                         </div>
                       </div>
                       
-                      <div className="bg-card p-4 rounded-lg">
+                      <div className="bg-[#0D1117]/60 border border-border/50 p-4 rounded-lg">
                           <p className="text-xs font-semibold text-muted-foreground uppercase">Acoperire</p>
                           <p className="text-foreground mt-1">{plan.coverage}</p>
                       </div>
                        
                        {plan.claimLimit && (
-                        <div className="bg-card p-4 rounded-lg">
+                        <div className="bg-[#0D1117]/60 border border-border/50 p-4 rounded-lg">
                           <p className="text-xs font-semibold text-muted-foreground uppercase">Limită de îndeplinire</p>
                           <p className="text-foreground mt-1">{plan.claimLimit}</p>
                       </div>
@@ -231,7 +231,7 @@ const BenefitsWarrantyPage = () => {
           </StaggeredGrid>
           
           <AnimatedSection className="max-w-4xl mx-auto mt-12">
-            <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-6 flex items-center gap-4">
+            <div className="bg-[#0D1117]/80 border border-blue-400/35 rounded-xl p-6 flex items-center gap-4 shadow-lg">
                 <AlertCircle className="h-8 w-8 text-blue-400 flex-shrink-0" />
                 <div>
                     <h4 className="font-semibold text-luxury-gold">Notă importantă pentru vehicule hibrid</h4>
@@ -244,8 +244,8 @@ const BenefitsWarrantyPage = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-background">
-        <Container>
+      <section className="py-20 awd-flow-ivory-to-charcoal theme-light-ivory">
+        <Container className="relative z-10">
           <AnimatedSection className="text-center mb-16">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
               Beneficiile Tale Când Alegi AWD Auto
@@ -257,7 +257,7 @@ const BenefitsWarrantyPage = () => {
               <StaggeredItem key={index}>
                 <Card className="luxury-card h-full text-center group">
                   <CardContent className="p-8">
-                    <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:bg-luxury-gold/20 group-hover:scale-110">
+                    <div className="bg-luxury-gold/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 transition-all duration-300 group-hover:bg-luxury-gold/20 group-hover:scale-110 ring-1 ring-luxury-gold/25">
                       <benefit.icon className="h-10 w-10 text-luxury-gold" />
                     </div>
                     <h3 className="font-luxury text-xl font-bold text-luxury-gold mb-4">
@@ -275,8 +275,8 @@ const BenefitsWarrantyPage = () => {
       </section>
 
       {/* FAQ Section */}
-      <AnimatedSection className="py-20 bg-background">
-        <Container className="max-w-screen-lg">
+      <AnimatedSection className="py-24 awd-stage-obsidian-ambient theme-dark-obsidian">
+        <Container className="max-w-screen-lg relative z-10">
           <div className="text-center mb-16">
             <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
               Întrebări Frecvente
@@ -285,7 +285,7 @@ const BenefitsWarrantyPage = () => {
 
           <Accordion type="single" collapsible className="w-full space-y-4">
             {faqItems.map((item, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="luxury-card border-none">
+              <AccordionItem key={index} value={`item-${index}`} className="luxury-card border border-border/60">
                 <AccordionTrigger className="px-6 py-4 text-left font-semibold text-foreground hover:no-underline">
                   {item.question}
                 </AccordionTrigger>

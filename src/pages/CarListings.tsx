@@ -181,69 +181,77 @@ const CarListings = () => {
 
   return (
     <Layout>
-      <Container className="py-8">
-        <section className="text-center py-8 md:py-12">
-          <h1 className="text-4xl lg:text-5xl font-bold text-luxury-gold">
-            Găsește Mașina Potrivită în Stocul Nostru
-          </h1>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Folosește filtrele de mai jos pentru a explora oferta noastră completă de autoturisme rulate.
-          </p>
+      <div className="awd-catalog-canvas min-h-screen">
+        {/* Top Hero Banner in Deep Obsidian -> Graphite -> Warm Ivory */}
+        <section className="text-center pt-10 pb-10 md:pt-14 md:pb-12 theme-dark-obsidian relative">
+          <Container>
+            <h1 className="text-4xl lg:text-5xl font-bold text-luxury-gold">
+              Găsește Mașina Potrivită în Stocul Nostru
+            </h1>
+            <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+              Folosește filtrele de mai jos pentru a explora oferta noastră completă de autoturisme rulate.
+            </p>
+          </Container>
         </section>
 
-        {/* Top Search & Active Filters Bar */}
-        <StockFilters
-          facets={facets}
-          filters={filters}
-          onFilterChange={handleFilterChange}
-          filteredCount={facets.filteredListings.length}
-          totalCount={allListings.length}
-        />
+        {/* Main Filter & Catalog Stage in Warm Ivory -> Soft Stone */}
+        <div className="theme-light-ivory pb-24 pt-12 relative z-10">
+          <Container>
+            {/* Top Search & Active Filters Bar */}
+            <StockFilters
+              facets={facets}
+              filters={filters}
+              onFilterChange={handleFilterChange}
+              filteredCount={facets.filteredListings.length}
+              totalCount={allListings.length}
+            />
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Desktop Filter Sidebar */}
-          <DesktopFilterSidebar
-            facets={facets}
-            filters={filters}
-            onFilterChange={handleFilterChange}
-            filteredCount={facets.filteredListings.length}
-            totalCount={allListings.length}
-          />
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+              {/* Desktop Filter Sidebar */}
+              <DesktopFilterSidebar
+                facets={facets}
+                filters={filters}
+                onFilterChange={handleFilterChange}
+                filteredCount={facets.filteredListings.length}
+                totalCount={allListings.length}
+              />
 
-          {/* Main Listings Content */}
-          <main className="lg:col-span-3">
-            {/* Header Result Count & Sort Dropdown */}
-            <AnimatedSection className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 space-y-4 sm:space-y-0">
-              <div className="text-sm text-muted-foreground font-medium">
-                {!loading && (
-                  <span>
-                    Afișare <strong className="text-foreground">{facets.filteredListings.length}</strong> din{" "}
-                    <strong className="text-foreground">{allListings.length}</strong> mașini
-                  </span>
-                )}
-              </div>
+              {/* Main Listings Content */}
+              <main className="lg:col-span-3">
+                {/* Header Result Count & Sort Dropdown */}
+                <AnimatedSection className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 space-y-4 sm:space-y-0">
+                  <div className="text-sm text-muted-foreground font-medium">
+                    {!loading && (
+                      <span>
+                        Afișare <strong className="text-foreground">{facets.filteredListings.length}</strong> din{" "}
+                        <strong className="text-foreground">{allListings.length}</strong> mașini
+                      </span>
+                    )}
+                  </div>
 
-              <div className="flex items-center gap-3">
-                <Select value={sortOption} onValueChange={handleSortChange}>
-                  <SelectTrigger className="w-48 min-h-[44px]">
-                    <SelectValue placeholder="Sortează după" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="newest">Cele mai noi</SelectItem>
-                    <SelectItem value="price_asc">Preț crescător</SelectItem>
-                    <SelectItem value="price_desc">Preț descrescător</SelectItem>
-                    <SelectItem value="mileage_asc">Kilometraj crescător</SelectItem>
-                    <SelectItem value="mileage_desc">Kilometraj descrescător</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </AnimatedSection>
+                  <div className="flex items-center gap-3">
+                    <Select value={sortOption} onValueChange={handleSortChange}>
+                      <SelectTrigger className="w-48 min-h-[44px] bg-card border-border">
+                        <SelectValue placeholder="Sortează după" />
+                      </SelectTrigger>
+                      <SelectContent className="theme-light-ivory">
+                        <SelectItem value="newest">Cele mai noi</SelectItem>
+                        <SelectItem value="price_asc">Preț crescător</SelectItem>
+                        <SelectItem value="price_desc">Preț descrescător</SelectItem>
+                        <SelectItem value="mileage_asc">Kilometraj crescător</SelectItem>
+                        <SelectItem value="mileage_desc">Kilometraj descrescător</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </AnimatedSection>
 
-            {/* Car Grid */}
-            {renderListings()}
-          </main>
+                {/* Car Grid */}
+                {renderListings()}
+              </main>
+            </div>
+          </Container>
         </div>
-      </Container>
+      </div>
     </Layout>
   );
 };

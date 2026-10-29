@@ -1,4 +1,4 @@
-﻿import Layout from "@/components/layout/Layout";
+import Layout from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import Container from "@/components/ui/Container";
 
@@ -11,19 +11,24 @@ const TermeniConditii = () => {
 
   return (
     <Layout>
-      <div className="bg-background py-12 md:py-20">
-        <Container className="max-w-screen-lg">
-          <AnimatedSection>
-            <div className="mb-12 text-center">
+      <div className="awd-catalog-canvas min-h-screen">
+        <div className="pt-10 pb-10 text-center theme-dark-obsidian">
+          <Container className="max-w-screen-lg">
+            <AnimatedSection>
               <h1 className="font-luxury text-4xl md:text-5xl font-bold text-luxury-gold">
                 Termeni și Condiții
               </h1>
               <p className="mt-4 text-muted-foreground">
                 Ultima actualizare: {currentDate}
               </p>
-            </div>
+            </AnimatedSection>
+          </Container>
+        </div>
 
-            <div className="prose prose-invert max-w-none mx-auto text-muted-foreground prose-h2:text-luxury-gold prose-h2:font-luxury prose-h3:text-foreground prose-h3:font-luxury prose-strong:text-foreground prose-a:text-luxury-gold hover:prose-a:text-luxury-gold-hover">
+        <div className="pt-12 pb-24 theme-light-ivory">
+          <Container className="max-w-screen-lg">
+            <AnimatedSection>
+              <div className="luxury-card p-8 md:p-12 prose max-w-none mx-auto text-muted-foreground prose-h2:text-luxury-gold prose-h2:font-luxury prose-h3:text-foreground prose-h3:font-luxury prose-strong:text-foreground prose-a:text-luxury-gold hover:prose-a:text-luxury-gold-hover">
               
               <h2>1. Introducere și Datele Companiei</h2>
               <p>
@@ -99,9 +104,10 @@ const TermeniConditii = () => {
                 Vânzătorul își rezervă dreptul de a modifica sau actualiza oricând conținutul acestor Termeni și Condiții, fără o notificare prealabilă. Versiunea actualizată va fi publicată pe Site și va intra în vigoare imediat. Este responsabilitatea Utilizatorului de a verifica periodic această pagină.
               </p>
 
-            </div>
-          </AnimatedSection>
-        </Container>
+              </div>
+            </AnimatedSection>
+          </Container>
+        </div>
       </div>
     </Layout>
   );
