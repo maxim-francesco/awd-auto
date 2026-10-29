@@ -231,10 +231,10 @@ const CarListings = () => {
 
                   <div className="flex items-center gap-3">
                     <Select value={sortOption} onValueChange={handleSortChange}>
-                      <SelectTrigger className="w-48 min-h-[44px] bg-card border-border">
+                      <SelectTrigger className="w-48 min-h-[44px] bg-card border-border text-foreground font-medium shadow-sm">
                         <SelectValue placeholder="Sortează după" />
                       </SelectTrigger>
-                      <SelectContent className="theme-light-ivory">
+                      <SelectContent className="theme-light-ivory text-foreground border-border">
                         <SelectItem value="newest">Cele mai noi</SelectItem>
                         <SelectItem value="price_asc">Preț crescător</SelectItem>
                         <SelectItem value="price_desc">Preț descrescător</SelectItem>

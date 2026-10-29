@@ -27,7 +27,7 @@ const MasiniVandute = () => {
 
         <div className="pt-14 pb-24 theme-light-ivory">
           <Container>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 lg:gap-7 mb-12">
             {loading ? (
               // Show a reasonable number of skeletons while loading
               [...Array(8)].map((_, index) => (

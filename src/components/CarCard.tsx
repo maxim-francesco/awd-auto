@@ -1,8 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
-import { Button } from "@/components/ui/luxury-button"
 import { Calendar, Fuel, Gauge, Settings } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { APIListing, getAttributeValueById } from "@/lib/attributes"
@@ -31,105 +29,108 @@ const CarCard = ({ listing }: CarCardProps) => {
   const isSold = listing.status === 'SOLD';
 
   return (
-    <motion.div 
-      className="luxury-card group"
-      whileHover={{ 
-        scale: isSold ? 1 : 1.03, 
-        y: isSold ? 0 : -5,
-        boxShadow: isSold ? "0 10px 30px -10px hsl(220 13% 6% / 0.8)" : "0 25px 50px -12px hsl(var(--luxury-gold) / 0.4)"
-      }}
-      transition={{ 
-        duration: 0.3, 
-        ease: [0.4, 0, 0.2, 1] 
-      }}
+    <article
+      data-card="car-card"
+      data-sold={isSold ? "true" : "false"}
+      className="awd-gallery-card luxury-card group h-full"
     >
-      <div className="relative overflow-hidden rounded-t-xl">
+      {/* 1. Vehicle Photograph — 3:2 Native Proportions, Unobstructed Framing */}
+      <div className="relative aspect-[3/2] w-full overflow-hidden bg-[#141B22]">
         {isSold && (
-          <div className="absolute inset-0 flex items-center justify-center z-20 bg-black/30">
-            <div className="border-4 border-white bg-black/60 text-white text-2xl font-bold px-6 py-2 -rotate-12 transform uppercase tracking-widest backdrop-blur-sm">
+          <div className="absolute inset-0 flex items-center justify-center z-20 bg-[#0D1117]/35 backdrop-blur-[1px]">
+            <div className="border border-white/75 bg-[#0D1117]/82 text-[#F9F7F2] text-sm font-luxury font-bold px-5 py-2 rounded-md uppercase tracking-[0.22em] shadow-xl backdrop-blur-md">
               VÂNDUT
             </div>
           </div>
         )}
-        
-        {isVatDeductible && !isSold && (
-          <span 
-            className="absolute top-3 right-3 text-xs font-bold px-2.5 py-1 rounded-md shadow-lg z-10 border border-black/10"
-            style={{ 
-              background: 'linear-gradient(135deg, #CFA44A 0%, #E0BA65 50%, #C89B3C 100%)',
-              color: '#0D1117'
-            }}
-          >
-            TVA Deductibil
-          </span>
-        )}
-        <img 
-          src={listing.images?.[0]?.url || 'https://via.placeholder.com/600x400.png?text=AWD+Auto'} 
+
+        <img
+          src={listing.images?.[0]?.url || 'https://via.placeholder.com/600x400.png?text=AWD+Auto'}
           alt={listing.title + ' de vânzare la parc auto Cluj-Napoca'}
           loading="eager"
           decoding="async"
           className={cn(
-            "w-full h-48 object-cover transition-transform duration-500",
-            !isSold && "group-hover:scale-110",
-            isSold && "grayscale"
+            "w-full h-full object-cover object-center awd-gallery-photo",
+            isSold && "grayscale contrast-95 opacity-90"
           )}
         />
-        <div className={cn("absolute inset-0 bg-gradient-to-t from-black/60 to-transparent", isSold && "from-black/80")} />
       </div>
 
-      <div className="p-6 space-y-4">
-        <div className="space-y-2">
-          <h3 className={cn(
-            "font-luxury text-xl font-bold text-foreground transition-colors",
-            isSold ? "whitespace-normal" : "truncate group-hover:text-luxury-gold"
-          )}>
+      {/* Card Editorial Body */}
+      <div className="flex flex-col flex-1 p-5 sm:p-6 justify-between gap-4">
+        <div className="space-y-3">
+          {/* 2. Full Vehicle Name — Natural Wrap, Never Truncated */}
+          <h3 className="awd-gallery-card-title text-lg sm:text-[1.15rem] font-bold whitespace-normal break-words min-h-[3rem]">
             {listing.title}
           </h3>
-          <p className={cn("text-2xl font-bold text-luxury-gold", isSold && "text-muted-foreground")}>
-            €{(listing.price || 0).toLocaleString()}
-          </p>
+
+          {/* 3. Price & Commercial VAT Badge */}
+          <div className="flex items-center justify-between gap-2 pt-0.5 flex-wrap">
+            <div className="flex items-baseline gap-2">
+              <span
+                aria-hidden="true"
+                className="inline-block w-1 h-5 rounded-full bg-luxury-gold/80 self-center"
+              />
+              <p className="awd-gallery-card-price text-2xl font-bold">
+                €{(listing.price || 0).toLocaleString()}
+              </p>
+            </div>
+
+            {isVatDeductible && !isSold && (
+              <span className="awd-gallery-vat-badge">
+                TVA Deductibil
+              </span>
+            )}
+          </div>
         </div>
 
+        {/* 4. Technical Specifications & 5. Primary CTA */}
         {!isSold && (
-            <>
-                <div className="grid grid-cols-2 gap-3 text-sm">
-                  <div className="flex items-center space-x-2 text-muted-foreground">
-                    <Calendar className="h-4 w-4 text-luxury-gold" />
-                    <span>{year}</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-muted-foreground">
-                    <Gauge className="h-4 w-4 text-luxury-gold" />
-                    <span>{mileage} km</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-muted-foreground">
-                    <Fuel className="h-4 w-4 text-luxury-gold" />
-                    <span>{fuelType}</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-muted-foreground">
-                    <Settings className="h-4 w-4 text-luxury-gold" />
-                    <span>{transmission}</span>
-                  </div>
-                </div>
-
-                <div className="pt-2">
-                    <Link to={`/masini-disponibile/${listing.id}`} state={{ listing }} className="block">
-                        <Button className="w-full min-h-[44px]" size="sm">
-                            Vezi Detalii
-                        </Button>
-                    </Link>
-                </div>
-            </>
-        )}
-        
-         {isSold && (
-            <div className="pt-2">
-                <Button className="w-full min-h-[44px]" size="sm" disabled>
-                    Vândut
-                </Button>
+          <div className="space-y-4 mt-auto pt-1">
+            <div className="awd-gallery-spec-grid">
+              <div className="awd-gallery-spec-item">
+                <Calendar className="h-4 w-4 awd-gallery-spec-icon" />
+                <span className="truncate">{year}</span>
+              </div>
+              <div className="awd-gallery-spec-item">
+                <Gauge className="h-4 w-4 awd-gallery-spec-icon" />
+                <span className="truncate">{mileage} km</span>
+              </div>
+              <div className="awd-gallery-spec-item">
+                <Fuel className="h-4 w-4 awd-gallery-spec-icon" />
+                <span className="truncate">{fuelType}</span>
+              </div>
+              <div className="awd-gallery-spec-item">
+                <Settings className="h-4 w-4 awd-gallery-spec-icon" />
+                <span className="truncate">{transmission}</span>
+              </div>
             </div>
+
+            <div className="pt-0.5">
+              <Link
+                to={`/masini-disponibile/${listing.id}`}
+                state={{ listing }}
+                className="awd-gallery-cta"
+              >
+                Vezi Detalii
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {isSold && (
+          <div className="mt-auto pt-2">
+            <button
+              type="button"
+              className="awd-gallery-cta-sold"
+              disabled
+            >
+              Vândut
+            </button>
+          </div>
         )}
       </div>
-    </motion.div>
+    </article>
   )
 }
 

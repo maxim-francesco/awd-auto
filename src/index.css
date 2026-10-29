@@ -91,44 +91,55 @@
   .theme-light-mist,
   .theme-light-pearl,
   .light {
-    --background: 40 33% 93%; /* #F4F0E8 Warm Ivory */
-    --foreground: 215 28% 10%; /* #121820 Deep Obsidian Text */
-    --card: 43 38% 97%; /* #F9F7F2 Pearl White */
+    --background: 40 33% 93%;
+    /* #F4F0E8 Warm Ivory */
+    --foreground: 215 28% 10%;
+    /* #121820 Deep Obsidian Text */
+    --card: 43 38% 97%;
+    /* #F9F7F2 Pearl White */
     --card-foreground: 215 28% 10%;
     --popover: 43 38% 97%;
     --popover-foreground: 215 28% 10%;
     --primary: 39 64% 46%;
     --primary-foreground: 43 38% 97%;
-    --secondary: 37 22% 89%; /* #E9E4DC Soft Stone */
+    --secondary: 37 22% 89%;
+    /* #E9E4DC Soft Stone */
     --secondary-foreground: 215 28% 12%;
     --muted: 37 20% 88%;
-    --muted-foreground: 210 16% 34%; /* #485460 High-contrast Slate */
+    --muted-foreground: 210 16% 34%;
+    /* #485460 High-contrast Slate */
     --accent: 39 64% 46%;
     --accent-foreground: 43 38% 97%;
     --border: 36 18% 81%;
     --input: 36 18% 83%;
     --ring: 38 66% 42%;
     /* Recalibrate luxury-gold inside light surfaces for WCAG AA+ contrast */
-    --luxury-gold: 37 68% 36%; /* Rich Burnished Bronze-Gold #9A6B1D for crisp readability on light ivory */
+    --luxury-gold: 37 68% 36%;
+    /* Rich Burnished Bronze-Gold #9A6B1D for crisp readability on light ivory */
     --luxury-gold-hover: 37 72% 30%;
     --shadow-card: 0 18px 42px -14px rgba(18, 24, 32, 0.09), 0 4px 12px -2px rgba(18, 24, 32, 0.04);
     --shadow-luxury: 0 18px 38px -10px rgba(154, 107, 29, 0.24);
   }
 
   .theme-light-stone {
-    --background: 37 22% 89%; /* #E9E4DC Soft Stone */
-    --card: 43 38% 97%; /* #F9F7F2 Pearl White */
+    --background: 37 22% 89%;
+    /* #E9E4DC Soft Stone */
+    --card: 43 38% 97%;
+    /* #F9F7F2 Pearl White */
   }
 
   .theme-light-mist {
-    --background: 202 18% 91%; /* #E3E8EB Silver Mist */
-    --card: 43 38% 97%; /* #F9F7F2 Pearl White */
+    --background: 202 18% 91%;
+    /* #E3E8EB Silver Mist */
+    --card: 43 38% 97%;
+    /* #F9F7F2 Pearl White */
     --muted: 202 16% 86%;
     --border: 204 16% 80%;
   }
 
   .theme-light-pearl {
-    --background: 43 38% 97%; /* #F9F7F2 Pearl White */
+    --background: 43 38% 97%;
+    /* #F9F7F2 Pearl White */
     --card: 0 0% 100%;
     --muted: 40 25% 92%;
     --border: 38 18% 84%;
@@ -136,9 +147,11 @@
 
   /* Contextual Dark Surface Scopes */
   .theme-dark-obsidian {
-    --background: 215 28% 7%; /* #0D1117 Deep Obsidian */
+    --background: 215 28% 7%;
+    /* #0D1117 Deep Obsidian */
     --foreground: 40 25% 96%;
-    --card: 210 22% 13%; /* #1A2129 Graphite Card */
+    --card: 210 22% 13%;
+    /* #1A2129 Graphite Card */
     --card-foreground: 40 25% 96%;
     --muted: 210 20% 16%;
     --muted-foreground: 210 14% 74%;
@@ -149,9 +162,11 @@
   }
 
   .theme-dark-graphite {
-    --background: 210 22% 14%; /* #1C242C Graphite */
+    --background: 210 22% 14%;
+    /* #1C242C Graphite */
     --foreground: 40 25% 96%;
-    --card: 210 18% 18%; /* Elevated Charcoal-Graphite */
+    --card: 210 18% 18%;
+    /* Elevated Charcoal-Graphite */
     --card-foreground: 40 25% 96%;
     --muted: 210 16% 21%;
     --muted-foreground: 210 14% 76%;
@@ -162,9 +177,11 @@
   }
 
   .theme-dark-charcoal {
-    --background: 210 15% 23%; /* #313A43 Soft Charcoal */
+    --background: 210 15% 23%;
+    /* #313A43 Soft Charcoal */
     --foreground: 40 25% 96%;
-    --card: 212 22% 14%; /* Contrasting deep Graphite card on Soft Charcoal */
+    --card: 212 22% 14%;
+    /* Contrasting deep Graphite card on Soft Charcoal */
     --card-foreground: 40 25% 96%;
     --muted: 210 18% 18%;
     --muted-foreground: 210 15% 78%;
@@ -191,7 +208,12 @@
   }
 
   /* Typography Hierarchy */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-luxury font-bold tracking-tight text-luxury-gold;
   }
 
@@ -224,6 +246,222 @@
     box-shadow:
       0 22px 48px -16px rgba(5, 8, 12, 0.72),
       inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+  }
+
+  /* ==========================================================================
+     AUTOMOTIVE GALLERY CARD SYSTEM (Stage 02–08)
+     Quiet Luxury, Editorial Proportions, Deep Graphite & Warm Pearl Surfaces
+     ========================================================================== */
+  .awd-gallery-card {
+    @apply relative flex flex-col overflow-hidden rounded-2xl transition-all duration-300;
+    background: linear-gradient(165deg, #FAF8F3 0%, #F4EFE6 100%);
+    border: 1px solid rgba(28, 36, 44, 0.09);
+    box-shadow:
+      0 14px 34px -12px rgba(18, 24, 32, 0.08),
+      0 3px 10px -2px rgba(18, 24, 32, 0.04),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+  }
+
+  @media (hover: hover) {
+    .awd-gallery-card:not([data-sold="true"]):hover {
+      transform: translateY(-4px);
+      border-color: rgba(154, 107, 29, 0.28);
+      box-shadow:
+        0 26px 52px -16px rgba(18, 24, 32, 0.14),
+        0 8px 20px -4px rgba(18, 24, 32, 0.06),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+    }
+  }
+
+  /* Dark-section adaptation (e.g. Ultimele Vândute on Homepage) */
+  .theme-dark-obsidian .awd-gallery-card,
+  .theme-dark-graphite .awd-gallery-card,
+  .theme-dark-charcoal .awd-gallery-card {
+    background: linear-gradient(165deg, rgba(31, 39, 48, 0.94) 0%, rgba(19, 25, 32, 0.97) 100%);
+    border-color: rgba(227, 232, 235, 0.1);
+    box-shadow:
+      0 20px 44px -14px rgba(5, 8, 12, 0.68),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+  }
+
+  /* Title & Price Typography inside Automotive Gallery Card */
+  .awd-gallery-card-title {
+    font-family: var(--font-luxury);
+    color: #141B22;
+    letter-spacing: -0.015em;
+    line-height: 1.32;
+  }
+
+  @media (hover: hover) {
+    .awd-gallery-card:not([data-sold="true"]):hover .awd-gallery-card-title {
+      color: #0D1117;
+    }
+  }
+
+  .theme-dark-obsidian .awd-gallery-card-title,
+  .theme-dark-graphite .awd-gallery-card-title,
+  .theme-dark-charcoal .awd-gallery-card-title {
+    color: #F4F0E8;
+  }
+
+  .awd-gallery-card-price {
+    font-family: var(--font-luxury);
+    color: #121820;
+    letter-spacing: -0.02em;
+  }
+
+  .theme-dark-obsidian .awd-gallery-card-price,
+  .theme-dark-graphite .awd-gallery-card-price,
+  .theme-dark-charcoal .awd-gallery-card-price {
+    color: #E5DFD3;
+  }
+
+  /* VAT Deductible Badge — Quiet Luxury Editorial Pill */
+  .awd-gallery-vat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    background-color: rgba(200, 155, 60, 0.13);
+    color: #7D5514;
+    border: 1px solid rgba(154, 107, 29, 0.26);
+    white-space: nowrap;
+  }
+
+  .awd-gallery-vat-badge::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    background-color: #B6842D;
+    flex-shrink: 0;
+  }
+
+  .theme-dark-obsidian .awd-gallery-vat-badge,
+  .theme-dark-graphite .awd-gallery-vat-badge,
+  .theme-dark-charcoal .awd-gallery-vat-badge {
+    background-color: rgba(212, 176, 88, 0.14);
+    color: #E0BA65;
+    border-color: rgba(212, 176, 88, 0.32);
+  }
+
+  /* Technical Specifications Matrix */
+  .awd-gallery-spec-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.625rem 0.75rem;
+    padding: 0.875rem 0;
+    border-top: 1px solid rgba(28, 36, 44, 0.08);
+    border-bottom: 1px solid rgba(28, 36, 44, 0.08);
+  }
+
+  .theme-dark-obsidian .awd-gallery-spec-grid,
+  .theme-dark-graphite .awd-gallery-spec-grid,
+  .theme-dark-charcoal .awd-gallery-spec-grid {
+    border-top-color: rgba(227, 232, 235, 0.09);
+    border-bottom-color: rgba(227, 232, 235, 0.09);
+  }
+
+  .awd-gallery-spec-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #3B4652;
+  }
+
+  .theme-dark-obsidian .awd-gallery-spec-item,
+  .theme-dark-graphite .awd-gallery-spec-item,
+  .theme-dark-charcoal .awd-gallery-spec-item {
+    color: #C7D0D8;
+  }
+
+  .awd-gallery-spec-icon {
+    color: #8C6D32;
+    flex-shrink: 0;
+  }
+
+  .theme-dark-obsidian .awd-gallery-spec-icon,
+  .theme-dark-graphite .awd-gallery-spec-icon,
+  .theme-dark-charcoal .awd-gallery-spec-icon {
+    color: #D4B058;
+  }
+
+  /* Primary Card CTA — Deep Graphite with Champagne Gold Hover Accent */
+  .awd-gallery-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    background-color: #161D24;
+    color: #F9F7F2;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 6px 16px -6px rgba(13, 17, 23, 0.35);
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media (hover: hover) {
+    .awd-gallery-card:not([data-sold="true"]):hover .awd-gallery-cta,
+    .awd-gallery-cta:hover {
+      background-color: #0D1117;
+      border-color: rgba(200, 155, 60, 0.55);
+      color: #F4F0E8;
+      box-shadow: 0 10px 22px -6px rgba(13, 17, 23, 0.48);
+    }
+  }
+
+  .awd-gallery-cta:focus-visible {
+    outline: 2px solid #9A6B1D;
+    outline-offset: 2px;
+  }
+
+  /* Sold Card Status Button — Understated Architectural Pill */
+  .awd-gallery-cta-sold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 42px;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    background-color: rgba(28, 36, 44, 0.06);
+    color: #5C6773;
+    border: 1px solid rgba(28, 36, 44, 0.11);
+    cursor: not-allowed;
+  }
+
+  .theme-dark-obsidian .awd-gallery-cta-sold,
+  .theme-dark-graphite .awd-gallery-cta-sold,
+  .theme-dark-charcoal .awd-gallery-cta-sold {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #9AA5B1;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Pointer-Only Subtle Image Zoom */
+  .awd-gallery-photo {
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
+  }
+
+  @media (hover: hover) {
+    .awd-gallery-card:not([data-sold="true"]):hover .awd-gallery-photo {
+      transform: scale(1.04);
+    }
   }
 
   /* Buttons preserve metallic gold luxury across all themes */
@@ -410,11 +648,12 @@
 .awd-catalog-canvas {
   background:
     radial-gradient(50% 35% at 50% 0%, rgba(212, 176, 88, 0.10) 0%, transparent 70%),
-    linear-gradient(180deg, #0D1117 0%, #1C242C 150px, #F4F0E8 280px, #E9E4DC 94%, #0D1117 100%);
+    linear-gradient(180deg, #0D1117 0%, #1C242C 180px, #F4F0E8 340px, #E9E4DC 94%, #0D1117 100%);
 }
 
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
