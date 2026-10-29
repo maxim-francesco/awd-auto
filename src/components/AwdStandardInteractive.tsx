@@ -22,34 +22,34 @@ const STATIONS: StandardStation[] = [
   {
     id: "inspectie",
     number: "01",
-    title: "Inspecție Riguroasă 150+ Puncte",
+    title: "Inspecție Riguroasă în Peste 100 de Puncte",
     badge: "Control Tehnic Multi-Punct",
-    shortDesc: "Diagnoză computerizată completă, verificarea trenului de rulare, a motorului și a elementelor de siguranță activă.",
+    shortDesc: "Diagnoză computerizată completă, verificarea trenului de rulare, a motorului și a componentelor de siguranță activă.",
     fullDescription:
-      "Fiecare automobil care intră în showroom-ul AWD Auto parcurge o procedură tehnică exhaustivă. De la compresie și parametri motor până la geometria direcției și integritatea structurală, nicio mașină nu este pusă în vânzare fără avizul tehnic favorabil.",
+      "Înainte de a fi expus în showroom, fiecare automobil din parcul AWD Auto parcurge o inspecție tehnică amănunțită în peste 100 de puncte realizată alături de mecanici parteneri. Se verifică diagnoza OBD, trenul de rulare, sistemul de frânare, motorul și elementele structurale ale caroseriei.",
     highlights: [
       "Diagnoză electronică completă pentru toți parametrii OBD",
-      "Verificare suspensie, frânare și componente de siguranță",
+      "Verificare amănunțită suspensie, frânare și componente de siguranță",
       "Inspecție structurală a caroseriei fără daune majore",
-      "Test drive dinamic extins înainte de expunere"
+      "Test drive dinamic extins înainte de punerea în vânzare"
     ],
-    stats: { value: "150+", label: "Puncte verificate minuțios" },
+    stats: { value: "100+", label: "Puncte tehnice verificate minuțios" },
     image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1600&q=80",
-    tagline: "Standardul ingineresc aplicat fiecărui vehicul din stoc."
+    tagline: "Standardul tehnic riguros aplicat fiecărui vehicul din stoc."
   },
   {
     id: "legal",
     number: "02",
-    title: "RAR Efectuat & Kilometraj Certificat",
+    title: "RAR Efectuat & Kilometraj Garantat",
     badge: "Certificare & Conformitate",
     shortDesc: "Cartea de Identitate a Vehiculului (CIV) eliberată, inspecție tehnică periodică validă și rulaj asumat pe factură.",
     fullDescription:
-      "Eliminăm birocrația și incertitudinea. Toate autovehiculele noastre dețin documentația completă pregătită pentru înmatricularea imediată, iar istoricul de rulaj este verificat în baze internaționale și trecut explicit pe factura fiscală.",
+      "Eliminăm incertitudinea administrativă: vehiculele noastre dețin Cartea de Identitate a Vehiculului (CIV) eliberată de Registrul Auto Român și inspecția tehnică periodică validă. Istoricul de rulaj este verificat în baze de date internaționale și garantat juridic pe contract și factura fiscală.",
     highlights: [
       "CIV (Cartea de Identitate a Vehiculului) emisă de R.A.R.",
-      "Kilometri garantați juridic și menționați pe contract",
+      "Kilometri garantați juridic și menționați pe contract și factură",
       "Verificare istoric daune și baze de date internaționale",
-      "Dovada fiscală eliberată pe loc, fără datorii"
+      "Documentație completă pregătită pentru înmatriculare imediată"
     ],
     stats: { value: "100%", label: "Transparență contractuală" },
     image: "https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=1600&q=80",
@@ -58,38 +58,38 @@ const STATIONS: StandardStation[] = [
   {
     id: "garantie",
     number: "03",
-    title: "Garanție Extinsă Defend până la 36 Luni",
+    title: "Garanție Inclusă Defend (Extensie până la 36 Luni)",
     badge: "Siguranță Post-Vânzare",
-    shortDesc: "Pachete premium de acoperire pentru cutie de viteze, motor, turbină și sisteme de injecție cu acoperire națională.",
+    shortDesc: "Pachet de garanție de bază inclus în preț, cu opțiuni de extindere până la 36 de luni prin partenerul Defend Insurance.",
     fullDescription:
-      "Parteneriatul nostru oficial cu Defend Insurance îți asigură liniștea deplină la volan. Beneficiezi de acoperire în rețeaua autorizată la nivel național și european, inclusiv asistență rutieră dedicată.",
+      "Fiecare autovehicul comercializat de AWD Auto beneficiază de pachetul de garanție de bază inclus în prețul afișat, prin partenerul oficial Defend Insurance. În funcție de vârstă și rulaj, clienții pot alege extinderea protecției prin programele DELUXE, ADVANTAGE sau COMFORT pe 12, 24 sau până la 36 de luni.",
     highlights: [
-      "Acoperire completă pentru motor și transmisie",
-      "Valabilitate în orice service autorizat din România",
-      "Asistență rutieră non-stop și opțiuni de mobilitate",
-      "Flexibilitate: pachete de la 12 până la 36 de luni"
+      "Pachet de garanție de bază inclus în prețul afișat",
+      "Opțiuni de extindere: Programele DELUXE, ADVANTAGE, COMFORT",
+      "Acoperire pentru motor, cutie de viteze și componente esențiale",
+      "Valabilitate în rețelele de service autorizate la nivel național"
     ],
-    stats: { value: "36", label: "Luni garanție maximă disponibilă" },
+    stats: { value: "36", label: "Luni opțiune maximă extindere garanție" },
     image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80",
-    tagline: "Protecție financiară completă după momentul achiziției."
+    tagline: "Protecție financiară transparentă după momentul achiziției."
   },
   {
     id: "finantare",
     number: "04",
-    title: "Finanțare Rapidă cu Aprobare în 24H",
-    badge: "Soluții Leasing & Credit",
-    shortDesc: "Condiții avantajoase pentru persoane fizice și juridice, rate fixe în lei sau euro, chiar și cu 0% avans.",
+    title: "Finanțare Rapidă cu Parteneri Acreditați",
+    badge: "Soluții Credit & Leasing",
+    shortDesc: "Parteneriate oficiale cu UniCredit Consumer Financing, TBI Bank și BT Direct, avans de la 0% pentru PF.",
     fullDescription:
-      "Consultantul financiar AWD Auto gestionează dosarul tău direct cu principalii parteneri bancari (BT Leasing, BCR, Idea Leasing, Porsche Bank, TBI Bank). Răspunsul pre-aprobat este primit de regulă în mai puțin de o zi lucrătoare.",
+      "AWD Auto facilitează accesul direct la soluții de finanțare prin partenerii financiari acreditați: UniCredit Consumer Financing, TBI Bank și BT Direct. Timpul de răspuns preliminar este de la 15–120 minute (TBI Bank) până la maximum 24 de ore lucrătoare, cu avans flexibil de la 0% pentru persoane fizice.",
     highlights: [
+      "Parteneriate oficiale: UniCredit, TBI Bank, BT Direct",
       "Avans flexibil începând de la 0% pentru persoane fizice",
-      "Dobânzi competitive și rate fixe pe toată perioada",
-      "Procesare 100% online fără drumuri la bancă",
-      "Acceptăm venituri din străinătate, diurne și contracte PFA"
+      "Răspuns preliminar rapid de la 15 minute la 24 de ore",
+      "Eligibilitate inclusiv pentru salarii din străinătate, diurne și PFA"
     ],
-    stats: { value: "24h", label: "Timp mediu de aprobare dosar" },
+    stats: { value: "15m-24h", label: "Timp mediu răspuns preliminar" },
     image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1600&q=80",
-    tagline: "Acces facil și transparent la vehiculul dorit."
+    tagline: "Consultanță dedicată și acces facil la soluții financiare."
   }
 ]
 

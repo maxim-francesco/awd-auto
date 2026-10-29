@@ -96,7 +96,7 @@ const Index = () => {
               {/* Subtitle */}
               <AnimatedSection>
                 <p className="text-base sm:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed">
-                  Fiecare vehicul este atent selecționat, inspectat în 150+ puncte, cu RAR efectuat, kilometraj garantat contractual și finanțare aprobată pe loc în 24 de ore.
+                  Fiecare automobil este inspectat tehnic în peste 100 de puncte, deține RAR efectuat cu CIV inclus, kilometraj garantat pe contract și consultanță dedicată de finanțare.
                 </p>
               </AnimatedSection>
 
@@ -127,11 +127,11 @@ const Index = () => {
                 <div className="pt-6 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-[#C8A86B] shrink-0" />
-                    <span className="text-xs sm:text-sm text-slate-200 font-medium">100% RAR Efectuat</span>
+                    <span className="text-xs sm:text-sm text-slate-200 font-medium">100% RAR & CIV Efectuat</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-[#C8A86B] shrink-0" />
-                    <span className="text-xs sm:text-sm text-slate-200 font-medium">Garanție Până la 36 Luni</span>
+                    <span className="text-xs sm:text-sm text-slate-200 font-medium">Garanție Inclusă Defend</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-[#C8A86B] shrink-0" />
@@ -139,7 +139,7 @@ const Index = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-[#C8A86B] shrink-0" />
-                    <span className="text-xs sm:text-sm text-slate-200 font-medium">Finanțare Online 24h</span>
+                    <span className="text-xs sm:text-sm text-slate-200 font-medium">Finanțare Online Rapidă</span>
                   </div>
                 </div>
               </AnimatedSection>
@@ -270,7 +270,7 @@ const Index = () => {
               Planuri de Finanțare Adaptate Bugetului Tău
             </h2>
             <p className="text-[#4A5568] text-base sm:text-lg">
-              Aprobare dosar în sub 24 de ore, consultanță dedicată și parteneriate oficiale cu cele mai respectate bănci din România.
+              Consultanță dedicată, soluții flexibile cu avans de la 0% pentru persoane fizice și parteneriate oficiale cu UniCredit Consumer Financing, TBI Bank și BT Direct.
             </p>
           </div>
 

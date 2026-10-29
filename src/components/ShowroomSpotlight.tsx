@@ -77,15 +77,15 @@ const ShowroomSpotlight = ({ listing }: ShowroomSpotlightProps) => {
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#D8BA81] tracking-wider uppercase">
               <span className="w-2 h-2 rounded-full bg-[#C8A86B]" />
-              Inspecție Tehnică Finalizată • RAR Efectuat
+              Inspecție 100+ Puncte • RAR & CIV Efectuat
             </div>
 
-            <h3 className="font-luxury text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+            <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white leading-tight">
               {listing.title}
             </h3>
 
             <p className="text-slate-300 text-sm leading-relaxed">
-              Autoturism pregătit pentru livrare imediată din parcul nostru din Cluj-Napoca. Garanție extinsă Defend inclusă și verificare pe 150+ puncte tehnice.
+              Autoturism pregătit pentru livrare imediată din parcul nostru din Cluj-Napoca. Garanție de bază Defend inclusă în preț și inspecție tehnică amănunțită în peste 100 de puncte.
             </p>
           </div>
 
@@ -93,7 +93,7 @@ const ShowroomSpotlight = ({ listing }: ShowroomSpotlightProps) => {
           <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between">
             <div>
               <div className="text-xs text-slate-400">Preț Vânzare</div>
-              <div className="font-luxury text-3xl font-extrabold text-[#D8BA81]">
+              <div className="font-heading text-3xl font-extrabold text-[#D8BA81]">
                 €{price.toLocaleString()}
               </div>
               {isVatDeductible && <span className="text-[11px] text-slate-400">TVA inclus și deductibil</span>}
@@ -101,10 +101,10 @@ const ShowroomSpotlight = ({ listing }: ShowroomSpotlightProps) => {
 
             <div className="text-right border-l border-white/10 pl-5">
               <div className="text-xs text-slate-400">Rată estimativă</div>
-              <div className="font-luxury text-xl font-bold text-white">
+              <div className="font-heading text-xl font-bold text-white">
                 ~€{estimatedMonthly} <span className="text-xs font-normal text-slate-400">/lună</span>
               </div>
-              <span className="text-[10px] text-[#D8BA81]">Leasing / Credit Auto</span>
+              <span className="text-[10px] text-slate-400">Simulare Ipotetică</span>
             </div>
           </div>
 

@@ -72,9 +72,9 @@ const GoogleReviewsSection = () => {
             <div className="flex items-center gap-1.5">
               {renderStars(5)}
             </div>
-            <span className="font-luxury font-bold text-lg text-[#141921]">{ratingScore} / 5</span>
+            <span className="font-heading font-bold text-lg text-[#141921]">{ratingScore} / 5</span>
             <span className="text-sm text-[#5C6675]">
-              (din peste {totalReviewsCount} de recenzii clienți)
+              (evaluare verificată pe Google Maps)
             </span>
           </div>
 

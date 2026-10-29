@@ -12,6 +12,7 @@ import { AnimatedSection } from "@/components/ui/animated-section"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner"
 import { API_BASE_URL, BUSINESS_ID } from "@/config/apiConfig"
+import FinanceCalculatorWidget from "@/components/FinanceCalculatorWidget"
 
 
 // Import logos
@@ -135,6 +136,15 @@ const Finantare = () => {
                      </Card>
                 </div>
             </div>
+        </Container>
+      </section>
+
+      {/* --- Interactive Calculator Section --- */}
+      <section className="py-16 bg-slate-900/60 border-t border-b border-white/5">
+        <Container>
+          <div className="max-w-5xl mx-auto">
+            <FinanceCalculatorWidget />
+          </div>
         </Container>
       </section>
 
