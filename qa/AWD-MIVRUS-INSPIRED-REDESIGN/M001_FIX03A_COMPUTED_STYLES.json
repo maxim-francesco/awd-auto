@@ -1,0 +1,32 @@
+{
+  "url": "https://awd-auto-mivrus-inspired-preview.vercel.app/masini-disponibile/cmvi6pg2708g3sx2abee72g1i",
+  "timestamp": "2026-11-04T19:04:34.323Z",
+  "styles": {
+    "section": {
+      "id": "detalii-si-descriere",
+      "tagName": "SECTION",
+      "className": "w-full bg-[#08090B] text-ink-foreground py-12 lg:py-16 border-t border-white/[0.08]",
+      "backgroundColor": "rgb(8, 9, 11)",
+      "width": 1440,
+      "height": 2757
+    },
+    "card": {
+      "tagName": "DIV",
+      "className": "rounded-xl border border-neutral-200 bg-white text-neutral-900 shadow-2xl p-6 sm:p-8 lg:p-10",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "color": "rgb(17, 24, 39)",
+      "border": "1px solid rgb(229, 229, 229)",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 25px 50px -12px",
+      "width": 1024,
+      "height": 2106
+    },
+    "heading": {
+      "text": "Descriere Detaliată",
+      "color": "rgb(17, 24, 39)"
+    },
+    "bodyText": {
+      "sample": "AWD Auto Cluj-Napoca\nDealer autorizat vanzari auto\nParc auto - Str.Plevnei Nr 117\n\n✅ RAR ✅ REVIZIE ✅",
+      "color": "rgb(31, 41, 55)"
+    }
+  }
+}
