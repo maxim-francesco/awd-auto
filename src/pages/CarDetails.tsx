@@ -432,21 +432,21 @@ const CarDetails = () => {
         </Container>
       </div>
 
-      {/* --- PART 2: INLINE ENQUIRY FORM & "IN-DEPTH" SECTION (Warm Light Surface) --- */}
-      <div className="bg-background text-foreground py-12 lg:py-16">
+      {/* --- PART 2: INLINE ENQUIRY FORM & "IN-DEPTH" SECTION (Dark Background with Isolated White Description Card) --- */}
+      <div className="bg-[#08090B] text-ink-foreground py-12 lg:py-16 border-t border-white/[0.08]">
         <Container>
           <div className="max-w-5xl mx-auto space-y-8">
 
-            {/* Description */}
+            {/* Description - Isolated White Card on Dark Background */}
             {car.description && car.description.trim().length > 0 && (
-              <div className="rounded-xl border border-border bg-card shadow-card p-6 sm:p-8">
+              <div className="rounded-xl border border-neutral-200 bg-white text-neutral-900 shadow-xl p-6 sm:p-8 lg:p-10">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-1.5 h-6 bg-gold rounded-full" />
-                  <h2 className="text-xl sm:text-2xl font-extrabold text-foreground">
+                  <div className="w-1.5 h-6 bg-gold rounded-full flex-shrink-0" />
+                  <h2 className="text-xl sm:text-2xl font-extrabold text-neutral-900 tracking-tight">
                     Descriere Detaliată
                   </h2>
                 </div>
-                <p className="text-foreground/85 leading-relaxed whitespace-pre-wrap text-sm sm:text-base">
+                <p className="text-neutral-800 leading-relaxed whitespace-pre-wrap text-sm sm:text-base font-normal">
                   {car.description}
                 </p>
               </div>
@@ -454,13 +454,13 @@ const CarDetails = () => {
 
             {/* Inline Enquiry Form */}
             <AnimatedSection>
-              <div className="rounded-xl border border-border bg-card shadow-card p-6 sm:p-8">
+              <div className="rounded-xl border border-white/[0.08] bg-[#16181C] shadow-card p-6 sm:p-8 text-white">
                 <div className="mb-6">
-                  <p className="eyebrow text-gold-contrast mb-2">Contact direct</p>
-                  <h2 className="text-2xl font-extrabold text-foreground">
+                  <p className="eyebrow text-gold mb-2">Contact direct</p>
+                  <h2 className="text-2xl font-extrabold text-white">
                     Ești interesat de această mașină?
                   </h2>
-                  <p className="text-sm text-muted-foreground mt-1">
+                  <p className="text-sm text-steel mt-1">
                     Lasă-ne datele tale și te contactăm în cel mai scurt timp.
                   </p>
                 </div>
@@ -468,50 +468,50 @@ const CarDetails = () => {
                 <form onSubmit={handleEnquirySubmit} className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="space-y-1.5">
-                      <Label htmlFor="enquiry-name" className="text-xs font-semibold text-foreground">Nume și Prenume *</Label>
+                      <Label htmlFor="enquiry-name" className="text-xs font-semibold text-white/90">Nume și Prenume *</Label>
                       <Input
                         id="enquiry-name"
                         type="text"
                         placeholder="Numele tău"
                         value={enquiryName}
                         onChange={(e) => setEnquiryName(e.target.value)}
-                        className="min-h-[44px] text-sm bg-background border-border text-foreground focus-visible:ring-gold"
+                        className="min-h-[44px] text-sm bg-[#08090B] border-white/10 text-white placeholder:text-white/40 focus-visible:ring-gold"
                         required
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <Label htmlFor="enquiry-phone" className="text-xs font-semibold text-foreground">Telefon *</Label>
+                      <Label htmlFor="enquiry-phone" className="text-xs font-semibold text-white/90">Telefon *</Label>
                       <Input
                         id="enquiry-phone"
                         type="tel"
                         placeholder="+40 722 123 456"
                         value={enquiryPhone}
                         onChange={(e) => setEnquiryPhone(e.target.value)}
-                        className="min-h-[44px] text-sm bg-background border-border text-foreground focus-visible:ring-gold"
+                        className="min-h-[44px] text-sm bg-[#08090B] border-white/10 text-white placeholder:text-white/40 focus-visible:ring-gold"
                         required
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <Label htmlFor="enquiry-email" className="text-xs font-semibold text-foreground">Email *</Label>
+                      <Label htmlFor="enquiry-email" className="text-xs font-semibold text-white/90">Email *</Label>
                       <Input
                         id="enquiry-email"
                         type="email"
                         placeholder="adresa@email.ro"
                         value={enquiryEmail}
                         onChange={(e) => setEnquiryEmail(e.target.value)}
-                        className="min-h-[44px] text-sm bg-background border-border text-foreground focus-visible:ring-gold"
+                        className="min-h-[44px] text-sm bg-[#08090B] border-white/10 text-white placeholder:text-white/40 focus-visible:ring-gold"
                         required
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <Label htmlFor="enquiry-message" className="text-xs font-semibold text-foreground">Mesaj</Label>
+                    <Label htmlFor="enquiry-message" className="text-xs font-semibold text-white/90">Mesaj</Label>
                     <Textarea
                       id="enquiry-message"
                       value={enquiryMessage}
                       onChange={(e) => setEnquiryMessage(e.target.value)}
-                      className="min-h-[90px] text-sm bg-background border-border text-foreground focus-visible:ring-gold"
+                      className="min-h-[90px] text-sm bg-[#08090B] border-white/10 text-white placeholder:text-white/40 focus-visible:ring-gold"
                     />
                   </div>
 
@@ -520,9 +520,9 @@ const CarDetails = () => {
                       id="enquiry-gdpr"
                       checked={enquiryGdpr}
                       onCheckedChange={(checked) => setEnquiryGdpr(checked as boolean)}
-                      className="data-[state=checked]:bg-gold data-[state=checked]:text-ink mt-0.5 border-border"
+                      className="data-[state=checked]:bg-gold data-[state=checked]:text-ink mt-0.5 border-white/30"
                     />
-                    <Label htmlFor="enquiry-gdpr" className="text-xs font-normal text-muted-foreground leading-snug">
+                    <Label htmlFor="enquiry-gdpr" className="text-xs font-normal text-steel leading-snug">
                       Am citit și sunt de acord cu{" "}
                       <a
                         href="/politica-confidentialitate"
