@@ -69,7 +69,7 @@ const Index = () => {
                   Vezi Toate Mașinile Disponibile <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="btn-outline-light min-w-48">
+              <Button asChild variant="outline-light" size="lg" className="min-w-48 !text-white font-bold border-white/40 bg-white/10 hover:!border-gold hover:!text-gold-soft hover:bg-gold/15 shadow-sm">
                 <a href="tel:0752228593">Suna-ne</a>
               </Button>
             </div>
@@ -164,13 +164,13 @@ const Index = () => {
           {soldListings.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {soldListings.map((listing) => (
-                <CarCard key={listing.id} listing={{ ...listing, status: 'SOLD' }} />
+                <CarCard key={listing.id} listing={{ ...listing, status: 'SOLD' }} tone="dark" />
               ))}
             </div>
           )}
           
           <AnimatedSection className="text-center mt-12">
-            <Button asChild variant="outline" className="btn-outline-light min-w-48 font-semibold">
+            <Button asChild variant="outline-light" className="min-w-48 !text-white font-semibold border-white/35 bg-white/10 hover:!border-gold hover:!text-gold-soft hover:bg-gold/15 shadow-sm">
               <Link to="/masini-vandute">Vezi toate vândute</Link>
             </Button>
           </AnimatedSection>

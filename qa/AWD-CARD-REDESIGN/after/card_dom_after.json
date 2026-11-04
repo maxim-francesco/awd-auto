@@ -1,0 +1,679 @@
+{
+  "/": [
+    {
+      "text": "Dacia Duster Prestige 1.0 Tce + GPL €11,350 TVA Deductibil 2020 106,518 km Diesel Manuala Vezi Detalii",
+      "title": "Dacia Duster Prestige 1.0 Tce + GPL",
+      "price": "€11,350\n\nTVA Deductibil",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1792591519/saas-platform/cmg5ligro0175s52cn0jimm7s/cmvi6pg2708g3sx2abee72g1i/jgzlqabxpfnnr6cilvqz.jpg",
+      "linkHref": "/masini-disponibile/cmvi6pg2708g3sx2abee72g1i",
+      "rect": {
+        "width": 326,
+        "height": 529
+      }
+    },
+    {
+      "text": "Mazda CX-5 Revolution €11,499 2016 142,069 km Diesel Automata Vezi Detalii",
+      "title": "Mazda CX-5 Revolution",
+      "price": "€11,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1792211814/saas-platform/cmg5ligro0175s52cn0jimm7s/cmvbwn1xs041dsx2aotsn54wy/byvddk6erinbxe2exxfz.jpg",
+      "linkHref": "/masini-disponibile/cmvbwn1xs041dsx2aotsn54wy",
+      "rect": {
+        "width": 326,
+        "height": 529
+      }
+    },
+    {
+      "text": "Ford Kuga Titanium - 2.0 Tdci €9,499 2015 182,886 km Diesel Manuala Vezi Detalii",
+      "title": "Ford Kuga Titanium - 2.0 Tdci",
+      "price": "€9,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1792068168/saas-platform/cmg5ligro0175s52cn0jimm7s/cmv9j482701gvsx2anxpjsm43/xgrcg4z34ex2odirbz2z.jpg",
+      "linkHref": "/masini-disponibile/cmv9j482701gvsx2anxpjsm43",
+      "rect": {
+        "width": 326,
+        "height": 529
+      }
+    },
+    {
+      "text": "Toyota Auris Luna - 1.4 D-4D €4,250 2008 160,138 km Diesel Manuala Vezi Detalii",
+      "title": "Toyota Auris Luna - 1.4 D-4D",
+      "price": "€4,250",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1791984515/saas-platform/cmg5ligro0175s52cn0jimm7s/cmv85b83b0umrqk2ajj8u8143/pjsq9nuq5bdyl8shljva.jpg",
+      "linkHref": "/masini-disponibile/cmv85b83b0umrqk2ajj8u8143",
+      "rect": {
+        "width": 326,
+        "height": 529
+      }
+    },
+    {
+      "text": "VÂNDUT Volvo V40 D2 - Momentum €10,499 Vândut",
+      "title": "Volvo V40 D2 - Momentum",
+      "price": "€10,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1784209929/saas-platform/cmg5ligro0175s52cn0jimm7s/cmrnkiv1e1kknp12a29rdg2s5/vesi7eexqcggabkmaka4.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 326,
+        "height": 434
+      }
+    },
+    {
+      "text": "VÂNDUT Audi A4 Avant Ambition €9,999 Vândut",
+      "title": "Audi A4 Avant Ambition",
+      "price": "€9,999",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1789649436/saas-platform/cmg5ligro0175s52cn0jimm7s/cmu5j2dm60j5yqt28vm2f6nhm/l110lz80dft91ct9cp6k.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 326,
+        "height": 434
+      }
+    },
+    {
+      "text": "VÂNDUT Renault Clio IV Dynamique €6,499 Vândut",
+      "title": "Renault Clio IV Dynamique",
+      "price": "€6,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1782359268/saas-platform/cmg5ligro0175s52cn0jimm7s/cmqsyos6t0gqbp12a5im0362a/obm8zo1mmg3nuzrf7iwf.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 326,
+        "height": 434
+      }
+    },
+    {
+      "text": "VÂNDUT Renault Megane IV Business Edition €10,499 Vândut",
+      "title": "Renault Megane IV Business Edition",
+      "price": "€10,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1780901040/saas-platform/cmg5ligro0175s52cn0jimm7s/cmq4uhwis04qzwf29e5uw7pes/mbug0fnr4pgcon3zfn43.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 326,
+        "height": 434
+      }
+    }
+  ],
+  "/masini-disponibile": [
+    {
+      "text": "Dacia Duster Prestige 1.0 Tce + GPL €11,350 TVA Deductibil 2020 106,518 km Diesel Manuala Vezi Detalii",
+      "title": "Dacia Duster Prestige 1.0 Tce + GPL",
+      "price": "€11,350\n\nTVA Deductibil",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1792591519/saas-platform/cmg5ligro0175s52cn0jimm7s/cmvi6pg2708g3sx2abee72g1i/jgzlqabxpfnnr6cilvqz.jpg",
+      "linkHref": "/masini-disponibile/cmvi6pg2708g3sx2abee72g1i",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Mazda CX-5 Revolution €11,499 2016 142,069 km Diesel Automata Vezi Detalii",
+      "title": "Mazda CX-5 Revolution",
+      "price": "€11,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1792211814/saas-platform/cmg5ligro0175s52cn0jimm7s/cmvbwn1xs041dsx2aotsn54wy/byvddk6erinbxe2exxfz.jpg",
+      "linkHref": "/masini-disponibile/cmvbwn1xs041dsx2aotsn54wy",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Ford Kuga Titanium - 2.0 Tdci €9,499 2015 182,886 km Diesel Manuala Vezi Detalii",
+      "title": "Ford Kuga Titanium - 2.0 Tdci",
+      "price": "€9,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1792068168/saas-platform/cmg5ligro0175s52cn0jimm7s/cmv9j482701gvsx2anxpjsm43/xgrcg4z34ex2odirbz2z.jpg",
+      "linkHref": "/masini-disponibile/cmv9j482701gvsx2anxpjsm43",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Toyota Auris Luna - 1.4 D-4D €4,250 2008 160,138 km Diesel Manuala Vezi Detalii",
+      "title": "Toyota Auris Luna - 1.4 D-4D",
+      "price": "€4,250",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1791984515/saas-platform/cmg5ligro0175s52cn0jimm7s/cmv85b83b0umrqk2ajj8u8143/pjsq9nuq5bdyl8shljva.jpg",
+      "linkHref": "/masini-disponibile/cmv85b83b0umrqk2ajj8u8143",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "BMW X3 F25 MPack - xDrive €12,300 2012 214,764 km Diesel Automata Vezi Detalii",
+      "title": "BMW X3 F25 MPack - xDrive",
+      "price": "€12,300",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1791172884/saas-platform/cmg5ligro0175s52cn0jimm7s/cmuuq35zg0bwhqk2aeblh0hj0/w710awkvk47kphpfqjop.jpg",
+      "linkHref": "/masini-disponibile/cmuuq35zg0bwhqk2aeblh0hj0",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Nissan Juke N-Connecta 1.5 dCi €6,999 2013 181,880 km Diesel Manuala Vezi Detalii",
+      "title": "Nissan Juke N-Connecta 1.5 dCi",
+      "price": "€6,999",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1790912957/saas-platform/cmg5ligro0175s52cn0jimm7s/cmuqfc14n06sbqk2ag6jwehbk/tx1i2bbipq47o9oferys.jpg",
+      "linkHref": "/masini-disponibile/cmuqfc14n06sbqk2ag6jwehbk",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Audi A4 Allroad - Quattro €10,499 2011 196,696 km Diesel Manuala Vezi Detalii",
+      "title": "Audi A4 Allroad - Quattro",
+      "price": "€10,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1790397700/saas-platform/cmg5ligro0175s52cn0jimm7s/cmuhwjcpq00s3rx295amd27yh/lwb9ylvkio7vssjrgdr5.jpg",
+      "linkHref": "/masini-disponibile/cmuhwjcpq00s3rx295amd27yh",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Ford Focus Cool & Connect 1.5 Tdci €11,999 TVA Deductibil 2023 136,796 km Diesel Manuala Vezi Detalii",
+      "title": "Ford Focus Cool & Connect 1.5 Tdci",
+      "price": "€11,999\n\nTVA Deductibil",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1789713560/saas-platform/cmg5ligro0175s52cn0jimm7s/cmu6l8sji0jqgqt282ct5jshy/ubxf1qbqbvl2lhgj47yu.jpg",
+      "linkHref": "/masini-disponibile/cmu6l8sji0jqgqt282ct5jshy",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Seat Ateca Xcellence - 4Drive - DSG €14,499 2016 187,841 km Diesel Automata Vezi Detalii",
+      "title": "Seat Ateca Xcellence - 4Drive - DSG",
+      "price": "€14,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1789556691/saas-platform/cmg5ligro0175s52cn0jimm7s/cmu3zujc20haiqt28knt5za70/hohagsgp2jestizdtjhb.jpg",
+      "linkHref": "/masini-disponibile/cmu3zujc20haiqt28knt5za70",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Seat Leon X-Perience DSG - 4Drive €11,499 2016 177,450 km Diesel Automata Vezi Detalii",
+      "title": "Seat Leon X-Perience DSG - 4Drive",
+      "price": "€11,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1788952872/saas-platform/cmg5ligro0175s52cn0jimm7s/cmtu0be3e052tqt28qetostpq/tqqgpauonoh2hamc42m1.jpg",
+      "linkHref": "/masini-disponibile/cmtu0be3e052tqt28qetostpq",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Opel Insignia Grand Sport - 1.6 CDTI €8,350 2018 204,420 km Diesel Manuala Vezi Detalii",
+      "title": "Opel Insignia Grand Sport - 1.6 CDTI",
+      "price": "€8,350",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1788949366/saas-platform/cmg5ligro0175s52cn0jimm7s/cmtty9bav04xjqt28casjiqhx/ni9t5x7tt6lhk2i3srv1.jpg",
+      "linkHref": "/masini-disponibile/cmtty9bav04xjqt28casjiqhx",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Renault Espace Initiale Paris - EDC €12,999 TVA Deductibil 2016 127,983 km Diesel Automata Vezi Detalii",
+      "title": "Renault Espace Initiale Paris - EDC",
+      "price": "€12,999\n\nTVA Deductibil",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1786854537/saas-platform/cmg5ligro0175s52cn0jimm7s/cmsvb0o8k005rtw1seah4j3or/oixx9d2ra7uznvmf3wwc.jpg",
+      "linkHref": "/masini-disponibile/cmsvb0o8k005rtw1seah4j3or",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Audi A4 Allroad S-Tronic €14,999 2016 184,867 km Diesel Automata Vezi Detalii",
+      "title": "Audi A4 Allroad S-Tronic",
+      "price": "€14,999",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1786807894/saas-platform/cmg5ligro0175s52cn0jimm7s/cmstvu6qx00eptw2di933ccuk/p2hzl32qf1h60wd0f9et.jpg",
+      "linkHref": "/masini-disponibile/cmstvu6qx00eptw2di933ccuk",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Citroen C3 Shine - 1.2 Puretech €7,250 2017 111,820 km Benzina Manuala Vezi Detalii",
+      "title": "Citroen C3 Shine - 1.2 Puretech",
+      "price": "€7,250",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1786807809/saas-platform/cmg5ligro0175s52cn0jimm7s/cmstva2h300cvtw2dqojjnms0/hnpezqzbim66hg1lwlsl.jpg",
+      "linkHref": "/masini-disponibile/cmstva2h300cvtw2dqojjnms0",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Mercedes A180 D Business Line - 9GTronic €26,620 TVA Deductibil 2024 44,426 km Diesel Automata Vezi Detalii",
+      "title": "Mercedes A180 D Business Line - 9GTronic",
+      "price": "€26,620\n\nTVA Deductibil",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1786017850/saas-platform/cmg5ligro0175s52cn0jimm7s/cmshgv3n614cxpr2brsdcpa3l/hb0agvgzowbjtb0dvoq5.jpg",
+      "linkHref": "/masini-disponibile/cmshgv3n614cxpr2brsdcpa3l",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Skoda Octavia IV Ambition - DSG €15,999 TVA Deductibil 2022 152,288 km Diesel Automata Vezi Detalii",
+      "title": "Skoda Octavia IV Ambition - DSG",
+      "price": "€15,999\n\nTVA Deductibil",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1785654211/saas-platform/cmg5ligro0175s52cn0jimm7s/cmsbgcfuv0u47pr2bbmdlunp9/mxnrlsvhfhfhufmxyzyy.jpg",
+      "linkHref": "/masini-disponibile/cmsbgcfuv0u47pr2bbmdlunp9",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Audi A5 Sportback Design Edition €18,999 2018 201,555 km Diesel Automata Vezi Detalii",
+      "title": "Audi A5 Sportback Design Edition",
+      "price": "€18,999",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1785653862/saas-platform/cmg5ligro0175s52cn0jimm7s/cmsbg6iz30u0tpr2bsfxnxhd5/wwli3tmwuz6h70up9ett.jpg",
+      "linkHref": "/masini-disponibile/cmsbg6iz30u0tpr2bsfxnxhd5",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Kia Sportage GT Line €14,999 2019 193,808 km Diesel Automata Vezi Detalii",
+      "title": "Kia Sportage GT Line",
+      "price": "€14,999",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1785500735/saas-platform/cmg5ligro0175s52cn0jimm7s/cms8x0chy0qfvpr2bds09nbdc/rpbtvq9np4nxfouonqlz.jpg",
+      "linkHref": "/masini-disponibile/cms8x0chy0qfvpr2bds09nbdc",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Renault Scenic Limited Edition €9,999 2019 154,636 km Diesel Manuala Vezi Detalii",
+      "title": "Renault Scenic Limited Edition",
+      "price": "€9,999",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1785073864/saas-platform/cmg5ligro0175s52cn0jimm7s/cms1dlatr0fsbpr2bi477oj57/mzytzy7ly7plq1ztt4em.jpg",
+      "linkHref": "/masini-disponibile/cms1dlatr0fsbpr2bi477oj57",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Mazda CX-3 Exclusive Line €9,999 2016 133,623 km Diesel Manuala Vezi Detalii",
+      "title": "Mazda CX-3 Exclusive Line",
+      "price": "€9,999",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1784696291/saas-platform/cmg5ligro0175s52cn0jimm7s/cmrvm3aj706vfpr2b5bxhmugn/ayyqeuga6aqjsye9bowf.jpg",
+      "linkHref": "/masini-disponibile/cmrvm3aj706vfpr2b5bxhmugn",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Volvo XC40 R-Design 4WD - Geartronic €21,999 2019 152,588 km Diesel Automata Vezi Detalii",
+      "title": "Volvo XC40 R-Design 4WD - Geartronic",
+      "price": "€21,999",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1783835036/saas-platform/cmg5ligro0175s52cn0jimm7s/cmrhdbm1j1c03p12av56o0oiw/bdfioiqkejziltqltku4.jpg",
+      "linkHref": "/masini-disponibile/cmrhdbm1j1c03p12av56o0oiw",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Volvo XC60 R-Design 4WD - Geartronic €21,999 2018 189,357 km Diesel Automata Vezi Detalii",
+      "title": "Volvo XC60 R-Design 4WD - Geartronic",
+      "price": "€21,999",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1783834330/saas-platform/cmg5ligro0175s52cn0jimm7s/cmrhcw3sy1bwxp12a9iiy8gmc/zplyg7x5tq4ands5pynv.jpg",
+      "linkHref": "/masini-disponibile/cmrhcw3sy1bwxp12a9iiy8gmc",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "BMW 520D F10 Luxury - xDrive €10,999 2014 330,690 km Diesel Automata Vezi Detalii",
+      "title": "BMW 520D F10 Luxury - xDrive",
+      "price": "€10,999",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1783833676/saas-platform/cmg5ligro0175s52cn0jimm7s/cmrhcgguw1br1p12avwtriytw/kixdbjvdjmy8apkgglyd.jpg",
+      "linkHref": "/masini-disponibile/cmrhcgguw1br1p12avwtriytw",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Opel Astra Sports Tourer €7,750 2018 129,460 km Diesel Manuala Vezi Detalii",
+      "title": "Opel Astra Sports Tourer",
+      "price": "€7,750",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1783773699/saas-platform/cmg5ligro0175s52cn0jimm7s/cmrgcsbgr1al5p12au174pur1/cydcjzfciz5k2jmanaio.jpg",
+      "linkHref": "/masini-disponibile/cmrgcsbgr1al5p12au174pur1",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Opel Astra Hatchback Biturbo - Dynamic €7,999 2017 155,760 km Diesel Manuala Vezi Detalii",
+      "title": "Opel Astra Hatchback Biturbo - Dynamic",
+      "price": "€7,999",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1783773225/saas-platform/cmg5ligro0175s52cn0jimm7s/cmrgci0pr1agpp12a7kpxpmx6/xff59x4xwctswom1nljm.jpg",
+      "linkHref": "/masini-disponibile/cmrgci0pr1agpp12a7kpxpmx6",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Opel Astra Sports Tourer Edition €7,999 TVA Deductibil 2016 141,765 km Diesel Manuala Vezi Detalii",
+      "title": "Opel Astra Sports Tourer Edition",
+      "price": "€7,999\n\nTVA Deductibil",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1783773025/saas-platform/cmg5ligro0175s52cn0jimm7s/cmrgcdv4p1adrp12aqel77zxx/dhmtwwfvti3onvhiltdr.jpg",
+      "linkHref": "/masini-disponibile/cmrgcdv4p1adrp12aqel77zxx",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Renault Talisman Initiale Paris - EDC €12,499 2017 183,153 km Diesel Automata Vezi Detalii",
+      "title": "Renault Talisman Initiale Paris - EDC",
+      "price": "€12,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1783569122/saas-platform/cmg5ligro0175s52cn0jimm7s/cmrcyytyx13pbp12aa1njqkky/dbideg4uvnqywvv7nbmd.jpg",
+      "linkHref": "/masini-disponibile/cmrcyytyx13pbp12aa1njqkky",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Renault Clio IV Expression €6,499 2016 178,406 km Diesel Manuala Vezi Detalii",
+      "title": "Renault Clio IV Expression",
+      "price": "€6,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1782358920/saas-platform/cmg5ligro0175s52cn0jimm7s/cmqsyhbau0godp12aj2wv38vs/tqfry2gekseu6nxewbnx.jpg",
+      "linkHref": "/masini-disponibile/cmqsyhbau0godp12aj2wv38vs",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Skoda Octavia Scout - DSG - 4x4 €11,499 2016 218,347 km Diesel Automata Vezi Detalii",
+      "title": "Skoda Octavia Scout - DSG - 4x4",
+      "price": "€11,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1779939192/saas-platform/cmg5ligro0175s52cn0jimm7s/cmpoxt4jq09f7w72aqnysl0kw/jfixzb73xgnbhqsq4gfm.jpg",
+      "linkHref": "/masini-disponibile/cmpoxt4jq09f7w72aqnysl0kw",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Mercedes CLA AMG - 7G Tronic €16,499 2016 162,237 km Diesel Automata Vezi Detalii",
+      "title": "Mercedes CLA AMG - 7G Tronic",
+      "price": "€16,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1777185813/saas-platform/cmg5ligro0175s52cn0jimm7s/cmofb5zvi0p1zu21qcceedsyk/awb0gqgkfuwzrletyzr2.jpg",
+      "linkHref": "/masini-disponibile/cmofb5zvi0p1zu21qcceedsyk",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Ford Focus Active Business - 1.5 Tdci €6,999 2017 132,604 km Diesel Manuala Vezi Detalii",
+      "title": "Ford Focus Active Business - 1.5 Tdci",
+      "price": "€6,999",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1775231122/saas-platform/cmg5ligro0175s52cn0jimm7s/cmnj2ru9s00izxi27bzzsmrfz/hlj9g3iapeljfub6w090.jpg",
+      "linkHref": "/masini-disponibile/cmnj2ru9s00izxi27bzzsmrfz",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Volkswagen Touareg Tech Terein Executive €15,999 2015 198,821 km Diesel Automata Vezi Detalii",
+      "title": "Volkswagen Touareg Tech Terein Executive",
+      "price": "€15,999",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1775372767/saas-platform/cmg5ligro0175s52cn0jimm7s/cmlhpj8mt082urb299kdft8ms/schgubiytyajm8d4vmh0.jpg",
+      "linkHref": "/masini-disponibile/cmlhpj8mt082urb299kdft8ms",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    },
+    {
+      "text": "Renault Kadjar Bose Edition 1.7 dCi - 4WD €13,499 2019 197,310 km Diesel Manuala Vezi Detalii",
+      "title": "Renault Kadjar Bose Edition 1.7 dCi - 4WD",
+      "price": "€13,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1775372321/saas-platform/cmg5ligro0175s52cn0jimm7s/cmjpz7fln07a1lj28hqtfmfzu/bibav2cd4vuz2bkvqm5l.jpg",
+      "linkHref": "/masini-disponibile/cmjpz7fln07a1lj28hqtfmfzu",
+      "rect": {
+        "width": 325,
+        "height": 529
+      }
+    }
+  ],
+  "/masini-vandute": [
+    {
+      "text": "VÂNDUT Volvo V40 D2 - Momentum €10,499 Vândut",
+      "title": "Volvo V40 D2 - Momentum",
+      "price": "€10,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1784209929/saas-platform/cmg5ligro0175s52cn0jimm7s/cmrnkiv1e1kknp12a29rdg2s5/vesi7eexqcggabkmaka4.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 502
+      }
+    },
+    {
+      "text": "VÂNDUT Audi A4 Avant Ambition €9,999 Vândut",
+      "title": "Audi A4 Avant Ambition",
+      "price": "€9,999",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1789649436/saas-platform/cmg5ligro0175s52cn0jimm7s/cmu5j2dm60j5yqt28vm2f6nhm/l110lz80dft91ct9cp6k.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 502
+      }
+    },
+    {
+      "text": "VÂNDUT Renault Clio IV Dynamique €6,499 Vândut",
+      "title": "Renault Clio IV Dynamique",
+      "price": "€6,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1782359268/saas-platform/cmg5ligro0175s52cn0jimm7s/cmqsyos6t0gqbp12a5im0362a/obm8zo1mmg3nuzrf7iwf.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 502
+      }
+    },
+    {
+      "text": "VÂNDUT Renault Megane IV Business Edition €10,499 Vândut",
+      "title": "Renault Megane IV Business Edition",
+      "price": "€10,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1780901040/saas-platform/cmg5ligro0175s52cn0jimm7s/cmq4uhwis04qzwf29e5uw7pes/mbug0fnr4pgcon3zfn43.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 502
+      }
+    },
+    {
+      "text": "VÂNDUT Toyota Corolla Dynamic - Hybrid - e-CVT €16,499 Vândut",
+      "title": "Toyota Corolla Dynamic - Hybrid - e-CVT",
+      "price": "€16,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1776140081/saas-platform/cmg5ligro0175s52cn0jimm7s/cmny3xpdj03v0u21qe9yaa7zq/pgx6ipypqd3ntc8xzmdj.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 502
+      }
+    },
+    {
+      "text": "VÂNDUT BMW X3 F25 2.0D - X-Drive €12,499 Vândut",
+      "title": "BMW X3 F25 2.0D - X-Drive",
+      "price": "€12,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1783834134/saas-platform/cmg5ligro0175s52cn0jimm7s/cmrhcsa8s1btnp12a9yoyz4vd/gfpi75ld2ekrwtqtzysp.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 502
+      }
+    },
+    {
+      "text": "VÂNDUT BMW X4 - F26 B47 - X-Line - X-Drive €16,250 Vândut",
+      "title": "BMW X4 - F26 B47 - X-Line - X-Drive",
+      "price": "€16,250",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1785817931/saas-platform/cmg5ligro0175s52cn0jimm7s/cmo4h5sbb0bwmu21q1kw3sp40/rtdurtf9z0vs8vwdj9ts.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 502
+      }
+    },
+    {
+      "text": "VÂNDUT Suzuki Vitara Luxus Edition Hybrid €15,499 Vândut",
+      "title": "Suzuki Vitara Luxus Edition Hybrid",
+      "price": "€15,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1782470284/saas-platform/cmg5ligro0175s52cn0jimm7s/cmquss9530jn9p12a6g1rypd3/wmlacoidsupmen0muyux.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 502
+      }
+    },
+    {
+      "text": "VÂNDUT Peugeot 308 Cabrio - 2.0 HDi Sport Pack €7,499 Vândut",
+      "title": "Peugeot 308 Cabrio - 2.0 HDi Sport Pack",
+      "price": "€7,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1786456611/saas-platform/cmg5ligro0175s52cn0jimm7s/cmsoq4cob1d6vpr2b8dy2e35r/hsnzqampq2hce9ka0yjr.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 502
+      }
+    },
+    {
+      "text": "VÂNDUT Renault Talisman Energy Intens 200 CP - EDC €14,499 Vândut",
+      "title": "Renault Talisman Energy Intens 200 CP - EDC",
+      "price": "€14,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1783568054/saas-platform/cmg5ligro0175s52cn0jimm7s/cmrcybwg613mxp12ahwn533cg/fyk4wpiodzjhdei13ikx.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 510
+      }
+    },
+    {
+      "text": "VÂNDUT Renault Talisman Limited Edition Individual - EDC €13,499 Vândut",
+      "title": "Renault Talisman Limited Edition Individual - EDC",
+      "price": "€13,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1783569794/saas-platform/cmg5ligro0175s52cn0jimm7s/cmrczdbkq13t7p12a2ws0mqad/lgijdpxyjwm9mdgsdzs7.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 510
+      }
+    },
+    {
+      "text": "VÂNDUT Nissan X-Trail Tekna Plus - 4WD - X-Tronic €15,499 Vândut",
+      "title": "Nissan X-Trail Tekna Plus - 4WD - X-Tronic",
+      "price": "€15,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1780903739/saas-platform/cmg5ligro0175s52cn0jimm7s/cmq4w3r2404zjwf29jyr7c3of/rpoq331jormx0sebxzbq.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 510
+      }
+    },
+    {
+      "text": "VÂNDUT Peugeot 2008 Allure Pack - 1.2 Puretech €13,499 Vândut",
+      "title": "Peugeot 2008 Allure Pack - 1.2 Puretech",
+      "price": "€13,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1775372476/saas-platform/cmg5ligro0175s52cn0jimm7s/cml5jzslk01qfrb29fd55h9el/t2id4oir6jqxuezktswm.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 502
+      }
+    },
+    {
+      "text": "VÂNDUT Hyundai Tucson Premium Edition - 1.7 Crdi €10,999 Vândut",
+      "title": "Hyundai Tucson Premium Edition - 1.7 Crdi",
+      "price": "€10,999",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1775372523/saas-platform/cmg5ligro0175s52cn0jimm7s/cmlw24fd400uyqj25p2y9hwsj/fgj1gokp5jf5tpkiircg.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 502
+      }
+    },
+    {
+      "text": "VÂNDUT BMW X3 - M Sport - xDrive €43,500 Vândut",
+      "title": "BMW X3 - M Sport - xDrive",
+      "price": "€43,500",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1777362341/saas-platform/cmg5ligro0175s52cn0jimm7s/cmoibn9yf0swqu21qw6tydsgw/zml7mwmxdez7duyfuihx.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 502
+      }
+    },
+    {
+      "text": "VÂNDUT Mercedes GLA 220D Urban - 4Matic - 7GTronic €13,499 Vândut",
+      "title": "Mercedes GLA 220D Urban - 4Matic - 7GTronic",
+      "price": "€13,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1775883931/saas-platform/cmg5ligro0175s52cn0jimm7s/cmnttn1h40218u21q7thj2lbp/exxmjestpxw4ccp0qo9o.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 510
+      }
+    },
+    {
+      "text": "VÂNDUT Mercedes GLA 200D Urban Line - 4Matic - 7G Tronic €13,499 Vândut",
+      "title": "Mercedes GLA 200D Urban Line - 4Matic - 7G Tronic",
+      "price": "€13,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1775883906/saas-platform/cmg5ligro0175s52cn0jimm7s/cmnttjq1501znu21qx9oy7syo/mbftopxwgyxd1zoq6elu.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 510
+      }
+    },
+    {
+      "text": "VÂNDUT Renault Kadjar Energy Intens - 4WD €11,750 Vândut",
+      "title": "Renault Kadjar Energy Intens - 4WD",
+      "price": "€11,750",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1776526114/saas-platform/cmg5ligro0175s52cn0jimm7s/cmo4hs26i0c0fu21qccc5cux6/mynfplxvlbjgwgf2teic.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 510
+      }
+    },
+    {
+      "text": "VÂNDUT Renault Talisman Initiale Paris - EDC €14,499 Vândut",
+      "title": "Renault Talisman Initiale Paris - EDC",
+      "price": "€14,499",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1784210385/saas-platform/cmg5ligro0175s52cn0jimm7s/cmrgc92j31aafp12avskftmt2/rsi6qavzjn4sgeuiyqwj.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 502
+      }
+    },
+    {
+      "text": "VÂNDUT Nissan X-Trail Tekna Plus - X-Tronic €11,250 Vândut",
+      "title": "Nissan X-Trail Tekna Plus - X-Tronic",
+      "price": "€11,250",
+      "imgSrc": "https://res.cloudinary.com/dbrxai6cz/image/upload/v1778212187/saas-platform/cmg5ligro0175s52cn0jimm7s/cmowdmg1j00dzqo28fq6c6w69/qrhz1tfvpneevaj8lk8u.jpg",
+      "linkHref": "",
+      "rect": {
+        "width": 440,
+        "height": 502
+      }
+    }
+  ]
+}

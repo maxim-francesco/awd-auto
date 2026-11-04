@@ -35,12 +35,12 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-7">
+          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-6 2xl:gap-7 whitespace-nowrap">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`relative text-xs uppercase tracking-wider font-semibold transition-colors duration-200 py-2 ${
+                className={`relative text-[11px] xl:text-xs uppercase tracking-wider font-semibold transition-colors duration-200 py-2 whitespace-nowrap ${
                   isActive(item.href)
                     ? "text-[#E8C46B] font-bold"
                     : "text-white/75 hover:text-white"

@@ -1,0 +1,93 @@
+{
+  "totalDiffs": 0,
+  "routes": {
+    "/": {
+      "headingsMatch": true,
+      "linksMatch": true,
+      "inputsMatch": true,
+      "sectionsMatch": true,
+      "bodyTextMatch": true,
+      "hasOverflow": false
+    },
+    "/masini-disponibile": {
+      "headingsMatch": true,
+      "linksMatch": true,
+      "inputsMatch": true,
+      "sectionsMatch": true,
+      "bodyTextMatch": true,
+      "hasOverflow": false
+    },
+    "/masini-disponibile/cmvi6pg2708g3sx2abee72g1i": {
+      "headingsMatch": true,
+      "linksMatch": true,
+      "inputsMatch": true,
+      "sectionsMatch": true,
+      "bodyTextMatch": true,
+      "hasOverflow": false
+    },
+    "/masini-la-comanda": {
+      "headingsMatch": true,
+      "linksMatch": true,
+      "inputsMatch": true,
+      "sectionsMatch": true,
+      "bodyTextMatch": true,
+      "hasOverflow": false
+    },
+    "/finantare": {
+      "headingsMatch": true,
+      "linksMatch": true,
+      "inputsMatch": true,
+      "sectionsMatch": true,
+      "bodyTextMatch": true,
+      "hasOverflow": false
+    },
+    "/beneficii-si-garantie": {
+      "headingsMatch": true,
+      "linksMatch": true,
+      "inputsMatch": true,
+      "sectionsMatch": true,
+      "bodyTextMatch": true,
+      "hasOverflow": false
+    },
+    "/despre-noi": {
+      "headingsMatch": true,
+      "linksMatch": true,
+      "inputsMatch": true,
+      "sectionsMatch": true,
+      "bodyTextMatch": true,
+      "hasOverflow": false
+    },
+    "/contact": {
+      "headingsMatch": true,
+      "linksMatch": true,
+      "inputsMatch": true,
+      "sectionsMatch": true,
+      "bodyTextMatch": true,
+      "hasOverflow": false
+    },
+    "/masini-vandute": {
+      "headingsMatch": true,
+      "linksMatch": true,
+      "inputsMatch": true,
+      "sectionsMatch": true,
+      "bodyTextMatch": true,
+      "hasOverflow": false
+    },
+    "/termeni-conditii": {
+      "headingsMatch": true,
+      "linksMatch": true,
+      "inputsMatch": true,
+      "sectionsMatch": true,
+      "bodyTextMatch": true,
+      "hasOverflow": false
+    },
+    "/politica-confidentialitate": {
+      "headingsMatch": true,
+      "linksMatch": true,
+      "inputsMatch": true,
+      "sectionsMatch": true,
+      "bodyTextMatch": true,
+      "hasOverflow": false
+    }
+  }
+}

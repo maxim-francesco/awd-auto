@@ -13,7 +13,7 @@ const buttonVariants = cva(
       variant: {
         default: "btn-gold",
         outline: "btn-outline-dark",
-        "outline-light": "btn-outline-light",
+        "outline-light": "btn-outline-light !text-white border-white/40 bg-white/10 hover:!border-gold hover:!text-gold-soft hover:bg-gold/15",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-gold underline-offset-4 hover:underline",
       },

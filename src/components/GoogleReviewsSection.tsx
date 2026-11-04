@@ -1,6 +1,6 @@
 import useGoogleReviews from '@/hooks/useGoogleReviews';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Star, StarHalf, AlertCircle } from 'lucide-react';
+import { Star, StarHalf, ExternalLink } from 'lucide-react';
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from '@/components/ui/animated-section';
 import { Button } from '@/components/ui/luxury-button';
 
@@ -59,10 +59,22 @@ const GoogleReviewsSection = () => {
         )}
 
         {error && (
-          <div className="text-center text-red-600 bg-red-50 p-6 rounded-xl border border-red-200">
-            <AlertCircle className="mx-auto h-12 w-12 mb-4" />
-            <h3 className="text-xl font-bold">Eroare la încărcare</h3>
-            <p className="mt-1 text-sm text-red-700">{error}</p>
+          <div className="max-w-2xl mx-auto text-center p-8 rounded-xl border border-border bg-card shadow-card">
+            <div className="inline-flex p-3 rounded-full bg-gold/10 text-gold border border-gold/30 mb-4">
+              <Star className="w-6 h-6 fill-gold" />
+            </div>
+            <h3 className="text-xl font-bold text-foreground mb-2">
+              Recenzii Verificate pe Google
+            </h3>
+            <p className="text-muted-foreground text-sm max-w-md mx-auto mb-6">
+              Află părerile clienților noștri direct pe profilul oficial Google Business al AWD Auto Trade.
+            </p>
+            <Button asChild variant="outline" className="btn-outline-dark min-w-48 font-bold">
+              <a href={REVIEWS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                <span>Citește recenziile pe Google</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </Button>
           </div>
         )}
 
