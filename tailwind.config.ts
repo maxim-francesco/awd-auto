@@ -52,31 +52,31 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Auto Mivrus inspired palette tokens
+        // Auto Mivrus inspired palette tokens with native alpha support
         gold: {
-          DEFAULT: "var(--gold)",
-          soft: "var(--gold-soft)",
-          contrast: "var(--gold-contrast)",
-          foreground: "var(--gold-foreground)",
+          DEFAULT: "#D9AC46",
+          soft: "#E8C46B",
+          contrast: "#835C0D",
+          foreground: "#08090B",
         },
         ink: {
-          DEFAULT: "var(--ink)",
-          deep: "var(--ink-deep)",
-          raised: "var(--ink-raised)",
-          foreground: "var(--ink-foreground)",
-          muted: "var(--ink-muted)",
-          border: "var(--ink-border)",
+          DEFAULT: "#101215",
+          deep: "#08090B",
+          raised: "#16181C",
+          foreground: "#F4F4F6",
+          muted: "#A1A1AA",
+          border: "rgba(255, 255, 255, 0.08)",
         },
-        steel: "var(--steel)",
+        steel: "#858A91",
         // Backwards compatible luxury tokens
         "luxury-gold": {
-          DEFAULT: "var(--gold)",
-          hover: "var(--gold-soft)",
-          deep: "var(--gold-contrast)",
+          DEFAULT: "#D9AC46",
+          hover: "#E8C46B",
+          deep: "#835C0D",
         },
-        "luxury-silver": "var(--steel)",
-        "luxury-dark": "var(--ink)",
-        "luxury-darker": "var(--ink-deep)",
+        "luxury-silver": "#858A91",
+        "luxury-dark": "#101215",
+        "luxury-darker": "#08090B",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -89,17 +89,16 @@ export default {
         },
       },
       backgroundImage: {
-        'gradient-gold': 'var(--gradient-gold)',
-        'gradient-hero': 'var(--gradient-hero)',
-        'gradient-side': 'var(--gradient-side)',
-        'gradient-silver': 'var(--gradient-silver)',  
-        'gradient-dark': 'var(--gradient-dark)',
+        'gradient-gold': 'linear-gradient(135deg, #E8C46B 0%, #D9AC46 50%, #B88B2A 100%)',
+        'gradient-hero': 'linear-gradient(to top, #08090B 0%, rgba(8, 9, 11, 0.85) 40%, rgba(8, 9, 11, 0.4) 100%)',
+        'gradient-side': 'linear-gradient(to right, #08090B 0%, rgba(8, 9, 11, 0.9) 35%, rgba(8, 9, 11, 0.3) 70%, transparent 100%)',
+        'gradient-silver': 'linear-gradient(135deg, #F4F4F6 0%, #858A91 100%)',  
+        'gradient-dark': 'linear-gradient(135deg, #16181C 0%, #08090B 100%)',
       },
       boxShadow: {
-        'luxury': 'var(--shadow-gold)',
-        'gold': 'var(--shadow-gold)',
-        'card': 'var(--shadow-card)',
-        'hero': 'var(--shadow-card)',
+        'luxury': '0 10px 30px -10px rgba(217, 172, 70, 0.25)',
+        'gold': '0 8px 24px -4px rgba(217, 172, 70, 0.3)',
+        'card': '0 4px 20px -2px rgba(0, 0, 0, 0.06)',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -108,20 +107,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
