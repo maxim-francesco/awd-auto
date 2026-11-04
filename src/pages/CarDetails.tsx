@@ -251,7 +251,7 @@ const CarDetails = () => {
         </script>
       </Helmet>
       {/* --- PART 1: "AT-A-GLANCE" SECTION (Dark Mivrus Surface) --- */}
-      <div className="bg-ink-deep border-b border-ink-border text-ink-foreground py-8 sm:py-12">
+      <section className="bg-ink-deep border-b border-ink-border text-ink-foreground py-8 sm:py-12">
         <Container>
           {/* Back Button */}
           <motion.button
@@ -430,23 +430,36 @@ const CarDetails = () => {
             </AnimatedSection>
           </div>
         </Container>
-      </div>
+      </section>
 
-      {/* --- PART 2: INLINE ENQUIRY FORM & "IN-DEPTH" SECTION (Dark Background with Isolated White Description Card) --- */}
-      <div className="bg-[#08090B] text-ink-foreground py-12 lg:py-16 border-t border-white/[0.08]">
+      {/* --- PART 2: INLINE ENQUIRY FORM & "IN-DEPTH" SECTION (Deep Black Background with Isolated White Description Card) --- */}
+      <section
+        id="detalii-si-descriere"
+        className="w-full bg-[#08090B] text-ink-foreground py-12 lg:py-16 border-t border-white/[0.08]"
+        style={{ backgroundColor: '#08090B' }}
+      >
         <Container>
           <div className="max-w-5xl mx-auto space-y-8">
 
-            {/* Description - Isolated White Card on Dark Background */}
+            {/* Description - Isolated White Card on Deep Black Background */}
             {car.description && car.description.trim().length > 0 && (
-              <div className="rounded-xl border border-neutral-200 bg-white text-neutral-900 shadow-xl p-6 sm:p-8 lg:p-10">
+              <div
+                className="rounded-xl border border-neutral-200 bg-white text-neutral-900 shadow-2xl p-6 sm:p-8 lg:p-10"
+                style={{ backgroundColor: '#FFFFFF', color: '#111827' }}
+              >
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-1.5 h-6 bg-gold rounded-full flex-shrink-0" />
-                  <h2 className="text-xl sm:text-2xl font-extrabold text-neutral-900 tracking-tight">
+                  <h2
+                    className="text-xl sm:text-2xl font-extrabold text-neutral-900 tracking-tight"
+                    style={{ color: '#111827' }}
+                  >
                     Descriere Detaliată
                   </h2>
                 </div>
-                <p className="text-neutral-800 leading-relaxed whitespace-pre-wrap text-sm sm:text-base font-normal">
+                <p
+                  className="text-neutral-800 leading-relaxed whitespace-pre-wrap text-sm sm:text-base font-normal"
+                  style={{ color: '#1F2937' }}
+                >
                   {car.description}
                 </p>
               </div>
@@ -454,7 +467,10 @@ const CarDetails = () => {
 
             {/* Inline Enquiry Form */}
             <AnimatedSection>
-              <div className="rounded-xl border border-white/[0.08] bg-[#16181C] shadow-card p-6 sm:p-8 text-white">
+              <div
+                className="rounded-xl border border-white/[0.08] bg-[#16181C] shadow-card p-6 sm:p-8 text-white"
+                style={{ backgroundColor: '#16181C' }}
+              >
                 <div className="mb-6">
                   <p className="eyebrow text-gold mb-2">Contact direct</p>
                   <h2 className="text-2xl font-extrabold text-white">
@@ -549,7 +565,7 @@ const CarDetails = () => {
             </AnimatedSection>
           </div>
         </Container>
-      </div>
+      </section>
 
        <FullscreenGallery
         images={carData.images || []}
