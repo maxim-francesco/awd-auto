@@ -22,7 +22,8 @@ import {
   Video,
   AlertCircle,
   Image as ImageIcon,
-  Send
+  Send,
+  Phone
 } from "lucide-react"
 import { AnimatedSection, StaggeredGrid, StaggeredItem } from "@/components/ui/animated-section"
 import { Badge } from "@/components/ui/badge"
@@ -110,38 +111,14 @@ const CarDetails = () => {
     }
 
     setIsSubmittingEnquiry(true);
-    try {
-      const response = await fetch(`${API_BASE_URL}/api/public/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          businessId: BUSINESS_ID,
-          name: enquiryName.trim(),
-          phone: enquiryPhone.trim(),
-          email: enquiryEmail.trim(),
-          message: enquiryMessage.trim(),
-          type: "STOCK",
-          listingId: car.id,
-        }),
-      });
-
-      if (response.ok) {
-        toast.success("Mesajul a fost trimis. Te contactăm în curând.");
-        setEnquiryName("");
-        setEnquiryPhone("");
-        setEnquiryEmail("");
-        setEnquiryGdpr(false);
-      } else {
-        toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error("A apărut o eroare. Încearcă din nou sau sună-ne.");
-    } finally {
+    setTimeout(() => {
       setIsSubmittingEnquiry(false);
-    }
+      toast.info("Mod demonstrativ de previzualizare: formularul este funcțional, dar nicio solicitare reală nu a fost transmisă către server.");
+      setEnquiryName("");
+      setEnquiryPhone("");
+      setEnquiryEmail("");
+      setEnquiryGdpr(false);
+    }, 600);
   };
 
   if (loading) {
@@ -273,29 +250,29 @@ const CarDetails = () => {
           `}
         </script>
       </Helmet>
-      <div className="min-h-screen bg-background py-8 sm:py-12">
+      {/* --- PART 1: "AT-A-GLANCE" SECTION (Dark Mivrus Surface) --- */}
+      <div className="bg-ink-deep border-b border-ink-border text-ink-foreground py-8 sm:py-12">
         <Container>
           {/* Back Button */}
           <motion.button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-2 text-muted-foreground hover:text-luxury-gold transition-colors mb-6"
+            className="flex items-center gap-2 text-ink-muted hover:text-gold transition-colors mb-6"
             whileHover={{ x: -4 }}
             transition={{ duration: 0.2 }}
           >
             <ArrowLeft className="h-5 w-5" />
-            <span className="text-sm font-medium">Înapoi la listă</span>
+            <span className="text-sm font-semibold">Înapoi la listă</span>
           </motion.button>
           
-          {/* --- PART 1: "AT-A-GLANCE" SECTION (Two Columns) --- */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Left Column - Gallery */}
             <AnimatedSection>
               <div className="space-y-4">
                 {/* Main Image */}
                 <motion.div 
-                  className="luxury-card relative aspect-video rounded-2xl overflow-hidden bg-luxury-darker cursor-pointer"
+                  className="relative aspect-video rounded-2xl overflow-hidden border border-ink-border bg-ink-raised cursor-pointer shadow-card"
                   layoutId={`car-image-${car.id}`}
-                   onClick={() => {
+                  onClick={() => {
                     setCurrentImageIndex(selectedImage);
                     setIsGalleryOpen(true);
                   }}
@@ -305,8 +282,7 @@ const CarDetails = () => {
                     alt={carData.title}
                     className="w-full h-full object-cover"
                   />
-                  {/* Bottom shadow overlay for depth */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
                 </motion.div>
 
                 {/* Thumbnails slider */}
@@ -314,11 +290,11 @@ const CarDetails = () => {
                   <div className="space-y-2">
                     {/* Photo counter */}
                     <div className="flex items-center justify-between px-1">
-                      <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                        <ImageIcon className="h-3.5 w-3.5 text-luxury-gold" />
+                      <span className="flex items-center gap-1.5 text-xs text-ink-muted">
+                        <ImageIcon className="h-3.5 w-3.5 text-gold" />
                         {selectedImage + 1} / {carData.images.length} fotografii
                       </span>
-                      <span className="text-[10px] uppercase tracking-wider text-muted-foreground/70 hidden sm:inline">
+                      <span className="text-[10px] uppercase tracking-wider text-ink-muted/80 hidden sm:inline">
                         Glisează pentru mai multe
                       </span>
                     </div>
@@ -337,8 +313,8 @@ const CarDetails = () => {
                               onClick={() => setSelectedImage(index)}
                               className={`relative aspect-video w-full rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
                                 selectedImage === index
-                                  ? "border-luxury-gold ring-1 ring-luxury-gold/40"
-                                  : "border-border/40 hover:border-luxury-gold/50"
+                                  ? "border-gold ring-1 ring-gold/40"
+                                  : "border-ink-border hover:border-gold/50"
                               }`}
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
@@ -354,14 +330,14 @@ const CarDetails = () => {
                                 }}
                               />
                               {selectedImage !== index && (
-                                <div className="absolute inset-0 bg-black/20 hover:bg-transparent transition-colors pointer-events-none" />
+                                <div className="absolute inset-0 bg-black/30 hover:bg-transparent transition-colors pointer-events-none" />
                               )}
                             </motion.button>
                           </CarouselItem>
                         ))}
                       </CarouselContent>
-                      <CarouselPrevious className="left-0 bg-luxury-darker/80 border-luxury-gold/40 text-luxury-gold hover:bg-luxury-gold hover:text-black" />
-                      <CarouselNext className="right-0 bg-luxury-darker/80 border-luxury-gold/40 text-luxury-gold hover:bg-luxury-gold hover:text-black" />
+                      <CarouselPrevious className="left-0 bg-ink-raised/90 border-gold/40 text-gold-soft hover:bg-gold hover:text-ink" />
+                      <CarouselNext className="right-0 bg-ink-raised/90 border-gold/40 text-gold-soft hover:bg-gold hover:text-ink" />
                     </Carousel>
                   </div>
                 )}
@@ -373,42 +349,42 @@ const CarDetails = () => {
               <div className="space-y-6">
                 {/* Title & Price */}
                 <div>
-                  <h1 className="font-luxury text-4xl sm:text-5xl font-bold text-foreground mb-3">
+                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink-foreground mb-3">
                     {carData.title}
                   </h1>
                   
                   {/* Badges Row */}
                   <div className="flex flex-wrap gap-2 mb-4">
                     {carData.year && carData.year !== 'N/A' && (
-                      <Badge variant="outline" className="border-luxury-gold/40 text-luxury-gold bg-luxury-gold/10 px-3 py-1 font-medium">
+                      <span className="rounded-md border border-gold/40 text-gold-soft bg-gold/10 px-3 py-1 text-xs font-semibold">
                         {carData.year}
-                      </Badge>
+                      </span>
                     )}
                     {carData.variant && carData.variant !== 'N/A' && (
-                      <Badge variant="outline" className="border-luxury-gold/40 text-luxury-gold bg-luxury-gold/10 px-3 py-1 font-medium">
+                      <span className="rounded-md border border-gold/40 text-gold-soft bg-gold/10 px-3 py-1 text-xs font-semibold">
                         {carData.variant}
-                      </Badge>
+                      </span>
                     )}
                     {getAttrVal(["attr:fuelType"], ["combustibil"]) !== 'N/A' && (
-                      <Badge variant="outline" className="border-luxury-gold/40 text-luxury-gold bg-luxury-gold/10 px-3 py-1 font-medium">
+                      <span className="rounded-md border border-gold/40 text-gold-soft bg-gold/10 px-3 py-1 text-xs font-semibold">
                         {getAttrVal(["attr:fuelType"], ["combustibil"])}
-                      </Badge>
+                      </span>
                     )}
                   </div>
 
                   {/* Price Row & Desktop Video CTA */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
                     <div className="flex items-baseline gap-2">
-                      <span className="font-luxury text-4xl sm:text-5xl font-bold text-luxury-gold">
+                      <span className="text-4xl sm:text-5xl font-extrabold text-gold-soft">
                         {carData.price.toLocaleString()} €
                       </span>
-                      <span className="text-sm text-muted-foreground">(TVA Inclus)</span>
+                      <span className="text-sm text-ink-muted">(TVA Inclus)</span>
                     </div>
 
                     {hasVideo && (
-                      <Button asChild variant="outline" className="hidden lg:inline-flex min-h-[44px] px-8 gap-2" size="lg">
+                      <Button asChild variant="outline" className="btn-outline-light hidden lg:inline-flex min-h-[44px] px-6 gap-2" size="lg">
                         <a href={videoUrl} target="_blank" rel="noopener noreferrer">
-                          <Video className="h-5 w-5" />
+                          <Video className="h-5 w-5 text-gold" />
                           Vezi Video
                         </a>
                       </Button>
@@ -417,154 +393,160 @@ const CarDetails = () => {
                 </div>
 
                 {/* Key Specifications - Staggered Grid of Tiles */}
-                <StaggeredGrid className="grid grid-cols-2 lg:grid-cols-3 gap-4 py-6 border-y border-border/40">
+                <StaggeredGrid className="grid grid-cols-2 lg:grid-cols-3 gap-3.5 py-6 border-y border-ink-border">
                   {carData.specs.map((spec, index) => (
-                    <StaggeredItem key={index} className="luxury-card p-4 flex items-start gap-3">
-                      <div className="p-2 rounded-full bg-luxury-gold/10 flex-shrink-0">
-                        <spec.icon className="h-5 w-5 text-luxury-gold" />
+                    <StaggeredItem key={index} className="rounded-xl border border-ink-border bg-ink-raised p-4 flex items-start gap-3">
+                      <div className="p-2 rounded-full border border-gold/30 bg-gold/10 flex-shrink-0 text-gold">
+                        <spec.icon className="h-5 w-5" />
                       </div>
                       <div>
-                        <p className="text-[10px] uppercase tracking-wider text-muted-foreground">{spec.label}</p>
-                        <p className="text-sm font-semibold text-foreground mt-0.5">{spec.value}</p>
+                        <p className="text-[10px] uppercase tracking-wider text-ink-muted">{spec.label}</p>
+                        <p className="text-sm font-bold text-ink-foreground mt-0.5">{spec.value}</p>
                       </div>
                     </StaggeredItem>
                   ))}
                 </StaggeredGrid>
 
-                {/* CTA Button (Mobile only) */}
-                {hasVideo && (
-                  <div className="pt-4 lg:hidden">
-                    <Button asChild variant="outline" className="w-full min-h-[44px] px-8 gap-2" size="lg">
-                      <a href={videoUrl} target="_blank" rel="noopener noreferrer">
-                        <Video className="h-5 w-5" />
-                        Vezi Video
-                      </a>
-                    </Button>
-                  </div>
-                )}
+                {/* Quick Action row */}
+                <div className="flex flex-wrap gap-3 pt-2">
+                  <a
+                    href="tel:0752228593"
+                    className="btn-gold min-h-[44px] px-8 text-sm font-bold text-ink inline-flex items-center gap-2"
+                  >
+                    Sună la 0752 228 593
+                  </a>
+                  {hasVideo && (
+                    <div className="lg:hidden w-full">
+                      <Button asChild variant="outline" className="btn-outline-light w-full min-h-[44px] px-8 gap-2" size="lg">
+                        <a href={videoUrl} target="_blank" rel="noopener noreferrer">
+                          <Video className="h-5 w-5 text-gold" />
+                          Vezi Video
+                        </a>
+                      </Button>
+                    </div>
+                  )}
+                </div>
               </div>
             </AnimatedSection>
           </div>
+        </Container>
+      </div>
 
-          <Separator className="my-12" />
+      {/* --- PART 2: INLINE ENQUIRY FORM & "IN-DEPTH" SECTION (Warm Light Surface) --- */}
+      <div className="bg-background text-foreground py-12 lg:py-16">
+        <Container>
+          <div className="max-w-5xl mx-auto space-y-8">
 
-          {/* --- PART 2: INLINE ENQUIRY FORM & "IN-DEPTH" SECTION --- */}
-          <div className="mt-6">
-            <div className="max-w-5xl mx-auto space-y-8">
+            {/* Description */}
+            {car.description && car.description.trim().length > 0 && (
+              <div className="rounded-xl border border-border bg-card shadow-card p-6 sm:p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-1.5 h-6 bg-gold rounded-full" />
+                  <h2 className="text-xl sm:text-2xl font-extrabold text-foreground">
+                    Descriere Detaliată
+                  </h2>
+                </div>
+                <p className="text-foreground/85 leading-relaxed whitespace-pre-wrap text-sm sm:text-base">
+                  {car.description}
+                </p>
+              </div>
+            )}
 
-              {/* Description */}
-              {car.description && car.description.trim().length > 0 && (
-                <div className="luxury-card p-6 sm:p-8">
-                  <div className="flex items-center gap-2 mb-6">
-                    <div className="w-1.5 h-6 bg-luxury-gold rounded-full" />
-                    <h2 className="font-luxury text-xl sm:text-2xl font-semibold text-luxury-gold">
-                      Descriere Detaliată
-                    </h2>
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap text-sm sm:text-base">
-                    {car.description}
+            {/* Inline Enquiry Form */}
+            <AnimatedSection>
+              <div className="rounded-xl border border-border bg-card shadow-card p-6 sm:p-8">
+                <div className="mb-6">
+                  <p className="eyebrow text-gold-contrast mb-2">Contact direct</p>
+                  <h2 className="text-2xl font-extrabold text-foreground">
+                    Ești interesat de această mașină?
+                  </h2>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Lasă-ne datele tale și te contactăm în cel mai scurt timp.
                   </p>
                 </div>
-              )}
 
-              {/* Inline Enquiry Form */}
-              <AnimatedSection>
-                <Card className="luxury-card border-luxury-gold/30">
-                  <CardHeader>
-                    <CardTitle className="font-luxury text-2xl font-bold text-luxury-gold">
-                      Ești interesat de această mașină?
-                    </CardTitle>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      Lasă-ne datele tale și te contactăm în cel mai scurt timp.
-                    </p>
-                  </CardHeader>
-                  <form onSubmit={handleEnquirySubmit}>
-                    <CardContent className="space-y-4">
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div className="space-y-1.5">
-                          <Label htmlFor="enquiry-name" className="text-xs font-medium">Nume și Prenume *</Label>
-                          <Input
-                            id="enquiry-name"
-                            type="text"
-                            placeholder="Numele tău"
-                            value={enquiryName}
-                            onChange={(e) => setEnquiryName(e.target.value)}
-                            className="min-h-[44px] text-sm bg-muted/40"
-                            required
-                          />
-                        </div>
-                        <div className="space-y-1.5">
-                          <Label htmlFor="enquiry-phone" className="text-xs font-medium">Telefon *</Label>
-                          <Input
-                            id="enquiry-phone"
-                            type="tel"
-                            placeholder="+40 722 123 456"
-                            value={enquiryPhone}
-                            onChange={(e) => setEnquiryPhone(e.target.value)}
-                            className="min-h-[44px] text-sm bg-muted/40"
-                            required
-                          />
-                        </div>
-                        <div className="space-y-1.5">
-                          <Label htmlFor="enquiry-email" className="text-xs font-medium">Email *</Label>
-                          <Input
-                            id="enquiry-email"
-                            type="email"
-                            placeholder="adresa@email.ro"
-                            value={enquiryEmail}
-                            onChange={(e) => setEnquiryEmail(e.target.value)}
-                            className="min-h-[44px] text-sm bg-muted/40"
-                            required
-                          />
-                        </div>
-                      </div>
+                <form onSubmit={handleEnquirySubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="space-y-1.5">
+                      <Label htmlFor="enquiry-name" className="text-xs font-semibold text-foreground">Nume și Prenume *</Label>
+                      <Input
+                        id="enquiry-name"
+                        type="text"
+                        placeholder="Numele tău"
+                        value={enquiryName}
+                        onChange={(e) => setEnquiryName(e.target.value)}
+                        className="min-h-[44px] text-sm bg-background border-border text-foreground focus-visible:ring-gold"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="enquiry-phone" className="text-xs font-semibold text-foreground">Telefon *</Label>
+                      <Input
+                        id="enquiry-phone"
+                        type="tel"
+                        placeholder="+40 722 123 456"
+                        value={enquiryPhone}
+                        onChange={(e) => setEnquiryPhone(e.target.value)}
+                        className="min-h-[44px] text-sm bg-background border-border text-foreground focus-visible:ring-gold"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label htmlFor="enquiry-email" className="text-xs font-semibold text-foreground">Email *</Label>
+                      <Input
+                        id="enquiry-email"
+                        type="email"
+                        placeholder="adresa@email.ro"
+                        value={enquiryEmail}
+                        onChange={(e) => setEnquiryEmail(e.target.value)}
+                        className="min-h-[44px] text-sm bg-background border-border text-foreground focus-visible:ring-gold"
+                        required
+                      />
+                    </div>
+                  </div>
 
-                      <div className="space-y-1.5">
-                        <Label htmlFor="enquiry-message" className="text-xs font-medium">Mesaj</Label>
-                        <Textarea
-                          id="enquiry-message"
-                          value={enquiryMessage}
-                          onChange={(e) => setEnquiryMessage(e.target.value)}
-                          className="min-h-[90px] text-sm bg-muted/40"
-                        />
-                      </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="enquiry-message" className="text-xs font-semibold text-foreground">Mesaj</Label>
+                    <Textarea
+                      id="enquiry-message"
+                      value={enquiryMessage}
+                      onChange={(e) => setEnquiryMessage(e.target.value)}
+                      className="min-h-[90px] text-sm bg-background border-border text-foreground focus-visible:ring-gold"
+                    />
+                  </div>
 
-                      <div className="flex items-start space-x-3 pt-2">
-                        <Checkbox
-                          id="enquiry-gdpr"
-                          checked={enquiryGdpr}
-                          onCheckedChange={(checked) => setEnquiryGdpr(checked as boolean)}
-                          className="data-[state=checked]:bg-luxury-gold data-[state=checked]:text-black mt-0.5"
-                        />
-                        <Label htmlFor="enquiry-gdpr" className="text-xs font-normal text-muted-foreground leading-snug">
-                          Am citit și sunt de acord cu{" "}
-                          <a
-                            href="/politica-confidentialitate"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="underline text-luxury-gold hover:text-luxury-gold-hover"
-                          >
-                            Politica de Confidențialitate
-                          </a>{" "}
-                          a site-ului.
-                        </Label>
-                      </div>
-
-                      <Button
-                        type="submit"
-                        disabled={!enquiryGdpr || isSubmittingEnquiry}
-                        className="w-full sm:w-auto min-h-[44px] px-8 gap-2"
-                        size="lg"
+                  <div className="flex items-start space-x-3 pt-2">
+                    <Checkbox
+                      id="enquiry-gdpr"
+                      checked={enquiryGdpr}
+                      onCheckedChange={(checked) => setEnquiryGdpr(checked as boolean)}
+                      className="data-[state=checked]:bg-gold data-[state=checked]:text-ink mt-0.5 border-border"
+                    />
+                    <Label htmlFor="enquiry-gdpr" className="text-xs font-normal text-muted-foreground leading-snug">
+                      Am citit și sunt de acord cu{" "}
+                      <a
+                        href="/politica-confidentialitate"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline text-gold hover:text-gold-soft font-semibold"
                       >
-                        <Send className="w-4 h-4" />
-                        {isSubmittingEnquiry ? "Se trimite..." : "Trimite solicitarea"}
-                      </Button>
-                    </CardContent>
-                  </form>
-                </Card>
-              </AnimatedSection>
+                        Politica de Confidențialitate
+                      </a>{" "}
+                      a site-ului.
+                    </Label>
+                  </div>
 
-            </div>
+                  <button
+                    type="submit"
+                    disabled={!enquiryGdpr || isSubmittingEnquiry}
+                    className="btn-gold w-full sm:w-auto min-h-[44px] px-8 text-sm font-bold text-ink inline-flex items-center justify-center gap-2 mt-2"
+                  >
+                    <Send className="w-4 h-4" />
+                    {isSubmittingEnquiry ? "Se trimite..." : "Trimite solicitarea"}
+                  </button>
+                </form>
+              </div>
+            </AnimatedSection>
           </div>
         </Container>
       </div>

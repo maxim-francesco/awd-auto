@@ -1083,12 +1083,12 @@ export function DesktopFilterSidebar({
     <aside className="hidden lg:block lg:col-span-1">
       <div className="luxury-card p-6 sticky top-24">
         <div className="flex items-center justify-between mb-4 pb-3 border-b border-border/60">
-          <h2 className="font-luxury text-xl font-bold text-luxury-gold">Filtre Stoc</h2>
+          <h2 className="text-lg font-extrabold text-foreground">Filtre Stoc</h2>
           {hasActiveFilters && (
             <button
               type="button"
               onClick={clearAllFilters}
-              className="text-xs text-muted-foreground hover:text-luxury-gold min-h-[36px] flex items-center"
+              className="text-xs text-muted-foreground hover:text-gold min-h-[36px] flex items-center font-medium transition-colors"
             >
               Șterge tot
             </button>

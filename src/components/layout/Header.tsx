@@ -1,21 +1,13 @@
 "use client"
 
-import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 import { useState } from "react"
-import { Button } from "@/components/ui/luxury-button"
 import { Link, useLocation } from "react-router-dom"
 import awdLogo from "@/assets/awd_final.png"
-import { Menu, X, Phone } from "lucide-react"
+import { Menu, X, Phone, ArrowRight } from "lucide-react"
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { scrollY } = useScroll()
   const location = useLocation()
-  
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 50)
-  })
   
   const isActive = (path: string) => location.pathname === path
 
@@ -30,114 +22,121 @@ const Header = () => {
   ]
 
   return (
-    <motion.header 
-      className={`sticky top-0 z-50 w-full border-b border-border/40 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-luxury-darker/80 backdrop-blur-xl shadow-lg' 
-          : 'bg-luxury-darker/95 backdrop-blur-md'
-      }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.3 }}
-    >
-      <div className="container mx-auto flex h-24 items-center justify-between max-w-screen-2xl px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
-        <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
-          <Link to="/" className="flex items-center space-x-2">
+    <header className="sticky top-0 z-50 w-full bg-ink-deep/95 backdrop-blur-md border-b border-ink-border transition-all duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex h-20 items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-3 group">
             <img 
               src={awdLogo} 
               alt="AWD Auto" 
-              className="h-16 lg:h-20 w-auto object-contain"
+              className="h-10 md:h-12 w-auto transition-transform duration-300 group-hover:scale-105" 
             />
           </Link>
-        </motion.div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8 lg:space-x-10">
-          {navigation.map((item) => (
-            <motion.div
-              key={item.name}
-              className="relative"
-              whileHover="hover"
-              initial="initial"
-            >
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-7">
+            {navigation.map((item) => (
               <Link
+                key={item.name}
                 to={item.href}
-                className={`text-sm lg:text-base font-medium transition-colors relative ${
+                className={`relative text-xs uppercase tracking-wider font-semibold transition-colors duration-200 py-2 ${
                   isActive(item.href)
-                    ? "text-luxury-gold font-semibold"
-                    : "text-foreground hover:text-luxury-gold"
+                    ? "text-gold font-bold"
+                    : "text-steel hover:text-white"
                 }`}
               >
                 {item.name}
+                {isActive(item.href) && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-gold rounded-full" />
+                )}
               </Link>
-              <motion.div
-                className="absolute -bottom-1 left-1/2 h-0.5 bg-luxury-gold"
-                variants={{
-                  initial: { width: isActive(item.href) ? "100%" : 0, x: "-50%" },
-                  hover: { width: "100%", x: "-50%" }
-                }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              />
-            </motion.div>
-          ))}
-        </nav>
+            ))}
+          </nav>
 
-        {/* Desktop CTA Button */}
-        <motion.div
-          className="hidden md:block"
-          whileHover={{ y: -2 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.2 }}
-        >
-          <Button size="sm" className="lg:text-base lg:px-6 lg:py-3" asChild>
-            <a href="tel:0752228593">
-              <Phone className="h-4 w-4 mr-2"/>
-              Sună-ne
+          {/* Contact / CTA */}
+          <div className="hidden sm:flex items-center space-x-3">
+            <a 
+              href="tel:0752228593" 
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gold/30 bg-gold/10 text-xs font-semibold text-gold-soft hover:bg-gold/20 transition-all"
+            >
+              <Phone className="w-3.5 h-3.5 text-gold" />
+              <span>0752 228 593</span>
             </a>
-          </Button>
-        </motion.div>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <Button 
-            variant="ghost" 
-            size="icon"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="focus:outline-none focus:ring-0"
-          >
-            {isMobileMenuOpen ? <X className="h-6 w-6 text-foreground hover:text-foreground" /> : <Menu className="h-6 w-6 text-foreground hover:text-foreground" />}
-            <span className="sr-only">Deschide meniul</span>
-          </Button>
+            <Link
+              to="/masini-disponibile"
+              className="btn-gold hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-ink-deep transition-all"
+            >
+              <span>Vezi Stocul</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="lg:hidden flex items-center space-x-2">
+            <a 
+              href="tel:0752228593" 
+              className="p-2 rounded-lg border border-gold/30 bg-gold/10 text-gold sm:hidden"
+              aria-label="Call"
+            >
+              <Phone className="w-4 h-4" />
+            </a>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-lg text-steel hover:text-white hover:bg-ink-raised transition-colors focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6 text-gold" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+              <span className="sr-only">Deschide meniul</span>
+            </button>
+          </div>
         </div>
       </div>
-      
-      {/* Mobile Menu Panel */}
-      <div className={`absolute top-full left-0 w-full bg-luxury-darker z-40 border-t border-border transition-all duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-        <nav className="flex flex-col space-y-4 p-6">
+
+      {/* Mobile Navigation Drawer */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden bg-ink-deep border-b border-ink-border px-4 pt-2 pb-6 space-y-2 animate-in slide-in-from-top-2 duration-200">
           {navigation.map((item) => (
             <Link
               key={item.name}
               to={item.href}
               onClick={() => setIsMobileMenuOpen(false)}
-              className={`text-lg font-medium transition-colors ${
+              className={`block px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
                 isActive(item.href)
-                  ? "text-luxury-gold"
-                  : "text-foreground hover:text-luxury-gold"
+                  ? "bg-gold/10 text-gold border-l-2 border-gold pl-4"
+                  : "text-steel hover:bg-ink-raised hover:text-white"
               }`}
             >
               {item.name}
             </Link>
           ))}
-          <Button className="mt-4" asChild>
-            <a href="tel:0752228593">
-              <Phone className="h-4 w-4 mr-2"/>
-              Sună-ne
+          
+          <div className="pt-4 border-t border-ink-border space-y-3">
+            <a 
+              href="tel:0752228593" 
+              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg border border-gold/30 bg-gold/10 text-xs font-bold text-gold-soft"
+            >
+              <Phone className="w-4 h-4 text-gold" />
+              <span>0752 228 593 / 0752 575 616</span>
             </a>
-          </Button>
-        </nav>
-      </div>
-    </motion.header>
+
+            <Link
+              to="/masini-disponibile"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="btn-gold flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider text-ink-deep"
+            >
+              <span>Explorează Stocul</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      )}
+    </header>
   )
 }
 

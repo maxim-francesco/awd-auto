@@ -181,28 +181,26 @@ const CarListings = () => {
 
   return (
     <Layout>
-      <Container className="py-8">
-        <section className="text-center py-8 md:py-12">
-          <h1 className="text-4xl lg:text-5xl font-bold text-luxury-gold">
-            Găsește Mașina Potrivită în Stocul Nostru
-          </h1>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Folosește filtrele de mai jos pentru a explora oferta noastră completă de autoturisme rulate.
-          </p>
-        </section>
+      {/* Page Hero - Auto Mivrus Style */}
+      <section className="bg-ink-deep border-b border-ink-border text-ink-foreground py-16 lg:py-20">
+        <Container>
+          <div className="max-w-3xl">
+            <p className="eyebrow text-gold mb-3">Stoc auto</p>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink-foreground">
+              Găsește Mașina Potrivită în Stocul Nostru
+            </h1>
+            <p className="mt-3 text-base sm:text-lg text-ink-muted">
+              Folosește filtrele de mai jos pentru a explora oferta noastră completă de autoturisme rulate.
+            </p>
+          </div>
+        </Container>
+      </section>
 
-        {/* Top Search & Active Filters Bar */}
-        <StockFilters
-          facets={facets}
-          filters={filters}
-          onFilterChange={handleFilterChange}
-          filteredCount={facets.filteredListings.length}
-          totalCount={allListings.length}
-        />
-
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Desktop Filter Sidebar */}
-          <DesktopFilterSidebar
+      {/* Catalog & Filters - Warm Light Surface */}
+      <section className="bg-background text-foreground py-10 lg:py-14">
+        <Container>
+          {/* Top Search & Active Filters Bar */}
+          <StockFilters
             facets={facets}
             filters={filters}
             onFilterChange={handleFilterChange}
@@ -210,40 +208,51 @@ const CarListings = () => {
             totalCount={allListings.length}
           />
 
-          {/* Main Listings Content */}
-          <main className="lg:col-span-3">
-            {/* Header Result Count & Sort Dropdown */}
-            <AnimatedSection className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 space-y-4 sm:space-y-0">
-              <div className="text-sm text-muted-foreground font-medium">
-                {!loading && (
-                  <span>
-                    Afișare <strong className="text-foreground">{facets.filteredListings.length}</strong> din{" "}
-                    <strong className="text-foreground">{allListings.length}</strong> mașini
-                  </span>
-                )}
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {/* Desktop Filter Sidebar */}
+            <DesktopFilterSidebar
+              facets={facets}
+              filters={filters}
+              onFilterChange={handleFilterChange}
+              filteredCount={facets.filteredListings.length}
+              totalCount={allListings.length}
+            />
 
-              <div className="flex items-center gap-3">
-                <Select value={sortOption} onValueChange={handleSortChange}>
-                  <SelectTrigger className="w-48 min-h-[44px]">
-                    <SelectValue placeholder="Sortează după" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="newest">Cele mai noi</SelectItem>
-                    <SelectItem value="price_asc">Preț crescător</SelectItem>
-                    <SelectItem value="price_desc">Preț descrescător</SelectItem>
-                    <SelectItem value="mileage_asc">Kilometraj crescător</SelectItem>
-                    <SelectItem value="mileage_desc">Kilometraj descrescător</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </AnimatedSection>
+            {/* Main Listings Content */}
+            <main className="lg:col-span-3">
+              {/* Header Result Count & Sort Dropdown */}
+              <AnimatedSection className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 space-y-4 sm:space-y-0">
+                <div className="text-sm text-muted-foreground font-medium">
+                  {!loading && (
+                    <span>
+                      Afișare <strong className="text-foreground">{facets.filteredListings.length}</strong> din{" "}
+                      <strong className="text-foreground">{allListings.length}</strong> mașini
+                    </span>
+                  )}
+                </div>
 
-            {/* Car Grid */}
-            {renderListings()}
-          </main>
-        </div>
-      </Container>
+                <div className="flex items-center gap-3">
+                  <Select value={sortOption} onValueChange={handleSortChange}>
+                    <SelectTrigger className="w-48 min-h-[44px] bg-card border-border text-foreground">
+                      <SelectValue placeholder="Sortează după" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-card border-border">
+                      <SelectItem value="newest">Cele mai noi</SelectItem>
+                      <SelectItem value="price_asc">Preț crescător</SelectItem>
+                      <SelectItem value="price_desc">Preț descrescător</SelectItem>
+                      <SelectItem value="mileage_asc">Kilometraj crescător</SelectItem>
+                      <SelectItem value="mileage_desc">Kilometraj descrescător</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </AnimatedSection>
+
+              {/* Car Grid */}
+              {renderListings()}
+            </main>
+          </div>
+        </Container>
+      </section>
     </Layout>
   );
 };

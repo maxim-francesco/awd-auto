@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        luxury: ['Poppins', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        sans: ['Manrope', 'Inter', 'sans-serif'],
+        luxury: ['Manrope', 'sans-serif'],
+        body: ['Manrope', 'Inter', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,14 +52,31 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // AWD Auto luxury colors
-        "luxury-gold": {
-          DEFAULT: "hsl(var(--luxury-gold))",
-          hover: "hsl(var(--luxury-gold-hover))",
+        // Auto Mivrus inspired palette tokens
+        gold: {
+          DEFAULT: "var(--gold)",
+          soft: "var(--gold-soft)",
+          contrast: "var(--gold-contrast)",
+          foreground: "var(--gold-foreground)",
         },
-        "luxury-silver": "hsl(var(--luxury-silver))",
-        "luxury-dark": "hsl(var(--luxury-dark))",
-        "luxury-darker": "hsl(var(--luxury-darker))",
+        ink: {
+          DEFAULT: "var(--ink)",
+          deep: "var(--ink-deep)",
+          raised: "var(--ink-raised)",
+          foreground: "var(--ink-foreground)",
+          muted: "var(--ink-muted)",
+          border: "var(--ink-border)",
+        },
+        steel: "var(--steel)",
+        // Backwards compatible luxury tokens
+        "luxury-gold": {
+          DEFAULT: "var(--gold)",
+          hover: "var(--gold-soft)",
+          deep: "var(--gold-contrast)",
+        },
+        "luxury-silver": "var(--steel)",
+        "luxury-dark": "var(--ink)",
+        "luxury-darker": "var(--ink-deep)",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -72,13 +90,16 @@ export default {
       },
       backgroundImage: {
         'gradient-gold': 'var(--gradient-gold)',
+        'gradient-hero': 'var(--gradient-hero)',
+        'gradient-side': 'var(--gradient-side)',
         'gradient-silver': 'var(--gradient-silver)',  
         'gradient-dark': 'var(--gradient-dark)',
       },
       boxShadow: {
-        'luxury': 'var(--shadow-luxury)',
+        'luxury': 'var(--shadow-gold)',
+        'gold': 'var(--shadow-gold)',
         'card': 'var(--shadow-card)',
-        'hero': 'var(--shadow-hero)',
+        'hero': 'var(--shadow-card)',
       },
       borderRadius: {
         lg: "var(--radius)",

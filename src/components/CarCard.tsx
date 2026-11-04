@@ -1,10 +1,7 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
-import { Button } from "@/components/ui/luxury-button"
-import { Calendar, Fuel, Gauge, Settings } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { Calendar, Fuel, Gauge, Settings, ArrowRight } from "lucide-react"
 import { APIListing, getAttributeValueById } from "@/lib/attributes"
 
 interface CarCardProps {
@@ -30,105 +27,117 @@ const CarCard = ({ listing }: CarCardProps) => {
 
   const isSold = listing.status === 'SOLD';
 
+  const priceVal = listing.price ? `€${listing.price.toLocaleString()}` : "La cerere";
+
+  const mainPhoto = listing.photos && listing.photos.length > 0
+    ? (typeof listing.photos[0] === 'string' ? listing.photos[0] : (listing.photos[0] as any)?.url)
+    : "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80";
+
   return (
-    <motion.div 
-      className="luxury-card group"
-      whileHover={{ 
-        scale: isSold ? 1 : 1.03, 
-        y: isSold ? 0 : -5,
-        boxShadow: isSold ? "0 10px 30px -10px hsl(220 13% 6% / 0.8)" : "0 25px 50px -12px hsl(var(--luxury-gold) / 0.4)"
-      }}
-      transition={{ 
-        duration: 0.3, 
-        ease: [0.4, 0, 0.2, 1] 
-      }}
-    >
-      <div className="relative overflow-hidden rounded-t-xl">
+    <div className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 hover:shadow-lg">
+      {/* Photo Container */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-ink-raised">
+        <img
+          src={mainPhoto}
+          alt={listing.title}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          loading="lazy"
+        />
+
+        {/* Badges Overlay */}
+        <div className="absolute inset-0 p-3 flex flex-col justify-between pointer-events-none">
+          <div className="flex items-center justify-between gap-2">
+            {isVatDeductible ? (
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-semibold bg-ink-deep/85 text-gold-soft border border-gold/30 backdrop-blur-md">
+                TVA Deductibil
+              </span>
+            ) : <span />}
+
+            {isSold ? (
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold bg-rose-600/90 text-white uppercase tracking-wider backdrop-blur-md">
+                Vândut
+              </span>
+            ) : (
+              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 backdrop-blur-md">
+                Disponibil
+              </span>
+            )}
+          </div>
+        </div>
+
         {isSold && (
-          <div className="absolute inset-0 flex items-center justify-center z-20 bg-black/30">
-            <div className="border-4 border-white bg-black/60 text-white text-2xl font-bold px-6 py-2 -rotate-12 transform uppercase tracking-widest backdrop-blur-sm">
+          <div className="absolute inset-0 bg-ink-deep/50 flex items-center justify-center backdrop-blur-[2px] pointer-events-none">
+            <div className="border-2 border-white/80 bg-ink-deep/90 text-white text-lg font-black px-5 py-1.5 -rotate-12 uppercase tracking-widest">
               VÂNDUT
             </div>
           </div>
         )}
-        
-        {isVatDeductible && !isSold && (
-          <span 
-            className="absolute top-2 right-2 text-xs font-bold px-2 py-1 rounded-md shadow-lg z-10"
-            style={{ 
-              backgroundColor: 'hsl(var(--luxury-gold))',
-              color: '#1c1c1c'
-            }}
-          >
-            TVA Deductibil
-          </span>
-        )}
-        <img 
-          src={listing.images?.[0]?.url || 'https://via.placeholder.com/600x400.png?text=AWD+Auto'} 
-          alt={listing.title + ' de vânzare la parc auto Cluj-Napoca'}
-          className={cn(
-            "w-full h-48 object-cover transition-transform duration-500",
-            !isSold && "group-hover:scale-110",
-            isSold && "grayscale"
-          )}
-        />
-        <div className={cn("absolute inset-0 bg-gradient-to-t from-black/60 to-transparent", isSold && "from-black/80")} />
       </div>
 
-      <div className="p-6 space-y-4">
-        <div className="space-y-2">
-          <h3 className={cn(
-            "font-luxury text-xl font-bold text-foreground transition-colors",
-            isSold ? "whitespace-normal" : "truncate group-hover:text-luxury-gold"
-          )}>
-            {listing.title}
-          </h3>
-          <p className={cn("text-2xl font-bold text-luxury-gold", isSold && "text-muted-foreground")}>
-            €{(listing.price || 0).toLocaleString()}
-          </p>
+      {/* Content */}
+      <div className="p-5 flex flex-col flex-1 justify-between">
+        <div>
+          {/* Subtitle / Meta */}
+          <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-1">
+            {[year !== "N/A" ? year : null, fuelType !== "N/A" ? fuelType : null, transmission !== "N/A" ? transmission : null]
+              .filter(Boolean)
+              .join(" · ")}
+          </div>
+
+          {/* Title */}
+          <Link to={`/masini-disponibile/${listing.id}`}>
+            <h3 className="font-bold text-foreground text-lg leading-snug line-clamp-1 group-hover:text-gold transition-colors">
+              {listing.title}
+            </h3>
+          </Link>
+
+          {/* Specs Grid */}
+          <div className="grid grid-cols-2 gap-y-2 gap-x-3 mt-4 pt-3 border-t border-border text-xs text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <Gauge className="w-3.5 h-3.5 text-steel flex-shrink-0" />
+              <span className="truncate">{mileage} km</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Calendar className="w-3.5 h-3.5 text-steel flex-shrink-0" />
+              <span className="truncate">An {year}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Fuel className="w-3.5 h-3.5 text-steel flex-shrink-0" />
+              <span className="truncate">{fuelType}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Settings className="w-3.5 h-3.5 text-steel flex-shrink-0" />
+              <span className="truncate">{transmission}</span>
+            </div>
+          </div>
         </div>
 
-        {!isSold && (
-            <>
-                <div className="grid grid-cols-2 gap-3 text-sm">
-                  <div className="flex items-center space-x-2 text-muted-foreground">
-                    <Calendar className="h-4 w-4 text-luxury-gold" />
-                    <span>{year}</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-muted-foreground">
-                    <Gauge className="h-4 w-4 text-luxury-gold" />
-                    <span>{mileage} km</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-muted-foreground">
-                    <Fuel className="h-4 w-4 text-luxury-gold" />
-                    <span>{fuelType}</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-muted-foreground">
-                    <Settings className="h-4 w-4 text-luxury-gold" />
-                    <span>{transmission}</span>
-                  </div>
-                </div>
-
-                <div className="pt-2">
-                    <Link to={`/masini-disponibile/${listing.id}`} state={{ listing }} className="block">
-                        <Button className="w-full min-h-[44px]" size="sm">
-                            Vezi Detalii
-                        </Button>
-                    </Link>
-                </div>
-            </>
-        )}
-        
-         {isSold && (
-            <div className="pt-2">
-                <Button className="w-full min-h-[44px]" size="sm" disabled>
-                    Vândut
-                </Button>
+        {/* Price & CTA */}
+        <div className="mt-5 pt-3 border-t border-border">
+          <div className="flex items-baseline justify-between mb-3">
+            <div>
+              <span className="text-2xl font-black text-foreground tracking-tight">
+                {priceVal}
+              </span>
+              {listing.price && (
+                <span className="block text-[11px] text-muted-foreground">
+                  {isVatDeductible ? "TVA inclus și deductibil" : "TVA inclus"}
+                </span>
+              )}
             </div>
-        )}
-      </div>
-    </motion.div>
-  )
-}
+          </div>
 
-export default CarCard
+          <Link
+            to={`/masini-disponibile/${listing.id}`}
+            className="btn-gold w-full flex items-center justify-center gap-2 text-ink-deep font-bold py-2.5 px-4 rounded-lg text-xs uppercase tracking-wider transition-all"
+          >
+            <span>Vezi Detalii</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CarCard;

@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import Layout from "@/components/layout/Layout"
 import Container from "@/components/ui/Container"
@@ -9,43 +9,52 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { AlertCircle } from "lucide-react"
 
 const MasiniVandute = () => {
-  // By calling the hook without a limit, we are now fetching all sold listings
   const { soldListings, loading, error } = useSoldListings()
 
   return (
     <Layout>
-      <section className="py-20 bg-luxury-darker">
+      {/* Page Hero - Auto Mivrus Style */}
+      <section className="bg-ink-deep border-b border-ink-border text-ink-foreground py-16 lg:py-20">
         <Container>
-          <AnimatedSection className="text-center mb-16">
-            <h2 className="font-luxury text-3xl md:text-4xl font-bold text-luxury-gold mb-4">
+          <div className="max-w-3xl">
+            <p className="eyebrow text-gold mb-3">Portofoliu</p>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink-foreground">
               Mașini Vândute
-            </h2>
-          </AnimatedSection>
+            </h1>
+            <p className="mt-3 text-base sm:text-lg text-ink-muted">
+              Descoperă vehiculele livrate cu succes de echipa AWD Auto către clienții noștri.
+            </p>
+          </div>
+        </Container>
+      </section>
 
+      {/* Grid Content - Warm Light Surface */}
+      <section className="py-12 lg:py-16 bg-background text-foreground">
+        <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {loading ? (
-              // Show a reasonable number of skeletons while loading
               [...Array(8)].map((_, index) => (
-                <div key={index} className="luxury-card">
-                  <Skeleton className="h-48 w-full rounded-t-xl" />
-                  <div className="p-6 space-y-4">
-                    <Skeleton className="h-6 w-3/4" />
-                    <Skeleton className="h-8 w-1/2" />
-                    <Skeleton className="h-9 w-full" />
+                <div key={index} className="overflow-hidden rounded-xl border border-border bg-card shadow-card">
+                  <Skeleton className="aspect-[3/2] w-full rounded-t-xl bg-muted" />
+                  <div className="p-5 space-y-4">
+                    <Skeleton className="h-6 w-3/4 bg-muted" />
+                    <Skeleton className="h-4 w-1/2 bg-muted" />
+                    <Skeleton className="h-8 w-1/3 bg-muted" />
+                    <Skeleton className="h-11 w-full rounded-xl bg-muted" />
                   </div>
                 </div>
               ))
             ) : error ? (
-              <div className="col-span-full text-center text-red-500 bg-red-500/10 p-6 rounded-lg border border-red-500/30">
+              <div className="col-span-full text-center text-red-600 bg-red-50 p-6 rounded-xl border border-red-200">
                 <AlertCircle className="mx-auto h-12 w-12 mb-4" />
-                <h3 className="text-xl font-semibold">Eroare la încărcare</h3>
-                <p>Nu am putut prelua mașinile vândute. Te rugăm să încerci din nou mai târziu.</p>
+                <h3 className="text-xl font-bold">Eroare la încărcare</h3>
+                <p className="mt-1 text-sm text-red-700">Nu am putut prelua mașinile vândute. Te rugăm să încerci din nou mai târziu.</p>
               </div>
             ) : soldListings.length > 0 ? (
               soldListings.map(listing => <CarCard key={listing.id} listing={{...listing, status: 'SOLD'}} />)
             ) : (
-              <div className="col-span-full text-center p-6 border border-dashed border-gray-600 rounded-lg">
-                <p className="text-xl text-muted-foreground">
+              <div className="col-span-full text-center p-8 border border-dashed border-border bg-card rounded-xl">
+                <p className="text-lg text-muted-foreground">
                   Nu sunt mașini vândute de afișat momentan.
                 </p>
               </div>
